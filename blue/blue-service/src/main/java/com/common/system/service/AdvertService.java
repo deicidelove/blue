@@ -22,7 +22,7 @@ public interface AdvertService {
 	 *            广告/通知
 	 * @return
 	 */
-	public PageBean<BlueAdvert> getAdverList(int type,String date, int startPage,
+	public PageBean<BlueAdvert> getAdverList(int type, int startPage,
 			int limitLength);
 
 	/**
@@ -30,7 +30,7 @@ public interface AdvertService {
 	 * 
 	 * @return
 	 */
-	public Result<Integer> deleteAdver(int sid);
+	public Result<String> deleteAdver(int sid);
 
 	/**
 	 * 添加某条广告
@@ -43,7 +43,7 @@ public interface AdvertService {
 	 *            介绍文本
 	 * @return
 	 */
-	public Result<Integer> addAdver(int type, String context, String title,
+	public Result<String> addAdver(int type, String context, String title,
 			MultipartFile file);
 
 	/**
@@ -63,7 +63,7 @@ public interface AdvertService {
 	 * @param file
 	 * @return
 	 */
-	public Result<Integer> updateAdvert(int type, String context, String title,
+	public Result<String> updateAdvert(int type, String context, String title,
 			MultipartFile file, int sid);
 
 }
