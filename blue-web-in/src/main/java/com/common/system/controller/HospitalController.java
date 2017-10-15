@@ -7,12 +7,15 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.BlueHospital;
 import com.common.system.service.HospitalService;
 import com.common.system.util.PageBean;
@@ -44,28 +47,46 @@ public class HospitalController {
 		if (StringUtils.isEmpty(search)) {
 			search = "-1";
 		}
-		return hospitalService.findBlueHospitals(Integer.valueOf(search),
+		return hospitalService.findBlueHospitals(date,Integer.valueOf(search),
 				start, pageSize);
 	}
 
-	@RequestMapping("/deleteHospital")
-	public Result<String> deleteHospital(int sid) {
-		return hospitalService.deleteHospital(sid);
+	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	Result<Integer> delete(@PathVariable Integer id) {
+		return hospitalService.deleteHospital(id);
 	}
+	
+	 @RequestMapping(value = "view/{id}",method = RequestMethod.GET)
+	    public ModelAndView view(@PathVariable Integer id,ModelAndView modelAndView){
+	        Result<BlueHospital> result = hospitalService.findHospital(id);
+	        modelAndView.addObject("bean",result.getData());
+	        modelAndView.setViewName("/system/admin/hospital/view");
+	        return modelAndView;
+	    }
 
-	@RequestMapping("/findHospital")
-	public Result<BlueHospital> findHospital(int sid) {
-		return hospitalService.findHospital(sid);
+	 @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+		public ModelAndView edit(@PathVariable Integer id, ModelAndView modelAndView) {
+			Result<BlueHospital> result = hospitalService.findHospital(id);
+			modelAndView.addObject("bean", result.getData());
+			modelAndView.addObject("url", "");
+			modelAndView.setViewName("/system/admin/hospital/edit");
+			return modelAndView;
+		}
+
+		@RequestMapping(value = "update", method = RequestMethod.POST)
+		public @ResponseBody
+		Result<Integer> updateHospital(int type, int sid, String context,
+			@RequestParam("fileName") MultipartFile file,String title) {
+		return hospitalService.updateHospital(type, sid, context, title,file);
 	}
-
-	@RequestMapping("/updateHospital")
-	public Result<String> updateHospital(int type, int sid, String context,
-			String title) {
-		return hospitalService.updateHospital(type, sid, context, title);
-	}
-
-	@RequestMapping("/addHospital")
-	public Result<String> addHospital(int type, String context, String title) {
-		return hospitalService.addHospital(type, context, title);
+		@RequestMapping(value = "add", method = RequestMethod.GET)
+		public ModelAndView add(ModelAndView modelAndView) {
+			modelAndView.setViewName("/system/admin/hospital/add");
+			return modelAndView;
+		}
+		@RequestMapping(value = "save")
+		public @ResponseBody Result<Integer> addHospital(int type, String context, @RequestParam("fileName") MultipartFile file,String title) {
+		return hospitalService.addHospital(type, context, title,file);
 	}
 }

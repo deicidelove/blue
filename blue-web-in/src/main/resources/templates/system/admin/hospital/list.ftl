@@ -5,7 +5,7 @@
 				<h3 class="box-title">医院概况管理</h3>
 				<div class="box-tools pull-right">
 					<@shiro.hasPermission name="user/add">
-						<a onclick="securityToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/user/add">添加</a>
+						<a onclick="hospitalToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/hospital/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
 			</div>
@@ -16,17 +16,22 @@
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</div>
-							<input type="text" class="form-control pull-right" id="securityTime" placeholder="选择时间...">
+							<input type="text" class="form-control pull-right" id="hospitalTime" placeholder="选择时间...">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-search"></i></span>
-							<input type="text" class="form-control" id="securityPremise" placeholder="根据账号搜索...">
+							<select name="search" id="hospitalNameSelect"  class="form-control select2" style="width: 100%;">
+								<option value="-1">全部</option>
+	                   			<option value="0">医院简介</option>
+	                   			<option value="1">医院文化</option>
+	                   			<option value="2">医院环境</option>
+                			</select>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<button type="submit" onclick="securityReload();" class="btn btn-primary">搜索</button>
+						<button type="submit" onclick="hospitalReload();" class="btn btn-primary">搜索</button>
 					</div>
 				</div>
 				<table id="hospital_tab" class="table table-bordered table-striped">
@@ -52,7 +57,7 @@
 var hospital_tab;
 $(function() {
 	//初始化时间选择器
-	$('#securityTime').datepicker({
+	$('#hospitalTime').datepicker({
 		language: 'zh-CN',
 		format: 'yyyy-mm-dd',
 		autoclose: true,
@@ -105,13 +110,13 @@ $(function() {
 				"render" : function(data) {
 //					debugger;
 					var btn = "";
-					btn = '<a class="btn btn-xs btn-primary" target="modal" modal="lg" href="/user/view/'+ data.id+ '">查看</a> &nbsp;';
+					btn = '<a class="btn btn-xs btn-primary" target="modal" modal="lg" href="/hospital/view/'+ data.sid+ '">查看</a> &nbsp;';
 					if(isNull(data.role) ||  'super' != data.role.value){
                         btn +='<@shiro.hasPermission name="user/edit">'
-                        +'<a class="btn btn-xs btn-info" onclick="securityToListAjax();" target="modal" modal="lg" href="/user/edit/'+ data.id+ '">修改</a> &nbsp;'
+                        +'<a class="btn btn-xs btn-info" onclick="hospitalToListAjax();" target="modal" modal="lg" href="/hospital/edit/'+ data.sid+ '">修改</a> &nbsp;'
                         +'</@shiro.hasPermission>'
                         +'<@shiro.hasPermission name="user/delete">'
-                        +'<a class="btn btn-xs btn-default" callback="securityReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/user/delete/'+ data.id + '">删除</a>'
+                        +'<a class="btn btn-xs btn-default" callback="hospitalReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/hospital/delete/'+ data.sid + '">删除</a>'
                         +'</@shiro.hasPermission>';
 					}
 					return btn;
@@ -122,15 +127,15 @@ $(function() {
     } );
 	
 	$("#securitySeek").on("click",function(){
- 		reloadTable(hospital_tab,"#securityTime","#securityPremise");
+ 		reloadTable(hospital_tab,"#hospitalTime","#hospitalNameSelect");
 	});
 });
 
-function securityReload(){
-	reloadTable(hospital_tab,"#securityTime","#securityPremise");
+function hospitalReload(){
+	reloadTable(hospital_tab,"#hospitalTime","#hospitalNameSelect");
 }
 
-function securityToListAjax(){
+function hospitalToListAjax(){
 	list_ajax = hospital_tab;
 	console.log(list_ajax);
 }

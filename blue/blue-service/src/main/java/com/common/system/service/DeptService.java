@@ -3,8 +3,8 @@
  */
 package com.common.system.service;
 
-import java.util.List;
 
+import com.common.system.entity.BlueDept;
 import com.common.system.entity.RcDept;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
@@ -20,14 +20,14 @@ public interface DeptService {
 	 * 
 	 * @return
 	 */
-	public PageBean<RcDept> findDepts(int start,int limit);
+	public PageBean<BlueDept> findDepts(int start,int limit);
 
-	public Result<String> deleteDept(int sid);
+	public Result<Integer> deleteDept(int sid);
 
-	public Result<RcDept> findBySid(int sid);
+	public Result<BlueDept> findBySid(int sid);
 
-	public Result<String> addDept(String name, String context);
+	public Result<Integer> addDept(String name, String context);
 
-	public Result<String> updateDept(String name, String context, int sid);
+	public Result<Integer> updateDept(String deptName,String context,int sid);
 
 }
