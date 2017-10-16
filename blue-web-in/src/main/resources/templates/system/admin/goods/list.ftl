@@ -2,10 +2,10 @@
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header">
-				<h3 class="box-title">活动管理</h3>
+				<h3 class="box-title">商品管理</h3>
 				<div class="box-tools pull-right">
-					<@shiro.hasPermission name="act/add">
-						<a onclick="securityToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/act/add">添加</a>
+					<@shiro.hasPermission name="goodsAdd">
+						<a onclick="securityToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/goods/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
 			</div>
@@ -29,15 +29,14 @@
 						<button type="submit" onclick="securityReload();" class="btn btn-primary">搜索</button>
 					</div>
 				</div>
-				<table id="security_tab" class="table table-bordered table-striped">
+				<table id="goods_tab" class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<tr>
 								<th>序号</th>
-								<th>活动名称</th>
-								<th>参与总人数</th>
-								<th>中奖数</th>
-								<th>当前期数</th>
+								<th>活动Id</th>
+								<th>商品名称</th>
+								<th>商品价格</th>
 								<th>状态</th>
 								<th>创建时间</th>
 								<th>操作</th>
@@ -51,7 +50,7 @@
 </div>
 
 <script type="text/javascript">
-var security_tab;
+var goods_tab;
 $(function() {
 	//初始化时间选择器
 	$('#securityTime').datepicker({
@@ -63,19 +62,18 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
-	security_tab=$('#security_tab').DataTable({
+	goods_tab=$('#goods_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,
 		"searching":false,
 		"serverSide":true, //启用服务器端分页
 		"bInfo":false,
 		"language":{"url":"adminlte/plugins/datatables/language.json"},
-		"ajax" : {"url":"/act/page","type":"post"},
+		"ajax" : {"url":"/goods/page","type":"post"},
 		"columns":[ 
 		    {"data":null}, 
-			{"data":"actName"},
-			{"data":"actTotalNum"},
-			{"data":"actGivingNum"},
+			{"data":"actId"},
+			{"data":"goodsName"},
 			{"data":null},
 			{"data":null},
 			{"data":"createTime"},
@@ -91,22 +89,22 @@ $(function() {
 			    }
 			},
             {
-                targets: 4,
+                targets: 3,
                 data: null,
                 render: function (data) {
-                    var actPeriods = data.actPeriods;
-                    return "第"+actPeriods+"期";
+                    var actPeriods = data.goodsPrice;
+                    return actPeriods+"元";
                 }
             },
 			{
-			    targets: 5,
+			    targets: 4,
 			    data: null,
 			    render: function (data) {
-			    	if(data.actIsExpire == 0){
+			    	if(data.isDelete == 0){
 			    		return "有效";
 			    	}
-			    	if(data.status == 1){
-			    		return "过期";
+			    	if(data.isDelete == 1){
+			    		return "删除";
 			    	}
 			    	return "未知状态";
 			    }
@@ -134,16 +132,16 @@ $(function() {
     } );
 	
 	$("#securitySeek").on("click",function(){
- 		reloadTable(security_tab,"#securityTime","#securityPremise");
+ 		reloadTable(goods_tab,"#securityTime","#securityPremise");
 	});
 });
 
 function securityReload(){
-	reloadTable(security_tab,"#securityTime","#securityPremise");
+	reloadTable(goods_tab,"#securityTime","#securityPremise");
 }
 
 function securityToListAjax(){
-	list_ajax = security_tab;
+	list_ajax = goods_tab;
 	console.log(list_ajax);
 }
 function isNull(data){

@@ -1,14 +1,20 @@
 package com.common.system.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.common.system.dao.GoodsDao;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.service.GoodsService;
+import com.common.system.util.MsgCode;
+import com.common.system.util.Result;
+import com.github.pagehelper.PageInfo;
 
 @Service("goodsService")
 public class GoodsServiceImpl implements GoodsService {
@@ -19,47 +25,75 @@ public class GoodsServiceImpl implements GoodsService {
 	private static final Logger LOG = LoggerFactory.getLogger(GoodsServiceImpl.class);
 	
 	@Override
-	public void saveGoods(GoodsEntity goodsEntity) {
-		
+	public Result<Integer> saveGoods(GoodsEntity goodsEntity) {
+		Result<Integer> result = new Result<Integer>();
 		try {
 			goodsDao.saveGoods(goodsEntity);
-			
+            result.setStatus(true);
+            result.setCode(MsgCode.SUCCESS);
+            result.setMsg("操作成功");
 		} catch (Exception e) {
 			LOG.error("GivingServiceImpl saveAct error!", e );
 		}
+		return result;
 	}
 
 	@Override
-	public void deleteById(Integer actId) {
-		
+	public Result<Integer> deleteById(Integer actId) {
+		Result<Integer> result = new Result<Integer>();
 		try {
 			goodsDao.deleteById(actId);
-			
+            result.setStatus(true);
+            result.setCode(MsgCode.SUCCESS);
+            result.setMsg("操作成功");
 		} catch (Exception e) {
 			LOG.error("GivingServiceImpl deleteById error!", e );
 		}
+		return result;
 	}
 
 	@Override
-	public void update(GoodsEntity goodsEntity) {
+	public Result<Integer> update(GoodsEntity goodsEntity) {
+		Result<Integer> result = new Result<Integer>();
 		try {
 			goodsDao.update(goodsEntity);
-			
+            result.setStatus(true);
+            result.setCode(MsgCode.SUCCESS);
+            result.setMsg("操作成功");
 		} catch (Exception e) {
 			LOG.error("GivingServiceImpl update error!", e );
 		}
-
+		return result;
 	}
 
 	@Override
-	public GoodsEntity getById(Integer goodsId) {
-		GoodsEntity goodsEntity = null;
+	public Result<GoodsEntity> getById(Integer goodsId) {
+		Result<GoodsEntity> result = new Result<GoodsEntity>();
 		try {
-			goodsEntity = goodsDao.seleteById(goodsId);
+			GoodsEntity goodsEntity = goodsDao.seleteById(goodsId);
+	        if (goodsEntity != null){
+	            result.setData(goodsEntity);
+	            result.setStatus(true);
+	            result.setCode(MsgCode.SUCCESS);
+	            result.setMsg("操作成功");
+	        }
 		} catch (Exception e) {
 			LOG.error("ActServiceImpl getById error!", e );
 		}
-		return goodsEntity;
+		return result;
+	}
+
+	@Override
+	public PageInfo<GoodsEntity> listForPage(Integer pageNum, Integer pageSize) {
+		PageInfo<GoodsEntity> result = new PageInfo<GoodsEntity>();
+		try {
+			List<GoodsEntity> resultList = goodsDao.seleteByList(pageNum, pageSize);
+			result.setList(resultList);
+		} catch (Exception e) {
+			LOG.error("ActServiceImpl listForPage error!", e );
+		}
+		System.out.println(JSON.toJSONString(result));
+		return result;
 	}
 
 }

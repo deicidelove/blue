@@ -1,6 +1,7 @@
 package com.common.system.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -22,6 +23,11 @@ public class GoodsEntity implements Serializable{
 	 * 商品名稱
 	 */
 	private String goodsName;
+	
+	/**
+	 * 商品价格
+	 */
+	private BigDecimal goodsPrice;
 	/**
 	 * 商品大圖Url
 	 */
@@ -30,6 +36,16 @@ public class GoodsEntity implements Serializable{
 	 * 商品詳情圖
 	 */
 	private String goodsDetailPicUrl;
+	
+	/**
+	 * 商品详情
+	 */
+	private String goodsDetail;
+	
+	/**
+	 *  是否删除
+	 */
+	private Boolean isDelete;
 	/**
 	 * 創建時間
 	 */
@@ -123,6 +139,42 @@ public class GoodsEntity implements Serializable{
 	 */
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+	/**
+	 * @return the goodsDetail
+	 */
+	public String getGoodsDetail() {
+		return goodsDetail;
+	}
+	/**
+	 * @param goodsDetail the goodsDetail to set
+	 */
+	public void setGoodsDetail(String goodsDetail) {
+		this.goodsDetail = goodsDetail;
+	}
+	/**
+	 * @return the goodsPrice
+	 */
+	public BigDecimal getGoodsPrice() {
+		return goodsPrice;
+	}
+	/**
+	 * @param goodsPrice the goodsPrice to set
+	 */
+	public void setGoodsPrice(BigDecimal goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
+	/**
+	 * @return the isDelete
+	 */
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+	/**
+	 * @param isDelete the isDelete to set
+	 */
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
 	}
 
 }
