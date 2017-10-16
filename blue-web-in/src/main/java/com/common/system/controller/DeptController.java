@@ -3,18 +3,18 @@
  */
 package com.common.system.controller;
 
-import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.common.system.entity.RcDept;
+import com.common.system.entity.BlueDept;
 import com.common.system.service.DeptService;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
@@ -24,7 +24,7 @@ import com.common.system.util.Result;
  * 
  */
 @Controller
-@RequestMapping("dept")
+@RequestMapping("blueDept")
 public class DeptController {
 
 	@Resource
@@ -43,31 +43,46 @@ public class DeptController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "page")
-	public PageBean<RcDept> findDepts(@RequestParam(value = "start", defaultValue = "1") int start,
+	public PageBean<BlueDept> findDepts(@RequestParam(value = "start", defaultValue = "1") int start,
 			@RequestParam(value = "length", defaultValue = "10") int pageSize,
 			@RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "search", required = false) String search) {
 		return deptService.findDepts(start,pageSize);
 	}
-
-	@RequestMapping("/deleteDept")
-	public Result<String> deleteDept(int sid) {
-		return deptService.deleteDept(sid);
+	
+	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	Result<Integer> delete(@PathVariable Integer id) {
+		Result<Integer> result = deptService.deleteDept(id);
+		return result;
 	}
+	
+	 @RequestMapping(value = "edit/{id}",method = RequestMethod.GET)
+	    public ModelAndView edit(@PathVariable Integer id,ModelAndView modelAndView){
+	        Result<BlueDept> result = deptService.findBySid(id);
+	        modelAndView.addObject("bean",result.getData());
+	        modelAndView.setViewName("/system/admin/dept/edit");
+	        return modelAndView;
+	    }
+	 
+	 @RequestMapping(value = "add",method = RequestMethod.GET)
+	    public ModelAndView add(ModelAndView modelAndView){
+	        modelAndView.setViewName("/system/admin/dept/add");
+	        return modelAndView;
+	    }
+	 
+	 @RequestMapping(value = "save")
+	    public @ResponseBody Result<Integer> save(String deptName,String context){
+	        return deptService.addDept(deptName, context);
+	    }
+	 
+	 @RequestMapping(value = "update",method = RequestMethod.POST)
+	    public @ResponseBody Result<Integer> update(String deptName,String context, int sid){	       
+	        return deptService.updateDept(deptName, context, sid);
+	    }
+	 
+	 
 
-	@RequestMapping("/findBySid")
-	public Result<RcDept> findBySid(int sid) {
-		return deptService.findBySid(sid);
-	}
-
-	@RequestMapping("/addDept")
-	public Result<String> addDept(String name, String context) {
-		return deptService.addDept(name, context);
-	}
-
-	@RequestMapping("/updateDept")
-	public Result<String> updateDept(String name, String context, int sid) {
-		return deptService.updateDept(name, context, sid);
-	}
+	
 
 }

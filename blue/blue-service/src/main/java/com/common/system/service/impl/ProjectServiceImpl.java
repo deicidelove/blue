@@ -3,6 +3,7 @@
  */
 package com.common.system.service.impl;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -11,11 +12,13 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.common.system.dao.ProjectDao;
 import com.common.system.entity.BlueProject;
 import com.common.system.service.ProjectService;
 import com.common.system.util.PageBean;
+import com.common.system.util.PicUtil;
 import com.common.system.util.Result;
 
 /**
@@ -36,10 +39,10 @@ public class ProjectServiceImpl implements ProjectService {
 	 * @see com.common.system.service.ProjectService#findProjectList(int, int)
 	 */
 	@Override
-	public PageBean<BlueProject> findProjectList(int startPage, int limitLength) {
+	public PageBean<BlueProject> findProjectList(String date,int startPage, int limitLength) {
 		try {
-			int count = projectDao.findCount();
-			List<BlueProject> list = projectDao.findProjectList((startPage - 1)
+			int count = projectDao.findCount(date);
+			List<BlueProject> list = projectDao.findProjectList(date,startPage 
 					* limitLength, limitLength);
 			PageBean<BlueProject> page = new PageBean<>();
 			page.setiDisplayLength(limitLength);
@@ -59,18 +62,18 @@ public class ProjectServiceImpl implements ProjectService {
 	 * @see com.common.system.service.ProjectService#deleteProject(int)
 	 */
 	@Override
-	public Result<String> deleteProject(int sid) {
+	public Result<Integer> deleteProject(int sid) {
 		try {
 			int count = projectDao.deleteProject(sid);
 			if (count > 0) {
-				return new Result<String>(true, "删除成功！", null);
+				return new Result<Integer>(true, "删除成功！", count);
 			} else {
-				return new Result<String>(false, "未删除任何数据，请刷新后操作！", null);
+				return new Result<Integer>(false, "未删除任何数据，请刷新后操作！", null);
 			}
 		} catch (Exception e) {
 			LOG.error("删除项目失败！msg:{},sid:{}", e, sid);
 		}
-		return new Result<String>(false, "删除失败！", null);
+		return new Result<Integer>(false, "删除失败！", null);
 	}
 
 	/*
@@ -81,18 +84,20 @@ public class ProjectServiceImpl implements ProjectService {
 	 * java.lang.String, int)
 	 */
 	@Override
-	public Result<String> updateProject(String name, String context, int sid) {
+	public Result<Integer> updateProject(String name, String context, int sid,MultipartFile file) {
 		try {
+			String url = PicUtil.upFile(file);
 			BlueProject project = new BlueProject();
+			project.setUrl(url);
 			project.setSid(sid);
 			project.setName(name);
-			project.setConetxt(context);
-			projectDao.updateProject(project);
-			return new Result<String>(true, "更新成功！", null);
+			project.setContext(context);
+			int count = projectDao.updateProject(project);
+			return new Result<Integer>(true, "更新成功！", count);
 		} catch (Exception e) {
 			LOG.error("项目更新失败！msg:{},sid:{}", e, sid);
 		}
-		return new Result<String>(false, "更新失败！", null);
+		return new Result<Integer>(false, "更新失败！", null);
 	}
 
 	/*
@@ -103,18 +108,20 @@ public class ProjectServiceImpl implements ProjectService {
 	 * java.lang.String)
 	 */
 	@Override
-	public Result<String> addProject(String name, String context) {
+	public Result<Integer> addProject(String name, String context,MultipartFile file) {
 		try {
+			String url = PicUtil.upFile(file);
 			BlueProject project = new BlueProject();
+			project.setUrl(url);
 			project.setName(name);
-			project.setConetxt(context);
+			project.setContext(context);
 			project.setCreateTime(new Date());
-			projectDao.updateProject(project);
-			return new Result<String>(true, "保存成功！", null);
+			int count = projectDao.addProject(project);
+			return new Result<Integer>(true, "保存成功！", count);
 		} catch (Exception e) {
 			LOG.error("项目保存失败！msg:{}", e);
 		}
-		return new Result<String>(false, "保存失败！", null);
+		return new Result<Integer>(false, "保存失败！", null);
 	}
 
 	/*

@@ -5,7 +5,7 @@
 				<h3 class="box-title">资源管理</h3>
 				<div class="box-tools pull-right">
 					<@shiro.hasPermission name="user/add">
-						<a onclick="securityToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/user/add">添加</a>
+						<a onclick="sourceToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/source/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
 			</div>
@@ -16,20 +16,26 @@
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</div>
-							<input type="text" class="form-control pull-right" id="securityTime" placeholder="选择时间...">
+							<input type="text" name="date" class="form-control pull-right" id="sourceTime" placeholder="选择时间...">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-search"></i></span>
-							<input type="text" class="form-control" id="securityPremise" placeholder="根据科室搜索...">
-						</div>
+								<span class="input-group-addon"><i class="fa fa-search"></i></span>
+								
+								 <select name="search" id="sourceNameSelect"  class="form-control select2" style="width: 100%;">
+									<option value="-1">全部</option>
+									<#list depts as dept>
+		                   				<option value="${dept.sid}">${dept.name}</option>
+		                			</#list>
+	                			</select>
+							</div>
 					</div>
 					<div class="col-md-4">
-						<button type="submit" onclick="securityReload();" class="btn btn-primary">搜索</button>
+						<button type="submit" onclick="sourceReload();" class="btn btn-primary">搜索</button>
 					</div>
 				</div>
-				<table id="security_tab" class="table table-bordered table-striped">
+				<table id="source_tab" class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<tr>
@@ -49,10 +55,10 @@
 </div>
 
 <script type="text/javascript">
-var security_tab;
+var source_tab;
 $(function() {
 	//初始化时间选择器
-	$('#securityTime').datepicker({
+	$('#sourceTime').datepicker({
 		language: 'zh-CN',
 		format: 'yyyy-mm-dd',
 		autoclose: true,
@@ -61,7 +67,7 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
-	security_tab=$('#security_tab').DataTable({
+	source_tab=$('#source_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,
 		"searching":false,
@@ -92,15 +98,14 @@ $(function() {
 				"render" : function(data) {
 //					debugger;
 					var btn = "";
-					btn = '<a class="btn btn-xs btn-primary" target="modal" modal="lg" href="/user/view/'+ data.id+ '">查看</a> &nbsp;';
-					if(isNull(data.role) ||  'super' != data.role.value){
-                        btn +='<@shiro.hasPermission name="user/edit">'
-                        +'<a class="btn btn-xs btn-info" onclick="securityToListAjax();" target="modal" modal="lg" href="/user/edit/'+ data.id+ '">修改</a> &nbsp;'
+					
+					btn = '<a class="btn btn-xs btn-info" target="modal" modal="lg" href="/source/view/'+ data.sid+ '">查看</a> &nbsp;';
+                    btn +='<@shiro.hasPermission name="user/edit">'
+                        +'<a class="btn btn-xs btn-info" onclick="sourceToListAjax();" target="modal" modal="lg" href="/source/edit/'+ data.sid+ '">修改</a> &nbsp;'
                         +'</@shiro.hasPermission>'
                         +'<@shiro.hasPermission name="user/delete">'
-                        +'<a class="btn btn-xs btn-default" callback="securityReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/user/delete/'+ data.id + '">删除</a>'
+                        +'<a class="btn btn-xs btn-default" callback="sourceReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/source/delete/'+ data.sid + '">删除</a>'
                         +'</@shiro.hasPermission>';
-					}
 					return btn;
 			}
 		} ]
@@ -109,16 +114,16 @@ $(function() {
     } );
 	
 	$("#securitySeek").on("click",function(){
- 		reloadTable(security_tab,"#securityTime","#securityPremise");
+ 		reloadTable(source_tab,"#sourceTime","#sourceNameSelect");
 	});
 });
 
-function securityReload(){
-	reloadTable(security_tab,"#securityTime","#securityPremise");
+function sourceReload(){
+	reloadTable(source_tab,"#sourceTime","#sourceNameSelect");
 }
 
-function securityToListAjax(){
-	list_ajax = security_tab;
+function sourceToListAjax(){
+	list_ajax = source_tab;
 	console.log(list_ajax);
 }
 function isNull(data){
