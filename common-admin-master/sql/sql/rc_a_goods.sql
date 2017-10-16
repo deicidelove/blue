@@ -1,0 +1,1 @@
+INSERT INTO `rc_a_goods` (`goods_id`, `act_id`, `goods_name`, `goods_price`, `goods_pic_url`, `goods_detail_pic_url`, `goods_detail`, `is_delete`, `createTime`, `updateTime`) VALUES (1, 11, '测试', 2.00, '11', '11', NULL, '0', '2017-9-19 22:30:34', '2017-10-16 23:14:07');
