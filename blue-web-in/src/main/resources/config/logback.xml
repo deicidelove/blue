@@ -3,9 +3,9 @@
         scan="true" scanPeriod="10 seconds">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/export/Logs/common-admin/info.log</File>
+        <File>/export/Logs/blue-web-in/info.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/export/Logs/common-admin/info-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <fileNamePattern>/export/Logs/blue-web-in/info-%d{yyyyMMdd}.log.%i</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>500MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -19,11 +19,11 @@
 
     <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>ERROR</level>
+            <level>DEBUG</level>
         </filter>
-        <File>/export/Logs/common-admin/error.log</File>
+        <File>/export/Logs/blue-web-in/error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/export/Logs/common-admin/error-%d{yyyyMMdd}.log.%i
+            <fileNamePattern>/export/Logs/blue-web-in/error-%d{yyyyMMdd}.log.%i
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>500MB</maxFileSize>

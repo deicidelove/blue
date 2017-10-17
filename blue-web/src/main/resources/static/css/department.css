@@ -1,0 +1,90 @@
+.health_bg{
+    width:100%;
+    height:3.9rem;
+    background: url("../images/icon-13.png")no-repeat center;
+    background-size: 100% 100%;
+}
+.health_content{
+    width:100%;
+    min-height: 3.5rem;
+    background: #d0e4f9;
+    padding-bottom: 0.5rem;
+}
+.introduce{
+    width:84%;
+    min-height:2.5rem;
+    background: #fff;
+    border-radius: 6px;
+    margin:0 auto;
+    padding:0 5%;
+}
+.headline{
+    height:0.8rem;
+    font-size: 0.32rem;
+    color:#429999;
+    font-weight: 500;
+    line-height: 0.8rem;
+}
+.introduce_cont{
+    line-height: 0.46rem;
+    font-size: 0.26rem;
+    color:#777;
+    padding-bottom: 0.4rem;
+}
+.doctor{
+    width:94%;
+    margin:0 auto;
+}
+.doctor .headline{
+    text-indent: 5%;
+}
+.doctor_ul{
+    width:100%;
+    min-height:1.9rem;
+}
+.doctor_li{
+    width:100%;
+    height:1.9rem;
+    border-radius: 6px;
+    background: #fff;
+    border:1px solid #dbe8e8;
+    margin-bottom: 0.2rem;
+}
+.doctor_img{
+    width:1.4rem;
+    height:1.4rem;
+    border-radius: 50%;
+    background: url("../images/icon-11.png")no-repeat center;
+    background-size: cover;
+    margin: 0.25rem 0.25rem 0 0.25rem;
+}
+.doctor_xq{
+    height:1.9rem;
+    width:60%;
+}
+.name{
+    line-height: 0.9rem;
+    font-size: 0.26rem;
+    color:#4d4d4d;
+}
+.point{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size: 0.2rem;
+    color:#808080;
+    line-height: 0.4rem;
+}
+.specialist{
+    font-size: 0.2rem;
+    color:#666;
+}
+.doctor_more{
+    width: 0.2rem;
+    height:1.9rem;
+    background: url("../images/icon-12.png")no-repeat center;
+    background-size: contain;
+    margin-right: 0.22rem;
+}
+
+

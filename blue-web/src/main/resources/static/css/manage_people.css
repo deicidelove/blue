@@ -1,0 +1,85 @@
+html,body{
+    background: #ecf0f3;
+}
+.manage_ul{
+    width:100%;
+    min-height:2.65rem;
+}
+.manage_li{
+    width:100%;
+    height:2.65rem;
+    margin-bottom: 0.2rem;
+    background: #fff;
+    color:#5c5c5c;
+    font-size: 0.28rem;
+}
+.manage_div01{
+    width:94%;
+    padding:0 3%;
+    height:1.6rem;
+    border-bottom: 1px solid #eff0f2;
+}
+.manage_div01_top{
+    line-height: 1rem;
+    overflow: hidden;
+}
+.manage_div01_botm{
+    line-height: 0.2rem;
+}
+.manage_div02{
+    width:94%;
+    padding:0 3%;
+    height:1rem;
+}
+.manage_checkbox{
+    height:1rem;
+    width:35%;
+    margin-right: 19%;
+}
+.infor_li_text{
+    height:1rem;
+    font-size: 0.28rem;
+    color:#5e5e5e;
+    line-height: 1rem;
+    padding-left: 0.2rem;
+}
+.manage_compile,.manage_delete{
+    height:1rem;
+    width:23%;
+}
+.infor_li_compile{
+    width: 0.32rem;
+    height:1rem;
+    background: url("../images/icon-19.png")no-repeat center;
+    background-size: contain;
+}
+.infor_li_delete{
+    width: 0.36rem;
+    height:1rem;
+    background: url("../images/icon-18.png")no-repeat center;
+    background-size: contain;
+}
+.infor_li_checkbox_active{
+    width: 0.43rem;
+    height:1rem;
+    background: url("../images/icon-17.png")no-repeat center;
+    background-size: contain;
+}
+.infor_li_checkbox{
+    width: 0.43rem;
+    height:1rem;
+    background: url("../images/icon-16.png")no-repeat center;
+    background-size: contain;
+}
+.infor_btn{
+    width:100%;
+    height:0.9rem;
+    line-height: 0.9rem;
+    font-size: 0.33rem;
+    color:#fff;
+    background: #0286d9;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}

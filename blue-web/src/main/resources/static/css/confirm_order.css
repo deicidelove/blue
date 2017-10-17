@@ -1,0 +1,82 @@
+html,body{
+    background: #ecf0f3;
+}
+.confirm_ul{
+    width:100%;
+    min-height:1.8rem;
+    background: #fff;
+}
+.confirm_li{
+    width:90%;
+    height:1.52rem;
+    padding:0.32rem 5% 0 5%;
+    border-bottom: 1px solid #f9f9f9;
+}
+.confirm_li_left{
+    width:1.8rem;
+    height:1.2rem;
+    background: url("../images/icon-20.png")no-repeat center;
+    background-size: contain;
+}
+.confirm_li_center{
+    width:50%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    font-size: 0.26rem;
+    color:#5c5c5c;
+    line-height: 0.4rem;
+    padding:0.16rem 0 0 0.2rem;
+}
+.confirm_li_right{
+    height:1.2rem;
+    width:20%;
+    text-align: right;
+    font-size: 0.22rem;
+    color:#5c5c5c;
+    padding-top:0.16rem;
+}
+.confirm_li_right div:first-child{
+    font-size: 0.3rem;
+    color:#101010;
+    font-weight: bold;
+}
+.Sub_total{
+    height:0.9rem;
+    width:90%;
+    padding:0 5%;
+    text-align: right;
+    line-height: 0.9rem;
+    color:#5c5c5c;
+    font-size: 0.26rem;
+    margin-bottom: 0.2rem;
+    background: #fff;
+}
+.Sub_total span:last-child{
+    font-size: 0.3rem;
+    font-weight: bold;
+    color:#dd1821;
+}
+.Mode{
+    height:0.9rem;
+    width:90%;
+    padding:0 5%;
+    line-height: 0.9rem;
+    color:#5c5c5c;
+    font-size: 0.26rem;
+    background: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,107 @@
+html,body{
+    background: #ecf0f3;
+}
+::-webkit-input-placeholder {
+    color:#ccc;
+}
+:-moz-placeholder {
+    color:#ccc;
+}
+::-moz-placeholder {
+    color:#ccc;
+}
+:-ms-input-placeholder {
+    color:#ccc;
+}
+.infor_ul{
+    min-height: 1rem;
+}
+.infor_li{
+    width:90%;
+    height:1rem;
+    border-bottom: 1px solid #f0f0f2;
+    padding:0 5%;
+    background: #fff;
+    font-size: 0.28rem;
+    color:#5e5e5e;
+    line-height: 1rem;
+}
+.infor_li_div{
+    height:1rem;
+    width:20%;
+}
+.infor_li_input{
+    height:1rem;
+    width:70%;
+    padding-left: 5%;
+    border:none;
+    outline: none;
+    color:#5e5e5e;
+    font-size: 0.28rem;
+}
+.infor_li_input_color{
+    color:#fe3a3e;
+    font-weight: bold;
+}
+.infor_li_people{
+    color:#ccc;
+}
+.margin_top{
+    margin-top:0.2rem;
+    border:none;
+}
+.infor_li_input_bg{
+    width:0.17rem;
+    height:1rem;
+    background: url("../images/icon-09.png")no-repeat center;
+    background-size: contain;
+}
+.infor_btn{
+    width:100%;
+    height:0.9rem;
+    line-height: 0.9rem;
+    font-size: 0.33rem;
+    color:#fff;
+    background: #0286d9;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+.infor_li_box{
+    width:30%;
+    height:1rem;
+    padding:0 5%;
+}
+.infor_li_checkbox{
+    width: 0.43rem;
+    height:1rem;
+    background: url("../images/icon-16.png")no-repeat center;
+    background-size: contain;
+}
+.infor_li_text{
+    height:1rem;
+    font-size: 0.28rem;
+    color:#5e5e5e;
+    line-height: 1rem;
+    padding-left: 0.2rem;
+}
+.infor_li_checkbox_active{
+    width: 0.43rem;
+    height:1rem;
+    background: url("../images/icon-17.png")no-repeat center;
+    background-size: contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

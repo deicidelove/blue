@@ -1,0 +1,32 @@
+html,body{
+    background: #ecf0f3;
+}
+.select_ul{
+    width:100%;
+    min-height:1rem;
+}
+.select_li{
+    height:1rem;
+    line-height: 1rem;
+    background: #fff url("../images/icon-09.png")no-repeat 95% center;
+    background-size: 2.5%;
+    width:90%;
+    padding:0 5%;
+    border-bottom: 1px solid #f0f0f2;
+    font-size: 0.28rem;
+    color:#5e5e5e;
+}
+.select_ul li:last-child{
+    border-bottom: none;
+}
+.heade_manage{
+    width:17%;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    font-size: 0.34rem;
+    text-align: right;
+    position: absolute;
+    top:0;
+    right:0;
+    padding-right: 5%;
+}
