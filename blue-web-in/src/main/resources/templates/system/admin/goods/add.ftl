@@ -3,41 +3,22 @@
 		<form id="securityAddForm">
 			<div class="modal-body">
 				<div class="form-group">
-					<label id="userNoLabel">账号</label>
-					<input type="text" class="form-control" name="username" id="username" placeholder="输入账号...">
+					<label id="acitIdLabel">活动Id</label>
+					<input type="text" class="form-control" name="actId" id="actId" placeholder="输入活动Id...">
 				</div>
 				<div class="form-group">
-					<label id="passwordLabel">密码</label>
-					<input type="password" class="form-control" name="password" id="password" placeholder="输入密码...">
+					<label id="goodsNameLabel">商品名称</label>
+					<input type="password" class="form-control" name="goodsName" id="goodsName" placeholder="输入商品名称...">
 				</div>
 				<div class="form-group">
-					<label id="nickNameLabel">昵称</label>
-					<input type="text" class="form-control" name="name" id="name" placeholder="输入昵称...">
+					<label id="goodsPriceLabel">商品价格</label>
+					<input type="text" class="form-control" name="goodsPrice" id=""goodsPrice"" placeholder="输入商品价格...">
 				</div>
 				<div class="form-group">
-					<label>性别</label> 
-					<select name="sex" class="form-control select2" style="width: 100%;">
-						<option value="1">男</option>
-						<option value="0">女</option>
-					</select>
+					<label>商品详情</label> 
+					<textarea rows="30" cols="130" name="goodsDetail" id="goodsDetail"></textarea>
 				</div>
-				<div class="form-group">
-					<label>角色：</label>
-					<br/>
-					<#list roles as role>
-						<#if role.value == 'super'>
-							<@shiro.hasRole name="super">
-							<label>
-			                  <input type="radio" name="roleId" class="flat-red" value="${role.id}"> ${role.name}
-			                </label>
-			                </@shiro.hasRole>
-		                <#else>
-			                <label>
-			                  <input type="radio" name="roleId" class="flat-red" value="${role.id}"> ${role.name}
-			                </label>
-		                </#if>
-					</#list>
-				</div>
+
 			</div>
 			<div class="modal-footer">
 				<div class="pull-right">
@@ -53,19 +34,19 @@ function securitySave(){
 	$("span").remove(".errorClass");
 	$("br").remove(".errorClass");
 	var status = 1;
-	if($("#username").val()==""){
-		$("#userNoLabel").prepend('<span class="errorClass" style="color:red">*账号不能为空</span><br class="errorClass"/>');
+	if($("#actId").val()==""){
+		$("#acitIdLabel").prepend('<span class="errorClass" style="color:red">*活动Id不能为空</span><br class="errorClass"/>');
 		status = 0;
 	}
-	if($("#password").val()==""){
-		$("#passwordLabel").prepend('<span class="errorClass" style="color:red">*密码不能为空</span><br class="errorClass"/>');
+	if($("#goodsPrice").val()==""){
+		$("#goodsPriceLabel").prepend('<span class="errorClass" style="color:red">*价格不能为空</span><br class="errorClass"/>');
 		status = 0;
 	}
 	if(status == 0){
 		return false;
 	}else{
 		$.ajax({
-			url: '/user/save',
+			url: '/goods/save',
 	        type: 'post',
 	        dataType: 'text',
 	        data: $("#securityAddForm").serialize(),

@@ -1,5 +1,6 @@
 package com.common.system.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -8,7 +9,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
-
 import com.common.system.entity.GoodsEntity;
 import com.common.system.util.Convert;
 import com.google.common.collect.Maps;
@@ -33,6 +33,18 @@ public class GoodsDao {
 				
 		return result;
 	}
+	
+	public List<GoodsEntity> seleteByList(Integer pageNum,
+			Integer pageSize){
+		String sql = " SELECT * FROM rc_a_goods WHERE 1=1 limit :pageStartNum, :pageSize";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("pageStartNum", (pageNum-1)*pageSize);
+		paramMap.put("pageSize", pageSize);
+		List<GoodsEntity> resultList = namedParameterJdbcTemplate.query(sql, 
+				paramMap, BeanPropertyRowMapper.newInstance(GoodsEntity.class));
+		return resultList;
+	}
+	
 	
 	
 	public void saveGoods(GoodsEntity goodsEntity){
