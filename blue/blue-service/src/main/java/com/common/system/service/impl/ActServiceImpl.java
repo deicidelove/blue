@@ -14,6 +14,7 @@ import com.common.system.service.ActService;
 import com.common.system.util.MsgCode;
 import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 
 @Service("actService")
 public class ActServiceImpl implements ActService {
@@ -85,4 +86,14 @@ public class ActServiceImpl implements ActService {
 		return result;
 	}
 
+	@Override
+	public List<ActEntity> list() {
+		List<ActEntity> resultList = Lists.newArrayList();
+		try {
+			resultList = actDao.seleteList();
+		} catch (Exception e) {
+			LOG.error("ActServiceImpl deleteById error!", e );
+		}
+		return resultList;
+	}
 }

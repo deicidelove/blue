@@ -1,5 +1,7 @@
 package com.common.system.service;
 
+import java.util.List;
+
 import com.common.system.entity.ActEntity;
 import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
@@ -16,4 +18,5 @@ public interface ActService {
 	
 	public PageInfo<ActEntity> listForPage(Integer pageNum, Integer pageSize);
 	
+	public List<ActEntity> list( );
 }

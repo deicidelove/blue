@@ -12,7 +12,7 @@ public class Application {
     @RequestMapping("/")
     public ModelAndView greeting(ModelAndView modelAndView) {
     	modelAndView.addObject("bean",111);
-        modelAndView.setViewName("/index.html");
+        modelAndView.setViewName("/index");
 		return modelAndView;
     }
 
