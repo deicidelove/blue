@@ -37,6 +37,7 @@
     </div>
 </div>
 <ul class="integral_ul">
+	<#list >
     <li class="integral_li">
         <div class="integral_li_bg left"></div>
         <div class="integral_li_cont left">
@@ -50,32 +51,8 @@
             </ul>
         </div>
     </li>
-    <li class="integral_li">
-        <div class="integral_li_bg left"></div>
-        <div class="integral_li_cont left">
-            <div class="_li_cont_head">世界爱牙日整形牙齿美白护龈</div>
-            <ul class="_li_cont_ul">
-                <li class="_li_cont_li">第233期</li>
-                <li class="_li_cont_li">总需200人次</li>
-                <li class="_li_cont_li">获奖者：空中飞舞的帆船</li>
-                <li class="_li_cont_li">幸运号：10000005</li>
-                <li class="_li_cont_li">揭晓时间：2017-10-16-18:27:33 </li>
-            </ul>
-        </div>
-    </li>
-    <li class="integral_li border_none">
-        <div class="integral_li_bg left"></div> 
-        <div class="integral_li_cont left">
-            <div class="_li_cont_head">世界爱牙日整形牙齿美白护龈</div>
-            <ul class="_li_cont_ul">
-                <li class="_li_cont_li">第233期</li>
-                <li class="_li_cont_li">总需200人次</li>
-                <li class="_li_cont_li">获奖者：空中飞舞的帆船</li>
-                <li class="_li_cont_li">幸运号：10000005</li>
-                <li class="_li_cont_li">揭晓时间：2017-10-16-18:27:33 </li>
-            </ul>
-        </div>
-    </li>
+    </#list>
+
 </ul>
 <ul class="unveiled_ul">
     <li class="unveiled_li left">
