@@ -1,0 +1,1 @@
+INSERT INTO `rc_a_consumer` (`consumer_id`, `consumer_name`, `act_id`, `goods_id`, `giving_code`, `giving_code_source`, `createTime`, `updateTime`) VALUES (1, '王涛', 2, 1, '1333333333', '支付宝', '2017-9-23 22:29:11', '2017-9-23 22:29:11');

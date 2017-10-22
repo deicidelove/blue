@@ -45,6 +45,16 @@ public class GoodsConsumerRelateDao {
 		return result;
 	}
 	
+	public List<GoodsConsumerRelateEntity> seleteListByActIdAndGoodsId(Integer actId, Integer goodsId){
+		String sql = " SELECT * FROM rc_a_goods_consumer_relate WHERE 1=1 and actId = :actId and goodsId = :goodsId";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("actId", actId);
+		paramMap.put("goodsId", goodsId);
+		List<GoodsConsumerRelateEntity> result = namedParameterJdbcTemplate.query(sql, 
+				paramMap, BeanPropertyRowMapper.newInstance(GoodsConsumerRelateEntity.class));
+		return result;
+	}
+	
 	public void saveGoodsConsumerRelate(GoodsConsumerRelateEntity goodsConsumerRelateEntity){
 		Assert.notNull(goodsConsumerRelateEntity,"goodsConsumerRelateEntity is null");
 		String sql ="	INSERT INTO `rc_a_goods_consumer_relate`	"

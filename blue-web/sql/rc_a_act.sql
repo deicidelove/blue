@@ -1,0 +1,1 @@
+INSERT INTO `rc_a_act` (`act_id`, `act_name`, `act_total_num`, `act_giving_num`, `act_periods`, `act_is_expire`, `act_is_delete`, `createTime`, `updateTime`) VALUES (2, '1', 12, 1, 12, 0, 0, '2017-9-18 22:27:46', '2017-9-21 23:29:53');

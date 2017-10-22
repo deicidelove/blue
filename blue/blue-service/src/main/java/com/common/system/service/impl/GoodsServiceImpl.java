@@ -96,4 +96,15 @@ public class GoodsServiceImpl implements GoodsService {
 		return result;
 	}
 
+	@Override
+	public List<GoodsEntity> list() {
+		List<GoodsEntity> resultList = null;
+		try {
+			resultList = goodsDao.seleteByList();
+		} catch (Exception e) {
+			LOG.error("ActServiceImpl list error!", e );
+		}
+		return resultList;
+	}
+
 }

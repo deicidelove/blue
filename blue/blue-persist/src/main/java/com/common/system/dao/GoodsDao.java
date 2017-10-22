@@ -45,7 +45,13 @@ public class GoodsDao {
 		return resultList;
 	}
 	
-	
+	public List<GoodsEntity> seleteByList(){
+		String sql = " SELECT * FROM rc_a_goods WHERE 1=1 limit :pageStartNum, :pageSize";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		List<GoodsEntity> resultList = namedParameterJdbcTemplate.query(sql, 
+				paramMap, BeanPropertyRowMapper.newInstance(GoodsEntity.class));
+		return resultList;
+	}
 	
 	public void saveGoods(GoodsEntity goodsEntity){
 		Assert.notNull(goodsEntity,"goodsEntity is null");
