@@ -56,10 +56,10 @@ public class IndexController {
                             childList.add(nu);
                         }
                     }
-                    childList.sort(new MenuComparator());
+//                    childList.sort(new MenuComparator());
                     menu.setChild(childList);
                 }
-                menuList.sort(new MenuComparator());
+//                menuList.sort(new MenuComparator());
                 modelAndView.addObject("menuList",menuList);
             }
         }

@@ -1,0 +1,192 @@
+html,body{
+    background: #f3f4f6;
+}
+.general_tab{
+    width:100%;
+    background: #fff;
+    padding:0.1rem 0;
+    border-top:1px solid #f2f3f5;
+    height:0.7rem;
+    font-size: 0.28rem;
+    line-height: 0.7rem;
+    text-align: center;
+    color:#787878;
+    margin-bottom: 0.25rem;
+}
+.general_tab div{
+    border-right: 1px solid #f4f4f4;
+}
+.general_tab div:last-child{
+    border:none;
+}
+.active{
+    color:#0981c0;
+}
+.intro{
+    width:100%;
+    padding-bottom:1.3rem;
+}
+.intro_bg{
+    width:100%;
+    height:5rem;
+    background: url("../images/icon-123.png")no-repeat center;
+    background-size: 100% 100%;
+}
+.intro_cont{
+    width:94%;
+    min-height:2rem;
+    margin:-0.6rem auto 0;
+    background: #fff;
+    border-radius: 6px;
+    padding:0.2rem 0 0.5rem 0;
+}
+.intro_cont_head{
+    line-height: 0.8rem;
+    height:0.8rem;
+    font-size: 0.3rem;
+    color:#037bb8;
+    padding:0 0.5rem;
+}
+.intro_cont_head span:first-child{
+    width:0.22rem;
+    height:0.8rem;
+    background: url("../images/icon-124.png")no-repeat center;
+    background-size: contain;
+    margin-right: 0.15rem;
+}
+.intro_cont_text{
+    padding:0 0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.28rem;
+    color:#656565;
+}
+.century_01{
+    width:100%;
+    height:6.98rem;
+    background: url("../images/icon-125.jpg")no-repeat center;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+.century_01 div{
+    padding:4.25rem 0.5rem 0 2.5rem;
+    font-size: 0.24rem;
+    color:#fff;
+    text-align: center;
+    line-height: 0.42rem;
+}
+.century_02{
+    width:100%;
+    height:5.37rem;
+    background: url("../images/icon-126.jpg")no-repeat center;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+.century_02 div{
+    padding:2rem 0.95rem 0 0.5rem;
+    font-size: 0.24rem;
+    color:#fff;
+    line-height: 0.42rem;
+}
+.century_02 div p{
+    padding-bottom: 0.4rem;
+}
+.century_03{
+    width:100%;
+    height:7.57rem;
+    background: url("../images/icon-127.jpg")no-repeat center;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+.century_03 div{
+    padding:4rem 0.95rem 0 0.95rem;
+    font-size: 0.24rem;
+    color:#023179;
+    line-height: 0.42rem;
+}
+.century_03 div p{
+    padding-bottom: 0.4rem;
+}
+.century_04{
+    width:100%;
+    height:9.08rem;
+    background: url("../images/icon-128.jpg")no-repeat center;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+.century_04 div:first-child{
+    padding:2.65rem 2rem 3rem;
+    font-size: 0.24rem;
+    color:#fff;
+    line-height: 0.42rem;
+    text-align: center;
+}
+.century_04 div:last-child{
+    padding:0 3rem 0 0.95rem;
+    font-size: 0.24rem;
+    color:#fff;
+    line-height: 0.42rem;
+}
+.century_05{
+    width:100%;
+    height:8.4rem;
+    background: url("../images/icon-129.png")no-repeat center;
+    background-size: 100% 100%;
+    margin-bottom: 1.3rem;
+    overflow: hidden;
+}
+.century_05 div{
+    padding:4.05rem 0.95rem 0 0.95rem;
+    font-size: 0.24rem;
+    color:#023179;
+    line-height: 0.42rem;
+}
+.century_05 div p{
+    padding-bottom: 0.4rem;
+}
+.survey{
+    width:94%;
+    padding:0.3rem 3% 0 3%;
+    min-height: 2rem;
+    background: #fff;
+    margin-bottom: 1.3rem;
+}
+.survey_concet{
+    width:100%;
+}
+.survey_concet img{
+    width:100%;
+    height:4.7rem;
+    border-radius: 4px;
+}
+.survey_concet div{
+    width:100%;
+    height:0.65rem;
+    line-height: 0.65rem;
+    font-size: 0.3rem;
+    color:#363636;
+    padding-bottom: 0.5rem;
+
+}
+.displaynone{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

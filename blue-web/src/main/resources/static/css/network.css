@@ -25,10 +25,11 @@ html,body{
     position: relative;
     z-index: 10;
     border-radius: 6px;
-    background: #fff;
     text-align: center;
     overflow: hidden;
     padding-top:0.55rem;
+    background: #fff url("../images/icon-100.png")no-repeat center;
+    background-size: contain;
 }
 .nav_li{
     height:1.45rem;

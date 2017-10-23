@@ -1,0 +1,79 @@
+.log_in{
+    width:100%;
+    height:5.13rem;
+    background: url("../images/icon-117.jpg")no-repeat center;
+    background-size: contain;
+}
+.register{
+    min-height:2rem;
+    width:6.8rem;
+    border:1px solid #d1d1d1;
+    border-radius: 6px;
+    margin:0.85rem auto 0.55rem;
+    overflow: hidden;
+}
+.register input{
+    border:none;
+    outline: none;
+    height:1rem;
+    font-size: 0.3rem;
+    color:#4a4a4a;
+}
+.register_02{
+    width:100%;
+    height:1rem;
+    border-bottom:1px solid #d1d1d1;
+}
+.phone_bg{
+    width:0.38rem;
+    height:1rem;
+    background: url("../images/icon-114.png")no-repeat center;
+    background-size: contain;
+    margin:0 0.3rem 0 0.3rem;
+}
+.phone{
+    width:5.8rem;
+}
+.register_03{
+    width:100%;
+    height:1rem;
+}
+.code_bg{
+    width:0.38rem;
+    height:1rem;
+    background: url("../images/icon-115.png")no-repeat center;
+    background-size: contain;
+    margin:0 0.3rem 0 0.3rem;
+}
+.code{
+    width:3.45rem;
+}
+.register_03 .code_gain{
+    width:2.2rem;
+    height:1rem;
+    line-height: 1rem;
+    font-size: 0.3rem;
+    color:#4a4a4a;
+    text-align: center;
+    background: #fff;
+    border:none;
+    border-left: 1px solid #d1d1d1;
+    outline: none;
+}
+.register_submit{
+    height:0.9rem;
+    width:6.8rem;
+    line-height: 0.9rem;
+    margin:0 auto;
+    font-size: 0.3rem;
+    color:#fff;
+    background:url("../images/icon-116.png")no-repeat center;
+    background-size: 100% 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+}
+.register_03 .active_color{
+    color:#999;
+    background: #cdcdcd;
+}

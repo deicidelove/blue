@@ -68,10 +68,39 @@ html,body{
     font-size: 0.26rem;
     background: #fff;
 }
-
-
-
-
+.confirm_submit{
+    height:0.9rem;
+    width:100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.confirm_submit_money{
+    width:62%;
+    height:0.9rem;
+    line-height: 0.9rem;
+    background: #f8f8f8;
+    font-size: 0.3rem;
+    color:#e81d23;
+    text-indent: 5%;
+    font-weight: bold;
+}
+.confirm_submit_money span:first-child{
+    color:#323232;
+    font-size: 0.24rem;
+    font-weight: 200;
+}
+.confirm_submit_btn{
+    width:38%;
+    height:0.9rem;
+    line-height: 0.9rem;
+    color:#fff;
+    font-size: 0.28rem;
+    text-align: center;
+    background: url("../images/icon-90.png");
+    background-size: 100% 100%;
+}
 
 
 

@@ -1,0 +1,177 @@
+.banner{
+    width:100%;
+    height:3.7rem;
+}
+.banner .swiper-pagination{
+    bottom:0.18rem;
+    text-align: right;
+    width:95%;
+}
+.banner img{
+    width:100%;
+    height:100%;
+}
+.banner02{
+    width:100%;
+    height:1.7rem;
+}
+.banner02 .swiper-pagination{
+    bottom:0.18rem;
+    text-align: right;
+    width:95%;
+}
+.banner02 img{
+    width:100%;
+    height:100%;
+}
+.project_img{
+    width:94%;
+    min-height:5rem;
+    padding:0.2rem 3%;
+    overflow: hidden;
+}
+.project_img_01{
+    width:3.55rem;
+    height:3.55rem;
+    background: url("../images/icon-80.png")no-repeat center;
+    background-size: 100% 100%;
+}
+.project_img_01 div{
+    color:#00bbc1;
+    font-size: 0.3rem;
+    padding:0.3rem 0 0 0.3rem;
+}
+.project_img_01 div:last-child{
+    font-size: 0.24rem;
+    padding-top: 0.2rem;
+}
+
+.project_img_02{
+    width:3.3rem;
+    height:1.7rem;
+    background: url("../images/icon-81.jpg")no-repeat center;
+    background-size: 100% 100%;
+    margin:0 0 0.2rem 0.2rem;
+}
+.project_img_02 div{
+    padding-left: 0.3rem;
+    line-height: 1.7rem;
+    color:#00a5c9;
+    font-size: 0.3rem;
+}
+.project_img_03{
+    width:3.3rem;
+    height:1.7rem;
+    background: url("../images/icon-82.jpg")no-repeat center;
+    background-size: 100% 100%;
+    margin:0 0 0.2rem 0.2rem;
+}
+.project_img_03 div{
+    padding-left: 0.3rem;
+    line-height: 1.7rem;
+    color:#ac600c;
+    font-size: 0.3rem;
+}
+.project_img_04{
+    width:3.55rem;
+    height:1.7rem;
+    background: url("../images/icon-84.png")no-repeat center;
+    background-size: 100% 100%;
+}
+.project_img_04 div{
+    padding-left: 0.3rem;
+    line-height: 1.7rem;
+    color:#71b402;
+    font-size: 0.3rem;
+}
+.project_img_05{
+    width:3.3rem;
+    height:1.7rem;
+    background: url("../images/icon-83.jpg")no-repeat center;
+    background-size: 100% 100%;
+    margin-left:0.2rem;
+}
+.project_img_05 div{
+    padding-left: 0.3rem;
+    line-height: 1.7rem;
+    color:#ff4b54;
+    font-size: 0.3rem;
+}
+.all_projects{
+    width:94%;
+    height:0.9rem;
+    border-top:0.2rem solid #ecf0f3;
+    line-height: 0.9rem;
+    font-size: 0.3rem;
+    color:#373737;
+    padding:0 3%;
+    font-weight: bold;
+}
+.all_projects span:nth-child(2){
+    padding-left: 0.2rem;
+    font-size: 0.22rem;
+    color:#25bf67;
+    font-weight: 100;
+}
+.all_projects span:nth-child(3){
+    width:0.17rem;
+    height:0.9rem;
+    background: url("../images/icon-09.png")no-repeat center;
+    background-size: contain;
+}
+.all_01{
+    width:100%;
+    height:2.65rem;
+    background: url("../images/icon-85.png")no-repeat center;
+    background-size: 100% 100%;
+}
+.all_bg{
+    height:2.65rem;
+    padding:0.2rem 5% 0 5%;
+}
+.all_02{
+    height:1.52rem;
+    background: url("../images/icon-86.png")no-repeat center;
+    background-size: 100% 100%;
+}
+.all_03{
+    height:1.52rem;
+    background: url("../images/icon-87.png")no-repeat center;
+    background-size: 100% 100%;
+}
+.all_04{
+    height:1.52rem;
+    background: url("../images/icon-88.png")no-repeat center;
+    background-size: 100% 100%;
+}
+.all_text01{
+    padding-top:0.2rem;
+    color:#2d2d2d;
+    font-size: 0.24rem;
+}
+.all_text02{
+    padding-top:0.1rem;
+    color:#8e8e8e;
+    font-size: 0.2rem;
+}
+.margin_12{
+    margin:0 0.12rem;
+}
+.swiper02{
+    border-top: 0.2rem solid #ecf0f3;
+    border-bottom: 1.3rem solid #ecf0f3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+.inform_cont{
+    padding:3%;
+    position: relative;
+    z-index: -3;
+}
+.inform_bg01{
+    position: relative;
+    z-index: -1;
+}
+.inform_bg02{
+    width:100%;
+    height:8.85rem;
+    background: url("../images/icon-120.png")no-repeat 1.3rem bottom;
+    background-size: contain;
+    position: fixed;
+    z-index: -2;
+    left:0;
+    bottom:0;
+}
+.inform_head{
+    font-size: 0.44rem;
+    color:#3a3a3a;
+}
+.inform_time{
+    padding-top: 0.25rem;
+    font-size: 0.24rem;
+    color:#9b9b9b;
+}
+.inform_img{
+    width:100%;
+    height:100%;
+    border-radius: 4px;
+    margin:0.25rem 0;
+}
+.inform_p{
+    padding:0.2rem 0;
+    line-height: 0.6rem;
+    color:#5f5f5f;
+    font-size: 0.3rem;
+}
+.inform_number{
+    width:0.54rem;
+    height:0.54rem;
+    background: url("../images/icon-121.png")no-repeat center;
+    background-size: contain;
+    line-height: 0.54rem;
+    text-align: center;
+    text-indent: 0.12rem;
+    font-size: 0.22rem;
+    color:#fff;
+    margin:0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

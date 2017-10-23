@@ -1,0 +1,142 @@
+html,body{
+ background: #ecf0f3;
+}
+.subs_head{
+    width:100%;
+    height:2.6rem;
+    background: url("../images/icon-136.png")no-repeat center;
+    background-size: 100% 100%;
+}
+.head_bg{
+    width:1.3rem;
+    height:1.3rem;
+    border-radius: 50%;
+    background: url("../images/icon-137.png")no-repeat center;
+    background-size: cover;
+    margin:0.62rem 0.3rem 0 0.65rem;
+}
+.head_name{
+    padding-top: 0.75rem;
+    color:#deeefb;
+    font-size: 0.35rem;
+}
+.post{
+    padding-top: 0.15rem;
+    font-size: 0.28rem;
+    height:0.3rem;
+    line-height: 0.3rem;
+}
+.post span:first-child{
+    border-right: 2px solid #deeefb;
+    padding-right: 0.2rem;
+    margin-right: 0.2rem;
+}
+.record{
+    width:94%;
+    padding:0 3%;
+    height:1rem;
+    line-height: 1rem;
+    font-size: 0.28rem;
+    color:#686868;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fff;
+}
+.record div:last-child{
+    width:0.29rem;
+    height:1rem;
+    background: url("../images/icon-98.png")no-repeat center;
+    background-size: contain;
+}
+.record div.active{
+    width:0.3rem;
+    height:1rem;
+    background: url("../images/icon-22.png")no-repeat center;
+    background-size: contain;
+}
+.abstract{
+    display: none;
+    width:94%;
+    padding:0.1rem 3% 0.2rem;
+    font-size: 0.24rem;
+    color:#8b8b8b;
+    line-height: 0.4rem;
+    border-bottom: 0.2rem solid #ecf0f3;
+    background: #fff;
+}
+.abstract p{
+    margin:0.1rem 0 0.2rem 0;
+}
+.working{
+    width:100%;
+    height:5.25rem;
+    border-bottom: 1.3rem solid #ecf0f3;
+    background: #fff;
+    overflow: hidden;
+}
+.working_schedule{
+    width:94%;
+    padding:0 3%;
+    height:1rem;
+    line-height: 1rem;
+    font-size: 0.26rem;
+    color:#878787;
+}
+.working_table{
+    width:100%;
+    height:3.3rem;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #fff;
+    overflow: hidden;
+}
+.working_table tr td{
+    border:1px solid #ecf0f3;
+}
+.working_table tr td:first-child{
+    width:0.45rem;
+    padding:0 0.15rem;
+    color:#909090;
+}
+.table_tr01{
+    color: #2a2a2a;
+}
+.table_tr01 td,.table_tr02 td,.table_tr03 td{
+    width:0.95rem;
+    height:1rem;
+}
+.order{
+    height:100%;
+    text-align: center;
+    line-height: 1rem;
+    width:100%;
+    background: #0495f2;
+}
+.full{
+    height:100%;
+    text-align: center;
+    line-height: 1rem;
+    width:100%;
+    background: #8d8da5;
+}
+.date_week div:last-child{
+    font-size: 0.18rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
