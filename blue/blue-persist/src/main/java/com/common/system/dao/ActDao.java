@@ -45,6 +45,14 @@ public class ActDao {
 		return result;
 	}
 	
+	public List<ActEntity> seleteList(){
+		String sql = " SELECT * FROM rc_a_act WHERE act_is_delete=0 order by create_time desc";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		List<ActEntity> result = namedParameterJdbcTemplate.query(sql, 
+				paramMap, BeanPropertyRowMapper.newInstance(ActEntity.class));
+		return result;
+	}
+	
 	public int saveAct(ActEntity actEntity){
 		Assert.notNull(actEntity,"actEntity is null");
 		String sql = "INSERT INTO `rc_a_act` ("

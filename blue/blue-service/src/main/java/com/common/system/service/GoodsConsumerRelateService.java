@@ -1,5 +1,7 @@
 package com.common.system.service;
 
+import java.util.List;
+
 import com.common.system.dto.GoodsConsumerRelateDTO;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.github.pagehelper.PageInfo;
@@ -15,5 +17,7 @@ public interface GoodsConsumerRelateService {
 	public GoodsConsumerRelateEntity getById(Integer actId);
 	
 	public PageInfo<GoodsConsumerRelateDTO> listForPage(Integer pageNum, Integer pageSize);
+	
+	public List<GoodsConsumerRelateEntity> list(Integer actId, Integer goodsId);
 	
 }

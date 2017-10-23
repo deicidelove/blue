@@ -46,6 +46,11 @@ public class GoodsEntity implements Serializable{
 	 *  是否删除
 	 */
 	private Boolean isDelete;
+	
+	/**
+	 * 标题
+	 */
+	private String goodsTitle;
 	/**
 	 * 創建時間
 	 */
@@ -175,6 +180,18 @@ public class GoodsEntity implements Serializable{
 	 */
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
+	}
+	/**
+	 * @return the goodsTitle
+	 */
+	public String getGoodsTitle() {
+		return goodsTitle;
+	}
+	/**
+	 * @param goodsTitle the goodsTitle to set
+	 */
+	public void setGoodsTitle(String goodsTitle) {
+		this.goodsTitle = goodsTitle;
 	}
 
 }

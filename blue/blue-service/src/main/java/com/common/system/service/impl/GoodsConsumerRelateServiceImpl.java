@@ -114,4 +114,15 @@ public class GoodsConsumerRelateServiceImpl implements GoodsConsumerRelateServic
 		return result;
 	}
 
+	@Override
+	public List<GoodsConsumerRelateEntity> list(Integer actId, Integer goodsId) {
+		List<GoodsConsumerRelateEntity>  resultList = Lists.newArrayList();
+		try {
+			resultList = goodsConsumerRelateDao.seleteListByActIdAndGoodsId(actId, goodsId);
+		} catch (Exception e) {
+			LOG.error("ActServiceImpl list error!", e );
+		}
+		return resultList;
+	}
+
 }
