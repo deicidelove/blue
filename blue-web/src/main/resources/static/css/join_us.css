@@ -1,0 +1,184 @@
+/*与reserve_information 重复的代码*/
+html,body{
+    background: #ecf0f3;
+}
+.infor_ul{
+    min-height: 1rem;
+}
+.infor_li{
+    width:90%;
+    height:1rem;
+    border-bottom: 1px solid #f0f0f2;
+    padding:0 5%;
+    background: #fff;
+    font-size: 0.28rem;
+    color:#5e5e5e;
+    line-height: 1rem;
+}
+.infor_li_div{
+    height:1rem;
+    width:20%;
+}
+.infor_li_input{
+    height:1rem;
+    width:70%;
+    padding-left: 5%;
+    border:none;
+    outline: none;
+    color:#5e5e5e;
+    font-size: 0.28rem;
+}
+.infor_li_input_color{
+    color:#fe3a3e;
+    font-weight: bold;
+}
+.infor_li_people{
+    color:#ccc;
+}
+.margin_top{
+    margin-top:0.2rem;
+    border:none;
+}
+.infor_li_input_bg{
+    width:0.17rem;
+    height:1rem;
+    background: url("../images/icon-09.png")no-repeat center;
+    background-size: contain;
+}
+.infor_btn{
+    width:100%;
+    height:0.9rem;
+    line-height: 0.9rem;
+    font-size: 0.33rem;
+    color:#fff;
+    background: #0286d9;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+/*与reserve_information 重复的代码*/
+
+input::-webkit-input-placeholder { /* WebKit browsers */  color:#cccccc;}  
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */  color:#cccccc;}  
+input::-moz-placeholder { /* Mozilla Firefox 19+ */  color:#cccccc;}  
+input:-ms-input-placeholder { /* Internet Explorer 10+ */  color:#cccccc;}  
+
+textarea::-webkit-input-placeholder { /* WebKit browsers */  color:#cccccc;}  
+textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */  color:#cccccc;}  
+textarea::-moz-placeholder { /* Mozilla Firefox 19+ */  color:#cccccc;}  
+textarea:-ms-input-placeholder { /* Internet Explorer 10+ */  color:#cccccc;}  
+
+
+.gray_bg{background:#f5f5f5;}
+.mt_space{margin-top:0.2rem;}
+.company_box{
+	width: 100%;
+    background: url(../images/job_bg.jpg) center 0 no-repeat;
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+    padding-top:4.79rem;
+	}
+.company_inner{
+	background: #fff;
+    margin: 0 0.35rem;
+    padding-bottom: 0.64rem;
+	border-radius:0.1rem;
+    -webkit-box-shadow: 0 0 0.15rem #edf2f8;
+	box-shadow: 0 0.05rem 0.06rem #edf2f8;
+    -webkit-box-shadow: 0 0.05rem 0.06rem #edf2f8;
+	}
+.company_logo{margin-bottom:0.48rem;text-align: center;background: #fff;border-radius:0.1rem;}
+.logo_con{width:1.5rem;height:1.5rem;background:#fff;border-radius:0.3rem;margin:0 auto;}
+.company_box .company_logo img{width:1.9rem;height:1.9rem;display: inline;margin-top:-0.8rem;}	
+.company_box .company_logo b{display: block;font-size:0.36rem;color: #61687c;font-weight: 400;margin-top:0.42rem;}
+.company_box .info_labels{text-align:center;}
+.info_labels span{display: inline-block;font-size: 0.24rem;vertical-align: middle;text-align: center;color: #9fa3b0;}
+.com_mail{background:url(../images/email_ico.png) no-repeat; background-size:contain;padding-left:0.52rem; margin-right:0.5rem;}
+.com_telephone{background:url(../images/telphone_ico.png) no-repeat;background-size:contain;padding-left:0.52rem;}
+
+.job_list{margin-top: 5px;}	
+.job_list li{border-bottom:1px #f1f1f1 solid;padding:0.35rem;    background: #fff;}
+.job_list li h4{font-weight:400;font-size:0.3rem;color:#4c4c4c;margin-bottom:0.15rem;}
+.job_list li h4 .salary{float: right;color: #ff6363;}
+.info_labels{font-size:0.24rem;color:#999;}
+.info_labels span{display: inline-block;vertical-align: middle;text-align: center;color: #999;}
+.info_labels em{width:1px;background: #efefef; height:0.2rem; font-style: normal;display: inline-block;vertical-align: middle;margin: 0 0.3rem;}
+
+
+/*加入我们详情页*/
+.join_con{ background:#fff;border-bottom:1px solid #f1f1f1; padding:0.35rem;}
+.join_con h4{margin-bottom: 0.2rem;font-size: 0.36rem;}
+.join_con .salary{float: right;color: #ff6363;}
+.join_infor span{display: inline-block;font-size:0.3rem;color:#4c4c4c;vertical-align: middle;text-align: center;padding-left:0.45rem;margin-right: 0.32rem;}
+.com_pernum{background:url(../images/people_ico.png) no-repeat; background-size:contain;}
+.com_edu{background:url(../images/edu_ico.png) no-repeat; background-size:contain;}
+.com_years{background:url(../images/exp_ico.png) no-repeat; background-size:contain;}
+
+.com_timeadres{background:#fff;border-bottom:1px solid #e8e8e8; padding:0.25rem 0.35rem;font-size:0.28rem;color:#4c4c4c; line-height:0.46rem;}
+
+.join_block .title{background:#fff;padding:0.3rem 0.35rem;border-top:1px solid #e8e8e8;border-bottom:1px solid #f1f1f1;}
+.join_block .title span{display: inline-block;vertical-align: middle;text-align: center;font-size:0.3rem;color: #333;}
+.com_des{background: url(../images/des_ico.png) no-repeat;background-size: contain;padding-left: 0.52rem;}
+.com_trophy{background: url(../images/trophy_ico.png) no-repeat;background-size: contain;padding-left: 0.52rem;}
+.com_welfare{background: url(../images/welfare_ico.png) no-repeat;background-size: contain;padding-left: 0.52rem;}
+
+.join_block .desc{background:#fff;padding:0.3rem 0.35rem;font-size:0.26rem;color:#777;border-bottom:1px solid #e8e8e8;line-height: 0.45rem;} 
+.infor_btn{
+    width:100%;
+    height:0.9rem;
+    line-height: 0.9rem;
+    font-size: 0.33rem;
+    color:#fff;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+	background: -webkit-linear-gradient(left, #087ebe , #26b7ff); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(right, #087ebe, #26b7ff); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(right, #087ebe, #26b7ff); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to right, #087ebe , #26b7ff); /* 标准的语法 */
+}
+.btn_bspace{margin-bottom:1.1rem;}
+.infor_li_input input{ border:none;font-size: 0.28rem;-webkit-tap-highlight-color: rgba(0,0,0,0);outline: 0;}
+
+.infot_texarea{width: 90%;
+    height:3.35rem;
+    border-bottom: 1px solid #f0f0f2;
+    padding: 0 5%;
+    background: #fff;
+    font-size: 0.28rem;
+    color: #5e5e5e;
+    line-height: 1rem;
+	}
+.mt_space{ margin-top:0.2rem;}
+.ta_itemtext_con{
+    width: 100%;
+    height: 2.8rem;
+    border: none;
+    outline: 0;
+    resize: none;
+    margin-top: 0.2rem;
+    -webkit-tap-highlight-color: transparent;
+    background: 0 0;
+    font-size: 0.3rem;
+	font-family:"Microsoft YaHei","宋体","Arial Narrow",HELVETICA;
+}	
+
+.job_tip{font-size:0.3rem;color:#999;margin:0.2rem 0.35rem;}
+.job_tip.btn_bspace{margin-bottom: 1.1rem;}
+
+/*购买积分*/
+.jifen_tip{font-size: 0.24rem;color: #999;margin:0.2rem 0.35rem 1.54rem 0.35rem;}
+.jifen_field{font-size:0.36rem;width:6.85rem;margin:0 auto;}
+.com_btn{font-size:0.36rem;width: 100%;height:0.8rem;line-height: 0.8rem;border-radius:.1rem;text-align:center;border: 0;}
+.blue_btn{background: -webkit-linear-gradient(left,#087ebe,#26b7ff) no-repeat;color: #fff; margin-bottom:0.23rem;}
+
+
+
+
+
+
+
+
+

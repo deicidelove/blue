@@ -1,0 +1,23 @@
+html,body{background: #ecf0f3;}
+.pay_res{margin:0 auto; text-align:center;padding-top:1.6rem;}
+.pay_img{width:1.48rem;height:1.48rem;}
+.pay_tex{font-size:0.32rem;color:#5c5c5c; margin:0.32rem auto 0.76rem;}
+.pay_tex .blue{color:#13a5fa;}
+
+.sucess_field{font-size:0.36rem;width:4.13rem;margin:0 auto;}
+
+.com_btn{font-size:0.36rem;width: 100%;height:0.8rem;line-height: 0.8rem;border-radius:.1rem;text-align:center;border: 0;}
+.blue_btn{background: -webkit-linear-gradient(left,#087ebe,#26b7ff) no-repeat;color: #fff; margin-bottom:0.23rem;}
+
+.gray_border{background:#fff;border: 1px solid #ccc;color:#5c5c5c;text-decoration: none;}
+
+
+
+
+
+
+
+
+
+
+

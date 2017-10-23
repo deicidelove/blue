@@ -1,0 +1,43 @@
+html,body{
+
+}
+.introduce_text01{
+    width:0.66rem;
+    height:0.67rem;
+    background: url("../images/icon-119.png")no-repeat center;
+    background-size: contain;
+    margin:0.5rem auto 0.35rem;
+    line-height: 0.8rem;
+    text-indent: 0.12rem;
+    font-size: 0.22rem;
+    color:#4d97d8;
+}
+
+.introduce_text02{
+    height: 0.38rem;
+    line-height: 0.38rem;
+    border-left: 0.1rem solid #4d97d8;
+    color:#4d97d8;
+    font-size: 0.35rem;
+    padding-left: 0.2rem;
+}
+.introduce_text03{
+    padding:0.3rem 5% 0.3rem;
+    font-size: 0.28rem;
+    line-height: 0.55rem;
+    color:#646464;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

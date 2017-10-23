@@ -1,0 +1,6 @@
+html,body{background: #edf0f3;}
+.activity_list li{margin-bottom:0.2rem;}
+.activity_list li img{width:100%;height:3.1rem;}
+.list_tex{background:#fff;padding:0.3rem;}
+.list_tex strong{font-weight:bold; display:block;font-size:0.36rem;color:#333;margin-bottom:0.2rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.list_tex p{font-size:0.26rem;color:#8a8a8a;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}

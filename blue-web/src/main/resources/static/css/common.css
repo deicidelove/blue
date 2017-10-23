@@ -10,7 +10,7 @@ table{border-collapse:collapse;border-spacing:0}
 html,body{width:100%;height:100%;color:#1a1a1a;}
 .left{float:left;}
 .right{float: right;}
-input[type="button"], input[type="submit"], input[type="reset"] ,input[type="text"]{-webkit-appearance: none;border-radius: 0;}
+input[type="button"], input[type="submit"], input[type="reset"] ,input[type="text"]{-webkit-appearance: none;}
 textarea {-webkit-appearance: none;}
 select{appearance:none;-moz-appearance:none;-webkit-appearance:none;}
 input[type="button"], input[type="submit"], input[type="reset"] {-webkit-appearance: none;border-radius: 0;}
@@ -225,6 +225,7 @@ textarea {-webkit-appearance: none;}
       background: #fff;
       border-top:1px solid #ebebeb;
       padding: 0.05rem 0;
+      z-index: 11;
   }
   .footer_list{
       height:1rem;
@@ -248,6 +249,10 @@ textarea {-webkit-appearance: none;}
       background: url("../images/footer3_h.png")no-repeat center;
       background-size: contain;
   }
+  .footer_bg04_active{
+      background: url("../images/footer4_h.png")no-repeat center;
+      background-size: contain;
+  }
   .footer_bg01{
       background: url("../images/footer1.png")no-repeat center;
       background-size: contain;
@@ -260,3 +265,34 @@ textarea {-webkit-appearance: none;}
       background: url("../images/footer3.png")no-repeat center;
       background-size: contain;
   }
+  .footer_bg04{
+      background: url("../images/footer4.png")no-repeat center;
+      background-size: contain;
+  }
+  .footer_color{
+      color:#008eeb;
+  }
+  ::-webkit-input-placeholder {color:#cdcdcd;}
+  :-moz-placeholder {color:#cdcdcd;}
+  ::-moz-placeholder {color:#cdcdcd;}
+  :-ms-input-placeholder {color:#cdcdcd;}
+  .span-tip {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      min-width: 2.5rem;
+      padding:0.4rem;
+      line-height: 0.6rem;
+      margin-top: -0.2rem;
+      margin-left: -1.25rem;
+      border-radius: 10px;
+      font-size: 0.26rem;
+      text-align: center;
+      color: #fff;
+      background: #000;
+      z-index: 9999;
+      opacity:0.8;
+  }
+
+
+

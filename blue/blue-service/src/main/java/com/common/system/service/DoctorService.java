@@ -3,9 +3,6 @@
  */
 package com.common.system.service;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.BlueStaff;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
@@ -15,6 +12,7 @@ import com.common.system.util.Result;
  *
  */
 public interface DoctorService {
+	
 	
 	/**
 	 * 获取医生列表

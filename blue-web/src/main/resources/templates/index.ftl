@@ -18,11 +18,11 @@
         <img src="images/logo.png" alt=""/>
     </div>
     <ul class="index_ul">
-        <li class="index_li">走进蓝鲟 Tward Lanxun</li>
-        <li class="index_li">蓝鲟官网 Website</li>
-        <li class="index_li">在线咨询 Consulting</li>
-        <li class="index_li">加入蓝鲟 Join Lanxun</li>
-        <li class="index_li">导航前往 Traffic</li>
+        <a href="/blueWebsite"><li class="index_li">走进蓝鲟 Tward Lanxun</li></a>
+        <a href="/blueWebsite"><li class="index_li">蓝鲟官网 Website</li></a>
+        <a href="/blueWebsite"><li class="index_li">在线咨询 Consulting</li></a>
+        <a href="/blueWebsite"><li class="index_li">加入蓝鲟 Join Lanxun</li></a>
+        <a href="/blueWebsite"><li class="index_li">导航前往 Traffic</li></a>
     </ul>
 </div>
 </body>
