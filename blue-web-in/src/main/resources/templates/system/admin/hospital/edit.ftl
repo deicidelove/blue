@@ -38,9 +38,14 @@
                 <div class="form-group">
                     <label>类型</label>
                     <select name="type" class="form-control select2" style="width: 100%;">
-                        <option <#if bean.type == 0>selected="selected"</#if> value="0">医院简介</option>
-                        <option <#if bean.type == 1>selected="selected"</#if> value="1">医院文化</option>
-                        <option <#if bean.type == 2>selected="selected"</#if> value="1">医院环境</option>
+                        <option <#if bean.type == 0>selected="selected"</#if> value="0">医院环境</option>
+                        <option <#if bean.type == 1>selected="selected"</#if> value="1">百年蓝鲟</option>
+                        <option <#if bean.type == 11>selected="selected"</#if> value="12">企业愿景</option>
+                        <option <#if bean.type == 12>selected="selected"</#if> value="13">管理理念</option>
+                        <option <#if bean.type == 13>selected="selected"</#if> value="14">企业使命</option>
+                        <option <#if bean.type == 14>selected="selected"</#if> value="14">经营理念</option>
+                        <option <#if bean.type == 21>selected="selected"</#if> value="21">推介理由</option>
+                        <option <#if bean.type == 22>selected="selected"</#if> value="22">科室特色</option>
                     </select>
                 </div>
                 <div class="form-group">

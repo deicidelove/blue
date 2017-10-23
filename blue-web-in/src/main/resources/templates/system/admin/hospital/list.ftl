@@ -95,12 +95,12 @@ $(function() {
 			    targets: 1,
 			    data: null,
 			    render: function (data) {
-			    	if(data.type==1){
+			    	if(data.type==21 || data.type==22){
 			    		return "医院文化";
-			    	}else if(data.type==2){
+			    	}else if(data.type==0){
 			    		return "医院环境";
 			    	}else{
-			    		return "医院简介";
+			    		return "百年蓝鲟";
 			    	}
 			    }
 			},
