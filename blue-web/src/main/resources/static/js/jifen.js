@@ -8,7 +8,7 @@ JF = {
 	 * 界面初始化事件绑定
 	 */
 	"init" : function() {
-
+		JF.getActList();
 	},
 
 	//获取列表信息
@@ -17,35 +17,37 @@ JF = {
 		Request.sendPostRequest(basePath + "/jifen/getlist/", {
 			"data" : ""
 		}, function(result) {
-			if(result){
-				var actList = eval("("+result+")");
-				$.each(actList,function(){
+			if(result && result.length > 0){
+				$.each(result,function(){
 					var li = "<li class=\"unveiled_li left\">";
-					var devName = "<div class=\"unveiled_text01\"></div>";
-					$(devName).append(this.goodsName);
-					var devTitle = "<div class=\"unveiled_text02\"></div>";
-					$(devName).append(this.goodsTitle);
+					var devName = "<div class=\"unveiled_text01\">"+this.goodsName+"</div>";
+					var devTitle = "<div class=\"unveiled_text02\">"+this.goodsTitle+"</div>";
 					var devBlock = "<div class=\"box unveiled_text03\"></div>";
-					var devBlock-1 = "<div class=\"flex-1\"></div>";
-					var devBlock-1-1 = "<div class=\"_color01\"></div>";
-					$(devBlock-1-1).append(this.goodsPrice);
-					var devBlock-1-2 = "<div>抢购</div>";
-					var devBlock-2 = "<div class=\"flex-1\"></div>";
-					var devBlock-2-1 = "<div class=\"_color01\"></div>";
-					$(devBlock-2-1).append(this.actTotalNum - this.remainingNum);
-					var devBlock-2-2 = "<div>已参与</div>";
-					var devBlock-3 = "<div class=\"flex-1\"></div>";
-					var devBlock-3-1 = "<div class=\"_color01\">"+this.remainingNum+"</div>";
-					var devBlock-3-2 = "<div>剩余</div>";
+					var devBlock_1 = "<div ></div>";
+					$(devBlock_1).addClass("flex-1");
+					var devBlock_1_1 = "<div class=\"_color01\"></div>";
+					$(devBlock_1_1).append(this.goodsPrice);
+					var devBlock_1_2 = "<div>抢购</div>";
+					var devBlock_2 = "<div ></div>";
+					$(devBlock_2).addClass("flex-1");
+					var devBlock_2_1 = "<div class=\"_color01\"></div>";
+					$(devBlock_2_1).append(this.actTotalNum - this.remainingNum);
+					var devBlock_2_2 = "<div>已参与</div>";
+					var devBlock_3 = "<div ></div>";
+					$(devBlock_3).addClass("flex_1");
+					var devBlock_3_1 = "<div class=\"_color01\">"+this.remainingNum+"</div>";
+					var devBlock_3_2 = "<div>剩余</div>";
 					
-					$(devBlock-1).append(devBlock-1-1).append(devBlock-1-2);
-					$(devBlock-2).append(devBlock-2-1).append(devBlock-2-2);
-					$(devBlock-3).append(devBlock-3-1).append(devBlock-3-2);
+					$(devBlock_1).append(devBlock_1_1).append(devBlock_1_2);
+					$(devBlock_2).append(devBlock_2_1).append(devBlock_2_2);
+					$(devBlock_3).append(devBlock_3_1).append(devBlock_3_2);	
+					$(devBlock).append(devBlock_1).append(devBlock_2).append(devBlock_3);
+					$(li).append(devName).append(devTitle).append(devBlock);
+					$(".unveiled_ul").append(li);
 				})
 			}
 		});
 	},
-
 };
 
 /**

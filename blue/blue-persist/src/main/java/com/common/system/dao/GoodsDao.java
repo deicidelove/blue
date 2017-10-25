@@ -46,7 +46,7 @@ public class GoodsDao {
 	}
 	
 	public List<GoodsEntity> seleteByList(){
-		String sql = " SELECT * FROM rc_a_goods WHERE 1=1 limit :pageStartNum, :pageSize";
+		String sql = " SELECT * FROM rc_a_goods WHERE 1=1 ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		List<GoodsEntity> resultList = namedParameterJdbcTemplate.query(sql, 
 				paramMap, BeanPropertyRowMapper.newInstance(GoodsEntity.class));

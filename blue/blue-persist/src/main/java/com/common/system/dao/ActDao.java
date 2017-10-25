@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import com.common.system.entity.ActEntity;
 import com.common.system.util.Convert;
@@ -29,10 +30,12 @@ public class ActDao {
 		String sql = " SELECT * FROM rc_a_act WHERE act_id = :actId ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("actId", actId);
-		ActEntity result = namedParameterJdbcTemplate
-				.queryForObject(sql, paramMap, new BeanPropertyRowMapper<ActEntity>(ActEntity.class));
-				
-		return result;
+		List<ActEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<ActEntity>(ActEntity.class));
+		if(CollectionUtils.isEmpty(resultList)){
+			
+		}
+		return !CollectionUtils.isEmpty(resultList) ? resultList.get(0): null;
 	}
 	
 	public List<ActEntity> seleteList(Integer pageNum, Integer pageSize){

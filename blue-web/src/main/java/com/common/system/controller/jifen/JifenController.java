@@ -50,6 +50,9 @@ public class JifenController {
 		}
 		for(GoodsEntity goodsEntity : goodsList){
 			ActEntity actEntity = actService.getById(goodsEntity.getActId());
+			if(null == actEntity){
+				continue;
+			}
 			ActGoodsDTO actGoodsDTO = new ActGoodsDTO();
 			actGoodsDTO.setActTotalNum(actEntity.getActTotalNum());
 			actGoodsDTO.setActId(goodsEntity.getActId());
