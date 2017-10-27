@@ -31,6 +31,11 @@ public class ActGoodsDTO implements Serializable{
 	private Integer remainingNum;
 	
 	/**
+	 * 参与个数
+	 */
+	private Integer participantsNum;
+	
+	/**
 	 * @return the goodsName
 	 */
 	public String getGoodsName() {
@@ -134,6 +139,20 @@ public class ActGoodsDTO implements Serializable{
 	 */
 	public void setGoodsTitle(String goodsTitle) {
 		this.goodsTitle = goodsTitle;
+	}
+
+	/**
+	 * @return the participantsNum
+	 */
+	public Integer getParticipantsNum() {
+		return participantsNum;
+	}
+
+	/**
+	 * @param participantsNum the participantsNum to set
+	 */
+	public void setParticipantsNum(Integer participantsNum) {
+		this.participantsNum = participantsNum;
 	}
 	
 }

@@ -19,6 +19,7 @@ import com.common.system.entity.GoodsEntity;
 import com.common.system.service.ActService;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
+import com.common.system.util.Result;
 import com.google.common.collect.Lists;
 
 @RestController
@@ -61,15 +62,20 @@ public class JifenController {
 			actGoodsDTO.setGoodsPrice(goodsEntity.getGoodsPrice());
 			actGoodsDTO.setGoodsTitle(goodsEntity.getGoodsTitle());
 			List<GoodsConsumerRelateEntity> goodsConsumerRelateList = goodsConsumerRelateService.list(goodsEntity.getActId(), goodsEntity.getGoodsId());
-			actGoodsDTO.setRemainingNum(actEntity.getActTotalNum() - goodsConsumerRelateList.size());
+			actGoodsDTO.setParticipantsNum((goodsConsumerRelateList.size()> actEntity.getActTotalNum())?actEntity.getActTotalNum(): goodsConsumerRelateList.size() );
+			actGoodsDTO.setRemainingNum(
+					(actEntity.getActTotalNum() - goodsConsumerRelateList.size())<0?0:(actEntity.getActTotalNum() - goodsConsumerRelateList.size()));
 			resultList.add(actGoodsDTO);
 		}
         return resultList;
     }
 	
-	@RequestMapping(value = "gotoactdetail",method = RequestMethod.GET)
-	public ModelAndView gotoactdetail(ModelAndView modelAndView){
+	@RequestMapping(value = "actdetail",method = RequestMethod.GET)
+	public ModelAndView actdetail(ModelAndView modelAndView, Integer actId, Integer goodsId){
         modelAndView.setViewName("/jifen/actDetail");
+        ActEntity actEntity = actService.getById(actId);
+        Result<GoodsEntity> goodsResult = goodsService.getById(goodsId);
+        
         return modelAndView;
 	}
 	
