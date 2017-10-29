@@ -8,27 +8,37 @@
     <link rel="stylesheet" href="../css/common.css" />
     <link rel="stylesheet" href="../css/specialist.css" />
 </head>
+<script>
+var basePath = '${request.contextPath}';
+</script>
 <body>
 <div class="heade">
     <div class="heade_text">蓝鲟专家</div>
     <div class="heade_back">返回</div>
 </div>
 <div class="search">
-    <input type="text" class="search_input" placeholder="搜索疾病，医生姓名"/>
+	<#if search??>
+	<input name="search" type="text" class="search_input" placeholder="${search}"/>
+	<#else>
+	<input name="search" type="text" class="search_input" placeholder="搜索疾病，医生姓名"/>
+	</#if>
+    
     <div class="search_btn"></div>
 </div>
 <div class="drop_down">
 	
-	    <div class="drop_down_btn">
-	    	<#if flag>
-	        <span class="left drop_down_span01">科室选择</span>
-	        <span class="left drop_down_span02"></span>
-	        <span class="left drop_down_span03"></span>
-	        </#if>
-	    </div>
-    </#if>
+    <div class="drop_down_btn">
+    	<#if flag>
+        <span class="left drop_down_span01">科室选择</span>
+        <#else>
+	     <span class="left drop_down_span01">${deptName}</span>
+	     </#if>
+        <span class="left drop_down_span02"></span>
+        <span class="left drop_down_span03"></span>
+    </div>
+    
     <ul class="down_ul">
-        <#list depts as dept>
+        <#list  depts as dept>
 	         <a href="/findDoctor/${dept.sid}">
 		        <li class="down_li">
 		           <span class="left">${dept.name}</span>
@@ -43,6 +53,7 @@
     <div class="specialist_bg"></div>
     <ul class="doctor_ul">
 	    <#list doctors as doctor>
+	        <a href="/doctorDetial/${doctor.sid}" >
 	        <li class="doctor_li">
 	            <div class="doctor_img left"></div>
 	            <div class="doctor_xq left">
@@ -55,23 +66,36 @@
 	            </div>
 	            <div class="doctor_more right">预约</div>
 	        </li>
+	        </a>
 	      </#list>
     </ul>
 </div>
 <div class="height13"></div>
 <div class="footer box">
+    
     <div class="flex-1 footer_list">
+      <a href="/">
         <div class="footer_bg04_active"></div>
         <div class="footer_color">首页</div>
+     </a>
     </div>
+   
+   
     <div class="flex-1 footer_list">
+         <a href="/blueWebsite">
         <div class="footer_bg01"></div>
         <div>蓝鲟</div>
+        </a>
     </div>
+    
+   
     <div class="flex-1 footer_list">
+     <a href="/blueWebsite">
         <div class="footer_bg02"></div>
         <div>走进蓝鲟</div>
+    </a>
     </div>
+    
     <div class="flex-1 footer_list">
         <div class="footer_bg03"></div>
         <div>我的</div>

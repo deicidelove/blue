@@ -116,7 +116,7 @@ public class StaffDao {
 	public int addStaff(BlueStaff staff) {
 		
 	String sql = "INSERT INTO tb_blue_staff (`name`, `password`, `job_num`, `dept_name`, `dept_id`, `sex`, `phone`, `introduce`, `position_id`,`address`, `create_time`) "
-				+ "VALUES (:name, :password, :jobNum, :deptName, :deptId, :sex, :phone, :introduce, :positionId, :createTime)";
+				+ "VALUES (:name, :password, :jobNum, :deptName, :deptId, :sex, :phone, :introduce, :positionId,:address :createTime)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("name", staff.getName());
 		paramMap.put("password", staff.getPassword());
@@ -131,6 +131,19 @@ public class StaffDao {
 		paramMap.put("createTime", staff.getCreateTime());
 		int	 count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
+	}
+	
+	
+	public List<BlueStaff> findLikeBySearch(String search){
+		search = "%" + search +"%";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		StringBuilder sql = new StringBuilder("SELECT * FROM tb_blue_staff WHERE introduce LIKE :search OR name LIKE :search ");
+		paramMap.put("search", search);
+		List<BlueStaff> result = namedParameterJdbcTemplate.query(sql.toString(), paramMap, new BeanPropertyRowMapper<BlueStaff>(BlueStaff.class));
+		return result;
+		
+		
+		
 	}
 
 }

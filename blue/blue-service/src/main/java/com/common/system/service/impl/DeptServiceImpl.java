@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.common.system.dao.DeptDao;
 import com.common.system.entity.BlueDept;
-import com.common.system.entity.RcDept;
 import com.common.system.service.DeptService;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
