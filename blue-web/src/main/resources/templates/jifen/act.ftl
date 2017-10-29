@@ -4,11 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>积分活动</title>
-    <script src="../js/common.js"></script>
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/swiper.min.css">
-    <link rel="stylesheet" href="../css/integral.css" />
+    <script src="../../js/common.js"></script>
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/swiper.min.css">
+    <link rel="stylesheet" href="../../css/integral.css" />
 </head>
+<script>
+   var basePath = '${request.contextPath}';
+</script>
 <body>
 <div class="heade">
     <div class="heade_text">积分活动</div>
@@ -37,7 +40,6 @@
     </div>
 </div>
 <ul class="integral_ul">
-	<#list >
     <li class="integral_li">
         <div class="integral_li_bg left"></div>
         <div class="integral_li_cont left">
@@ -51,8 +53,6 @@
             </ul>
         </div>
     </li>
-    </#list>
-
 </ul>
 <ul class="unveiled_ul">
     <li class="unveiled_li left">
@@ -189,5 +189,7 @@
 </div>
 </body>
 </html>
-<script src="../js/jquery.js"></script>
-<script src="../js/integral.js"></script>
+<script src="../../js/jquery.js"></script>
+<script src="../../js/integral.js"></script>
+<script src="../../js/bluecommon.js"></script>
+<script src="../../js/jifen.js"></script>
