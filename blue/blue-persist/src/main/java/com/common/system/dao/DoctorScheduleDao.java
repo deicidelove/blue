@@ -3,6 +3,7 @@
  */
 package com.common.system.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -122,6 +123,22 @@ public class DoctorScheduleDao {
 //		paramMap.put("create_time", blueDoctorSchedule.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
+	}
+	
+	
+	public List<BlueDoctorSchedule> findSchedules(Integer staffId,String time,String startDate,String endDate){
+		Map<String, Object> paramMap = Maps.newHashMap();
+		StringBuilder sql = new StringBuilder(
+				"SELECT * FROM tb_blue_doctor_schedule WHERE staff_id=:staff_id AND shift_time=:shift_time AND (create_time BETWEEN :startDate AND :endDate) ORDER BY create_time ASC") ;
+		paramMap.put("staff_id", staffId);
+		paramMap.put("shift_time", time);
+		paramMap.put("startDate", startDate);
+		paramMap.put("endDate", endDate);
+		List<BlueDoctorSchedule> result = namedParameterJdbcTemplate.query(sql
+				.toString(), paramMap,
+				new BeanPropertyRowMapper<BlueDoctorSchedule>(
+						BlueDoctorSchedule.class));
+		return result;
 	}
 
 }

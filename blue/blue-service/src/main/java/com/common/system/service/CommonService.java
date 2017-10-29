@@ -11,9 +11,11 @@ import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.BlueDept;
 import com.common.system.entity.BlueEncyclopedias;
 import com.common.system.entity.BlueHospital;
+import com.common.system.entity.BlueNeedWork;
+import com.common.system.entity.BluePation;
 import com.common.system.entity.BlueProject;
+import com.common.system.entity.BlueShift;
 import com.common.system.entity.BlueStaff;
-import com.common.system.util.Result;
 
 /**
  * @author amkong
@@ -36,5 +38,19 @@ public interface CommonService {
 	public List<BlueProject> findProjects();
 	
 	public List<BlueHospital> findHospitalByType(int type);
+	
+	public List<BlueNeedWork> findBlueNeedWorks();
+	
+	public List<BlueStaff> findStaffBySearch(String search);
+	
+	public List<BlueShift> findBlueShift(Integer scheduleId);
+	
+	public BlueShift findShift(Integer sid);
+	
+	public List<BluePation> findPations(Integer userId);
+	
+	public BluePation findPation(Integer sid);
+	
+
 	
 }

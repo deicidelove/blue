@@ -196,6 +196,8 @@ textarea {-webkit-appearance: none;}
       background: #1a1a1f;
       color:#fff;
       text-align: center;
+      position: relative;
+      z-index: 20;
   }
   .heade_text{
       width:100%;

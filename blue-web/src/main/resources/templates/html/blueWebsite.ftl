@@ -76,6 +76,7 @@
             </div>
         </li>
     </ul>
+    <a href="/orderPage">
     <div class="registration">
         <div>预约挂号</div>
         <div>
@@ -85,6 +86,8 @@
         </div>
         <div>为你省更多时间</div>
     </div>
+    </a>
+    <a href="/orderPage">
     <div class="make">
         <div>今日预约</div>
         <div>
@@ -94,6 +97,7 @@
         </div>
         <div>尽早治疗更有益</div>
     </div>
+    </a>
 </div>
  <a href="/noticePage">
 <div class="affiche">
@@ -149,18 +153,30 @@
     </div>
 </div>
 <div class="footer box">
+    
     <div class="flex-1 footer_list">
+      <a href="/">
         <div class="footer_bg04_active"></div>
         <div class="footer_color">首页</div>
+     </a>
     </div>
+   
+   
     <div class="flex-1 footer_list">
+         <a href="/blueWebsite">
         <div class="footer_bg01"></div>
         <div>蓝鲟</div>
+        </a>
     </div>
+    
+   
     <div class="flex-1 footer_list">
+     <a href="/blueWebsite">
         <div class="footer_bg02"></div>
         <div>走进蓝鲟</div>
+    </a>
     </div>
+    
     <div class="flex-1 footer_list">
         <div class="footer_bg03"></div>
         <div>我的</div>

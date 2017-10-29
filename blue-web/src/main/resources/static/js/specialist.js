@@ -36,6 +36,10 @@
                 $(this).siblings().find('.down_li_bg').remove();
                 $('.drop_down_span01').text($text);
             });
+            $('.search_btn').on('click',function(){
+              	var url = basePath+ "/doctorFindBySearch/"+$('.search_input').val();
+            	window.location.href=url;
+            });
         },
         _ulshow:function(){
             $('.down_ul').show();
@@ -57,4 +61,5 @@
             e.stopPropagation();
         }
     },false);
+   
 })();

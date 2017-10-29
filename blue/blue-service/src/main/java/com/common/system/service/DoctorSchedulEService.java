@@ -3,6 +3,9 @@
  */
 package com.common.system.service;
 
+import java.util.Date;
+import java.util.List;
+
 import com.common.system.entity.BlueDoctorSchedule;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
@@ -25,5 +28,7 @@ public interface DoctorSchedulEService {
 
 	public Result<Integer> update(String date, String count, int staffId,
 			String shiftTime, int sid);
+	
+	public List<BlueDoctorSchedule> findByDateAndTime(String time,Integer staffId,String firstDay,String endDay);
 
 }

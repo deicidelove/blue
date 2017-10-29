@@ -58,7 +58,7 @@ public class OppointmentServiceImpl implements OppointmentService {
 	}
 
 	@Override
-	public Result<Integer> addOppo(int staffId, String date, String payMoney) {
+	public Result<Integer> addOppo(int staffId, String date, String payMoney,Integer userId,Integer pationId) {
 		try {
 			BlueOppointment oppo = new BlueOppointment();
 			oppo.setStaffId(staffId);
@@ -70,8 +70,8 @@ public class OppointmentServiceImpl implements OppointmentService {
 			}
 			oppo.setPayMoney(Float.valueOf(payMoney));
 			oppo.setOrderTime(DateUtil.formtString(date));
-//			oppo.setPationId(pationId);
-//			oppo.setUserId(userId);
+			oppo.setPationId(pationId);
+			oppo.setUserId(userId);
 			oppo.setCreateTime(new Date());
 			int count = oppointmentDao.save(oppo);
 			return new Result<Integer>(true,"保存成功！",count);
