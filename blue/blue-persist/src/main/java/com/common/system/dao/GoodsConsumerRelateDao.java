@@ -58,8 +58,8 @@ public class GoodsConsumerRelateDao {
 	public void saveGoodsConsumerRelate(GoodsConsumerRelateEntity goodsConsumerRelateEntity){
 		Assert.notNull(goodsConsumerRelateEntity,"goodsConsumerRelateEntity is null");
 		String sql ="	INSERT INTO `rc_a_goods_consumer_relate`	"
-				+"	(`act_id`, `goods_id`, `consumer_id`, `consumer_giving_code`)	"
-				+ "	VALUES (:actId, :goodsId, :consumerId, :consumerGivingCode)	";
+				+"	(`act_id`, `goods_id`, `consumer_id`, `consumer_giving_code`,`open_id`,`giving_code_source`)	"
+				+ "	VALUES (:actId, :goodsId, :consumerId, :consumerGivingCode, :openId, :givingCodeSource)	";
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(goodsConsumerRelateEntity));
 	}
 	

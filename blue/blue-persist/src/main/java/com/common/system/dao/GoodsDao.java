@@ -57,7 +57,7 @@ public class GoodsDao {
 		Assert.notNull(goodsEntity,"goodsEntity is null");
 		String sql ="	INSERT INTO `rc_a_goods`	"
 				+"	(`act_id`, `goods_name`, `goods_pic_url`, `goods_detail_pic_url`)	"
-				+ "	VALUES (:actId, :goodsName, :goodsPicUrl, :goodsDetailPicUrl)	";
+				+ "	VALUES (:actId, :goodsName, :goodsPicUrl, :goodsDetailPicUrl, :category)	";
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(goodsEntity));
 	}
 	

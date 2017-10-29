@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="../css/swiper.min.css">
     <link rel="stylesheet" href="../css/activity_xq.css" />
 </head>
+<script>
+	var actId = '${actId}';
+	var goodsId = '${goodsId}';
+	var basePath = '${request.contextPath}';
+</script>
 <body>
 <div class="heade">
     <div class="heade_text">积分活动-详情</div>
@@ -29,21 +34,23 @@
 </div>
 <div class="activity_ing">
     <div class="activity_ing_top">
-        <div class="left">进行中</div>
-        <h3 class="left">公益活动献爱心公益活动献爱心公益活动献爱心</h3>
+        <div class="left">
+        	进行中
+        </div>
+        <h3 class="left">${detailDTO.goodsName}</h3>
     </div>
     <div class="box activity_ing_botm">
         <div class="flex-1">
             <span>总需人次</span>
-            <span class="color02">590</span>
+            <span class="color02">${detailDTO.actTotalNum}</span>
         </div>
         <div class="flex-1 text_alinecent">
             <span>已参与</span>
-            <span class="color02">590</span>
+            <span class="color02">${detailDTO.participantsNum}</span>
         </div>
         <div class="flex-1 text_alineright">
             <span>剩余</span>
-            <span class="color01">590</span>
+            <span class="color01">${detailDTO.remainingNum}</span>
         </div>
     </div>
 </div>
@@ -52,20 +59,17 @@
     <div class="right"></div>
 </div>
 <ul class="activity_ul">
-    <li class="activity_li">
-        <div class="activity_li_div01 left"></div>
-        <div class="activity_li_div02 left">
-            <div>蔚蓝色的天空抢购了1人次</div>
-            <div>2017-10-12 11:07:58</div>
-        </div>
-    </li>
-    <li class="activity_li">
-        <div class="activity_li_div01 left activity_li_div01_bg"></div>
-        <div class="activity_li_div02 left">
-            <div>蔚蓝色的天空抢购了1人次</div>
-            <div>2017-10-12 11:07:58</div>
-        </div>
-    </li>
+	<#list detailDTO.goodsDetailWxDTOList as temp>
+	    <li class="activity_li">
+	        <div class="activity_li_div01 left">
+	        	<img src="${temp.wxDetailEntity.pic}" class="activity_li_div01 left"/>
+	        </div>
+	        <div class="activity_li_div02 left">
+	            <div>${temp.wxDetailEntity.name}抢购了1人次</div>
+	            <div>${temp.createTime}</div>
+	        </div>
+	    </li>
+    </#list>
 </ul>
 <div class="height20"></div>
 <div class="record record_btn02">
@@ -75,10 +79,7 @@
 <div class="particulars">
     <div class="particulars_img"></div>
     <div class="particulars_cont">
-        项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情
-        项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情
-        项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情
-        项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情
+        ${detailDTO.goodsDetail }
     </div>
 </div>
 <div class="height20"></div>
@@ -86,13 +87,16 @@
     <div class="left">我的本期幸运号</div>
     <div class="right "></div>
 </div>
-<div class="activity_num">10003374</div>
+<#list detailDTO.givingCodeList as givingCode>
+<div class="activity_num">${givingCode }</div>
+</#list>
+
 <div class="height20"></div>
 <div class="rule">
     <div class="left">规则展示</div>
     <div class="right"></div>
 </div>
-<div class="infor_btn">立即支付￥0.99抢购</div>
+<div class="infor_btn">立即支付￥${detailDTO.goodsPrice }抢购</div>
 <div class="share">
     <div class="close">
         <div class="right close_btn"></div>
@@ -112,7 +116,7 @@
             <div class="add left"></div>
             <div class="total left">
                 <span>剩余:</span>
-                <span>295</span>
+                <span>${detailDTO.remainingNum}</span>
             </div>
         </div>
     </div>
@@ -124,6 +128,7 @@
 <script src="../js/jquery.js"></script>
 <script src="../js/activity_xq.js"></script>
 <script src="../js/swiper.min.js"></script>
+<script src="../../js/bluecommon.js"></script>
 <script>
     var swiper = new Swiper('.swiper01 .swiper-container', {
         pagination: '.swiper-pagination',

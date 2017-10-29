@@ -61,6 +61,9 @@ public class GoodsEntity implements Serializable{
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
+	
+	private String category;
+	
 	/**
 	 * @return the goodsId
 	 */
@@ -192,6 +195,18 @@ public class GoodsEntity implements Serializable{
 	 */
 	public void setGoodsTitle(String goodsTitle) {
 		this.goodsTitle = goodsTitle;
+	}
+	/**
+	 * @return the category
+	 */
+	public String getCategory() {
+		return category;
+	}
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }

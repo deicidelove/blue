@@ -36,6 +36,11 @@ public class ActGoodsDTO implements Serializable{
 	private Integer participantsNum;
 	
 	/**
+	 *  列表图片
+	 */
+	private String listImg;
+	
+	/**
 	 * @return the goodsName
 	 */
 	public String getGoodsName() {
@@ -153,6 +158,20 @@ public class ActGoodsDTO implements Serializable{
 	 */
 	public void setParticipantsNum(Integer participantsNum) {
 		this.participantsNum = participantsNum;
+	}
+
+	/**
+	 * @return the listImg
+	 */
+	public String getListImg() {
+		return listImg;
+	}
+
+	/**
+	 * @param listImg the listImg to set
+	 */
+	public void setListImg(String listImg) {
+		this.listImg = listImg;
 	}
 	
 }

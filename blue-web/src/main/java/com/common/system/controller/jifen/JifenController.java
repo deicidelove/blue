@@ -1,6 +1,7 @@
 package com.common.system.controller.jifen;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -13,14 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.dto.ActGoodsDTO;
+import com.common.system.dto.GoodsDetailDTO;
+import com.common.system.dto.GoodsDetailWxDTO;
 import com.common.system.entity.ActEntity;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
+import com.common.system.entity.GoodsImgEntity;
+import com.common.system.entity.WxDetailEntity;
 import com.common.system.service.ActService;
 import com.common.system.service.GoodsConsumerRelateService;
+import com.common.system.service.GoodsImgService;
 import com.common.system.service.GoodsService;
+import com.common.system.service.WxDetailService;
 import com.common.system.util.Result;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @RestController
 @RequestMapping(value = "jifen")
@@ -33,7 +41,13 @@ public class JifenController {
 	private GoodsService goodsService;
 	
 	@Resource
+	private GoodsImgService goodsImgService;
+	
+	@Resource
 	private GoodsConsumerRelateService goodsConsumerRelateService;
+	
+	@Resource
+	private WxDetailService wxDetailService;
 	
 	@RequestMapping(value = "index",method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView modelAndView){
@@ -50,6 +64,7 @@ public class JifenController {
 			return resultList;
 		}
 		for(GoodsEntity goodsEntity : goodsList){
+			//获取活动信息，活动总数
 			ActEntity actEntity = actService.getById(goodsEntity.getActId());
 			if(null == actEntity){
 				continue;
@@ -61,10 +76,16 @@ public class JifenController {
 			actGoodsDTO.setGoodsName(goodsEntity.getGoodsName());
 			actGoodsDTO.setGoodsPrice(goodsEntity.getGoodsPrice());
 			actGoodsDTO.setGoodsTitle(goodsEntity.getGoodsTitle());
+			//获取已参加人数
 			List<GoodsConsumerRelateEntity> goodsConsumerRelateList = goodsConsumerRelateService.list(goodsEntity.getActId(), goodsEntity.getGoodsId());
 			actGoodsDTO.setParticipantsNum((goodsConsumerRelateList.size()> actEntity.getActTotalNum())?actEntity.getActTotalNum(): goodsConsumerRelateList.size() );
 			actGoodsDTO.setRemainingNum(
 					(actEntity.getActTotalNum() - goodsConsumerRelateList.size())<0?0:(actEntity.getActTotalNum() - goodsConsumerRelateList.size()));
+			//获取图片
+			GoodsImgEntity imgEntity = goodsImgService.findByGoodsId(goodsEntity.getGoodsId(), "list_img");
+			if(null != imgEntity){
+				actGoodsDTO.setListImg(imgEntity.getGoodsImgUrl());
+			}
 			resultList.add(actGoodsDTO);
 		}
         return resultList;
@@ -72,10 +93,57 @@ public class JifenController {
 	
 	@RequestMapping(value = "actdetail",method = RequestMethod.GET)
 	public ModelAndView actdetail(ModelAndView modelAndView, Integer actId, Integer goodsId){
+		
+		String openId = "1";
+		
         modelAndView.setViewName("/jifen/actDetail");
-        ActEntity actEntity = actService.getById(actId);
-        Result<GoodsEntity> goodsResult = goodsService.getById(goodsId);
+        GoodsDetailDTO detailDTO = new GoodsDetailDTO();
+        //act
+        detailDTO.setActId(actId);
+        detailDTO.setGoodsId(goodsId);
         
+        ActEntity actEntity = actService.getById(actId);
+        
+        //goods
+        Result<GoodsEntity> goodsResult = goodsService.getById(goodsId);
+        GoodsEntity goodsEntity = goodsResult.getData();
+        detailDTO.setActTotalNum(actEntity.getActTotalNum());
+        
+        List<GoodsConsumerRelateEntity> consumerRelateEntityList = goodsConsumerRelateService.list(actId, goodsId);
+        
+        List<GoodsDetailWxDTO> goodsDetailWxDTOList = Lists.newArrayList();
+        List<String> givingCodeList = Lists.newArrayList();
+        for(GoodsConsumerRelateEntity temp : consumerRelateEntityList){
+/*        	if(givingCodeCountMap.containsKey(temp.getOpenId())){
+        		givingCodeCountMap.put(temp.getOpenId(),givingCodeCountMap.get(temp.getOpenId())+1);
+        	}else {
+        		givingCodeCountMap.put(temp.getOpenId(), 1);
+        	}*/
+        	if(openId.equals(temp.getOpenId())){
+        		givingCodeList.add(temp.getConsumerGivingCode());
+        	}
+        	//get wxDetail
+        	WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(openId);
+        	GoodsDetailWxDTO goodsDetailWxDTO = new GoodsDetailWxDTO();
+        	if(null != wxDetailEntity){
+        		goodsDetailWxDTO.setCreateTime(temp.getCreateTime());
+        		goodsDetailWxDTO.setWxDetailEntity(wxDetailEntity);
+        		goodsDetailWxDTOList.add(goodsDetailWxDTO);
+        	}
+        }
+        detailDTO.setGoodsDetailWxDTOList(goodsDetailWxDTOList);
+        
+        detailDTO.setGivingCodeList(givingCodeList);
+        detailDTO.setGoodsDetail(goodsEntity.getGoodsDetail());
+        detailDTO.setGoodsName(goodsEntity.getGoodsName());
+        detailDTO.setGoodsTitle(goodsEntity.getGoodsTitle());
+        detailDTO.setGoodsPrice(goodsEntity.getGoodsPrice());
+        detailDTO.setParticipantsNum((consumerRelateEntityList.size()> actEntity.getActTotalNum())?actEntity.getActTotalNum(): consumerRelateEntityList.size() );
+        detailDTO.setRemainingNum(
+				(actEntity.getActTotalNum() - consumerRelateEntityList.size())<0?0:(actEntity.getActTotalNum() - consumerRelateEntityList.size()));
+        modelAndView.addObject("detailDTO", detailDTO);
+        modelAndView.addObject("actId", detailDTO.getActId());
+        modelAndView.addObject("goodsId", detailDTO.getGoodsId());
         return modelAndView;
 	}
 	

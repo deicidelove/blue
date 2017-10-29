@@ -39,7 +39,7 @@ public class GoodsConsumerRelateEntity implements Serializable{
 	/**
 	 * 用戶參與的中獎號碼
 	 */
-	private Integer consumerGivingCode;
+	private String consumerGivingCode;
 	
 	/**
 	 * 創建時間
@@ -47,6 +47,15 @@ public class GoodsConsumerRelateEntity implements Serializable{
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
 
+	/**
+	 * 微信唯一id，用户唯一标识
+	 */
+	private String openId;
+	
+	/**
+	 * 用户幸运号来源 （wxPay，jifen）
+	 */
+	private String givingCodeSource;
 	/**
 	 * @return the actId
 	 */
@@ -120,15 +129,43 @@ public class GoodsConsumerRelateEntity implements Serializable{
 	/**
 	 * @return the consumerGivingCode
 	 */
-	public Integer getConsumerGivingCode() {
+	public String getConsumerGivingCode() {
 		return consumerGivingCode;
 	}
 
 	/**
 	 * @param consumerGivingCode the consumerGivingCode to set
 	 */
-	public void setConsumerGivingCode(Integer consumerGivingCode) {
+	public void setConsumerGivingCode(String consumerGivingCode) {
 		this.consumerGivingCode = consumerGivingCode;
+	}
+
+	/**
+	 * @return the givingCodeSource
+	 */
+	public String getGivingCodeSource() {
+		return givingCodeSource;
+	}
+
+	/**
+	 * @param givingCodeSource the givingCodeSource to set
+	 */
+	public void setGivingCodeSource(String givingCodeSource) {
+		this.givingCodeSource = givingCodeSource;
+	}
+
+	/**
+	 * @return the openId
+	 */
+	public String getOpenId() {
+		return openId;
+	}
+
+	/**
+	 * @param openId the openId to set
+	 */
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 	
 

@@ -19,8 +19,8 @@ import com.google.common.collect.Maps;
  * @author Blackgun
  *	图片表增刪改查
  */
-@Repository("goodsImgDAO")
-public class GoodsImgDAO {
+@Repository("goodsImgDao")
+public class GoodsImgDao {
 	@Resource
 	private NamedParameterJdbcTemplate  namedParameterJdbcTemplate;
 	
@@ -57,7 +57,7 @@ public class GoodsImgDAO {
 		return resultList;
 	}
 	
-	public void saveGoods(GoodsImgEntity goodsImgEntity){
+	public void saveGoodsImg(GoodsImgEntity goodsImgEntity){
 		Assert.notNull(goodsImgEntity,"goodsImgEntity is null");
 		String sql ="	INSERT INTO rc_a_goods_img	"
 				+"	( goods_id, img_type, goods_img_ur)	"

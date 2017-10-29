@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
 import com.common.system.dao.GoodsDao;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.service.GoodsService;
@@ -92,7 +91,6 @@ public class GoodsServiceImpl implements GoodsService {
 		} catch (Exception e) {
 			LOG.error("ActServiceImpl listForPage error!", e );
 		}
-		System.out.println(JSON.toJSONString(result));
 		return result;
 	}
 

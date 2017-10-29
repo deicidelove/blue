@@ -14,7 +14,7 @@ JF = {
 
 	//获取列表信息
 	"getActList" : function() {
-//		$(".unveiled_ul").html("");
+		$(".unveiled_ul").html("");
 		Request.sendPostRequest(basePath + "/jifen/getlist/", {
 			"data" : ""
 		}, function(result) {
@@ -25,7 +25,7 @@ JF = {
 					$(li).attr("goodsId",this.goodsId);
 					var devCent = $("<div class=\"unveiled_li_cent\"></div>");
 					var devTop = $("<div class=\"unveiled_li_top\"></div>");
-					$(devTop).css('background', ' url('+this.goodsUrl+') no-repeat center');
+					$(devTop).css({'background': ' url('+this.listImg+') no-repeat center','background-size':'100% 100%'});
 					var devName = $("<div class=\"unveiled_text01\">"+this.goodsName+"</div>");
 					var devTitle = $("<div class=\"unveiled_text02\">"+this.goodsTitle+"</div>");
 					var devBlock = $("<div class=\"box unveiled_text03\"></div>");
@@ -60,7 +60,7 @@ JF = {
 	"initClick" :function(){
 		$(".unveiled_li.left").off('click');
 		$(".unveiled_li.left").on('click',function(){
-			window.location.href = basePath +"/jifen/actdetail?actId"+$(this).attr("actId")+"&goodsId="+$(this).attr("goodsId");
+			window.location.href = basePath +"/jifen/actdetail?actId="+$(this).attr("actId")+"&goodsId="+$(this).attr("goodsId");
 		})
 	}
 };
