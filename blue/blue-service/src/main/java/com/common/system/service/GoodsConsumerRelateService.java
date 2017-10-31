@@ -10,11 +10,11 @@ public interface GoodsConsumerRelateService {
 	
 	public void saveGoodsConsumerRelate(GoodsConsumerRelateEntity goodsConsumerRelateEntity);
 	
-	public void deleteById(Integer actId);
+	public void deleteById(Integer goodsConsumerId);
 	
 	public void update(GoodsConsumerRelateEntity goodsConsumerRelateEntity);
 	
-	public GoodsConsumerRelateEntity getById(Integer actId);
+	public GoodsConsumerRelateEntity getById(Integer goodsConsumerId);
 	
 	public PageInfo<GoodsConsumerRelateDTO> listForPage(Integer pageNum, Integer pageSize);
 	

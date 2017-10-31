@@ -61,8 +61,14 @@ public class GoodsEntity implements Serializable{
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
-	
+	/**
+	 * 类目
+	 */
 	private String category;
+	/**
+	 * 积分
+	 */
+	private Integer jifen;
 	
 	/**
 	 * @return the goodsId
@@ -207,6 +213,18 @@ public class GoodsEntity implements Serializable{
 	 */
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	/**
+	 * @return the jifen
+	 */
+	public Integer getJifen() {
+		return jifen;
+	}
+	/**
+	 * @param jifen the jifen to set
+	 */
+	public void setJifen(Integer jifen) {
+		this.jifen = jifen;
 	}
 
 }

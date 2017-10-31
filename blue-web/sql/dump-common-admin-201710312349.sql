@@ -73,7 +73,7 @@ CREATE TABLE `rc_a_consumer` (
 
 LOCK TABLES `rc_a_consumer` WRITE;
 /*!40000 ALTER TABLE `rc_a_consumer` DISABLE KEYS */;
-INSERT INTO `rc_a_consumer` VALUES (1,'王涛',2,1,'1333333333','支付宝','2017-09-23 14:29:11','2017-09-23 14:29:11',NULL);
+INSERT INTO `rc_a_consumer` VALUES (1,'王涛',2,1,'1333333333','支付宝','2017-09-23 14:29:11','2017-10-28 15:33:34','1');
 /*!40000 ALTER TABLE `rc_a_consumer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,6 +124,8 @@ CREATE TABLE `rc_a_goods` (
   `is_delete` bit(1) DEFAULT NULL,
   `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `category` varchar(100) DEFAULT NULL,
+  `jifen` int(11) DEFAULT NULL COMMENT '积分',
   PRIMARY KEY (`goods_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -134,7 +136,7 @@ CREATE TABLE `rc_a_goods` (
 
 LOCK TABLES `rc_a_goods` WRITE;
 /*!40000 ALTER TABLE `rc_a_goods` DISABLE KEYS */;
-INSERT INTO `rc_a_goods` VALUES (1,2,'测试',2.00,'11','11',NULL,NULL,'\0','2017-09-19 14:30:34','2017-10-25 15:14:09');
+INSERT INTO `rc_a_goods` VALUES (1,2,'测试',2.00,'11','11','abcddddddddddddd','ddddddddddddddd','\0','2017-09-19 14:30:34','2017-10-28 15:01:07',NULL,NULL);
 /*!40000 ALTER TABLE `rc_a_goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +154,8 @@ CREATE TABLE `rc_a_goods_consumer_relate` (
   `consumer_id` int(11) DEFAULT NULL COMMENT '用户主键',
   `consumer_giving_code` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '用户的中奖号码 ',
   `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `openid` varchar(255) DEFAULT NULL,
+  `open_id` varchar(255) DEFAULT NULL,
+  `giving_code_source` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`goods_consumer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -163,7 +166,7 @@ CREATE TABLE `rc_a_goods_consumer_relate` (
 
 LOCK TABLES `rc_a_goods_consumer_relate` WRITE;
 /*!40000 ALTER TABLE `rc_a_goods_consumer_relate` DISABLE KEYS */;
-INSERT INTO `rc_a_goods_consumer_relate` VALUES (1,2,1,1,'1333333333','2017-09-19 14:38:48',NULL);
+INSERT INTO `rc_a_goods_consumer_relate` VALUES (1,2,1,1,'1333333333','2017-09-19 14:38:48','1',NULL);
 /*!40000 ALTER TABLE `rc_a_goods_consumer_relate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +194,7 @@ CREATE TABLE `rc_a_goods_img` (
 
 LOCK TABLES `rc_a_goods_img` WRITE;
 /*!40000 ALTER TABLE `rc_a_goods_img` DISABLE KEYS */;
-INSERT INTO `rc_a_goods_img` VALUES (1,0,'list_img','','2017-10-27 15:25:10','2017-10-27 15:25:10');
+INSERT INTO `rc_a_goods_img` VALUES (1,1,'list_img','http://localhost:8888/images/icon-91.png','2017-10-27 15:25:10','2017-10-28 15:08:27');
 /*!40000 ALTER TABLE `rc_a_goods_img` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,9 +213,14 @@ CREATE TABLE `rc_a_order` (
   `source` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '订单来源',
   `status` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '订单状态',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '时间',
-  `openid` varchar(255) DEFAULT NULL,
+  `open_id` varchar(255) DEFAULT NULL COMMENT '微信唯一标识',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `pre_pay_id` varchar(100) DEFAULT NULL COMMENT '微信预支付账号',
+  `out_trade_id` varchar(100) DEFAULT NULL COMMENT '商户订单号',
+  `price` decimal(10,2) DEFAULT NULL COMMENT '订单总额',
+  `jifen` int(11) DEFAULT NULL COMMENT '积分总额',
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,11 +241,12 @@ DROP TABLE IF EXISTS `rc_a_wx_detail`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `rc_a_wx_detail` (
   `sid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `openId` varchar(255) DEFAULT NULL,
+  `open_id` varchar(255) DEFAULT NULL,
   `sex` varchar(255) DEFAULT NULL,
   `pic` varchar(255) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`sid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,6 +255,7 @@ CREATE TABLE `rc_a_wx_detail` (
 
 LOCK TABLES `rc_a_wx_detail` WRITE;
 /*!40000 ALTER TABLE `rc_a_wx_detail` DISABLE KEYS */;
+INSERT INTO `rc_a_wx_detail` VALUES (1,'1','1','../images/icon-23.png','塔头');
 /*!40000 ALTER TABLE `rc_a_wx_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,10 +268,15 @@ DROP TABLE IF EXISTS `rc_a_wx_user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `rc_a_wx_user` (
   `sid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `openId` varchar(255) DEFAULT NULL,
+  `open_id` varchar(255) DEFAULT NULL,
   `tel` varchar(255) DEFAULT NULL,
+  `jifen` int(11) DEFAULT NULL COMMENT '积分',
+  `super_open_id` varchar(255) DEFAULT NULL COMMENT '关联openId',
+  `qr_code_url` varchar(100) DEFAULT NULL COMMENT '二维码url',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_delete` bit(1) DEFAULT b'0' COMMENT '是否删除',
   PRIMARY KEY (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,6 +285,7 @@ CREATE TABLE `rc_a_wx_user` (
 
 LOCK TABLES `rc_a_wx_user` WRITE;
 /*!40000 ALTER TABLE `rc_a_wx_user` DISABLE KEYS */;
+INSERT INTO `rc_a_wx_user` VALUES (2,'1','111',NULL,NULL,NULL,'2017-10-31 14:42:57',NULL);
 /*!40000 ALTER TABLE `rc_a_wx_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -583,4 +599,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-27 23:49:21
+-- Dump completed on 2017-10-31 23:49:18

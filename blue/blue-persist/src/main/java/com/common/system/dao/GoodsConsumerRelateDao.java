@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.util.Convert;
@@ -29,10 +30,10 @@ public class GoodsConsumerRelateDao {
 		String sql = " SELECT * FROM `rc_a_goods_consumer_relate`  WHERE goods_consumer_id = :goodsConsumerId ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("goodsConsumerId", goodsConsumerId);
-		GoodsConsumerRelateEntity result = namedParameterJdbcTemplate
-				.queryForObject(sql, paramMap, new BeanPropertyRowMapper<GoodsConsumerRelateEntity>(GoodsConsumerRelateEntity.class));
+		List<GoodsConsumerRelateEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<GoodsConsumerRelateEntity>(GoodsConsumerRelateEntity.class));
 				
-		return result;
+		return CollectionUtils.isEmpty(resultList)? null: resultList.get(0);
 	}
 	
 	public List<GoodsConsumerRelateEntity> seleteList(Integer pageNum, Integer pageSize){
@@ -85,5 +86,15 @@ public class GoodsConsumerRelateDao {
 		Map<String,Object> paramMap = Maps.newHashMap();
 		namedParameterJdbcTemplate.update(sql, paramMap);
 	}
-
+	
+	public void updateConsumer(GoodsConsumerRelateEntity goodsConsumerRelateEntity){
+		Assert.notNull(goodsConsumerRelateEntity,"goodsConsumerRelateEntity is null");
+		String sql = "	UPDATE `rc_a_goods_consumer_relate`  "
+				+ "	SET  `consumer_id`=:consumerId, `open_id`=:openId	"
+				+ " WHERE `goods_consumer_id`=:goodsConsumerId";
+		Map<String,Object> paramMap = Maps.newHashMap();
+		namedParameterJdbcTemplate.update(sql, paramMap);
+	}
+	
+	
 }

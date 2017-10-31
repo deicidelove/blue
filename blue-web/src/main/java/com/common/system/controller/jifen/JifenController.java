@@ -1,7 +1,8 @@
 package com.common.system.controller.jifen;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -20,15 +21,18 @@ import com.common.system.entity.ActEntity;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
+import com.common.system.entity.OrderEntity;
 import com.common.system.entity.WxDetailEntity;
+import com.common.system.entity.WxUserEntity;
 import com.common.system.service.ActService;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsImgService;
 import com.common.system.service.GoodsService;
+import com.common.system.service.OrderService;
 import com.common.system.service.WxDetailService;
+import com.common.system.service.WxUserService;
 import com.common.system.util.Result;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 @RestController
 @RequestMapping(value = "jifen")
@@ -48,6 +52,12 @@ public class JifenController {
 	
 	@Resource
 	private WxDetailService wxDetailService;
+	
+	@Resource
+	private WxUserService wxUserService;
+	
+	@Resource
+	private OrderService orderService;
 	
 	@RequestMapping(value = "index",method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView modelAndView){
@@ -147,4 +157,35 @@ public class JifenController {
         return modelAndView;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "createGoodsOrder")
+    public String createGoodsOrder(String goodsId ) {
+		//TODO get openId
+		String openId = "1";
+		Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
+		GoodsEntity goodsEntity = goodsResult.getData();
+		WxUserEntity wxUserEntity = wxUserService.getById(openId);
+		if(goodsEntity.getJifen() > wxUserEntity.getJifen()){
+			return "积分不足！";
+		}
+		
+		wxUserEntity.setJifen(wxUserEntity.getJifen() - goodsEntity.getJifen());
+		wxUserService.updateJifen(wxUserEntity);
+		
+	  	OrderEntity orderEntity = new OrderEntity();
+    	orderEntity.setGoodsId(Integer.valueOf(goodsId));
+    	orderEntity.setGoodsNum(Integer.valueOf(1));
+    	orderEntity.setOpenId(openId);
+    	orderEntity.setSource("wxPayCode");
+    	orderEntity.setStatus("yzf");
+    	orderEntity.setType("jfPayCode");
+    	//目前只支持一个一个购买
+    	orderEntity.setPrice(goodsEntity.getGoodsPrice().subtract(new BigDecimal(Integer.valueOf(1))));
+    	orderEntity.setOutTradeId(UUID.randomUUID().toString().replaceAll("-", ""));
+    	orderService.save(orderEntity);
+		//消费一个中奖号码
+    	goodsConsumerRelateService.getById(actId)
+    	
+		return "success";
+	}
 }

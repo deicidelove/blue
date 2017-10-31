@@ -32,9 +32,6 @@ public class ActDao {
 		paramMap.put("actId", actId);
 		List<ActEntity> resultList = namedParameterJdbcTemplate
 				.query(sql, paramMap, new BeanPropertyRowMapper<ActEntity>(ActEntity.class));
-		if(CollectionUtils.isEmpty(resultList)){
-			
-		}
 		return !CollectionUtils.isEmpty(resultList) ? resultList.get(0): null;
 	}
 	

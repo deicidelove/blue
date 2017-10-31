@@ -52,10 +52,10 @@ public class GoodsConsumerRelateServiceImpl implements GoodsConsumerRelateServic
 	}
 
 	@Override
-	public void deleteById(Integer goodsUserId) {
+	public void deleteById(Integer goodsConsumerId) {
 		
 		try {
-			goodsConsumerRelateDao.deleteById(goodsUserId);
+			goodsConsumerRelateDao.deleteById(goodsConsumerId);
 			
 		} catch (Exception e) {
 			LOG.error("GoodsUserRelateServiceImpl deleteById error!", e );
@@ -74,10 +74,10 @@ public class GoodsConsumerRelateServiceImpl implements GoodsConsumerRelateServic
 	}
 
 	@Override
-	public GoodsConsumerRelateEntity getById(Integer actId) {
+	public GoodsConsumerRelateEntity getById(Integer goodsConsumerId) {
 		GoodsConsumerRelateEntity goodsConsumerRelateEntity = null;
 		try {
-			goodsConsumerRelateEntity = goodsConsumerRelateDao.seleteById(actId);
+			goodsConsumerRelateEntity = goodsConsumerRelateDao.seleteById(goodsConsumerId);
 		} catch (Exception e) {
 			LOG.error("GoodsUserRelateServiceImpl getById error!", e );
 		}
