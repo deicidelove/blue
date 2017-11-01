@@ -14,7 +14,27 @@ public interface GoodsConsumerRelateService {
 	
 	public void update(GoodsConsumerRelateEntity goodsConsumerRelateEntity);
 	
+	/**
+	 * <p>
+	 * <code>updateConsumer</code>
+	 * </p>
+	 * 用户占用中奖号码
+	 * @author admin
+	 * @param goodsConsumerRelateEntity
+	 */
+	public int updateConsumer(GoodsConsumerRelateEntity goodsConsumerRelateEntity);
+	
 	public GoodsConsumerRelateEntity getById(Integer goodsConsumerId);
+	/**
+	 * <p>
+	 * <code>randomByGoodsId</code>
+	 * </p>
+	 * 随机获取一个中奖号码
+	 * @author admin
+	 * @param goodsId
+	 * @return
+	 */
+	public GoodsConsumerRelateEntity randomByGoodsId(Integer goodsId);
 	
 	public PageInfo<GoodsConsumerRelateDTO> listForPage(Integer pageNum, Integer pageSize);
 	

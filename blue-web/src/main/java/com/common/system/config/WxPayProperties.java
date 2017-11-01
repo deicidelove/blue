@@ -3,12 +3,14 @@ package com.common.system.config;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * wxpay pay properties
  *
  * @author Binary Wang
  */
+@Component
 @ConfigurationProperties(prefix = "wechat.pay")
 public class WxPayProperties {
     /**

@@ -36,6 +36,26 @@ public class GoodsConsumerRelateDao {
 		return CollectionUtils.isEmpty(resultList)? null: resultList.get(0);
 	}
 	
+	/**
+	 * <p>
+	 * <code>randomById</code>
+	 * </p>
+	 * 随机获取一个中奖号码
+	 * @author admin
+	 * @param goodsId
+	 * @return
+	 */
+	public GoodsConsumerRelateEntity randomById(Integer goodsId){
+		Assert.notNull(goodsId,"goodsId is null");
+		String sql = " SELECT * FROM `rc_a_goods_consumer_relate`  WHERE goods_id = :goodsId  and isUsed is false limit 1";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("goodsId", goodsId);
+		List<GoodsConsumerRelateEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<GoodsConsumerRelateEntity>(GoodsConsumerRelateEntity.class));
+				
+		return CollectionUtils.isEmpty(resultList)? null: resultList.get(0);
+	}
+	
 	public List<GoodsConsumerRelateEntity> seleteList(Integer pageNum, Integer pageSize){
 		String sql = " SELECT * FROM rc_a_goods_consumer_relate WHERE 1=1 limit :pageStartNum, :pageSize";
 		Map<String, Object> paramMap = Maps.newHashMap();
@@ -87,13 +107,13 @@ public class GoodsConsumerRelateDao {
 		namedParameterJdbcTemplate.update(sql, paramMap);
 	}
 	
-	public void updateConsumer(GoodsConsumerRelateEntity goodsConsumerRelateEntity){
+	public Integer updateConsumer(GoodsConsumerRelateEntity goodsConsumerRelateEntity){
 		Assert.notNull(goodsConsumerRelateEntity,"goodsConsumerRelateEntity is null");
 		String sql = "	UPDATE `rc_a_goods_consumer_relate`  "
-				+ "	SET  `consumer_id`=:consumerId, `open_id`=:openId	"
-				+ " WHERE `goods_consumer_id`=:goodsConsumerId";
+				+ "	SET `open_id`=:openId, is_used = 1, version+1	"
+				+ " WHERE `goods_consumer_id`=:goodsConsumerId and version = :version";
 		Map<String,Object> paramMap = Maps.newHashMap();
-		namedParameterJdbcTemplate.update(sql, paramMap);
+		return namedParameterJdbcTemplate.update(sql, paramMap);
 	}
 	
 	

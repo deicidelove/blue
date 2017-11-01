@@ -26,8 +26,7 @@
             		Request.sendPostRequest(basePath + "/jifen/createGoodsOrder/", {
             			"goodsId" : goodsId
             		}, function(result) {
-            			
-            			
+            			alert(result);
             		});
             	}else if("xianjin" == exchangeType){
             		Request.sendPostRequest(basePath + "/pay/createGoodsOrder/", {

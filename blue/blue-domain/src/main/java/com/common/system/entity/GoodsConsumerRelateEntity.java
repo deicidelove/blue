@@ -56,6 +56,16 @@ public class GoodsConsumerRelateEntity implements Serializable{
 	 * 用户幸运号来源 （wxPay，jifen）
 	 */
 	private String givingCodeSource;
+	
+	/**
+	 * 是否被使用
+	 */
+	private Boolean isUsed;
+	
+	/**
+	 * 乐观锁
+	 */
+	private Integer version;
 	/**
 	 * @return the actId
 	 */
@@ -166,6 +176,34 @@ public class GoodsConsumerRelateEntity implements Serializable{
 	 */
 	public void setOpenId(String openId) {
 		this.openId = openId;
+	}
+
+	/**
+	 * @return the isUsed
+	 */
+	public Boolean getIsUsed() {
+		return isUsed;
+	}
+
+	/**
+	 * @param isUsed the isUsed to set
+	 */
+	public void setIsUsed(Boolean isUsed) {
+		this.isUsed = isUsed;
+	}
+
+	/**
+	 * @return the version
+	 */
+	public Integer getVersion() {
+		return version;
+	}
+
+	/**
+	 * @param version the version to set
+	 */
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 	
 

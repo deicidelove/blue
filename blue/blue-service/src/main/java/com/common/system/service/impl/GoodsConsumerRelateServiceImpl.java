@@ -109,7 +109,7 @@ public class GoodsConsumerRelateServiceImpl implements GoodsConsumerRelateServic
 			
 			result.setList(resultList);
 		} catch (Exception e) {
-			LOG.error("ActServiceImpl deleteById error!", e );
+			LOG.error("GoodsUserRelateServiceImpl deleteById error!", e );
 		}
 		return result;
 	}
@@ -120,9 +120,32 @@ public class GoodsConsumerRelateServiceImpl implements GoodsConsumerRelateServic
 		try {
 			resultList = goodsConsumerRelateDao.seleteListByActIdAndGoodsId(actId, goodsId);
 		} catch (Exception e) {
-			LOG.error("ActServiceImpl list error!", e );
+			LOG.error("GoodsUserRelateServiceImpl list error!", e );
 		}
 		return resultList;
+	}
+
+	@Override
+	public GoodsConsumerRelateEntity randomByGoodsId(Integer goodsId) {
+		GoodsConsumerRelateEntity  result =null;
+		try {
+			result = goodsConsumerRelateDao.randomById(goodsId);
+		} catch (Exception e) {
+			LOG.error("GoodsUserRelateServiceImpl randomByGoodsId error!", e );
+		}
+		return result;
+	}
+
+	@Override
+	public int updateConsumer(
+			GoodsConsumerRelateEntity goodsConsumerRelateEntity) {
+		int result = 0;
+		try {
+			result = goodsConsumerRelateDao.updateConsumer(goodsConsumerRelateEntity);
+		} catch (Exception e) {
+			LOG.error("GoodsUserRelateServiceImpl updateConsumer error!", e );
+		}
+		return result;
 	}
 
 }

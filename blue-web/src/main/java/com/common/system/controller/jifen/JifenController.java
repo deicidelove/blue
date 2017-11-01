@@ -5,7 +5,16 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import me.chanjar.weixin.common.api.WxConsts;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,9 +68,22 @@ public class JifenController {
 	@Resource
 	private OrderService orderService;
 	
+	@Resource
+    private WxMpService wxService;
+    
 	@RequestMapping(value = "index",method = RequestMethod.GET)
-	public ModelAndView index(ModelAndView modelAndView){
+	public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request){
         modelAndView.setViewName("/jifen/act");
+        String code = request.getParameter("code");
+        try {
+        	if(StringUtils.isNoneBlank(code)){
+        		WxMpOAuth2AccessToken token = wxService.oauth2getAccessToken(code);
+        	}
+        	System.out.println(1);
+		} catch (WxErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return modelAndView;
 	}
 	
@@ -160,7 +182,7 @@ public class JifenController {
 	@ResponseBody
 	@RequestMapping(value = "createGoodsOrder")
     public String createGoodsOrder(String goodsId ) {
-		//TODO get openId
+		//TODO get openId 添加事务
 		String openId = "1";
 		Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
 		GoodsEntity goodsEntity = goodsResult.getData();
@@ -169,6 +191,20 @@ public class JifenController {
 			return "积分不足！";
 		}
 		
+		//消费一个中奖号码
+    	GoodsConsumerRelateEntity goodsConsumerRelateEntity = goodsConsumerRelateService.randomByGoodsId(Integer.valueOf(goodsId));
+    	if(null == goodsConsumerRelateEntity){//中奖被消费完
+    		return "你来晚了，该商品被抢购完";
+    	}
+    	
+    	goodsConsumerRelateEntity.setOpenId(openId);
+    	goodsConsumerRelateEntity.setIsUsed(true);
+    	goodsConsumerRelateEntity.setGivingCodeSource("jifen");
+    	int result = goodsConsumerRelateService.updateConsumer(goodsConsumerRelateEntity);
+    	if(0 == result){//中奖被消费完
+    		return "你来晚了，该商品被抢购完";
+    	}
+    	
 		wxUserEntity.setJifen(wxUserEntity.getJifen() - goodsEntity.getJifen());
 		wxUserService.updateJifen(wxUserEntity);
 		
@@ -183,9 +219,7 @@ public class JifenController {
     	orderEntity.setPrice(goodsEntity.getGoodsPrice().subtract(new BigDecimal(Integer.valueOf(1))));
     	orderEntity.setOutTradeId(UUID.randomUUID().toString().replaceAll("-", ""));
     	orderService.save(orderEntity);
-		//消费一个中奖号码
-    	goodsConsumerRelateService.getById(actId)
     	
-		return "success";
+		return "支付成功";
 	}
 }
