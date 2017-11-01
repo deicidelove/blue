@@ -14,6 +14,8 @@ import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +42,7 @@ import com.common.system.service.GoodsService;
 import com.common.system.service.OrderService;
 import com.common.system.service.WxDetailService;
 import com.common.system.service.WxUserService;
+import com.common.system.util.CookieUtil;
 import com.common.system.util.Result;
 import com.google.common.collect.Lists;
 
@@ -71,19 +74,19 @@ public class JifenController {
 	@Resource
     private WxMpService wxService;
     
+	private static final Logger LOG = LoggerFactory.getLogger(JifenController.class);
+	
 	@RequestMapping(value = "index",method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request){
         modelAndView.setViewName("/jifen/act");
-        String code = request.getParameter("code");
-        try {
+       /* try {
         	if(StringUtils.isNoneBlank(code)){
         		WxMpOAuth2AccessToken token = wxService.oauth2getAccessToken(code);
+        		System.out.println(token.getOpenId());
         	}
-        	System.out.println(1);
 		} catch (WxErrorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			LOG.error("	");
+		}*/
         return modelAndView;
 	}
 	
@@ -124,9 +127,9 @@ public class JifenController {
     }
 	
 	@RequestMapping(value = "actdetail",method = RequestMethod.GET)
-	public ModelAndView actdetail(ModelAndView modelAndView, Integer actId, Integer goodsId){
+	public ModelAndView actdetail(ModelAndView modelAndView, HttpServletRequest request, Integer actId, Integer goodsId){
 		
-		String openId = "1";
+		String openId = CookieUtil.getCookieValue(request, "openId");
 		
         modelAndView.setViewName("/jifen/actDetail");
         GoodsDetailDTO detailDTO = new GoodsDetailDTO();
@@ -181,9 +184,9 @@ public class JifenController {
 	
 	@ResponseBody
 	@RequestMapping(value = "createGoodsOrder")
-    public String createGoodsOrder(String goodsId ) {
+    public String createGoodsOrder(String goodsId ,HttpServletRequest request ) {
 		//TODO get openId 添加事务
-		String openId = "1";
+		String openId = CookieUtil.getCookieValue(request, "openId");;
 		Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
 		GoodsEntity goodsEntity = goodsResult.getData();
 		WxUserEntity wxUserEntity = wxUserService.getById(openId);

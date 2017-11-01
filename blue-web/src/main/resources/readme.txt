@@ -1,0 +1,1 @@
+首页配置地址：https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3bf9c7130167f4e2&redirect_uri=http%3a%2f%2fmywx.tunnel.qydev.com%2fjifen%2findex&response_type=code&scope=snsapi_base&state=123#wechat_redirect
