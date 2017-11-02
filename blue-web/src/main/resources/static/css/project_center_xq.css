@@ -11,7 +11,7 @@
     padding-bottom: 0.3rem;
     overflow:hidden;
     position: relative;
-    z-index: -4;
+    z-index: 1;
 }
 .introduce{
     width:94%;
@@ -20,7 +20,7 @@
     border:1px solid #cbd8e0;
     border-radius: 6px;
     position: relative;
-    z-index: -3;
+    z-index: 2;
     background: #fff;
 }
 .introduce_bg01{
@@ -28,7 +28,7 @@
     min-height:2rem;
     margin:0 3%;
     position: relative;
-    z-index: -1;
+    z-index: 4;
 }
 .introduce_bg02{
     position: fixed;
@@ -37,7 +37,7 @@
     height:8.85rem;
     background:  url("../images/icon-120.png")no-repeat 1.3rem bottom;
     background-size: 90%;
-    z-index: -2;
+    z-index: 3;
     left:0;
     bottom:0;
 }

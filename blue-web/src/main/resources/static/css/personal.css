@@ -81,7 +81,7 @@ html,body{
 .integral_ul{
     width:94%;
     min-height:1.53rem;
-    margin:0.3rem auto 1.3rem;
+    margin:0.3rem auto 0;
     background: #fff;
     border-radius: 6px;
     text-align: center;

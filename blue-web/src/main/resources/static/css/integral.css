@@ -126,7 +126,6 @@ html,body{
     width:100%;
     background: #fff;
     min-height:3.28rem;
-    margin-bottom: 1.3rem;
 }
 .integral_li{
     width:94%;
@@ -180,7 +179,6 @@ html,body{
     min-height:5rem;
     background: #fff;
     padding:0.3rem 3% 0.1rem 3%;
-    margin-bottom: 1.3rem;
     overflow: hidden;
 }
 .unveiled_li{

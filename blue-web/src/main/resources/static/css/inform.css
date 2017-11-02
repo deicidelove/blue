@@ -1,11 +1,10 @@
 .inform_cont{
     padding:3%;
-    position: relative;
-    z-index: -3;
 }
 .inform_bg01{
-    position: relative;
-    z-index: -1;
+    width: 94%;
+    position: absolute;
+    z-index: 10;
 }
 .inform_bg02{
     width:100%;
@@ -13,7 +12,7 @@
     background: url("../images/icon-120.png")no-repeat 1.3rem bottom;
     background-size: contain;
     position: fixed;
-    z-index: -2;
+    z-index:5;
     left:0;
     bottom:0;
 }
@@ -50,21 +49,3 @@
     color:#fff;
     margin:0 auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

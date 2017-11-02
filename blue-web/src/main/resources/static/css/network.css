@@ -261,7 +261,7 @@ html,body{
 .activity{
     min-height:5rem;
     width:94%;
-    margin:0.2rem auto 1.3rem;
+    margin:0.2rem auto 0;
     background: #fff;
     border-radius: 6px;
     padding-bottom: 0.2rem;

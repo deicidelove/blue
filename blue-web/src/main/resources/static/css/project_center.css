@@ -144,34 +144,33 @@
     background: url("../images/icon-88.png")no-repeat center;
     background-size: 100% 100%;
 }
+.all_bg{
+    overflow: hidden;
+}
+.all_bg_div{
+    width:32%;
+    text-align: center;
+}
 .all_text01{
-    padding-top:0.2rem;
+    padding:0.2rem 0.1rem 0;
     color:#2d2d2d;
     font-size: 0.24rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 .all_text02{
-    padding-top:0.1rem;
+    padding:0.1rem 0.1rem 0.5rem;
     color:#8e8e8e;
     font-size: 0.2rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 .margin_12{
-    margin:0 0.12rem;
+    margin:0 2%;
 }
 .swiper02{
     border-top: 0.2rem solid #ecf0f3;
     border-bottom: 1.3rem solid #ecf0f3;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
