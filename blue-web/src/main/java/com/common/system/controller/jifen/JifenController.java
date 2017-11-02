@@ -1,10 +1,22 @@
 package com.common.system.controller.jifen;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import me.chanjar.weixin.common.api.WxConsts;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,15 +32,19 @@ import com.common.system.entity.ActEntity;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
+import com.common.system.entity.OrderEntity;
 import com.common.system.entity.WxDetailEntity;
+import com.common.system.entity.WxUserEntity;
 import com.common.system.service.ActService;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsImgService;
 import com.common.system.service.GoodsService;
+import com.common.system.service.OrderService;
 import com.common.system.service.WxDetailService;
+import com.common.system.service.WxUserService;
+import com.common.system.util.CookieUtil;
 import com.common.system.util.Result;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 @RestController
 @RequestMapping(value = "jifen")
@@ -49,9 +65,28 @@ public class JifenController {
 	@Resource
 	private WxDetailService wxDetailService;
 	
+	@Resource
+	private WxUserService wxUserService;
+	
+	@Resource
+	private OrderService orderService;
+	
+	@Resource
+    private WxMpService wxService;
+    
+	private static final Logger LOG = LoggerFactory.getLogger(JifenController.class);
+	
 	@RequestMapping(value = "index",method = RequestMethod.GET)
-	public ModelAndView index(ModelAndView modelAndView){
+	public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request){
         modelAndView.setViewName("/jifen/act");
+       /* try {
+        	if(StringUtils.isNoneBlank(code)){
+        		WxMpOAuth2AccessToken token = wxService.oauth2getAccessToken(code);
+        		System.out.println(token.getOpenId());
+        	}
+		} catch (WxErrorException e) {
+			LOG.error("	");
+		}*/
         return modelAndView;
 	}
 	
@@ -92,9 +127,9 @@ public class JifenController {
     }
 	
 	@RequestMapping(value = "actdetail",method = RequestMethod.GET)
-	public ModelAndView actdetail(ModelAndView modelAndView, Integer actId, Integer goodsId){
+	public ModelAndView actdetail(ModelAndView modelAndView, HttpServletRequest request, Integer actId, Integer goodsId){
 		
-		String openId = "1";
+		String openId = CookieUtil.getCookieValue(request, "openId");
 		
         modelAndView.setViewName("/jifen/actDetail");
         GoodsDetailDTO detailDTO = new GoodsDetailDTO();
@@ -147,4 +182,47 @@ public class JifenController {
         return modelAndView;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "createGoodsOrder")
+    public String createGoodsOrder(String goodsId ,HttpServletRequest request ) {
+		//TODO get openId 添加事务
+		String openId = CookieUtil.getCookieValue(request, "openId");;
+		Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
+		GoodsEntity goodsEntity = goodsResult.getData();
+		WxUserEntity wxUserEntity = wxUserService.getById(openId);
+		if(goodsEntity.getJifen() > wxUserEntity.getJifen()){
+			return "积分不足！";
+		}
+		
+		//消费一个中奖号码
+    	GoodsConsumerRelateEntity goodsConsumerRelateEntity = goodsConsumerRelateService.randomByGoodsId(Integer.valueOf(goodsId));
+    	if(null == goodsConsumerRelateEntity){//中奖被消费完
+    		return "你来晚了，该商品被抢购完";
+    	}
+    	
+    	goodsConsumerRelateEntity.setOpenId(openId);
+    	goodsConsumerRelateEntity.setIsUsed(true);
+    	goodsConsumerRelateEntity.setGivingCodeSource("jifen");
+    	int result = goodsConsumerRelateService.updateConsumer(goodsConsumerRelateEntity);
+    	if(0 == result){//中奖被消费完
+    		return "你来晚了，该商品被抢购完";
+    	}
+    	
+		wxUserEntity.setJifen(wxUserEntity.getJifen() - goodsEntity.getJifen());
+		wxUserService.updateJifen(wxUserEntity);
+		
+	  	OrderEntity orderEntity = new OrderEntity();
+    	orderEntity.setGoodsId(Integer.valueOf(goodsId));
+    	orderEntity.setGoodsNum(Integer.valueOf(1));
+    	orderEntity.setOpenId(openId);
+    	orderEntity.setSource("wxPayCode");
+    	orderEntity.setStatus("yzf");
+    	orderEntity.setType("jfPayCode");
+    	//目前只支持一个一个购买
+    	orderEntity.setPrice(goodsEntity.getGoodsPrice().subtract(new BigDecimal(Integer.valueOf(1))));
+    	orderEntity.setOutTradeId(UUID.randomUUID().toString().replaceAll("-", ""));
+    	orderService.save(orderEntity);
+    	
+		return "支付成功";
+	}
 }

@@ -104,8 +104,8 @@
     <div class="way">
         <div class="way_top">兑换方式</div>
         <div class="way_botm">
-            <div class="left active">积分兑换</div>
-            <div class="left">现金兑换</div>
+            <div way="way" class="left active" exchangeType = "jifen">积分兑换</div>
+            <div way="way" class="left" exchangeType = "xianjin">现金兑换</div>
         </div>
     </div>
     <div class="quantity">

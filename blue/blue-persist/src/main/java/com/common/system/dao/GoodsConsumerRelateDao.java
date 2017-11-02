@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.util.Convert;
@@ -29,10 +30,30 @@ public class GoodsConsumerRelateDao {
 		String sql = " SELECT * FROM `rc_a_goods_consumer_relate`  WHERE goods_consumer_id = :goodsConsumerId ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("goodsConsumerId", goodsConsumerId);
-		GoodsConsumerRelateEntity result = namedParameterJdbcTemplate
-				.queryForObject(sql, paramMap, new BeanPropertyRowMapper<GoodsConsumerRelateEntity>(GoodsConsumerRelateEntity.class));
+		List<GoodsConsumerRelateEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<GoodsConsumerRelateEntity>(GoodsConsumerRelateEntity.class));
 				
-		return result;
+		return CollectionUtils.isEmpty(resultList)? null: resultList.get(0);
+	}
+	
+	/**
+	 * <p>
+	 * <code>randomById</code>
+	 * </p>
+	 * 随机获取一个中奖号码
+	 * @author admin
+	 * @param goodsId
+	 * @return
+	 */
+	public GoodsConsumerRelateEntity randomById(Integer goodsId){
+		Assert.notNull(goodsId,"goodsId is null");
+		String sql = " SELECT * FROM `rc_a_goods_consumer_relate`  WHERE goods_id = :goodsId  and isUsed is false limit 1";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("goodsId", goodsId);
+		List<GoodsConsumerRelateEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<GoodsConsumerRelateEntity>(GoodsConsumerRelateEntity.class));
+				
+		return CollectionUtils.isEmpty(resultList)? null: resultList.get(0);
 	}
 	
 	public List<GoodsConsumerRelateEntity> seleteList(Integer pageNum, Integer pageSize){
@@ -85,5 +106,15 @@ public class GoodsConsumerRelateDao {
 		Map<String,Object> paramMap = Maps.newHashMap();
 		namedParameterJdbcTemplate.update(sql, paramMap);
 	}
-
+	
+	public Integer updateConsumer(GoodsConsumerRelateEntity goodsConsumerRelateEntity){
+		Assert.notNull(goodsConsumerRelateEntity,"goodsConsumerRelateEntity is null");
+		String sql = "	UPDATE `rc_a_goods_consumer_relate`  "
+				+ "	SET `open_id`=:openId, is_used = 1, version+1	"
+				+ " WHERE `goods_consumer_id`=:goodsConsumerId and version = :version";
+		Map<String,Object> paramMap = Maps.newHashMap();
+		return namedParameterJdbcTemplate.update(sql, paramMap);
+	}
+	
+	
 }

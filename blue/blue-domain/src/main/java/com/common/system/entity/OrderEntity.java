@@ -1,6 +1,7 @@
 package com.common.system.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -43,6 +44,21 @@ public class OrderEntity implements Serializable{
 	 * 微信唯一标识
 	 */
 	private String openId;
+	
+	/**
+	 * 商户Id
+	 */
+	private String outTradeId;
+	
+	/**
+	 *  订单总额
+	 */
+	private BigDecimal price;
+	
+	/**
+	 * 积分总额
+	 */
+	private Integer jifen;
 	
 	/**
 	 * 創建時間
@@ -173,6 +189,42 @@ public class OrderEntity implements Serializable{
 	 */
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+	/**
+	 * @return the outTradeId
+	 */
+	public String getOutTradeId() {
+		return outTradeId;
+	}
+	/**
+	 * @param outTradeId the outTradeId to set
+	 */
+	public void setOutTradeId(String outTradeId) {
+		this.outTradeId = outTradeId;
+	}
+	/**
+	 * @return the price
+	 */
+	public BigDecimal getPrice() {
+		return price;
+	}
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+	/**
+	 * @return the jifen
+	 */
+	public Integer getJifen() {
+		return jifen;
+	}
+	/**
+	 * @param jifen the jifen to set
+	 */
+	public void setJifen(Integer jifen) {
+		this.jifen = jifen;
 	}
 	
 	

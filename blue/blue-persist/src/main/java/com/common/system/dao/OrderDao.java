@@ -66,8 +66,8 @@ public class OrderDao {
 	public void save(OrderEntity orderEntity){
 		Assert.notNull(orderEntity,"orderEntity is null");
 		String sql ="	INSERT INTO rc_a_order	"
-				+"	( goods_id, goods_num, type, source, status, open_id)	"
-				+ "	VALUES ( :goodsId, :goodsNum, :type, :source, :status, :openId)	";
+				+"	(goods_id, goods_num, `type`, `source`, status, open_id, pre_pay_id, out_trade_id, price, jifen)	"
+				+ "	VALUES ( :goodsId, :goodsNum, :type, :source, :status, :openId, :prePayId, :outTradeId, :price,:jifen )	";
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(orderEntity));
 	}
 	

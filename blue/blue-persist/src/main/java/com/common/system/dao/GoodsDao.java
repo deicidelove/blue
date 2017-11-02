@@ -56,8 +56,8 @@ public class GoodsDao {
 	public void saveGoods(GoodsEntity goodsEntity){
 		Assert.notNull(goodsEntity,"goodsEntity is null");
 		String sql ="	INSERT INTO `rc_a_goods`	"
-				+"	(`act_id`, `goods_name`, `goods_pic_url`, `goods_detail_pic_url`)	"
-				+ "	VALUES (:actId, :goodsName, :goodsPicUrl, :goodsDetailPicUrl, :category)	";
+				+"	( act_id, goods_name, goods_price,  goods_title, goods_detail, is_delete, category, jifen)	"
+				+ "	VALUES (:actId, :goodsName,:goodsTitle,:goodsDetail,:isDelete, :category, :jifen)	";
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(goodsEntity));
 	}
 	
@@ -77,8 +77,7 @@ public class GoodsDao {
 	public void update(GoodsEntity goodsEntity){
 		Assert.notNull(goodsEntity,"goodsEntity is null");
 		String sql = "	UPDATE `rc_a_goods`  "
-				+ "	SET `act_id`=:actId, `goods_name`=:goodsName, "
-				+ "`goods_pic_url`=:goodsPicUrl, `goods_detail_pic_url`=:goodsDetailPicUrl	"
+				+ "	SET `act_id`=:actId, `goods_name`=:goodsName "
 				+ " WHERE `goods_id`=:goodsId";
 		Map<String,Object> paramMap = Maps.newHashMap();
 		namedParameterJdbcTemplate.update(sql, paramMap);
