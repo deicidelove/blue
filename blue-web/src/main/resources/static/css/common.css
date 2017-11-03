@@ -295,6 +295,8 @@ textarea {-webkit-appearance: none;}
       z-index: 9999;
       opacity:0.8;
   }
-
+  .margin_bottom{
+      height:1.3rem;
+  }
 
 

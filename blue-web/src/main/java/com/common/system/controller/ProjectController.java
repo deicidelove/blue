@@ -36,8 +36,17 @@ public class ProjectController {
 	@RequestMapping("/projectPage")
 	public ModelAndView projectPage(ModelAndView modelAndView){
 		List<BlueProject> projects = commonService.findProjects();
-		modelAndView.addObject("projects", projects);
+		modelAndView.addObject("projects", projects.size() >3 ?projects.subList(0, 3) : projects);
 		modelAndView.setViewName("/html/project");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/projectPageAll")
+	public ModelAndView projectPageAll(ModelAndView modelAndView){
+		List<BlueProject> projects = commonService.findProjects();
+		modelAndView.addObject("projects", projects);
+		modelAndView.addObject("projectFirst", projects==null?projects:projects.get(0));
+		modelAndView.setViewName("/html/projectAll");
 		return modelAndView;
 	}
 	

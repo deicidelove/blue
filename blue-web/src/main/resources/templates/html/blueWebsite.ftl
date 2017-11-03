@@ -152,6 +152,7 @@
         <div class="flex-1 activity_bg04"></div>
     </div>
 </div>
+<div class="margin_bottom"></div>
 <div class="footer box">
     
     <div class="flex-1 footer_list">

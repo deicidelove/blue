@@ -38,7 +38,6 @@
 		          			  alert("更新成功！"); 
 		          			  history.go(-1); 
 		          			  location.reload(); 
-		          			    }
 		          		   }else{
 		          			   alert("更新失败！请稍后重试！"); 
 		          		   }

@@ -122,7 +122,7 @@ public class WxPayController {
     	temp.put("wxpay_goods_id", goodsEntity.getGoodsId());
     	temp.put("goods_name", goodsEntity.getGoodsName());
     	temp.put("goods_num", Integer.valueOf(1));
-    	temp.put("price", goodsEntity.getGoodsPrice().subtract(new BigDecimal(Integer.valueOf(1))));
+    	temp.put("price", goodsEntity.getGoodsPrice());
     	temp.put("goods_category", StringUtil.isEmpty(goodsEntity.getCategory())? "活动":goodsEntity.getCategory());
     	temp.put("body", goodsEntity.getGoodsTitle());
     	List<Map<String,Object>> tempList = Lists.newArrayList();
@@ -137,13 +137,11 @@ public class WxPayController {
     	request.setOpenid(openId);
     	OrderEntity orderEntity = new OrderEntity();
     	orderEntity.setGoodsId(Integer.valueOf(goodsId));
-    	orderEntity.setGoodsNum(Integer.valueOf(1));
+    	orderEntity.setGoodsNum(1);
     	orderEntity.setOpenId(openId);
     	orderEntity.setSource("wxPayCode");
     	orderEntity.setStatus("wzf");
     	orderEntity.setType("wxPayCode");
-    	orderEntity.setPrice(goodsEntity.getGoodsPrice().subtract(new BigDecimal(Integer.valueOf(1))));
-    	orderEntity.setOutTradeId(request.getOutTradeNo());
     	orderService.save(orderEntity);
     	
         return this.wxService.createOrder(request);
