@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
+
 import com.common.system.entity.GoodsEntity;
 import com.common.system.util.Convert;
 import com.google.common.collect.Maps;
@@ -28,10 +30,10 @@ public class GoodsDao {
 		String sql = " SELECT * FROM `rc_a_goods`  WHERE goods_id = :goodsId ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("goodsId", goodsId);
-		GoodsEntity result = namedParameterJdbcTemplate
-				.queryForObject(sql, paramMap, new BeanPropertyRowMapper<GoodsEntity>(GoodsEntity.class));
+		List<GoodsEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<GoodsEntity>(GoodsEntity.class));
 				
-		return result;
+		return CollectionUtils.isEmpty(resultList)?new GoodsEntity():resultList.get(0);
 	}
 	
 	public List<GoodsEntity> seleteByList(Integer pageNum,

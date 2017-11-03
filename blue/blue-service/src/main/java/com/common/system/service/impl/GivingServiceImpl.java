@@ -1,5 +1,7 @@
 package com.common.system.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.common.system.dao.GivingDao;
 import com.common.system.entity.GivingEntity;
 import com.common.system.service.GivingService;
+import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 
 @Service("givingService")
 public class GivingServiceImpl implements GivingService {
@@ -60,6 +64,29 @@ public class GivingServiceImpl implements GivingService {
 			LOG.error("ActServiceImpl getById error!", e );
 		}
 		return givingEntity;
+	}
+
+	@Override
+	public PageInfo<GivingEntity> listForPage(Integer pageNum, Integer pageSize) {
+		PageInfo<GivingEntity> result = new PageInfo<GivingEntity>();
+		try {
+			List<GivingEntity> resultList = givingDao.seleteList(pageNum, pageSize);
+			result.setList(resultList);
+		} catch (Exception e) {
+			LOG.error("ActServiceImpl deleteById error!", e );
+		}
+		return result;
+	}
+
+	@Override
+	public List<GivingEntity> list() {
+		List<GivingEntity> resultList = Lists.newArrayList();
+		try {
+			resultList = givingDao.seleteList();
+		} catch (Exception e) {
+			LOG.error("ActServiceImpl deleteById error!", e );
+		}
+		return resultList;
 	}
 
 }

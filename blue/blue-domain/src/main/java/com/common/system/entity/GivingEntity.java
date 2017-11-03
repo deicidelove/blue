@@ -41,6 +41,11 @@ public class GivingEntity implements Serializable{
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
+	
+	/**
+	 * 微信唯一标识
+	 */
+	private String openId;
 	/**
 	 * @return the givingId
 	 */
@@ -112,5 +117,17 @@ public class GivingEntity implements Serializable{
 	 */
 	public void setGivingConsumerId(Integer givingConsumerId) {
 		this.givingConsumerId = givingConsumerId;
+	}
+	/**
+	 * @return the openId
+	 */
+	public String getOpenId() {
+		return openId;
+	}
+	/**
+	 * @param openId the openId to set
+	 */
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 }

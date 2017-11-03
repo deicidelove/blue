@@ -94,4 +94,13 @@ public class WxUserServiceImpl implements WxUserService {
 		return resultList;
 	}
 
+	@Override
+	public void updateTip(String openId, Boolean isShowTip) {
+		try {
+			wxuserDao.updateTip(openId, isShowTip);
+		} catch (Exception e) {
+			LOG.error("updateTip error!", e);
+		}
+	}
+
 }

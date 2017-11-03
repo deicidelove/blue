@@ -16,7 +16,7 @@
 </div>
 <ul class="select_ul">
 	<#list pations as pation>
-    	<a href="/orderInfoPage${pation.sid}&${scheduleId}/"<li class="select_li">${pation.name}</li>
+    	<a href="/orderInfoPage${pation.sid}&${scheduleId}/"><li class="select_li">${pation.name}</li></a>
     </#list>
 </ul>
 </body>

@@ -45,6 +45,11 @@ public class WxUserEntity {
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
+	
+	/**
+	 * 是否展示tip
+	 */
+	private Boolean isShowTip ;
 
 	/**
 	 * @return the sid
@@ -156,6 +161,20 @@ public class WxUserEntity {
 	 */
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
+	}
+
+	/**
+	 * @return the isShowTip
+	 */
+	public Boolean getIsShowTip() {
+		return isShowTip;
+	}
+
+	/**
+	 * @param isShowTip the isShowTip to set
+	 */
+	public void setIsShowTip(Boolean isShowTip) {
+		this.isShowTip = isShowTip;
 	}
 	
 }
