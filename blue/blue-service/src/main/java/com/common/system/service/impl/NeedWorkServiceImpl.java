@@ -117,5 +117,32 @@ public class NeedWorkServiceImpl implements NeedWorkService {
 			return new Result<Integer>(false, "保存失败！！", null);
 		}
 	}
+	@Override
+	public PageBean<BlueWantWork> getWantWorkList(Integer type, String date,
+			int startPage, int limitLength) {
+		try {
+			int count = workDao.findwantCount(date);
+			List<BlueWantWork> List = workDao.findWantAllWork(null, startPage, limitLength);
+			PageBean<BlueWantWork> pageList = new PageBean<BlueWantWork>();
+			pageList.setiDisplayStart(startPage);
+			pageList.setiDisplayLength(limitLength);
+			pageList.setData(List);
+			pageList.setiTotalDisplayRecords(count);
+			return pageList;
+		} catch (Exception e) {
+			LOG.error("获取getWantWorkList列表失败！type:{},msg:{}", type, e);
+			return null;
+		}
+	}
+	@Override
+	public Result<Integer> wantDeleteWork(int sid) {
+		try {
+			int count = workDao.deleteWantWork(sid);
+			return new Result<>(false, "删除成功！", count);
+		} catch (Exception e) {
+			LOG.error("删除wantDeleteWork失败！msg:{},sid:{}", e, sid);
+			return new Result<>(false, "删除失败，请刷新后操作！", null);
+		}
+	}
 
 }

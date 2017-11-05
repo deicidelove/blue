@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.BlueNeedWork;
+import com.common.system.entity.BlueWantWork;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
 
@@ -26,7 +27,11 @@ public interface NeedWorkService {
 	public PageBean<BlueNeedWork> getNeedWorkList(Integer type,String date, int startPage,
 			int limitLength);
 	
+	public PageBean<BlueWantWork> getWantWorkList(Integer type,String date, int startPage,
+			int limitLength);
+	
 	public Result<Integer> deleteWork(int sid);
+	public Result<Integer> wantDeleteWork(int sid);
 	
 	public Result<Integer> addWork(String title,Integer needNum,String education,String experience,String wages,
 			String workTime,String workAddress,String description,String requirement,String fringeBenefits);

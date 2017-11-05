@@ -24,15 +24,12 @@
 						<tr>
 							<tr>
 								<th>序号</th>
-								<th>需要人数</th>
+								<th>姓名</th>
+								<th>电话</th>
 								<th>学历</th>
-								<th>经验</th>
-								<th>工资</th>
-								<th>工作时间</th>
-								<th>工作地点</th>
+								<th>目标工作</th>
+								<th>理想薪资</th>
 								<th>描述</th>
-								<th>要求</th>
-								<th>福利</th>
 								<th>操作</th>
 							</tr>
 						</tr>
@@ -64,19 +61,15 @@ $(function() {
 		"serverSide":true, //启用服务器端分页
 		"bInfo":false,
 		"language":{"url":"adminlte/plugins/datatables/language.json"},
-		"ajax" : {"url":"/addOur/want","type":"post"},
+		"ajax" : {"url":"/addOur/wantPage","type":"post"},
 		"columns":[ 
 		    {"data":null}, 
-		    {"data":"title"},
-		    {"data":"needNum"},	
-		    {"data":"education"},
-		    {"data":"experience"},	
-		    {"data":"wages"},
-		    {"data":"workTime"},	
-		    {"data":"workAddress"},
-		    {"data":"description"},	
-		    {"data":"requirement"},
-		    {"data":"fringeBenefits"},			
+		    {"data":"name"},
+		    {"data":"phone"},	
+		    {"data":"profession"},
+		    {"data":"wantJob"},	
+		    {"data":"wantWage"},
+		    {"data":"describe"},	
 			{"data":null} 
 			],
 		"columnDefs":[
