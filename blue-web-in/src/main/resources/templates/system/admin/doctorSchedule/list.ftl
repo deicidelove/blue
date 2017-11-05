@@ -103,9 +103,9 @@ $(function() {
 					var btn = "";
 					btn = '';
 					if(isNull(data.role) ||  'super' != data.role.value){
-                        btn +='<@shiro.hasPermission name="user/edit">'
-                        +'<a class="btn btn-xs btn-info" onclick="doctorSchAjax();" target="modal" modal="lg" href="/doctorSchedule/edit/'+ data.sid+ '">修改</a> &nbsp;'
-                        +'</@shiro.hasPermission>'
+                       // btn +='<@shiro.hasPermission name="user/edit">'
+                        //+'<a class="btn btn-xs btn-info" onclick="doctorSchAjax();" target="modal" modal="lg" href="/doctorSchedule/edit/'+ data.sid+ '">修改</a> &nbsp;'
+                       btn += '</@shiro.hasPermission>'
                         +'<@shiro.hasPermission name="user/delete">'
                         +'<a class="btn btn-xs btn-default" callback="doctorSchReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/doctorSchedule/delete/'+ data.sid + '">删除</a>'
                         +'</@shiro.hasPermission>';

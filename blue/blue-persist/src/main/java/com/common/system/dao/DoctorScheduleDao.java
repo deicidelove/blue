@@ -3,6 +3,9 @@
  */
 package com.common.system.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +13,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -40,7 +46,7 @@ public class DoctorScheduleDao {
 			sql.append(" AND dept_id = :deptId");
 			paramMap.put("deptId", deptId);
 		}
-
+		sql.append(" ORDER BY sid ");
 		sql.append(" LIMIT :startRow,:limit ");
 		paramMap.put("startRow", start);
 		paramMap.put("limit", limit);
@@ -78,10 +84,11 @@ public class DoctorScheduleDao {
 	}
 
 	public int save(BlueDoctorSchedule blueDoctorSchedule) {
-		String sql = "INSERT INTO `tb_blue_doctor_schedule` (`staff_id`,`dept_id`,`shift_time`,`dept_name`,`staff_name`,`count`,`create_time`)"
-				+ " VALUES(:staff_id,:dept_id,:shift_time,:dept_name,:staff_name,:count,:create_time);";
+		String sql = "INSERT INTO `tb_blue_doctor_schedule` (`sid`,`staff_id`,`dept_id`,`shift_time`,`dept_name`,`staff_name`,`count`,`create_time`)"
+				+ " VALUES(:sid,:staff_id,:dept_id,:shift_time,:dept_name,:staff_name,:count,:create_time);";
 		
 		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("sid", blueDoctorSchedule.getSid());
 		paramMap.put("staff_id", blueDoctorSchedule.getStaffId());
 		paramMap.put("dept_id", blueDoctorSchedule.getDeptId());
 		paramMap.put("shift_time", blueDoctorSchedule.getShiftTime());

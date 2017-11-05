@@ -48,4 +48,24 @@ public class ShiftDao {
 		}
 		return result.get(0);
 	}
+	
+	public int insert(BlueShift shift){
+		String sql = "INSERT INTO `tb_blue_shift` ( `schedule_id`, `time`, `count`, `create_time`) "
+				+ "VALUES (:schedule_id, :time, :count, :create_time)";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("schedule_id", shift.getScheduleId());
+		paramMap.put("time", shift.getTime());
+		paramMap.put("count", shift.getCount());
+		paramMap.put("create_time", shift.getCreateTime());
+		int count = namedParameterJdbcTemplate.update(sql, paramMap);
+		return count;
+	}
+	
+	public int deleteNum(int schedule_id) {
+		String sql = "DELETE FROM  tb_blue_shift  WHERE schedule_id = :schedule_id ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("schedule_id", schedule_id);
+		int count = namedParameterJdbcTemplate.update(sql, paramMap);
+		return count;
+	}
 }

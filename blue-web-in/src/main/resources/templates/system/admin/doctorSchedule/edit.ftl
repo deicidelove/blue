@@ -48,7 +48,6 @@
                 <div class="form-group">
                     <label>排班</label>
                     <select name="shiftTime" class="form-control select2" style="width: 100%;">
-                        <option <#if bean.shiftTime == "全天">selected="selected"</#if> value="全天">全天</option>
                         <option <#if bean.shiftTime == "上午">selected="selected"</#if> value="上午">上午</option>
                         <option <#if bean.shiftTime == "下午">selected="selected"</#if> value="下午">下午</option>
                     </select>

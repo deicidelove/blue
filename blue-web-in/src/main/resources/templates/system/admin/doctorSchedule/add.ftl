@@ -63,7 +63,6 @@
                 <div class="form-group">
                     <label>排班</label>
                     <select name="shiftTime" class="form-control select2" style="width: 100%;">
-                        <option value="全天">全天</option>
                         <option value="上午">上午</option>
                         <option value="下午">下午</option>
                     </select>
