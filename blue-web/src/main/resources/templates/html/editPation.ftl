@@ -16,7 +16,7 @@
 <ul class="infor_ul">
     <li class="infor_li">
         <div class="left infor_li_div">姓名</div>
-        <input type="text" name="name" class="left infor_li_input" placeholder="请添加真实姓名" value="${pation.sid}"/>
+        <input type="text" name="name" class="left infor_li_input" placeholder="请添加真实姓名" value="${pation.name}"/>
     </li>
     <!--<li class="infor_li">-->
         <!--<div class="left infor_li_div">身份证号</div>-->

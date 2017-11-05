@@ -21,7 +21,7 @@
 		         $('.infor_btn').on('click',function(){
 		         	var name = $("input[name='name']").val();
 		         	var phone =$("input[name='phone']").val();
-		         	var sid = $(this).Attr("value");
+		         	var sid = $(this).attr("value");
 		       	  $.ajax( {  
 		          	   url:'/addPation',// 跳转到 action
 		          	   data:{  
@@ -35,11 +35,11 @@
 		          	   dataType:'json',  
 		          	   success:function(data) {
 		          		   if(data.status){
-		          			  alert("更新成功！"); 
+		          			  alert("添加成功！"); 
 		          			  history.go(-1); 
 		          			  location.reload(); 
 		          		   }else{
-		          			   alert("更新失败！请稍后重试！"); 
+		          			   alert("添加失败！请稍后重试！"); 
 		          		   }
 		          	    },  
 		          	    error : function() {  

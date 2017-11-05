@@ -33,7 +33,7 @@ public class BluePation {
 	 * 
 	 * @mbggenerated
 	 */
-	private Integer userId;
+	private String userId;
 	
 	private Integer isDefault;
 
@@ -132,14 +132,14 @@ public class BluePation {
 	/**
 	 * @return the userId
 	 */
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

@@ -6,7 +6,6 @@
     <title>预约挂号</title>
     <script src="../js/common.js"></script>
     <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/calendar.css" />
     <link rel="stylesheet" href="../css/registration.css" />
 </head>
 <body>
@@ -14,13 +13,40 @@
     <div class="heade_text">预约挂号</div>
     <div class="heade_back">返回</div>
 </div>
-<div class="reg_date">
-    <div id="calendar" class="calendar"></div>
+<div class="reg_date box">
+    <div class="flex-1">
+        <div class="week"></div>
+        <div class="month_day"></div>
+    </div>
+    <div class="flex-1">
+        <div class="week"></div>
+        <div class="month_day"></div>
+    </div>
+    <div class="flex-1">
+        <div class="week"></div>
+        <div class="month_day"></div>
+    </div>
+    <div class="flex-1">
+        <div class="week"></div>
+        <div class="month_day"></div>
+    </div>
+    <div class="flex-1">
+        <div class="week"></div>
+        <div class="month_day"></div>
+    </div>
+    <div class="flex-1">
+        <div class="week"></div>
+        <div class="month_day"></div>
+    </div>
+    <div class="flex-1">
+        <div class="week"></div>
+        <div class="month_day"></div>
+    </div>
 </div>
 <div class="doctor_bg">
     <div class="doctor">
         <ul class="doctor_ul">
-        <#list doctors as doctor>
+            <#list doctors as doctor>
             <a href="/doctorDetial/${doctor.sid}" >
             <li class="doctor_li">
                 <div class="doctor_img left"></div>
@@ -39,6 +65,7 @@
         </ul>
     </div>
 </div>
+<div class="margin_bottom"></div>
 <div class="footer box">
     
     <div class="flex-1 footer_list">
@@ -72,4 +99,4 @@
 </body>
 </html>
 <script type="text/javascript" src="../js/jquery.js"></script>
-<script src="../js/calendar.js"></script>
+<script src="../js/registration.js"></script>

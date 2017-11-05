@@ -80,7 +80,7 @@ public class PationServiceImpl implements PationService {
 	}
 
 	@Override
-	public Result<Integer> addPation(String name, String phone,Integer isDefault,Integer userId) {
+	public Result<Integer> addPation(String name, String phone,Integer isDefault,String userId) {
 		try {
 			BluePation pation = new BluePation();
 			pation.setName(name);

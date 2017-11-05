@@ -18,6 +18,6 @@ public interface PationService {
 
 	public Result<Integer> updatePation(String name, String phone, int sid,Integer isDefault);
 
-	public Result<Integer> addPation(String name, String phone,Integer isDefault,Integer userId);
+	public Result<Integer> addPation(String name, String phone,Integer isDefault,String userId);
 
 }

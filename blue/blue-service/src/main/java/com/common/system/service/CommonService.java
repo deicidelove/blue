@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.BlueDept;
+import com.common.system.entity.BlueDeptDoctorPic;
 import com.common.system.entity.BlueEncyclopedias;
 import com.common.system.entity.BlueHospital;
 import com.common.system.entity.BlueNeedWork;
@@ -47,9 +48,11 @@ public interface CommonService {
 	
 	public BlueShift findShift(Integer sid);
 	
-	public List<BluePation> findPations(Integer userId);
+	public List<BluePation> findPations(String userId);
 	
 	public BluePation findPation(Integer sid);
+	
+	public BlueDeptDoctorPic findPic(Integer deptId);
 	
 
 	

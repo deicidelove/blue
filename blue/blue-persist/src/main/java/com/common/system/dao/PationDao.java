@@ -30,7 +30,7 @@ public class PationDao {
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
 	
-	public List<BluePation> findPationsByuserId(Integer userId){
+	public List<BluePation> findPationsByuserId(String userId){
 		String sql = "SELECT * FROM tb_blue_pation WHERE user_id=:user_id";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("user_id", userId);
@@ -65,7 +65,7 @@ public class PationDao {
 	
 	public int addProject(BluePation pation) {
 		String sql = "INSERT INTO `tb_blue_pation` ( `name`, `phone`, `user_id`,`is_default`, `create_time`) "
-				+ "VALUES (:name, :phone, :user_id, :create_time)";
+				+ "VALUES (:name, :phone, :user_id, :is_default, :create_time)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("phone", pation.getPhone());
 		paramMap.put("name", pation.getName());

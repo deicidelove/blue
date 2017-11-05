@@ -10,11 +10,12 @@
            
             $('.infor_btn').on('click',function(){
                var staffId = $(this).attr("value");
-               var staffName = $("div[name='staffName']").val();
-               var pay = $("div[name='pay']").val();
-               var pationId = $("div[name='pationId']").val();
-               var deptName=$("div[name='deptName']").val();
+               var staffName = $("div[name='staffName']").attr("val");
+               var pay = $("div[name='pay']").attr("val");
+               var pationId = $("div[name='pationId']").attr("val");
+               var deptName=$("div[name='deptName']").attr("val");
                var deptId = $("div[name='deptId']").attr("val");
+               var orderTime = $("div[name='orderTime']").attr("val");
                $.ajax( {  
             	   url:'/orderSubmit',// 跳转到 action  
             	   data:{  
@@ -23,7 +24,8 @@
             		   pay : pay,  
             		   pationId : pationId,
             		   deptName : deptName,
-            		   deptId : deptId
+            		   deptId : deptId,
+            		   orderTime :orderTime
             	   },  
             	   type:'post',  
             	   cache:false,  

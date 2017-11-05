@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ import com.common.system.service.DeptService;
 import com.common.system.service.DoctorSchedulEService;
 import com.common.system.service.DoctorService;
 import com.common.system.service.OppointmentService;
+import com.common.system.util.CookieUtil;
 import com.common.system.util.DateUtil;
 import com.common.system.util.Result;
 
@@ -91,7 +93,7 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "orderInfo/{scheduleId}", method = RequestMethod.GET)
-	public ModelAndView orderInfo(ModelAndView modelAndView, @PathVariable Integer scheduleId) throws ParseException {
+	public ModelAndView orderInfo(ModelAndView modelAndView, HttpServletRequest request,@PathVariable Integer scheduleId) throws ParseException {
 		BlueDoctorSchedule bds = doctorSchedulEService.findBySid(
 				scheduleId).getData();
 		BlueStaff staff = doctorService.findDoctor(bds.getStaffId()).getData();
@@ -101,7 +103,7 @@ public class OrderController {
 		modelAndView.addObject("staff", staff);
 		modelAndView.addObject("dept", dept);
 		
-		Integer userId= 0;
+		String userId= CookieUtil.getCookieValue(request, "openId");
 		List<BluePation> pations = commonService.findPations(userId);
 		
 		modelAndView.addObject("pations", pations);
@@ -111,9 +113,9 @@ public class OrderController {
 	
 	@RequestMapping(value = "orderSubmit")
 	@ResponseBody
-	public Result<Integer> orderSubmit(Integer staffId,String staffName,String pay,String deptName,Integer pationId,Integer deptId) throws ParseException {
-		Integer userId = 0;
-		Result<Integer> result = oppointmentService.addOppo(staffId, DateUtil.formtString(new Date()), pay,userId,pationId);
+	public Result<Integer> orderSubmit(HttpServletRequest request ,Integer staffId,String staffName,String pay,String deptName,Integer pationId,Integer deptId,String orderTime) throws ParseException {
+		String userId= CookieUtil.getCookieValue(request, "openId");
+		Result<Integer> result = oppointmentService.addOppo(staffId, orderTime, pay,userId,pationId);
 		return result;
 
 	}

@@ -29,7 +29,7 @@ var basePath = '${request.contextPath}';
 	
     <div class="drop_down_btn">
     	<#if flag>
-        <span class="left drop_down_span01">科室选择</span>
+        <span class="left drop_down_span01">请先选择科室</span>
         <#else>
 	     <span class="left drop_down_span01">${deptName}</span>
 	     </#if>
@@ -50,7 +50,7 @@ var basePath = '${request.contextPath}';
     <div class="drop_down_bg"></div>
 </div>
 <div class="doctor">
-    <div class="specialist_bg"></div>
+    <div class="specialist_bg" style="background:url(${url})no-repeat center;"></div>
     <ul class="doctor_ul">
 	    <#list doctors as doctor>
 	        <a href="/doctorDetial/${doctor.sid}" >

@@ -25,7 +25,7 @@ public interface OppointmentService {
 	/**
 	 * 添加
 	 */
-	public Result<Integer> addOppo(int staffId,String date, String payMoney,Integer userId,Integer pationId);
+	public Result<Integer> addOppo(int staffId,String date, String payMoney,String userId,Integer pationId);
 	
 	public Result<Integer> deleteOppo(int sid);
 	

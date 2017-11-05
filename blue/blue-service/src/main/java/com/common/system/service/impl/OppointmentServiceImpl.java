@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +59,7 @@ public class OppointmentServiceImpl implements OppointmentService {
 	}
 
 	@Override
-	public Result<Integer> addOppo(int staffId, String date, String payMoney,Integer userId,Integer pationId) {
+	public Result<Integer> addOppo(int staffId, String date, String payMoney,String userId,Integer pationId) {
 		try {
 			BlueOppointment oppo = new BlueOppointment();
 			oppo.setStaffId(staffId);
@@ -69,7 +70,7 @@ public class OppointmentServiceImpl implements OppointmentService {
 				oppo.setDeptName(staff.getDeptName());
 			}
 			oppo.setPayMoney(Float.valueOf(payMoney));
-			oppo.setOrderTime(DateUtil.formtString(date));
+			oppo.setOrderTime(date);
 			oppo.setPationId(pationId);
 			oppo.setUserId(userId);
 			oppo.setCreateTime(new Date());
@@ -96,7 +97,7 @@ public class OppointmentServiceImpl implements OppointmentService {
 	public Result<Integer> updateOppo(String date, int sid) {
 		try {
 			BlueOppointment oppo = new BlueOppointment();
-			oppo.setOrderTime(DateUtil.formtString(date));
+			oppo.setOrderTime(date);
 			oppo.setSid(sid);
 			int count = oppointmentDao.update(oppo);
 			return new Result<Integer>(true,"更新成功！",count);

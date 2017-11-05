@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import com.common.system.service.DeptService;
 import com.common.system.service.DoctorSchedulEService;
 import com.common.system.service.DoctorService;
 import com.common.system.service.PationService;
+import com.common.system.util.CookieUtil;
 import com.common.system.util.DateUtil;
 import com.common.system.util.Result;
 
@@ -51,7 +53,7 @@ public class PationController {
 	private PationService pationService;
 	
 	@RequestMapping(value = "selectPationPage/{scheduleId}", method = RequestMethod.GET)
-	public ModelAndView selectPationPage(ModelAndView modelAndView, @PathVariable Integer scheduleId) throws ParseException {
+	public ModelAndView selectPationPage(ModelAndView modelAndView,HttpServletRequest request , @PathVariable Integer scheduleId) throws ParseException {
 //		BlueDoctorSchedule bds = doctorSchedulEService.findBySid(
 //				scheduleId).getData();
 //		BlueStaff staff = doctorService.findDoctor(bds.getStaffId()).getData();
@@ -60,7 +62,7 @@ public class PationController {
 //		modelAndView.addObject("bds", bds);
 //		modelAndView.addObject("staff", staff);
 //		modelAndView.addObject("dept", dept);
-		Integer userId= 0;
+		String userId= CookieUtil.getCookieValue(request, "openId");
 		List<BluePation> pations = commonService.findPations(userId);
 		
 		modelAndView.addObject("pations", pations);
@@ -70,8 +72,8 @@ public class PationController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "orderInfoPage/{sid}{scheduleId}", method = RequestMethod.GET)
-	public ModelAndView orderInfoPage(ModelAndView modelAndView,  @PathVariable Integer sid,@PathVariable Integer scheduleId) throws ParseException {
+	@RequestMapping(value = "orderInfoPage/", method = RequestMethod.GET)
+	public ModelAndView orderInfoPage(ModelAndView modelAndView,Integer sid,Integer scheduleId) throws ParseException {
 		BlueDoctorSchedule bds = doctorSchedulEService.findBySid(
 				scheduleId).getData();
 		BlueStaff staff = doctorService.findDoctor(bds.getStaffId()).getData();
@@ -84,13 +86,13 @@ public class PationController {
 		
 		modelAndView.addObject("pation", pation);
 		
-		modelAndView.setViewName("/html/pationList");
+		modelAndView.setViewName("/html/orderInfo");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "managePationPage", method = RequestMethod.GET)
-	public ModelAndView managePationPage(ModelAndView modelAndView) throws ParseException {
-		Integer userId= 0;
+	public ModelAndView managePationPage(HttpServletRequest request ,ModelAndView modelAndView) throws ParseException {
+		String userId= CookieUtil.getCookieValue(request, "openId");
 		List<BluePation> pations = commonService.findPations(userId);
 		
 		modelAndView.addObject("pations", pations);
@@ -126,6 +128,13 @@ public class PationController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "addPationPage", method = RequestMethod.GET)
+	public ModelAndView addPationPage(ModelAndView modelAndView){
+		
+		modelAndView.setViewName("/html/addPation");
+		return modelAndView;
+	}
+	
 	@RequestMapping(value = "updatePation")
 	@ResponseBody
 	public Result<Integer> updatePation(Integer sid,Integer isDefault,String name,String phone) {
@@ -136,8 +145,8 @@ public class PationController {
 	
 	@RequestMapping(value = "addPation")
 	@ResponseBody
-	public Result<Integer> addPation(Integer sid,Integer isDefault,String name,String phone) {
-		Integer userId = 0;
+	public Result<Integer> addPation(HttpServletRequest request ,Integer sid,Integer isDefault,String name,String phone) {
+		String userId= CookieUtil.getCookieValue(request, "openId");
 		Result<Integer> result = pationService.addPation(name, phone, isDefault, userId);
 		return result;
 

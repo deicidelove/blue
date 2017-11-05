@@ -25,7 +25,7 @@
         <div class="swiper-pagination"></div>
     </div>
 </div>
-<div class="make"></div>
+<a href="/orderPage"><div class="make"></div></a>
 <ul class="office_ul">
 	<#list depts as dept>
 	    <a href="/deptDetial/${dept.sid}">
@@ -40,6 +40,7 @@
 	     </a>
     </#list>
 </ul>
+<div class="margin_bottom"></div>
 <div class="footer box">
     
     <div class="flex-1 footer_list">

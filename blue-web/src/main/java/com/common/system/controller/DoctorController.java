@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.entity.BlueDept;
+import com.common.system.entity.BlueDeptDoctorPic;
 import com.common.system.entity.BlueProject;
 import com.common.system.entity.BlueStaff;
 import com.common.system.service.CommonService;
@@ -36,10 +37,10 @@ public class DoctorController {
 	@RequestMapping("/doctorPage")
 	public ModelAndView doctorPage(ModelAndView modelAndView) {
 		List<BlueDept> depts = commonService.findDept();
-		List<BlueStaff> staffs =  commonService.findStaff();
+//		List<BlueStaff> staffs =  commonService.findStaff();
 		modelAndView.addObject("depts", depts);
 		modelAndView.addObject("flag", true);
-		modelAndView.addObject("doctors", staffs);
+		modelAndView.addObject("doctors", new ArrayList<>());
 		modelAndView.setViewName("/html/doctor");
 		return modelAndView;
 	}
@@ -49,6 +50,7 @@ public class DoctorController {
 			@PathVariable Integer sid) {
 		List<BlueDept> depts = commonService.findDept();
 		List<BlueStaff> staffs = commonService.findStaffByDeptId(sid);
+		BlueDeptDoctorPic url = commonService.findPic(sid);
 		List<BlueDept> newDepts = new ArrayList<>();
 		for (BlueDept blueDept : depts) {
 			if(blueDept.getSid().equals(sid)){
@@ -62,6 +64,7 @@ public class DoctorController {
 		modelAndView.addObject("flag", false);
 		modelAndView.addObject("depts", newDepts);
 		modelAndView.addObject("doctors", staffs);
+		modelAndView.addObject("url", url.getUrl());
 		modelAndView.setViewName("/html/doctor");
 		return modelAndView;
 	}

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.common.system.dao.AdvertDao;
 import com.common.system.dao.DeptDao;
+import com.common.system.dao.DeptDoctorPicDao;
 import com.common.system.dao.EncyclopediasDao;
 import com.common.system.dao.HospitalDao;
 import com.common.system.dao.PationDao;
@@ -23,6 +24,7 @@ import com.common.system.dao.StaffDao;
 import com.common.system.dao.WorkDao;
 import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.BlueDept;
+import com.common.system.entity.BlueDeptDoctorPic;
 import com.common.system.entity.BlueEncyclopedias;
 import com.common.system.entity.BlueHospital;
 import com.common.system.entity.BlueNeedWork;
@@ -67,6 +69,9 @@ public class CommonServiceImpl implements CommonService {
 
 	@Resource
 	private PationDao pationDao;
+	
+	@Resource
+	private DeptDoctorPicDao deptDoctorPicDao;
 
 	private Logger LOG = LoggerFactory.getLogger(CommonServiceImpl.class);
 
@@ -234,7 +239,7 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public List<BluePation> findPations(Integer userId) {
+	public List<BluePation> findPations(String userId) {
 		try {
 			List<BluePation> pations = pationDao.findPationsByuserId(userId);
 			return pations;
@@ -249,6 +254,17 @@ public class CommonServiceImpl implements CommonService {
 		try {
 			BluePation pation = pationDao.findPationBysid(sid);
 			return pation;
+		} catch (Exception e) {
+			LOG.error("查询findPations失败！msg:{}", e);
+		}
+		return null;
+	}
+
+	@Override
+	public BlueDeptDoctorPic findPic(Integer deptId) {
+		try {
+			BlueDeptDoctorPic pic = deptDoctorPicDao.findByDeptId(deptId);
+			return pic;
 		} catch (Exception e) {
 			LOG.error("查询findPations失败！msg:{}", e);
 		}

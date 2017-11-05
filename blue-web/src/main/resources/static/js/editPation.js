@@ -21,7 +21,7 @@
 	            $('.infor_btn_save').on('click',function(){
 	            	var name = $("input[name='name']").val();
 	            	var phone =$("input[name='phone']").val();
-	            	var sid = $(this).Attr("value");
+	            	var sid = $(this).attr("value");
 	          	  $.ajax( {  
 	             	   url:'/updatePation',// 跳转到 action  
 	             	   data:{  
@@ -37,8 +37,7 @@
 	             		   if(data.status){
 	             			  alert("更新成功！"); 
 	             			 history.go(-1); 
-	            			  location.reload(); 
-	             			    }
+	            			 location.reload(); 
 	             		   }else{
 	             			   alert("更新失败！请稍后重试！"); 
 	             		   }
@@ -53,7 +52,7 @@
 	            $('.infor_btn_remove').on('click',function(){
 	            	var name = $("input[name='name']").val();
 	            	var phone =$("input[name='phone']").val();
-	            	var sid = $(this).Attr("value");
+	            	var sid = $(this).attr("value");
 	          	  $.ajax( {  
 	             	   url:'/deletePation',// 跳转到 action  
 	             	   data:{  
@@ -67,7 +66,6 @@
 	             			  alert("删除成功！"); 
 	             			  history.go(-1); 
 	             			  location.reload(); 
-	             			    }
 	             		   }else{
 	             			   alert("删除失败！请稍后重试！"); 
 	             		   }

@@ -18,8 +18,8 @@
     <li class="manage_li">
         <div class="manage_div01">
             <div class="manage_div01_top">
-                <span class="left">张三</span>
-                <span class="right">18588888888</span>
+                <span class="left">${pation.name}</span>
+                <span class="right">${pation.phone}</span>
             </div>
         </div>
         <div class="manage_div02">
@@ -39,17 +39,17 @@
                 <div class="left infor_li_text">编辑</div>
             </div>
             </a>
-            <div class="manage_delete left delete_people">
+            <div class="manage_delete left delete_people" sid="${pation.sid}">
                 <div class="left infor_li_delete"></div>
                 <div class="left infor_li_text">删除</div>
             </div>
         </div>
     </li>
-    <#list>
+    </#list>
     
     
 </ul>
-<div class="infor_btn">添加就诊人</div>
+<a href="/addPationPage"><div class="infor_btn">添加就诊人</div></a>
 <div class="delete">
     <div class="delete_text">确定要删除吗？</div>
     <div class="delete_btn box">
@@ -64,6 +64,7 @@
 <script>
     $(function(){
         var jinzhi=1;
+        var delSid = 0;
         var list_index = null;
         $('.manage_checkbox').each(function(){
             var $div = $(this).children("div:first-child");
@@ -116,18 +117,32 @@
                 }
             });
         });
-        $('.delete_people').on('click',function(){
-         $.ajax( {  
+        $('.delete_people').on('click',function(){        
+         	delSid =  $(this).attr("sid");
+            list_index = $(this).parents().parents().index();
+  			$('.delete_bg').show();
+            $('.delete').show();
+            jinzhi=0;
+        });
+        $('.yes').on('click',function(){
+        	
+         	$.ajax( {  
                	   url:'/deletePation',// 跳转到 action  
                	   data:{  
-               		   sid : sid
+               		   sid : delSid
                	   },  
                	   type:'post',  
                	   cache:false,  
                	   dataType:'json',  
                	   success:function(data) {
                		   if(data.status){
-               			  alert("删除成功！"); 
+               		    jinzhi=1;
+			            $('.delete_bg').hide();
+			            $('.delete').hide();
+			            $('.manage_li').eq(list_index).fadeOut(100,function(){
+			                $(this).remove();
+			            });
+               			alert("删除成功！"); 
                		   }else{
                			   alert("请稍后重试！"); 
                		   }
@@ -135,19 +150,8 @@
                	    error : function() {  
                	      alert("请检查网络！");  
                	    }  
-               	 }); 
-            list_index = $(this).parents().parents().index();
-            $('.delete_bg').show();
-            $('.delete').show();
-            jinzhi=0;
-        });
-        $('.yes').on('click',function(){
-            jinzhi=1;
-            $('.delete_bg').hide();
-            $('.delete').hide();
-            $('.manage_li').eq(list_index).fadeOut(100,function(){
-                $(this).remove();
-            });
+               	 });
+           
         });
         $('.no').on('click',function(){
             jinzhi=1;

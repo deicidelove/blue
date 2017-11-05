@@ -16,8 +16,10 @@
 </div>
 <ul class="select_ul">
 	<#list pations as pation>
-    	<a href="/orderInfoPage${pation.sid}&${scheduleId}/"<li class="select_li">${pation.name}</li>
+    	<li class="select_li" sid="${pation.sid}" scheduleId="${scheduleId}">${pation.name}</li>
     </#list>
 </ul>
 </body>
 </html>
+<script src="../js/jquery.js"></script>
+<script src="../js/selectPation.js"></script>
