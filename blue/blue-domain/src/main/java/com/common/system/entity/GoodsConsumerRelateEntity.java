@@ -20,7 +20,7 @@ public class GoodsConsumerRelateEntity implements Serializable{
 	/**
 	 * 主鍵
 	 */
-	private Integer goodsconsumerId;
+	private Integer goodsConsumerId;
 	
 	/**
 	 * 活動id
@@ -123,20 +123,6 @@ public class GoodsConsumerRelateEntity implements Serializable{
 	}
 
 	/**
-	 * @return the goodsconsumerId
-	 */
-	public Integer getGoodsconsumerId() {
-		return goodsconsumerId;
-	}
-
-	/**
-	 * @param goodsconsumerId the goodsconsumerId to set
-	 */
-	public void setGoodsconsumerId(Integer goodsconsumerId) {
-		this.goodsconsumerId = goodsconsumerId;
-	}
-
-	/**
 	 * @return the consumerGivingCode
 	 */
 	public String getConsumerGivingCode() {
@@ -204,6 +190,20 @@ public class GoodsConsumerRelateEntity implements Serializable{
 	 */
 	public void setVersion(Integer version) {
 		this.version = version;
+	}
+
+	/**
+	 * @return the goodsConsumerId
+	 */
+	public Integer getGoodsConsumerId() {
+		return goodsConsumerId;
+	}
+
+	/**
+	 * @param goodsConsumerId the goodsConsumerId to set
+	 */
+	public void setGoodsConsumerId(Integer goodsConsumerId) {
+		this.goodsConsumerId = goodsConsumerId;
 	}
 	
 

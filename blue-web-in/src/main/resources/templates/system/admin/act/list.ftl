@@ -4,7 +4,7 @@
 			<div class="box-header">
 				<h3 class="box-title">活动管理</h3>
 				<div class="box-tools pull-right">
-					<@shiro.hasPermission name="act/add">
+					<@shiro.hasPermission name="actAdd">
 						<a onclick="securityToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/act/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
@@ -16,13 +16,13 @@
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</div>
-							<input type="text" class="form-control pull-right" id="securityTime" placeholder="选择时间...">
+							<input type="text" class="form-control pull-right" id="actTime" placeholder="选择时间...">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-search"></i></span>
-							<input type="text" class="form-control" id="securityPremise" placeholder="根据账号搜索...">
+							<input type="text" class="form-control" id="actPremise" placeholder="根据账号搜索...">
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -34,6 +34,7 @@
 						<tr>
 							<tr>
 								<th>序号</th>
+								<th>活动id</th>
 								<th>活动名称</th>
 								<th>参与总人数</th>
 								<th>中奖数</th>
@@ -55,7 +56,7 @@ var act_tab;
 $(function() {
 	
 	//初始化时间选择器
-	$('#securityTime').datepicker({
+	$('#actTime').datepicker({
 		language: 'zh-CN',
 		format: 'yyyy-mm-dd',
 		autoclose: true,
@@ -75,6 +76,7 @@ $(function() {
 		"ajax" : {"url":"/act/page","type":"post"},
 		"columns":[ 
 		    {"data":null}, 
+			{"data":"actId"},
 			{"data":"actName"},
 			{"data":"actTotalNum"},
 			{"data":"actGivingNum"},
@@ -93,7 +95,7 @@ $(function() {
 			    }
 			},
             {
-                targets: 4,
+                targets: 5,
                 data: null,
                 render: function (data) {
                     var actPeriods = data.actPeriods;
@@ -101,7 +103,7 @@ $(function() {
                 }
             },
 			{
-			    targets: 5,
+			    targets: 6,
 			    data: null,
 			    render: function (data) {
 			    	if(data.actIsExpire == 0){
@@ -119,15 +121,13 @@ $(function() {
 				"render" : function(data) {
 //					debugger;
 					var btn = "";
-					btn = '<a class="btn btn-xs btn-primary" target="modal" modal="lg" href="/act/view/'+ data.id+ '">查看</a> &nbsp;';
-					if(isNull(data.role) ||  'super' != data.role.value){
-                        btn +='<@shiro.hasPermission name="user/edit">'
-                        +'<a class="btn btn-xs btn-info" onclick="securityToListAjax();" target="modal" modal="lg" href="/act/edit/'+ data.id+ '">修改</a> &nbsp;'
+					btn = '<a class="btn btn-xs btn-primary" target="modal" modal="lg" href="/act/view/'+ data.actId+ '">查看</a> &nbsp;';
+                        btn +='<@shiro.hasPermission name="actEdit">'
+                        +'<a class="btn btn-xs btn-info" onclick="securityToListAjax();" target="modal" modal="lg" href="/act/edit/'+ data.actId+ '">修改</a> &nbsp;'
                         +'</@shiro.hasPermission>'
-                        +'<@shiro.hasPermission name="user/delete">'
-                        +'<a class="btn btn-xs btn-default" callback="securityReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/act/delete/'+ data.id + '">删除</a>'
+                        +'<@shiro.hasPermission name="actDelete">'
+                        +'<a class="btn btn-xs btn-default" callback="securityReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/act/delete/'+ data.actId + '">删除</a>'
                         +'</@shiro.hasPermission>';
-					}
 					return btn;
 			}
 		} ]
@@ -136,12 +136,12 @@ $(function() {
     } );
 	
 	$("#securitySeek").on("click",function(){
- 		reloadTable(act_tab,"#securityTime","#securityPremise");
+ 		reloadTable(act_tab,"#actTime","#actPremise");
 	});
 });
 
 function securityReload(){
-	reloadTable(act_tab,"#securityTime","#securityPremise");
+	reloadTable(act_tab,"#actTime","#actPremise");
 }
 
 function securityToListAjax(){

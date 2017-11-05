@@ -1,52 +1,13 @@
 <div class="row">
     <div class="col-md-12">
-        <form id="securityEditForm">
-            <input type="hidden" id="id" name="id" value="${bean.id}">
+        <form id="actEditForm">
+            <input type="hidden" id="actId" name="actId" value="${bean.actId}">
 
             <div class="box-body">
-                <div class="form-group">
-                    <label id="userNoLabel">账号</label>
-                    <input type="text" class="form-control" name="username" id="username" value="${bean.username!}"
-                           disabled placeholder="输入账号...">
-                </div>
-                <div class="form-group">
-                    <label id="nickNameLabel">昵称</label>
-                    <input type="text" class="form-control" name="name" id="name" value="${bean.name!}"
-                           placeholder="输入昵称...">
-                </div>
-                <div class="form-group">
-                    <label>性别</label>
-                    <select name="sex" class="form-control select2" style="width: 100%;">
-                        <option <#if bean.sex == 0>selected="selected"</#if> value="0">女</option>
-                        <option <#if bean.sex == 1>selected="selected"</#if> value="1">男</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>角色：</label>
-                <#--<label>-->
-                <#--<input type="checkbox" id="allCheckbox" class="flat-red" onClick="onClickCheckbox('allCheckbox','role')">全选-->
-                <#--</label>-->
-                <#--<br/>-->
-                <#list roles as role>
-                    <#if role.value == 'super'>
-                        <@shiro.hasRole name="super">
-                            <label>
-                                <input type="radio" name="roleId" class="flat-red" value="${role.id}" <#if bean.role??>
-                                       <#if bean.role.value == role.value>checked</#if>
-                                </#if>> ${role.name}
-                            </label>
-                        </@shiro.hasRole>
-                    <#else>
-                        <label>
-                            <input type="radio" name="roleId" class="flat-red" value="${role.id}"
-                                <#if bean.role??>
-                                   <#if bean.role.value == role.value>checked</#if>
-                                </#if>> ${role.name}
-                        </label>
-                    </#if>
-                </#list>
-
-                </div>
+				<div class="form-group">
+					<label id="actNameLabel">活动名称</label>
+					<input type="text" class="form-control" name="actName" id="actname" value="${bean.actName!}" placeholder="输入名称...">
+				</div>
             </div>
             <div class="box-footer">
                 <div class="pull-right">
@@ -65,16 +26,16 @@
     function securityUpdate() {
         debugger;
         $.ajax({
-            url: '/user/update',
+            url: '/act/update',
             type: 'post',
             dataType: 'text',
-            data: $("#securityEditForm").serialize(),
+            data: $("#actEditForm").serialize(),
             success: function (data) {
                 var json = JSON.parse(data);
                 if (json.status) {
                     $("#lgModal").modal('hide');
                     alertMsg("更新成功", "success");
-                    reloadTable(list_ajax, "#roleTime", "#rolePremise");
+                    reloadTable(list_ajax, "#actTime", "#actPremise");
                 } else {
                     alertMsg("更新失败:" + json.msg, "success");
                 }

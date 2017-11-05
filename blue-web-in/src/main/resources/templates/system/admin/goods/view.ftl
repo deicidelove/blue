@@ -2,24 +2,27 @@
 	<div class="box-body  no-padding">
 		<table class="table table-striped">
 			<tr>
-				<td>账号：</td>
-				<td style="width: 90%">${bean.username!}</td>
+				<td>活动id：</td>
+				<td style="width: 90%">${bean.actId!}</td>
 			</tr>
 			<tr>
-				<td>昵称：</td>
-				<td>${bean.name!}</td>
+				<td>商品 名称：</td>
+				<td>${bean.goodsName!}</td>
 			</tr>
 			<tr>
-				<td>性别:</td>
+				<td>商品标题:</td>
+				<td style="width: 90%">${bean.goodsName!}</td>
+			</tr>
+			<tr>
+				<td>商品价格：</td>
 				<td>
-					<#if bean.sex == 0>女</#if>
-					<#if bean.sex == 1>男</#if>
+					${bean.goodsPrice!}元
 				</td>
 			</tr>
 			<tr>
-				<td>拥有角色：</td>
+				<td>商品积分：</td>
 				<td>
-					${(bean.role.name)!}
+					${bean.jifen!}积分
 				</td>
 			</tr>
 			<tr>

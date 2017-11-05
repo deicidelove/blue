@@ -69,7 +69,7 @@ public class ActDao {
 	 */
 	public void deleteById(Integer actId){
 		Assert.notNull(actId,"actId is null");
-		String sql = "UPDATE `rc_a_act` SET `act_is_delete`='0' WHERE (`act_id`=:actId)";
+		String sql = "UPDATE `rc_a_act` SET `act_is_delete`='1' WHERE (`act_id`=:actId)";
 		Map<String,Object> paramMap = Maps.newHashMap();
 		paramMap.put("actId", actId);
 		namedParameterJdbcTemplate.update(sql, paramMap);
@@ -82,8 +82,8 @@ public class ActDao {
 				+ "SET `act_name`=:actName, `act_total_num`=:actTotalNum, "
 				+ "`act_periods`=:actPeriods, `act_is_expire`=:actIsExpire, "
 				+ "`act_is_delete`=:actIsDelete WHERE `act_id`=:actId";
-		Map<String,Object> paramMap = Maps.newHashMap();
-		namedParameterJdbcTemplate.update(sql, paramMap);
+		
+		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(actEntity));
 	}
 
 }

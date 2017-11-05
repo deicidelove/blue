@@ -2,35 +2,22 @@
 	<div class="box-body  no-padding">
 		<table class="table table-striped">
 			<tr>
-				<td>账号：</td>
-				<td style="width: 90%">${bean.username!}</td>
+				<td>活动名称：</td>
+				<td style="width: 90%">${bean.actName!}</td>
 			</tr>
 			<tr>
-				<td>昵称：</td>
-				<td>${bean.name!}</td>
+				<td>活动数量：</td>
+				<td>${bean.actTotalNum!}</td>
 			</tr>
 			<tr>
-				<td>性别:</td>
+				<td>中奖数量:</td>
+				<td> ${bean.actGivingNum!}</td>
+			</tr>
+			<tr>
+				<td>当前期数：</td>
 				<td>
-					<#if bean.sex == 0>女</#if>
-					<#if bean.sex == 1>男</#if>
+					${bean.actPeriods!}
 				</td>
-			</tr>
-			<tr>
-				<td>拥有角色：</td>
-				<td>
-					${(bean.role.name)!}
-				</td>
-			</tr>
-			<tr>
-				<td>创建时间：</td>
-				<td>${bean.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-			</tr>
-			<tr>
-				<td>更新时间：</td>
-				<#if bean.updateTime??>
-                    <td>${bean.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-				</#if>
 			</tr>
 		</table>
 		<div class="box-footer">

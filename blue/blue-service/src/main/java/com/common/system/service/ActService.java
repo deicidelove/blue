@@ -12,7 +12,7 @@ public interface ActService {
 	
 	public Result<Integer> deleteById(Integer actId);
 	
-	public void update(ActEntity actEntity);
+	public Result<Integer> update(ActEntity actEntity);
 	
 	public ActEntity getById(Integer actId);
 	

@@ -21,12 +21,17 @@
             $('.share_bg').on('click',activity._hide);
             //确认按钮
             $('.share_btn').on('click',function(){
-            	var exchangeType =  $("div[way='way'] .active").attr("exchangeType");
+            	var exchangeType =  $("div[way='way'].left.active").attr("exchangeType");
             	if("jifen" == exchangeType){
             		Request.sendPostRequest(basePath + "/jifen/createGoodsOrder/", {
             			"goodsId" : goodsId
             		}, function(result) {
-            			alert(result);
+            			if(result.status == 'fail'){
+            				alert(result.message);
+            				return ;
+            			}else if( result.status == 'success'){
+            				alert(result.message);
+            			}
             		});
             	}else if("xianjin" == exchangeType){
             		Request.sendPostRequest(basePath + "/pay/createGoodsOrder/", {

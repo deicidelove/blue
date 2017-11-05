@@ -27,10 +27,11 @@ public class GoodsServiceImpl implements GoodsService {
 	public Result<Integer> saveGoods(GoodsEntity goodsEntity) {
 		Result<Integer> result = new Result<Integer>();
 		try {
-			goodsDao.saveGoods(goodsEntity);
+			Integer goodsId = goodsDao.saveGoods(goodsEntity);
             result.setStatus(true);
             result.setCode(MsgCode.SUCCESS);
             result.setMsg("操作成功");
+            result.setData(goodsId);
 		} catch (Exception e) {
 			LOG.error("GivingServiceImpl saveAct error!", e );
 		}

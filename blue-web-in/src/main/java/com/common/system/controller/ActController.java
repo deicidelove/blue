@@ -53,59 +53,42 @@ public class ActController extends BaseController{
         return new PageBean<ActEntity>(pageInfo);
     }
 
-    @RequestMapping(value = "delete/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "delete/{actId}",method = RequestMethod.GET)
     @ResponseBody
-     public Result delete(@PathVariable Integer id){
-        Result<Integer> result = userService.deleteById(id);
+     public Result delete(@PathVariable Integer actId){
+        Result<Integer> result = actService.deleteById(actId);
         return result;
     }
     @RequestMapping(value = "add",method = RequestMethod.GET)
     public ModelAndView add(ModelAndView modelAndView){
-        modelAndView.setViewName("/system/admin/user/add");
-        PageInfo<RcRole> pageInfo = roleService.listForPage(null,null);
-        List<RcRole> roleList = pageInfo.getList();
-        modelAndView.addObject("roles",roleList);
+        modelAndView.setViewName("/system/admin/act/add");
         return modelAndView;
     }
-    @RequestMapping(value = "edit/{id}",method = RequestMethod.GET)
-    public ModelAndView edit(@PathVariable Integer id,ModelAndView modelAndView){
-        Result<RcUser> result = userService.getById(id);
-        modelAndView.addObject("bean",result.getData());
-        PageInfo<RcRole> pageInfo = roleService.listForPage(null,null);
-        modelAndView.addObject("roles",pageInfo.getList());
-        modelAndView.setViewName("/system/admin/user/edit");
+    @RequestMapping(value = "edit/{actId}",method = RequestMethod.GET)
+    public ModelAndView edit(@PathVariable Integer actId,ModelAndView modelAndView){
+        ActEntity result = actService.getById(actId);
+        modelAndView.addObject("bean",result);
+        modelAndView.setViewName("/system/admin/act/edit");
         return modelAndView;
     }
-    @RequestMapping(value = "view/{id}",method = RequestMethod.GET)
-    public ModelAndView view(@PathVariable Integer id,ModelAndView modelAndView){
-        Result<RcUser> result = userService.getById(id);
-        modelAndView.addObject("bean",result.getData());
-        modelAndView.setViewName("/system/admin/user/view");
+    @RequestMapping(value = "view/{actId}",method = RequestMethod.GET)
+    public ModelAndView view(@PathVariable Integer actId,ModelAndView modelAndView){
+        ActEntity result = actService.getById(actId);
+        modelAndView.addObject("bean",result);
+        modelAndView.setViewName("/system/admin/act/view");
         return modelAndView;
     }
     @RequestMapping(value = "update",method = RequestMethod.POST)
-    public @ResponseBody Result update(Integer id,String name,Integer sex,Integer roleId){
-        Result<RcUser> userResult = userService.getById(id);
+    public @ResponseBody Result update(Integer actId,String actName){
         Result<Integer> result = new Result<>();
-        if (userResult.isStatus()){
-            RcUser user = userResult.getData();
-            user.setName(name);
-            user.setSex(sex);
-            user.setRoleId(roleId);
-            result = userService.update(user);
-        }
+        ActEntity actEntity = actService.getById(actId);
+        actEntity.setActName(actName);
+        result = actService.update(actEntity);
         return result;
     }
     @RequestMapping(value = "save")
-    public @ResponseBody Result save(RcUser rcUser, @RequestParam(value = "role", required = false) Integer roleId){
-        rcUser.setCreateTime(new Date());
-        rcUser.setStatus(1);
-        String salt = ShiroKit.getRandomSalt(5);
-        rcUser.setSalt(salt);
-        String saltPwd = ShiroKit.md5(rcUser.getPassword(),salt);
-        rcUser.setPassword(saltPwd);
-        rcUser.setRoleId(roleId);
-        Result<Integer> result = userService.save(rcUser);
+    public @ResponseBody Result save(ActEntity actEntity){
+        Result<Integer> result = actService.saveAct(actEntity);
         return result;
     }
 
