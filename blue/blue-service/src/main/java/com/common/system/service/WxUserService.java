@@ -19,4 +19,11 @@ public interface WxUserService {
 	public PageInfo<WxUserEntity> listForPage(Integer pageNum, Integer pageSize);
 	
 	public List<WxUserEntity> list();
+	
+	/**
+	 *  更新tip
+	 * @param openId
+	 * @param isShowTip
+	 */
+	public void updateTip(String openId, Boolean isShowTip);
 }

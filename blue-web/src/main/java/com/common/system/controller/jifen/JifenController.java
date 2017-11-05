@@ -2,6 +2,7 @@ package com.common.system.controller.jifen;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -29,6 +30,7 @@ import com.common.system.dto.ActGoodsDTO;
 import com.common.system.dto.GoodsDetailDTO;
 import com.common.system.dto.GoodsDetailWxDTO;
 import com.common.system.entity.ActEntity;
+import com.common.system.entity.GivingEntity;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
@@ -36,6 +38,7 @@ import com.common.system.entity.OrderEntity;
 import com.common.system.entity.WxDetailEntity;
 import com.common.system.entity.WxUserEntity;
 import com.common.system.service.ActService;
+import com.common.system.service.GivingService;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsImgService;
 import com.common.system.service.GoodsService;
@@ -45,6 +48,7 @@ import com.common.system.service.WxUserService;
 import com.common.system.util.CookieUtil;
 import com.common.system.util.Result;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @RestController
 @RequestMapping(value = "jifen")
@@ -73,6 +77,9 @@ public class JifenController {
 	
 	@Resource
     private WxMpService wxService;
+	
+	@Resource
+	private GivingService givingService;
     
 	private static final Logger LOG = LoggerFactory.getLogger(JifenController.class);
 	
@@ -87,6 +94,10 @@ public class JifenController {
 		} catch (WxErrorException e) {
 			LOG.error("	");
 		}*/
+        String openId = CookieUtil.getCookieValue(request, "openId");
+        openId = "1";
+        WxUserEntity wxUserEntity = wxUserService.getById(openId);
+        modelAndView.addObject("wxUserEntity", wxUserEntity);
         return modelAndView;
 	}
 	
@@ -224,5 +235,58 @@ public class JifenController {
     	orderService.save(orderEntity);
     	
 		return "支付成功";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "updateShowTip")
+    public String updateShowTip(String goodsId ,HttpServletRequest request ) {
+		//TODO get openId 添加事务
+		String openId = CookieUtil.getCookieValue(request, "openId");
+		try {
+			wxUserService.updateTip(openId, false);
+		} catch (Exception e) {
+			LOG.error("updateShowTip error!", e);
+			return "failure";
+		}
+		return "success";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "overgiving")
+    public List<Map<String, Object>> overGiving(@RequestParam(value = "start", defaultValue = "1") int start, @RequestParam(value = "length", defaultValue = "100") int pageSize ) {
+		//TODO get openId 添加事务
+		List<Map<String, Object>> resultList = Lists.newArrayList();
+		try {
+			List<GivingEntity> givingList = givingService.list();
+			for(GivingEntity givingEntity : givingList){
+				Map<String, Object> map = Maps.newHashMap();
+				map.put("givingCode", givingEntity.getGivingCode());
+				map.put("createTime", givingEntity.getCreateTime());
+				ActEntity actEntity = actService.getById(givingEntity.getActId());
+				if(null != actEntity){
+					map.put("actPeriods", actEntity.getActPeriods());
+					map.put("actTotalNum", actEntity.getActTotalNum());
+				}
+				
+				Result<GoodsEntity> goodsResult = goodsService.getById(givingEntity.getGoodsId());
+				GoodsEntity goodsEntity = goodsResult.getData();
+				map.put("goodsName", goodsEntity.getGoodsName());
+				GoodsImgEntity goodsImgEntity = goodsImgService.findByGoodsId(givingEntity.getGoodsId(), "list_img");
+				if(null != goodsImgEntity){
+					map.put("goodsImgUrl", goodsImgEntity.getGoodsImgUrl());
+				}
+				
+				WxDetailEntity wxUserEntity = wxDetailService.findByOpenId(givingEntity.getOpenId()) ;
+				if(null != wxUserEntity){
+					map.put("name", wxUserEntity.getName());
+				}
+				resultList.add(map);
+			}
+			
+		} catch (Exception e) {
+			LOG.error("overGiving error!", e);
+		}
+		return resultList;
 	}
 }

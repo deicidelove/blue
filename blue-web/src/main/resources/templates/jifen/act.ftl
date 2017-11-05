@@ -11,6 +11,7 @@
 </head>
 <script>
    var basePath = '${request.contextPath}';
+   var wxUserEntity = '${wxUserEntity}'
 </script>
 <body>
 <div class="heade">
@@ -21,7 +22,7 @@
 <div class="buy_credits">
     <div class="buy_credits_bg"></div>
     <div class="buy_credits_cont">
-        <div class="buy_credits_cont_01">4896</div>
+        <div class="buy_credits_cont_01">${wxUserEntity.jifen }</div>
         <div class="buy_credits_cont_02">蓝鲟会员积分</div>
         <div class="buy_credits_cont_03">健康积分</div>
         <div class="buy_credits_cont_04">获取积分途径：1）邀请好友获取，每邀请一位好友可获取10个积分；2）购买积分，一元可换取10个积分。</div>
@@ -36,7 +37,7 @@
     </div>
     <div class="flex-1 integral_tab02">
         <div class="integral_tab_bg02"></div>
-        <div class="">往期抢购</div>
+        <div class="" id = "overgiving">往期抢购</div>
     </div>
 </div>
 <ul class="integral_ul">
@@ -166,7 +167,7 @@
     </div>
     <div class="help_labe">
         <span class="left help_labe_bg"></span>
-        <span class="left help_labe_text">下次不再显示</span>
+        <span class="left help_labe_text" id = "isShowTip">下次不再显示</span>
     </div>
 </div>
 <div class="footer box">

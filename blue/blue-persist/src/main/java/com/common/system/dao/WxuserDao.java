@@ -27,7 +27,7 @@ public class WxuserDao {
 	
 	public WxUserEntity seleteById(String openId){
 		Assert.notNull(openId,"openId is null");
-		String sql = " SELECT * FROM rc_a_wx_user WHERE act_id = :actId ";
+		String sql = " SELECT * FROM rc_a_wx_user WHERE open_id = :openId ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("openId", openId);
 		List<WxUserEntity> resultList = namedParameterJdbcTemplate
@@ -86,7 +86,23 @@ public class WxuserDao {
 				+ "SET `jifen`=:jifen "
 				+ " WHERE `open_id`=:openId";
 		Map<String,Object> paramMap = Maps.newHashMap();
+		paramMap.put("jifen", wxUserEntity.getJifen());
+		paramMap.put("openId", wxUserEntity.getOpenId());
 		namedParameterJdbcTemplate.update(sql, paramMap);
 	}
-
+	
+	/**
+	 * 更新tip
+	 * @param openId
+	 * @param isShowTip
+	 */
+	public void updateTip(String openId, Boolean isShowTip){
+		String sql = "UPDATE `rc_a_wx_user` "
+				+ "SET `is_show_tip = :isShowTip`"
+				+ "WHERE `open_id` = :openId";
+		Map<String,Object> paramMap = Maps.newHashMap();
+		paramMap.put("openId", openId);
+		paramMap.put("isShowTip", isShowTip);
+		namedParameterJdbcTemplate.update(sql, paramMap);
+	}
 }

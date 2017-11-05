@@ -1,5 +1,6 @@
 package com.common.system.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -65,5 +66,23 @@ public class GivingDao {
 		Map<String,Object> paramMap = Maps.newHashMap();
 		namedParameterJdbcTemplate.update(sql, paramMap);
 	}
-
+	
+	public List<GivingEntity> seleteList(Integer pageNum, Integer pageSize){
+		String sql = " SELECT * FROM rc_a_giving WHERE 1=1 order by createTime desc limit :pageStartNum, :pageSize ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("pageStartNum", (pageNum-1)*pageSize);
+		paramMap.put("pageSize", pageSize);
+		List<GivingEntity> result = namedParameterJdbcTemplate.query(sql, 
+				paramMap, BeanPropertyRowMapper.newInstance(GivingEntity.class));
+		return result;
+	}
+	
+	public List<GivingEntity> seleteList(){
+		String sql = " SELECT * FROM rc_a_giving WHERE 1=1 order by createTime desc";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		List<GivingEntity> result = namedParameterJdbcTemplate.query(sql, 
+				paramMap, BeanPropertyRowMapper.newInstance(GivingEntity.class));
+		return result;
+	}
+	
 }
