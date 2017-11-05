@@ -3,6 +3,8 @@
  */
 package com.common.system.service;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.common.system.entity.BlueStaff;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
@@ -33,7 +35,7 @@ public interface DoctorService {
 	/**
 	 * 添加
 	 */
-	public Result<Integer> addDoctor(String jobNum,String name, int deptId,int sex,String phone,String introduce,String address);
+	public Result<Integer> addDoctor(String jobNum,String name, int deptId,int sex,String phone,String introduce,String address,String callFee,String positionName,MultipartFile file);
 
 	/**
 	 * 查询 

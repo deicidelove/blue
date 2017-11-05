@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.common.system.dao.DeptDao;
 import com.common.system.dao.RoleDao;
@@ -19,6 +20,7 @@ import com.common.system.entity.BlueStaff;
 import com.common.system.entity.RcRole;
 import com.common.system.service.DoctorService;
 import com.common.system.util.PageBean;
+import com.common.system.util.PicUtil;
 import com.common.system.util.Result;
 
 /**
@@ -78,9 +80,13 @@ public class DoctorServiceImpl implements DoctorService {
 	 * @see com.common.system.service.DoctorService#addDoctor(int, java.lang.String, int, int, java.lang.String, int, java.lang.String)
 	 */
 	@Override
-	public Result<Integer> addDoctor(String jobNum,String name, int deptId,int sex,String phone,String introduce,String address) {
+	public Result<Integer> addDoctor(String jobNum,String name, int deptId,int sex,String phone,String introduce,String address,String callFee,String positionName,MultipartFile file) {
 		try {
+			String urlTream =PicUtil.upFile(file);
 			BlueStaff staff = new BlueStaff();
+			staff.setHeadUrl(urlTream);
+			staff.setCallFee(Double.valueOf(callFee));
+			staff.setPositionName(positionName);
 			staff.setName(name);
 			staff.setPassword("111111");
 			staff.setJobNum(jobNum);

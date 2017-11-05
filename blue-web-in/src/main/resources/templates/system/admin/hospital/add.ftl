@@ -36,9 +36,9 @@
 					<select name="type" class="form-control select2" style="width: 100%;">
                         <option  value="0">医院环境</option>
                         <option value="1">百年蓝鲟</option>
-                        <option  value="12">企业愿景</option>
-                        <option  value="13">管理理念</option>
-                        <option  value="14">企业使命</option>
+                        <option  value="11">企业愿景</option>
+                        <option  value="12">管理理念</option>
+                        <option  value="13">企业使命</option>
                         <option  value="14">经营理念</option>
                         <option  value="21">推介理由</option>
                         <option  value="22">科室特色</option>

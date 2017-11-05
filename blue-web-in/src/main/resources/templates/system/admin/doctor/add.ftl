@@ -1,4 +1,18 @@
 <script type="text/javascript">
+var textStr;
+		$("#doctorAddTarget").load(function(){
+		     debugger;
+			 textStr=$(this);
+			 var data = textStr[0].contentDocument.body.textContent;
+		  	 var json = JSON.parse(data);
+            if (json.status){
+                    $("#lgModal").modal('hide');
+                    alertMsg("添加成功","success");
+                    reloadTable(list_ajax,"#doctorTime","#doctorPremise");
+                }else{
+                    alertMsg("添加失败:"+json.msg,"success");
+                }
+		 })
 function doctorSave(){
 	$("span").remove(".errorClass");
 	$("br").remove(".errorClass");
@@ -31,7 +45,7 @@ function doctorSave(){
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<form id="doctorAddForm">
+		<form id="doctorAddForm" method="post" enctype="multipart/form-data" action="/doctor/save" target="doctorAddTarget">
 			<div class="modal-body">
 				<div class="form-group">
 					<label id="userNoLabel">姓名</label>
@@ -50,6 +64,14 @@ function doctorSave(){
 					<input type="text" class="form-control" name="jobNum" id="jobNum" placeholder="输入工号...">
 				</div>
 				<div class="form-group">
+					<label id="nickNameLabel">诊费</label>
+					<input type="text" class="form-control" name="callFee" id="callFee" placeholder="输入诊费(数字)...">
+				</div>
+				<div class="form-group">
+					<label id="nickNameLabel">职称</label>
+					<input type="text" class="form-control" name="positionName" id="positionName" placeholder="输入职称...">
+				</div>
+				<div class="form-group">
 					<label>性别</label> 
 					<select name="sex" class="form-control select2" style="width: 100%;">
 						<option value="1">男</option>
@@ -66,15 +88,19 @@ function doctorSave(){
                 </div>
                 <div class="form-group">
                     <label>地址</label>
-                    <input type="text" class="form-control" name="address" id="introduce" value="${bean.address!}"
+                    <input type="text" class="form-control" name="address" id="introduce" 
                            placeholder="输入地址...">
+                </div>
+                 <div class="form-group">
+                    <label>上传文件</label>
+                    <input type="file" class="form-control" name="fileName" id="fileName" value="上传头像" >
                 </div>
 				
 			</div>
 			<div class="modal-footer">
 				<div class="pull-right">
 					<button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>关闭</button>
-					<button type="button" class="btn btn-primary btn-sm" onclick="doctorSave();"><i class="fa fa-save"></i>保存</button>
+					<button type="submit" class="btn btn-primary btn-sm" ><i class="fa fa-save"></i>保存</button>
 				</div>
 			</div>
 		</form>

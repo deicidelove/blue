@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.entity.BlueDept;
@@ -102,8 +103,8 @@ public class DoctorController {
 	    }
 	 
 	 @RequestMapping(value = "save")
-	    public @ResponseBody Result<Integer> save(String jobNum,String name, int deptId,int sex,String phone,String introduce,String address){
-	        return doctorService.addDoctor(jobNum, name, deptId, sex, phone, introduce,address);
+	    public @ResponseBody Result<Integer> save(String jobNum,String name, int deptId,int sex,String phone,String introduce,String address,String callFee,String positionName,@RequestParam("fileName") MultipartFile file){
+	        return doctorService.addDoctor(jobNum, name, deptId, sex, phone, introduce,address, callFee, positionName,file);
 	    }
 
 }
