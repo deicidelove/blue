@@ -4,7 +4,7 @@
 				<div class="box-header">
 					<h3 class="box-title">医生排班管理</h3>
 					<div class="box-tools pull-right">
-						<@shiro.hasPermission name="user/add">
+						<@shiro.hasPermission name="sche/add">
 							<a onclick="doctorSchAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/doctorSchedule/add">添加</a>
 						</@shiro.hasPermission>
 					</div>
@@ -103,10 +103,10 @@ $(function() {
 					var btn = "";
 					btn = '';
 					if(isNull(data.role) ||  'super' != data.role.value){
-                       // btn +='<@shiro.hasPermission name="user/edit">'
+                       // btn +='<@shiro.hasPermission name="sche/edit">'
                         //+'<a class="btn btn-xs btn-info" onclick="doctorSchAjax();" target="modal" modal="lg" href="/doctorSchedule/edit/'+ data.sid+ '">修改</a> &nbsp;'
                        btn += '</@shiro.hasPermission>'
-                        +'<@shiro.hasPermission name="user/delete">'
+                        +'<@shiro.hasPermission name="sche/delete">'
                         +'<a class="btn btn-xs btn-default" callback="doctorSchReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/doctorSchedule/delete/'+ data.sid + '">删除</a>'
                         +'</@shiro.hasPermission>';
 					}

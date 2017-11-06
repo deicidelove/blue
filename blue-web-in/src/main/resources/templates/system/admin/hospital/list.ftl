@@ -4,7 +4,7 @@
 			<div class="box-header">
 				<h3 class="box-title">医院概况管理</h3>
 				<div class="box-tools pull-right">
-					<@shiro.hasPermission name="user/add">
+					<@shiro.hasPermission name="hospital/add">
 						<a onclick="hospitalToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/hospital/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
@@ -112,10 +112,10 @@ $(function() {
 					var btn = "";
 					btn = '<a class="btn btn-xs btn-primary" target="modal" modal="lg" href="/hospital/view/'+ data.sid+ '">查看</a> &nbsp;';
 					if(isNull(data.role) ||  'super' != data.role.value){
-                        btn +='<@shiro.hasPermission name="user/edit">'
+                        btn +='<@shiro.hasPermission name="hospital/edit">'
                         +'<a class="btn btn-xs btn-info" onclick="hospitalToListAjax();" target="modal" modal="lg" href="/hospital/edit/'+ data.sid+ '">修改</a> &nbsp;'
                         +'</@shiro.hasPermission>'
-                        +'<@shiro.hasPermission name="user/delete">'
+                        +'<@shiro.hasPermission name="hospital/delete">'
                         +'<a class="btn btn-xs btn-default" callback="hospitalReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/hospital/delete/'+ data.sid + '">删除</a>'
                         +'</@shiro.hasPermission>';
 					}

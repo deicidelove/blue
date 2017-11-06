@@ -4,7 +4,7 @@
 			<div class="box-header">
 				<h3 class="box-title">科室管理</h3>
 				<div class="box-tools pull-right">
-					<@shiro.hasPermission name="user/add">
+					<@shiro.hasPermission name="dept/add">
 						<a onclick="deptToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/blueDept/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
@@ -69,10 +69,10 @@ $(function() {
 				"render" : function(data) {
 //					debugger;
 					var btn = "";
-                        btn +='<@shiro.hasPermission name="user/edit">'
+                        btn +='<@shiro.hasPermission name="dept/edit">'
                         +'<a class="btn btn-xs btn-info" onclick="deptToListAjax();" target="modal" modal="lg" href="/blueDept/edit/'+ data.sid+ '">修改</a> &nbsp;'
                         +'</@shiro.hasPermission>'
-                        +'<@shiro.hasPermission name="user/delete">'
+                        +'<@shiro.hasPermission name="dept/delete">'
                         +'<a class="btn btn-xs btn-default" callback="blueDeptReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/blueDept/delete/'+ data.sid + '">删除</a>'
                         +'</@shiro.hasPermission>';
 					return btn;

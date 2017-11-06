@@ -4,7 +4,7 @@
 			<div class="box-header">
 				<h3 class="box-title">预约列表</h3>
 				<div class="box-tools pull-right">
-					<@shiro.hasPermission name="user/add">
+					<@shiro.hasPermission name="oppo/add">
 						<a onclick="oppointmentToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/oppointment/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
@@ -101,10 +101,10 @@ $(function() {
 					var btn = "";
 					btn = '';
 					if(isNull(data.role) ||  'super' != data.role.value){
-                        btn +='<@shiro.hasPermission name="user/edit">'
+                        btn +='<@shiro.hasPermission name="oppo/edit">'
                         +'<a class="btn btn-xs btn-info" onclick="oppointmentToListAjax();" target="modal" modal="lg" href="/oppointment/edit/'+ data.sid+ '">修改</a> &nbsp;'
                         +'</@shiro.hasPermission>'
-                        +'<@shiro.hasPermission name="user/delete">'
+                        +'<@shiro.hasPermission name="oppo/delete">'
                         +'<a class="btn btn-xs btn-default" callback="oppointmentReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/oppointment/delete/'+ data.sid + '">删除</a>'
                         +'</@shiro.hasPermission>';
 					}

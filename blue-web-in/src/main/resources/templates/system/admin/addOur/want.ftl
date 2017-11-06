@@ -88,7 +88,7 @@ $(function() {
 				"render" : function(data) {
 //					debugger;
 					var btn = "";
-                    btn += '<@shiro.hasPermission name="user/delete">'
+                    btn += '<@shiro.hasPermission name="addOurWant/delete">'
                     +'<a class="btn btn-xs btn-default" callback="wantReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/addOur/wantDelete/'+ data.sid + '">删除</a>'
                     +'</@shiro.hasPermission>';
 					

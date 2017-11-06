@@ -4,7 +4,7 @@
 			<div class="box-header">
 				<h3 class="box-title">广告管理</h3>
 				<div class="box-tools pull-right">
-					<@shiro.hasPermission name="user/add">
+					<@shiro.hasPermission name="advert/add">
 						<a onclick="advertToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/advert/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
@@ -106,10 +106,10 @@ $(function() {
 //					debugger;
 					var btn = "";
 					btn = '<a class="btn btn-xs btn-info" target="modal" modal="lg" href="/advert/view/'+ data.sid+ '">查看</a> &nbsp;';
-                    btn +='<@shiro.hasPermission name="user/edit">'
+                    btn +='<@shiro.hasPermission name="advert/edit">'
                     +'<a class="btn btn-xs btn-info" onclick="advertToListAjax();" target="modal" modal="lg" href="/advert/edit/'+ data.sid+ '">修改</a> &nbsp;'
                     +'</@shiro.hasPermission>'
-                    +'<@shiro.hasPermission name="user/delete">'
+                    +'<@shiro.hasPermission name="advert/delete">'
                     +'<a class="btn btn-xs btn-default" callback="advertReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/advert/delete/'+ data.sid + '">删除</a>'
                     +'</@shiro.hasPermission>';
 					

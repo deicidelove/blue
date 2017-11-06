@@ -4,7 +4,7 @@
 			<div class="box-header">
 				<h3 class="box-title">资源管理</h3>
 				<div class="box-tools pull-right">
-					<@shiro.hasPermission name="user/add">
+					<@shiro.hasPermission name="source/add">
 						<a onclick="sourceToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/source/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
@@ -100,10 +100,10 @@ $(function() {
 					var btn = "";
 					
 					btn = '<a class="btn btn-xs btn-info" target="modal" modal="lg" href="/source/view/'+ data.sid+ '">查看</a> &nbsp;';
-                    btn +='<@shiro.hasPermission name="user/edit">'
+                    btn +='<@shiro.hasPermission name="source/edit">'
                         +'<a class="btn btn-xs btn-info" onclick="sourceToListAjax();" target="modal" modal="lg" href="/source/edit/'+ data.sid+ '">修改</a> &nbsp;'
                         +'</@shiro.hasPermission>'
-                        +'<@shiro.hasPermission name="user/delete">'
+                        +'<@shiro.hasPermission name="source/delete">'
                         +'<a class="btn btn-xs btn-default" callback="sourceReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/source/delete/'+ data.sid + '">删除</a>'
                         +'</@shiro.hasPermission>';
 					return btn;
