@@ -29,7 +29,7 @@
 						<tr>
 							<tr>
 								<th>序号</th>
-								<th>标题/th>
+								<th>标题</th>
 								<th>需要人数</th>
 								<th>学历</th>
 								<th>经验</th>
