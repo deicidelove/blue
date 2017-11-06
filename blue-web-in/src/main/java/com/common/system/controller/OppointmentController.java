@@ -73,7 +73,7 @@ public class OppointmentController {
 	 
 	 @RequestMapping(value = "save")
 	    public @ResponseBody Result<Integer> save(int staffId,String date, String payMoney){
-	        return oppointmentService.addOppo(staffId, date, payMoney,null,null);
+	        return oppointmentService.addOppo(staffId, date, payMoney,null,null,null);
 	    }
 	 
 	 @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)

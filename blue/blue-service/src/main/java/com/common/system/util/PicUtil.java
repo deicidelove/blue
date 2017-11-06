@@ -21,7 +21,7 @@ public class PicUtil {
 			if (file != null && file.getName() != null && !file.isEmpty()) {
 				// 转存文件
 				String name = file.getOriginalFilename();
-				urlTream = "D:/pics/" + name;
+				urlTream = "C:/pics/" + name;
 				file.transferTo(new File(urlTream));
 				return  urlTream;
 			}
