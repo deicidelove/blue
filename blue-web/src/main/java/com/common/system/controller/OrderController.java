@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.common.system.dao.ShiftDao;
 import com.common.system.dto.ScheduleDto;
 import com.common.system.entity.BlueDept;
 import com.common.system.entity.BlueDoctorSchedule;
@@ -54,6 +56,9 @@ public class OrderController {
 
 	@Resource
 	private DeptService deptService;
+	
+	@Resource
+	private ShiftDao shiftDao;
 
 	@RequestMapping("/orderPage")
 	public ModelAndView orderPage(ModelAndView modelAndView) {
@@ -92,8 +97,8 @@ public class OrderController {
 
 	}
 
-	@RequestMapping(value = "orderInfo/{scheduleId}", method = RequestMethod.GET)
-	public ModelAndView orderInfo(ModelAndView modelAndView, HttpServletRequest request,@PathVariable Integer scheduleId) throws ParseException {
+	@RequestMapping(value = "orderInfo/{scheduleId}/{shiftsId}", method = RequestMethod.GET)
+	public ModelAndView orderInfo(ModelAndView modelAndView,HttpServletResponse response,HttpServletRequest request,@PathVariable Integer scheduleId,@PathVariable Integer shiftsId) throws ParseException {
 		BlueDoctorSchedule bds = doctorSchedulEService.findBySid(
 				scheduleId).getData();
 		BlueStaff staff = doctorService.findDoctor(bds.getStaffId()).getData();
@@ -102,10 +107,9 @@ public class OrderController {
 		modelAndView.addObject("bds", bds);
 		modelAndView.addObject("staff", staff);
 		modelAndView.addObject("dept", dept);
-		
+		shiftDao.updateShiftStatus(shiftsId);
 		String userId= CookieUtil.getCookieValue(request, "openId");
 		List<BluePation> pations = commonService.findPations(userId);
-		
 		modelAndView.addObject("pations", pations);
 		modelAndView.setViewName("/html/orderInfo");
 		return modelAndView;
@@ -113,9 +117,9 @@ public class OrderController {
 	
 	@RequestMapping(value = "orderSubmit")
 	@ResponseBody
-	public Result<Integer> orderSubmit(HttpServletRequest request ,Integer staffId,String staffName,String pay,String deptName,Integer pationId,Integer deptId,String orderTime) throws ParseException {
-		String userId= CookieUtil.getCookieValue(request, "openId");
-		Result<Integer> result = oppointmentService.addOppo(staffId, orderTime, pay,userId,pationId);
+	public Result<Integer> orderSubmit(HttpServletRequest request ,Integer staffId,String staffName,String pay,String deptName,Integer pationId,Integer deptId,String orderTime,Integer scheduleId) throws ParseException {
+		String userId = CookieUtil.getCookieValue(request, "openId");
+		Result<Integer> result = oppointmentService.addOppo(staffId, orderTime, pay,userId,pationId,scheduleId);
 		return result;
 
 	}

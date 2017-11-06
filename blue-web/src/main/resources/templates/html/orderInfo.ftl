@@ -7,6 +7,9 @@
     <script src="../js/common.js"></script>
     <link rel="stylesheet" href="../css/common.css" />
     <link rel="stylesheet" href="../css/reserve_information.css" />
+     <script src="../../js/common.js"></script>
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/reserve_information.css" />
 </head>
 <body>
 <div class="heade">
@@ -46,8 +49,9 @@
     </li>
     </a>
 </ul>
+<div style="display:none" name="scheduleId" val="${bds.sid}"></div>
 <div class="infor_btn" value="${staff.sid}">立即预约</div>
 </body>
 </html>
-<script type="text/javascript" src="../js/jquery.js"></script>
-<script src="../js/addAppointment.js"></script>
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script src="../../js/addAppointment.js"></script>

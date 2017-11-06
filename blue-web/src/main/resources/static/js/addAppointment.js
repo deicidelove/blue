@@ -16,6 +16,7 @@
                var deptName=$("div[name='deptName']").attr("val");
                var deptId = $("div[name='deptId']").attr("val");
                var orderTime = $("div[name='orderTime']").attr("val");
+               var scheduleId = $("div[name='scheduleId']").attr("val");
                $.ajax( {  
             	   url:'/orderSubmit',// 跳转到 action  
             	   data:{  
@@ -25,7 +26,8 @@
             		   pationId : pationId,
             		   deptName : deptName,
             		   deptId : deptId,
-            		   orderTime :orderTime
+            		   orderTime :orderTime,
+            		   scheduleId : scheduleId
             	   },  
             	   type:'post',  
             	   cache:false,  

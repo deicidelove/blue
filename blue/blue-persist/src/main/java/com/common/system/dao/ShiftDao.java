@@ -61,6 +61,22 @@ public class ShiftDao {
 		return count;
 	}
 	
+	public int updateShift(Integer scheId){
+		String sql = "UPDATE `tb_blue_shift` SET count = count-1 ,status = 0 WHERE schedule_id = :schedule_id AND status = 1";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("schedule_id", scheId);
+		int count = namedParameterJdbcTemplate.update(sql, paramMap);
+		return count;
+	}
+	public int updateShiftStatus(Integer shifId){
+		String sql = "UPDATE `tb_blue_shift` SET status = 1 WHERE sid = :sid";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("sid", shifId);
+		int count = namedParameterJdbcTemplate.update(sql, paramMap);
+		return count;
+	}
+	
+	
 	public int deleteNum(int schedule_id) {
 		String sql = "DELETE FROM  tb_blue_shift  WHERE schedule_id = :schedule_id ";
 		Map<String, Object> paramMap = Maps.newHashMap();

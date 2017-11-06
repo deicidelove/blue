@@ -44,7 +44,7 @@
                			    	if(item.count <= 0){
                			    		button="<button class=\"right pop_li_bg01\">约满</button></li>";
                			    	}else{
-               			    		button="<a href=\"/orderInfo/"+scheduleId+"\"><button class=\"right pop_li_bg02\">可约</button></a></li>";
+               			    		button="<a href=\"/orderInfo/"+scheduleId+"/"+item.sid+"\"><button class=\"right pop_li_bg02\">可约</button></a></li>";
                			    	}
                			    	var html = li+span+button;
                			    	$('.popup_ul').append(html);

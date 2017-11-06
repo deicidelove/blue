@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.common.system.dao.OppointmentDao;
+import com.common.system.dao.ShiftDao;
 import com.common.system.dao.StaffDao;
 import com.common.system.entity.BlueOppointment;
 import com.common.system.entity.BlueStaff;
@@ -36,6 +37,9 @@ public class OppointmentServiceImpl implements OppointmentService {
 	
 	@Resource
 	private StaffDao staffDao;
+	
+	@Resource
+	private ShiftDao shiftDao;
 
 	/* (non-Javadoc)
 	 * @see com.common.system.service.OppointmentService#getOppointmentList(java.lang.String, int, int, java.lang.String)
@@ -59,7 +63,8 @@ public class OppointmentServiceImpl implements OppointmentService {
 	}
 
 	@Override
-	public Result<Integer> addOppo(int staffId, String date, String payMoney,String userId,Integer pationId) {
+	public Result<Integer> addOppo(int staffId, String date, String payMoney,String userId,
+			Integer pationId,Integer scheduleId) {
 		try {
 			BlueOppointment oppo = new BlueOppointment();
 			oppo.setStaffId(staffId);
@@ -75,7 +80,9 @@ public class OppointmentServiceImpl implements OppointmentService {
 			oppo.setUserId(userId);
 			oppo.setCreateTime(new Date());
 			int count = oppointmentDao.save(oppo);
+			shiftDao.updateShift(scheduleId);
 			return new Result<Integer>(true,"保存成功！",count);
+			
 		} catch (Exception e) {
 			LOG.error("保存失败！msg:{}", e);
 		}
