@@ -95,6 +95,7 @@ public class JifenController {
 			LOG.error("	");
 		}*/
         String openId = CookieUtil.getCookieValue(request, "openId");
+        //TODO
         openId = "1";
         WxUserEntity wxUserEntity = wxUserService.getById(openId);
         modelAndView.addObject("wxUserEntity", wxUserEntity);

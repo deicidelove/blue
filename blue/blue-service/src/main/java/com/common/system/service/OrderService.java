@@ -14,6 +14,9 @@ public interface OrderService {
 	List<OrderEntity> seleteByList(String status, Integer pageNum,
 			Integer pageSize);
 	
+	PageInfo<OrderEntity> seleteListByOpenId(String openId, Integer pageNum,
+			Integer pageSize);
+	
 	PageInfo<OrderEntity> listForPage(String status, Integer pageNum, Integer pageSize);
 	
 	void save(OrderEntity orderEntity);

@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 			Integer pageSize) {
 		List<OrderEntity> resultList = null;
 		try {
-			resultList = orderDao.seleteByList(status, pageNum, pageSize);
+			resultList = orderDao.seleteByList(status,null , pageNum, pageSize);
 		} catch (Exception e) {
 			LOG.error("  seleteByList error!", e );
 		}
@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
 			Integer pageSize) {
 		PageInfo<OrderEntity> result = new PageInfo<OrderEntity>();
 		try {
-			List<OrderEntity> resultList = orderDao.seleteByList(status, pageNum, pageSize);
+			List<OrderEntity> resultList = orderDao.seleteByList(status,null, pageNum, pageSize);
 			result.setList(resultList);
 		} catch (Exception e) {
 			LOG.error(" listForPage error!", e );
@@ -88,6 +88,19 @@ public class OrderServiceImpl implements OrderService {
 		} catch (Exception e) {
 			LOG.error(" delete error!", e );
 		}
+	}
+
+	@Override
+	public PageInfo<OrderEntity> seleteListByOpenId(String openId, Integer pageNum,
+			Integer pageSize) {
+		PageInfo<OrderEntity> result = new PageInfo<OrderEntity>();
+		try {
+			List<OrderEntity> resultList = orderDao.seleteByList(null, openId, pageNum, pageSize);
+			result.setList(resultList);
+		} catch (Exception e) {
+			LOG.error(" seleteListByOpenId error!", e );
+		}
+		return result;
 	}
 
 }
