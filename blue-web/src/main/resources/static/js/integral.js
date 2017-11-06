@@ -15,6 +15,7 @@
                 $('.integral_tab_bg02').removeClass('integral_tab_bg02_active');
                 $('.integral_ul').hide();
                 $('.unveiled_ul').show();
+                JF.Jifen.getActList();
             });
             $('.integral_tab02').on('click',function(){
                 $(this).addClass('_color').siblings().removeClass('_color');
@@ -22,10 +23,15 @@
                 $('.integral_tab_bg01').removeClass('integral_tab_bg01_active');
                 $('.integral_ul').show();
                 $('.unveiled_ul').hide();
+                JF.Jifen.getGivingCodeList();
             });
             $('.help_btn01').on('click',function(){
                 $('.help').hide();
                 $('.help_bg').hide();
+                if($('span.help_labe_bg_active').hasClass('help_labe_bg_active')){
+                	JF.Jifen.updateTip();
+                }
+                
                 jinzhi=1;
             });
             $('.help_btn02').on('click',function(){

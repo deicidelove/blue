@@ -1,59 +1,32 @@
 <div class="row">
     <div class="col-md-12">
-        <form id="securityEditForm">
-            <input type="hidden" id="id" name="id" value="${bean.id}">
+        <form id="goodsEditForm">
+            <input type="hidden" id="goodsId" name="goodsId" value="${bean.goodsId}">
 
             <div class="box-body">
                 <div class="form-group">
-                    <label id="userNoLabel">账号</label>
-                    <input type="text" class="form-control" name="username" id="username" value="${bean.username!}"
-                           disabled placeholder="输入账号...">
+                    <label id="goodsNameLabel">商品名称</label>
+                    <input type="text" class="form-control" name="goodsName" id="goodsName" value="${bean.goodsName!}"
+                           disabled placeholder="输入商品名称...">
                 </div>
                 <div class="form-group">
-                    <label id="nickNameLabel">昵称</label>
-                    <input type="text" class="form-control" name="name" id="name" value="${bean.name!}"
-                           placeholder="输入昵称...">
+                   <label id="goodsTitleLabel">商品标题</label>
+                    <input type="text" class="form-control" name="goodsTitle" id="goodsTitle" value="${bean.goodsTitle!}"
+                           placeholder="输入商品标题...">
                 </div>
                 <div class="form-group">
-                    <label>性别</label>
-                    <select name="sex" class="form-control select2" style="width: 100%;">
-                        <option <#if bean.sex == 0>selected="selected"</#if> value="0">女</option>
-                        <option <#if bean.sex == 1>selected="selected"</#if> value="1">男</option>
-                    </select>
+                    <label>商品详情</label> 
+                    <textarea rows="30" cols="50" name="goodsDetail" id="goodsDetail"  >${bean.goodsDetail!}
+                    </textarea>
                 </div>
-                <div class="form-group">
-                    <label>角色：</label>
-                <#--<label>-->
-                <#--<input type="checkbox" id="allCheckbox" class="flat-red" onClick="onClickCheckbox('allCheckbox','role')">全选-->
-                <#--</label>-->
-                <#--<br/>-->
-                <#list roles as role>
-                    <#if role.value == 'super'>
-                        <@shiro.hasRole name="super">
-                            <label>
-                                <input type="radio" name="roleId" class="flat-red" value="${role.id}" <#if bean.role??>
-                                       <#if bean.role.value == role.value>checked</#if>
-                                </#if>> ${role.name}
-                            </label>
-                        </@shiro.hasRole>
-                    <#else>
-                        <label>
-                            <input type="radio" name="roleId" class="flat-red" value="${role.id}"
-                                <#if bean.role??>
-                                   <#if bean.role.value == role.value>checked</#if>
-                                </#if>> ${role.name}
-                        </label>
-                    </#if>
-                </#list>
-
-                </div>
+                
             </div>
             <div class="box-footer">
                 <div class="pull-right">
                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><i
                             class="fa fa-close"></i>关闭
                     </button>
-                    <button onclick="securityUpdate();" type="button" class="btn btn-primary btn-sm"><i
+                    <button onclick="goodsUpdate();" type="button" class="btn btn-primary btn-sm"><i
                             class="fa fa-paste"></i>更新
                     </button>
                 </div>
@@ -62,19 +35,19 @@
     </div>
 </div>
 <script type="text/javascript">
-    function securityUpdate() {
+    function goodsUpdate() {
         debugger;
         $.ajax({
-            url: '/user/update',
+            url: '/goods/update',
             type: 'post',
             dataType: 'text',
-            data: $("#securityEditForm").serialize(),
+            data: $("#goodsEditForm").serialize(),
             success: function (data) {
                 var json = JSON.parse(data);
                 if (json.status) {
                     $("#lgModal").modal('hide');
                     alertMsg("更新成功", "success");
-                    reloadTable(list_ajax, "#roleTime", "#rolePremise");
+                    reloadTable(list_ajax, "#goodsTime", "#goodsPremise");
                 } else {
                     alertMsg("更新失败:" + json.msg, "success");
                 }

@@ -165,7 +165,7 @@ public class JifenController {
         	}else {
         		givingCodeCountMap.put(temp.getOpenId(), 1);
         	}*/
-        	if(openId.equals(temp.getOpenId())){
+        	if(StringUtils.isNotBlank(openId) && openId.equals(temp.getOpenId())){
         		givingCodeList.add(temp.getConsumerGivingCode());
         	}
         	//get wxDetail
@@ -195,20 +195,29 @@ public class JifenController {
 	
 	@ResponseBody
 	@RequestMapping(value = "createGoodsOrder")
-    public String createGoodsOrder(String goodsId ,HttpServletRequest request ) {
+    public Map<String, String > createGoodsOrder(String goodsId ,HttpServletRequest request ) {
+		Map<String, String > resultMap  = Maps.newHashMap();
 		//TODO get openId 添加事务
-		String openId = CookieUtil.getCookieValue(request, "openId");;
+		String openId = CookieUtil.getCookieValue(request, "openId");
+		
+		//TODO
+		openId = "1";
+		
 		Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
 		GoodsEntity goodsEntity = goodsResult.getData();
 		WxUserEntity wxUserEntity = wxUserService.getById(openId);
 		if(goodsEntity.getJifen() > wxUserEntity.getJifen()){
-			return "积分不足！";
+			resultMap.put("status", "fail");
+			resultMap.put("message", "积分不足！");
+			return resultMap;
 		}
 		
 		//消费一个中奖号码
     	GoodsConsumerRelateEntity goodsConsumerRelateEntity = goodsConsumerRelateService.randomByGoodsId(Integer.valueOf(goodsId));
     	if(null == goodsConsumerRelateEntity){//中奖被消费完
-    		return "你来晚了，该商品被抢购完";
+			resultMap.put("status", "fail");
+    		resultMap.put("message", "你来晚了，该商品被抢购完");
+			return resultMap;
     	}
     	
     	goodsConsumerRelateEntity.setOpenId(openId);
@@ -216,7 +225,9 @@ public class JifenController {
     	goodsConsumerRelateEntity.setGivingCodeSource("jifen");
     	int result = goodsConsumerRelateService.updateConsumer(goodsConsumerRelateEntity);
     	if(0 == result){//中奖被消费完
-    		return "你来晚了，该商品被抢购完";
+			resultMap.put("status", "fail");
+    		resultMap.put("message", "你来晚了，该商品被抢购完");
+			return resultMap;
     	}
     	
 		wxUserEntity.setJifen(wxUserEntity.getJifen() - goodsEntity.getJifen());
@@ -233,8 +244,9 @@ public class JifenController {
     	orderEntity.setPrice(goodsEntity.getGoodsPrice().subtract(new BigDecimal(Integer.valueOf(1))));
     	orderEntity.setOutTradeId(UUID.randomUUID().toString().replaceAll("-", ""));
     	orderService.save(orderEntity);
-    	
-		return "支付成功";
+		resultMap.put("status", "success");
+		resultMap.put("message", "支付成功");
+		return resultMap;
 	}
 	
 	

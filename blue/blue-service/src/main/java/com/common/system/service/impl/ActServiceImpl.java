@@ -53,14 +53,17 @@ public class ActServiceImpl implements ActService {
 	}
 
 	@Override
-	public void update(ActEntity actEntity) {
+	public Result<Integer> update(ActEntity actEntity) {
+		Result<Integer> result = new Result<Integer>();
 		try {
 			actDao.update(actEntity);
-			
+            result.setStatus(true);
+            result.setCode(MsgCode.SUCCESS);
+            result.setMsg("操作成功");
 		} catch (Exception e) {
 			LOG.error("ActServiceImpl update error!", e );
 		}
-
+		return result;
 	}
 
 	@Override

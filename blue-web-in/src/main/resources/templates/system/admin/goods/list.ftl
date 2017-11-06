@@ -37,6 +37,7 @@
 								<th>活动Id</th>
 								<th>商品名称</th>
 								<th>商品价格</th>
+								<th>商品积分</th>
 								<th>状态</th>
 								<th>创建时间</th>
 								<th>操作</th>
@@ -76,6 +77,7 @@ $(function() {
 			{"data":"goodsName"},
 			{"data":null},
 			{"data":null},
+			{"data":null},
 			{"data":"createTime"},
 			{"data":null} 
 			],
@@ -96,8 +98,16 @@ $(function() {
                     return actPeriods+"元";
                 }
             },
+            {
+                targets: 4,
+                data: null,
+                render: function (data) {
+                    var actPeriods = data.goodsPrice;
+                    return actPeriods+"积分";
+                }
+            },
 			{
-			    targets: 4,
+			    targets: 5,
 			    data: null,
 			    render: function (data) {
 			    	if(data.isDelete == 0){
@@ -115,13 +125,13 @@ $(function() {
 				"render" : function(data) {
 //					debugger;
 					var btn = "";
-					btn = '<a class="btn btn-xs btn-primary" target="modal" modal="lg" href="/act/view/'+ data.id+ '">查看</a> &nbsp;';
+					btn = '<a class="btn btn-xs btn-primary" target="modal" modal="lg" href="/goods/view/'+ data.goodsId+ '">查看</a> &nbsp;';
 					if(isNull(data.role) ||  'super' != data.role.value){
-                        btn +='<@shiro.hasPermission name="user/edit">'
-                        +'<a class="btn btn-xs btn-info" onclick="securityToListAjax();" target="modal" modal="lg" href="/act/edit/'+ data.id+ '">修改</a> &nbsp;'
+                        btn +='<@shiro.hasPermission name="goodsEdit">'
+                        +'<a class="btn btn-xs btn-info" onclick="securityToListAjax();" target="modal" modal="lg" href="/goods/edit/'+ data.goodsId+ '">修改</a> &nbsp;'
                         +'</@shiro.hasPermission>'
-                        +'<@shiro.hasPermission name="user/delete">'
-                        +'<a class="btn btn-xs btn-default" callback="securityReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/act/delete/'+ data.id + '">删除</a>'
+                        +'<@shiro.hasPermission name="goodsDelete">'
+                        +'<a class="btn btn-xs btn-default" callback="securityReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/goods/delete/'+ data.goodsId + '">删除</a>'
                         +'</@shiro.hasPermission>';
 					}
 					return btn;

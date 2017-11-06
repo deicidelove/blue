@@ -1,43 +1,24 @@
 <div class="row">
 	<div class="col-md-12">
-		<form id="securityAddForm">
+		<form id="actAddForm">
 			<div class="modal-body">
 				<div class="form-group">
-					<label id="userNoLabel">账号</label>
-					<input type="text" class="form-control" name="username" id="username" placeholder="输入账号...">
+					<label id="actNameLabel">活动名称</label>
+					<input type="text" class="form-control" name="actName" id="actname" placeholder="输入名称...">
 				</div>
 				<div class="form-group">
-					<label id="passwordLabel">密码</label>
-					<input type="password" class="form-control" name="password" id="password" placeholder="输入密码...">
+					<label id="actTotalNumLabel">活动数量</label>
+					<input type="text" class="form-control" name="actTotalNum" id="acttotalnum" placeholder="输入活动 数量...">
 				</div>
 				<div class="form-group">
-					<label id="nickNameLabel">昵称</label>
-					<input type="text" class="form-control" name="name" id="name" placeholder="输入昵称...">
+					<label id="actGivingNumLabel">中奖数量</label>
+					<input type="text" class="form-control" name="actGivingNum" id="actgivingnum" placeholder="输入中奖数量...">
 				</div>
 				<div class="form-group">
-					<label>性别</label> 
-					<select name="sex" class="form-control select2" style="width: 100%;">
-						<option value="1">男</option>
-						<option value="0">女</option>
-					</select>
+					<label id="actPeriodsLabel">当前期数</label>
+					<input type="text" class="form-control" name="actPeriods" id="actperiods" placeholder="输入当前期数...">
 				</div>
-				<div class="form-group">
-					<label>角色：</label>
-					<br/>
-					<#list roles as role>
-						<#if role.value == 'super'>
-							<@shiro.hasRole name="super">
-							<label>
-			                  <input type="radio" name="roleId" class="flat-red" value="${role.id}"> ${role.name}
-			                </label>
-			                </@shiro.hasRole>
-		                <#else>
-			                <label>
-			                  <input type="radio" name="roleId" class="flat-red" value="${role.id}"> ${role.name}
-			                </label>
-		                </#if>
-					</#list>
-				</div>
+				
 			</div>
 			<div class="modal-footer">
 				<div class="pull-right">
@@ -53,28 +34,32 @@ function securitySave(){
 	$("span").remove(".errorClass");
 	$("br").remove(".errorClass");
 	var status = 1;
-	if($("#username").val()==""){
-		$("#userNoLabel").prepend('<span class="errorClass" style="color:red">*账号不能为空</span><br class="errorClass"/>');
+	if(!isNumber(parseInt($("#acttotalnum").val()))){
+		$("#actTotalNumLabel").prepend('<span class="errorClass" style="color:red">*输入数字</span><br class="errorClass"/>');
 		status = 0;
 	}
-	if($("#password").val()==""){
-		$("#passwordLabel").prepend('<span class="errorClass" style="color:red">*密码不能为空</span><br class="errorClass"/>');
+	if(!isNumber(parseInt($("#actgivingnum").val()))){
+		$("#actGivingNumLabel").prepend('<span class="errorClass" style="color:red">*输入数字</span><br class="errorClass"/>');
+		status = 0;
+	}
+	if(!isNumber(parseInt($("#actperiods").val()))){
+		$("#actPeriodsLabel").prepend('<span class="errorClass" style="color:red">*输入数字</span><br class="errorClass"/>');
 		status = 0;
 	}
 	if(status == 0){
 		return false;
 	}else{
 		$.ajax({
-			url: '/user/save',
+			url: '/act/save',
 	        type: 'post',
 	        dataType: 'text',
-	        data: $("#securityAddForm").serialize(),
+	        data: $("#actAddForm").serialize(),
 	        success: function (data) {
                 var json = JSON.parse(data);
                 if (json.status){
                     $("#lgModal").modal('hide');
                     alertMsg("添加成功","success");
-                    reloadTable(list_ajax,"#roleTime","#rolePremise");
+                    reloadTable(list_ajax,"#actTime","#actPremise");
                 }else{
                     alertMsg("添加失败:"+json.msg,"success");
                 }
@@ -82,4 +67,9 @@ function securitySave(){
 		});
 	}
 }
+
+function isNumber(obj) {  
+	
+    return typeof obj === 'number' && !isNaN(obj)  
+}  
 </script>

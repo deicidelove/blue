@@ -1,14 +1,18 @@
 package com.common.system.controller;
 
 import com.common.system.dto.GoodsConsumerRelateDTO;
+import com.common.system.entity.ActEntity;
+import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.RcRole;
 import com.common.system.entity.RcUser;
+import com.common.system.service.ActService;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
 import com.common.system.service.RoleService;
 import com.common.system.service.UserService;
 import com.common.system.shiro.ShiroKit;
+import com.common.system.util.MsgCode;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
@@ -41,6 +45,12 @@ public class GoodsController extends BaseController{
     @Autowired
     private GoodsService goodsService;
     
+    @Autowired
+    private ActService actService;
+    
+    @Autowired
+    private GoodsConsumerRelateService goodsConsumerRelateService;
+    
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public ModelAndView list(ModelAndView modelAndView){
         modelAndView.setViewName("/system/admin/goods/list");
@@ -53,10 +63,10 @@ public class GoodsController extends BaseController{
         return new PageBean<GoodsEntity>(pageInfo);
     }
  
-    @RequestMapping(value = "delete/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "delete/{goodsId}",method = RequestMethod.GET)
     public @ResponseBody
-    Result delete(@PathVariable Integer id){
-        Result<Integer> result = goodsService.deleteById(id);
+    Result delete(@PathVariable Integer goodsId){
+        Result<Integer> result = goodsService.deleteById(goodsId);
         return result;
     }
     @RequestMapping(value = "add",method = RequestMethod.GET)
@@ -64,35 +74,59 @@ public class GoodsController extends BaseController{
         modelAndView.setViewName("/system/admin/goods/add");
         return modelAndView;
     }
-    @RequestMapping(value = "edit/{id}",method = RequestMethod.GET)
-    public ModelAndView edit(@PathVariable Integer id,ModelAndView modelAndView){
-        Result<GoodsEntity> result = goodsService.getById(id);
+    @RequestMapping(value = "edit/{goodsId}",method = RequestMethod.GET)
+    public ModelAndView edit(@PathVariable Integer goodsId,ModelAndView modelAndView){
+        Result<GoodsEntity> result = goodsService.getById(goodsId);
         modelAndView.addObject("bean",result.getData());
-        modelAndView.setViewName("/system/admin/user/edit");
+        modelAndView.setViewName("/system/admin/goods/edit");
         return modelAndView;
     }
-    @RequestMapping(value = "view/{id}",method = RequestMethod.GET)
-    public ModelAndView view(@PathVariable Integer id,ModelAndView modelAndView){
-        Result<GoodsEntity> result = goodsService.getById(id);
+    @RequestMapping(value = "view/{goodsId}",method = RequestMethod.GET)
+    public ModelAndView view(@PathVariable Integer goodsId,ModelAndView modelAndView){
+        Result<GoodsEntity> result = goodsService.getById(goodsId);
         modelAndView.addObject("bean",result.getData());
-        modelAndView.setViewName("/system/admin/user/view");
+        modelAndView.setViewName("/system/admin/goods/view");
         return modelAndView;
     }
     @RequestMapping(value = "update",method = RequestMethod.POST)
-    public @ResponseBody Result update(Integer goodsId, String name){
-        Result<GoodsEntity> goodsResult = goodsService.getById(goodsId);
-        Result<Integer> result = new Result<>();
-        if (result.isStatus()){
-        	GoodsEntity goods = goodsResult.getData();
- 
-            result = goodsService.update(goods);
-        }
+    public @ResponseBody Result<Integer> update( GoodsEntity goodsEntity){
+        Result<GoodsEntity> goodsResult = goodsService.getById(goodsEntity.getGoodsId());
+        Result<Integer> result = new Result<Integer>();
+        GoodsEntity goods = goodsResult.getData();
+//        goods.setGoodsName(goodsEntity.getGoodsName());
+        goods.setGoodsTitle(goodsEntity.getGoodsTitle());
+        goods.setGoodsDetail(goodsEntity.getGoodsDetail());
+        result = goodsService.update(goods);
         return result;
     }
     @RequestMapping(value = "save")
-    public @ResponseBody Result save(GoodsEntity goodsEntity, @RequestParam(value = "role", required = false) Integer roleId){
-    	goodsEntity.setCreateTime(new Date());
-        Result<Integer> result = goodsService.saveGoods(goodsEntity);
+    public @ResponseBody Result save(GoodsEntity goodsEntity){
+    	Result<Integer> result  = new Result<Integer>();
+    	try {
+    		ActEntity actEntity = actService.getById(goodsEntity.getActId());
+    		if(null == actEntity){
+    			result.setStatus(false);
+    			result.setCode(MsgCode.FAILED);
+    			result.setMsg("未查到相关互动Id，无法保存！");
+    			return result;
+    		}
+    		result = goodsService.saveGoods(goodsEntity);
+    		if(result.isStatus()){
+    			for(int i = 0; i < actEntity.getActTotalNum(); i++){
+    				GoodsConsumerRelateEntity goodsConsumerRelateEntity = new GoodsConsumerRelateEntity();
+    				goodsConsumerRelateEntity.setActId(actEntity.getActId());
+    				goodsConsumerRelateEntity.setConsumerGivingCode("10000"+i);
+    				goodsConsumerRelateEntity.setGoodsId(result.getData());
+    				goodsConsumerRelateService.saveGoodsConsumerRelate(goodsConsumerRelateEntity);
+    			}
+    		}
+		} catch (Exception e) {
+			LOGGER.error("系统异常，请联系管理员！",e);
+			result.setStatus(false);
+			result.setCode(MsgCode.FAILED);
+			result.setMsg("系统异常，请联系管理员！");
+		}
+        
         return result;
     }
 }

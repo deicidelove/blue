@@ -47,7 +47,7 @@ public class GoodsConsumerRelateDao {
 	 */
 	public GoodsConsumerRelateEntity randomById(Integer goodsId){
 		Assert.notNull(goodsId,"goodsId is null");
-		String sql = " SELECT * FROM `rc_a_goods_consumer_relate`  WHERE goods_id = :goodsId  and isUsed is false limit 1";
+		String sql = " SELECT * FROM `rc_a_goods_consumer_relate`  WHERE goods_id = :goodsId  and is_used is false limit 1";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("goodsId", goodsId);
 		List<GoodsConsumerRelateEntity> resultList = namedParameterJdbcTemplate
@@ -110,9 +110,12 @@ public class GoodsConsumerRelateDao {
 	public Integer updateConsumer(GoodsConsumerRelateEntity goodsConsumerRelateEntity){
 		Assert.notNull(goodsConsumerRelateEntity,"goodsConsumerRelateEntity is null");
 		String sql = "	UPDATE `rc_a_goods_consumer_relate`  "
-				+ "	SET `open_id`=:openId, is_used = 1, version+1	"
+				+ "	SET `open_id`=:openId, is_used = 1, version = version+1	"
 				+ " WHERE `goods_consumer_id`=:goodsConsumerId and version = :version";
 		Map<String,Object> paramMap = Maps.newHashMap();
+		paramMap.put("openId", goodsConsumerRelateEntity.getOpenId());
+		paramMap.put("goodsConsumerId", goodsConsumerRelateEntity.getGoodsConsumerId());
+		paramMap.put("version", goodsConsumerRelateEntity.getVersion());
 		return namedParameterJdbcTemplate.update(sql, paramMap);
 	}
 	

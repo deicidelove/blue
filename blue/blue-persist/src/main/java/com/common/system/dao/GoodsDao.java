@@ -6,7 +6,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
@@ -55,12 +58,16 @@ public class GoodsDao {
 		return resultList;
 	}
 	
-	public void saveGoods(GoodsEntity goodsEntity){
+	public Integer saveGoods(GoodsEntity goodsEntity){
 		Assert.notNull(goodsEntity,"goodsEntity is null");
 		String sql ="	INSERT INTO `rc_a_goods`	"
 				+"	( act_id, goods_name, goods_price,  goods_title, goods_detail, is_delete, category, jifen)	"
-				+ "	VALUES (:actId, :goodsName,:goodsTitle,:goodsDetail,:isDelete, :category, :jifen)	";
-		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(goodsEntity));
+				+ "	VALUES (:actId, :goodsName,:goodsPrice,:goodsTitle,:goodsDetail,:isDelete, :category, :jifen)	";
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		this.namedParameterJdbcTemplate.update(sql,
+				new BeanPropertySqlParameterSource(goodsEntity),
+				keyHolder);
+		return keyHolder.getKey().intValue();
 	}
 	
 	/**
@@ -69,7 +76,9 @@ public class GoodsDao {
 	 */
 	public void deleteById(Integer goodsId){
 		Assert.notNull(goodsId,"goodsId is null");
-		String sql = "DELETE FROM `rc_a_goods` WHERE `goods_id`=:goodsId";
+		String sql = "	UPDATE `rc_a_goods`  "
+				+ "	SET `is_delete`=1 "
+				+ " WHERE `goods_id`=:goodsId";
 		Map<String,Object> paramMap = Maps.newHashMap();
 		paramMap.put("goodsId", goodsId);
 		namedParameterJdbcTemplate.update(sql, paramMap);
@@ -82,7 +91,8 @@ public class GoodsDao {
 				+ "	SET `act_id`=:actId, `goods_name`=:goodsName "
 				+ " WHERE `goods_id`=:goodsId";
 		Map<String,Object> paramMap = Maps.newHashMap();
-		namedParameterJdbcTemplate.update(sql, paramMap);
+		
+		namedParameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(goodsEntity));
 	}
 
 }

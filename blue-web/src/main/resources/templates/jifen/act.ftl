@@ -35,9 +35,9 @@
         <div class="integral_tab_bg01 integral_tab_bg01_active"></div>
         <div>即将揭晓</div>
     </div>
-    <div class="flex-1 integral_tab02">
+    <div class="flex-1 integral_tab02" id = "overgiving">
         <div class="integral_tab_bg02"></div>
-        <div class="" id = "overgiving">往期抢购</div>
+        <div class="" >往期抢购</div>
     </div>
 </div>
 <ul class="integral_ul">

@@ -1,19 +1,22 @@
 $(function() {
-	JF.init();
+	JF.Jifen.init();
 });
 
 window.JF = window.JF || {};
-JF = {
+JF.Jifen = (function () {
+	function Jifen(){
+		
+	};
 	/**
 	 * 界面初始化事件绑定
 	 */
-	"init" : function() {
-		JF.getActList();
+	Jifen.prototype.init = function() {
+		Jifen.prototype.getActList();
 		
-	},
+	};
 
 	//获取列表信息
-	"getActList" : function() {
+	Jifen.prototype.getActList = function() {
 		$(".unveiled_ul").html("");
 		Request.sendPostRequest(basePath + "/jifen/getlist/", {
 			"data" : ""
@@ -52,12 +55,55 @@ JF = {
 					$(li).append(devTop).append(devCent);
 					$(".unveiled_ul").append(li);
 				});
-				JF.initClick();
+				Jifen.prototype.initClick();
 			}
 		});
-	},
+	};
 	
-	"initClick" :function(){
+	Jifen.prototype.getGivingCodeList = function(){
+		$(".integral_ul").html("");
+		Request.sendPostRequest(basePath + "/jifen/overgiving/", {
+			"data" : ""
+		}, function(result) {
+			if(result){
+				$.each(result,function(){
+					var li = $("<li ></li>");
+					$(li).addClass('integral_li');
+					var leftDiv = $("<div class=\"integral_li_bg left\"></div>");
+					$(leftDiv).css({'background': ' url('+this.goodsImgUrl+') no-repeat center',
+						'background-size':'100% 100%','border-radiu':'4px','width':'2.4rem','height':'1.63rem'});
+					var rightDiv = $('<div class="integral_li_cont left"></div>');
+					var nameDiv = $("<div class=\"_li_cont_head\">"+this.goodsName+"</div>");
+					var contentUl = $("<ul class=\"_li_cont_ul\"></ul>");
+					var actPeriodsLi = $("<li class=\"_li_cont_li\">第"+this.actPeriods+"期</li>");
+					var actTotalNumLi = $("<li class=\"_li_cont_li\">总需"+this.actTotalNum+"人次</li>");
+					var nameLi = $("<li class=\"_li_cont_li\">获奖者："+this.name+"</li>");
+					var givingCodeLi = $("<li class=\"_li_cont_li\">幸运号："+this.givingCode+"</li>");
+					var createTimeLi = $("<li class=\"_li_cont_li\">揭晓时间："+this.createTime+"</li>");
+					
+					$(contentUl).append(actPeriodsLi)
+								.append(actTotalNumLi)
+								.append(nameLi)
+								.append(givingCodeLi)
+								.append(givingCodeLi);
+					$(rightDiv).append(nameDiv).append(contentUl);
+					$(li).append(leftDiv).append(rightDiv);
+					$(".integral_ul").append(li);
+				});
+			}
+		});
+	
+	};
+	
+	Jifen.prototype.updateTip = function(){
+		Request.sendPostRequest(basePath + "/jifen/updateShowTip/", {
+			"data" : ""
+		}, function(result) {
+			
+		});	
+	};
+	
+	Jifen.prototype.initClick = function(){
 		if($(".unveiled_li.left")){
 			
 			$(".unveiled_li.left").off('click');
@@ -65,53 +111,10 @@ JF = {
 				window.location.href = basePath +"/jifen/actdetail?actId="+$(this).attr("actId")+"&goodsId="+$(this).attr("goodsId");
 			});
 		}
-		if($("#isShowTip")){
-			$("#isShowTip").off('click');
-			$("#isShowTip").on('click',function(){
-				Request.sendPostRequest(basePath + "/jifen/updateShowTip/", {
-					"data" : ""
-				}, function(result) {
-					
-				});
-			});
-		}
-		if($("#overgiving")){
-			$("#overgiving").off('click');
-			$("#overgiving").on('click',function(){
-//				$(".integral_ul").html("");
-				Request.sendPostRequest(basePath + "/jifen/overgiving/", {
-					"data" : ""
-				}, function(result) {
-					if(result){
-						$.each(result,function(){
-							var li = $("<li ></li>");
-							$(li).addClass('integral_li');
-							var div = $("<div class=\"integral_li_bg left\"></div>");
-							$(div).css({'background': ' url('+this.goodsImgUrl+') no-repeat center',
-								'background-size':'100% 100%','border-radiu':'4px','width':'2.4rem','height':'1.63rem'});
-							var nameDiv = $("<div class=\"_li_cont_head\">"+this.goodsName+"</div>");
-							var contentUl = $("<ul class=\"_li_cont_ul\"></ul>");
-							var actPeriodsLi = $("<li class=\"_li_cont_li\">第"+this.actPeriods+"期</li>");
-							var actTotalNumLi = $("<li class=\"_li_cont_li\">总需"+this.actTotalNum+"人次</li>");
-							var nameLi = $("<li class=\"_li_cont_li\">获奖者："+this.name+"</li>");
-							var givingCodeLi = $("<li class=\"_li_cont_li\">幸运号："+this.givingCode+"</li>");
-							var createTimeLi = $("<li class=\"_li_cont_li\">揭晓时间："+this.createTime+"</li>");
-							
-							$(contentUl).append(actPeriodsLi)
-										.append(actTotalNumLi)
-										.append(nameLi)
-										.append(givingCodeLi)
-										.append(givingCodeLi);
-							$(div).append(nameDiv).append(contentUl);
-							$(li).append(div);
-							$(".integral_ul").append(li);
-						});
-					}
-				});
-			});
-		}
-	}
-};
+	
+	};
+	return new Jifen;
+})();
 
 /**
  * 公共方法及变量
