@@ -4,7 +4,7 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<label id="deptLabel">科室名</label>
-					<input type="text" class="form-control" name="deptName" id="deptName" placeholder="输入账号...">
+					<input type="text" class="form-control" name="deptName" id="deptName" placeholder="输入科室名...">
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">介绍</label>
