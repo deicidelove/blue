@@ -106,4 +106,20 @@ public class GoodsServiceImpl implements GoodsService {
 		return resultList;
 	}
 
+	@Override
+	public List<GoodsEntity> listNoneOverGoods() {
+		List<GoodsEntity> resultList = null;
+		try {
+			resultList = goodsDao.listNoneOverGoods();
+		} catch (Exception e) {
+			LOG.error("ActServiceImpl listNoneOverGoods error!", e );
+		}
+		return resultList;
+	}
+
+	@Override
+	public void updateActGoodsOver(Integer goodsId) {
+		goodsDao.updateActGoodsOver(goodsId);
+	}
+
 }

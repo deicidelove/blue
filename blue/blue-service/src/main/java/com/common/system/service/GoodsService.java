@@ -19,4 +19,8 @@ public interface GoodsService {
 	public List<GoodsEntity> list();
 	
 	public PageInfo<GoodsEntity> listForPage(Integer pageNum, Integer pageSize);
+
+	public List<GoodsEntity> listNoneOverGoods();
+
+	public void updateActGoodsOver(Integer goodsId);
 }
