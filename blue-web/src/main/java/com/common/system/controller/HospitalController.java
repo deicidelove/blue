@@ -3,7 +3,6 @@
  */
 package com.common.system.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,9 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.common.system.entity.BlueDept;
 import com.common.system.entity.BlueHospital;
-import com.common.system.entity.BlueStaff;
 import com.common.system.service.CommonService;
 import com.common.system.service.HospitalService;
 

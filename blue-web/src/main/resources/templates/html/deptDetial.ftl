@@ -26,16 +26,23 @@
         <ul class="doctor_ul">
             <#list doctors as doctor>
 	            <li class="doctor_li">
-	                <div class="doctor_img left"></div>
-	                <div class="doctor_xq left">
+	                <a href="/doctorDetial/${doctor.sid}">
+                    <#if doctor.headUrl??>
+                    <div class="doctor_img left" style="background: url(${doctor.headUrl})no-repeat center;"></div>
+                    <#else>
+                    <div class="doctor_img left" ></div>
+                    </#if>
+	                <div class="doctor_xq left">                       
 	                    <div class="name">
 	                        <span>${doctor.name}</span>
 	                        <span>${doctor.positionName}</span>
 	                    </div>
 	                    <div class="point">${doctor.introduce}</div>
 	                    <div class="specialist">专家门诊</div>
+                       
 	                </div>
 	                <div class="doctor_more right"></div>
+                     </a>
 	            </li>
             </#list>
         </ul>

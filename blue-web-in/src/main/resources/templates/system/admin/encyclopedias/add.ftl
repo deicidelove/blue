@@ -34,8 +34,8 @@ var textStr;
 				<div class="form-group">
 					<label>类型</label> 
 					<select name="type" class="form-control select2" style="width: 100%;">
-                        <option select value="0">广告</option>
-                        <option value="1">公告</option>
+                        <option select value="0">百科</option>
+                        <option value="1">精选</option>
                     </select>
 				</div>
 				 <div class="form-group">

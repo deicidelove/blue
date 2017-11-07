@@ -74,7 +74,7 @@
                 <p>
                      ${hospitalBN14.context}
                 </p>
-yu            </div>
+            </div>
         </div>
     </li>
     <li class="tab_li displaynone">

@@ -40,6 +40,7 @@
 		</section>
 		</div>
 		<@footer/>
+		
 		<@setting/>
 	</div>
 	<@jsFile/>

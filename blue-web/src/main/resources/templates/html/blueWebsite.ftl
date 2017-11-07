@@ -63,9 +63,11 @@
             </div>
             
             <div class="flex-1 nav_li_div">
+                <a  href="/jifen/index">
                 <div class="nav_li_div_05"></div>
                 <div>积分活动</div>
                 <div>INTEGRAL ACTIVITY</div>
+                </a>
             </div>
             <div class="flex-1 nav_li_div">
                 <a  href="/encyclopediasPage">
@@ -134,9 +136,11 @@
         <span class="right"></span>
     </div>
     <div class="lottery_bg">
-        <div class="lottery_bg01 left"></div>
-        <div class="lottery_bg02 left"></div>
-        <div class="lottery_bg03 left"></div>
+         <#list goodsList as good>
+            <a href="/jifen/index">
+                <div class="lottery_bg01 left" style="background: url(${good.goodsPicUrl})no-repeat center;"></div>
+            </a>
+        </#list>
     </div>
 </div>
 <div class="activity">

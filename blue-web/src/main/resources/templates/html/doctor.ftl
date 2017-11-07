@@ -55,7 +55,12 @@ var basePath = '${request.contextPath}';
 	    <#list doctors as doctor>
 	        <a href="/doctorDetial/${doctor.sid}" >
 	        <li class="doctor_li">
-	            <div class="doctor_img left"></div>
+                <#if doctor.headUrl??>
+                <div class="doctor_img left" style="background: url(${doctor.headUrl})no-repeat center;"></div>
+                <#else>
+                <div class="doctor_img left" ></div>
+                </#if>
+	            
 	            <div class="doctor_xq left">
 	                <div class="name">
 	                    <span>${doctor.name}</span>
@@ -71,6 +76,7 @@ var basePath = '${request.contextPath}';
     </ul>
 </div>
 <div class="height13"></div>
+<div class="margin_bottom"></div>
 <div class="footer box">
     
     <div class="flex-1 footer_list">

@@ -139,6 +139,7 @@
     <ul class="popup_ul">
     </ul>
 </div>
+<div class="margin_bottom"></div>
 <div class="footer box">
     
     <div class="flex-1 footer_list">

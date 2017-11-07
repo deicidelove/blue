@@ -60,11 +60,13 @@
         <div class="swiper-pagination"></div>
     </div>
 </div>
-<div class="sift">
-    <span class="left">口腔百科</span>
-    <span class="left">ORAL ENCYCLOPEDIA</span>
-    <span class="right"></span>
-</div>
+<a href="/encyAll">
+    <div class="sift">  
+        <span class="left">口腔百科</span>
+        <span class="left">ORAL ENCYCLOPEDIA</span>
+        <span class="right"></span>
+    </div>
+</a>
 <div class="oral_an">
     <div class="oral_an_bg"></div>
     <div class="oral_an_head">你的牙齿这么烂为啥不矫正？！</div>
@@ -86,6 +88,7 @@
 	    </a>
     </#list>
 </ul>
+<div class="margin_bottom"></div>
 <div class="footer box">
     
     <div class="flex-1 footer_list">

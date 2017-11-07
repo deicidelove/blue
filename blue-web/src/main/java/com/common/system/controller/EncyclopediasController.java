@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.BlueDept;
 import com.common.system.entity.BlueEncyclopedias;
 import com.common.system.entity.BlueStaff;
@@ -38,9 +39,19 @@ public class EncyclopediasController {
 
 		List<BlueEncyclopedias> encyclopedias = commonService.findEncyclopedias(0);
 		List<BlueEncyclopedias> encyclopediasjx = commonService.findEncyclopedias(1);
+		encyclopedias = encyclopedias.size() >=3 ? encyclopedias.subList(0, 3):encyclopedias;
 		modelAndView.addObject("encyclopedias", encyclopedias);
 		modelAndView.addObject("encyclopediasjx", encyclopediasjx);
 		modelAndView.setViewName("/html/encyclopedias");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/encyAll")
+	public ModelAndView encyAllListPage(ModelAndView modelAndView) {
+
+		List<BlueEncyclopedias> encyclopedias = commonService.findEncyclopedias(-1);
+		modelAndView.addObject("encys", encyclopedias);
+		modelAndView.setViewName("/html/encyclopedyList");
 		return modelAndView;
 	}
 
