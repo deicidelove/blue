@@ -39,5 +39,7 @@ public interface GoodsConsumerRelateService {
 	public PageInfo<GoodsConsumerRelateDTO> listForPage(Integer pageNum, Integer pageSize);
 	
 	public List<GoodsConsumerRelateEntity> list(Integer actId, Integer goodsId);
+
+	public List<GoodsConsumerRelateEntity> listUsed(Integer actId, Integer goodsId);
 	
 }

@@ -91,8 +91,20 @@ public class GoodsDao {
 				+ "	SET `act_id`=:actId, `goods_name`=:goodsName "
 				+ " WHERE `goods_id`=:goodsId";
 		Map<String,Object> paramMap = Maps.newHashMap();
-		
 		namedParameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(goodsEntity));
+	}
+
+	public List<GoodsEntity> listNoneOverGoods() {
+		String sql = "select * from rc_a_goods where is_over=0";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		return namedParameterJdbcTemplate.query(sql, paramMap, BeanPropertyRowMapper.newInstance(GoodsEntity.class));
+	}
+
+	public void updateActGoodsOver(Integer goodsId) {
+		String sql = "update rc_a_goods set is_over=1 where goods_id=:goodsId";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("goodsId", goodsId);
+		namedParameterJdbcTemplate.update(sql, paramMap);
 	}
 
 }
