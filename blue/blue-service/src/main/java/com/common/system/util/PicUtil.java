@@ -21,8 +21,9 @@ public class PicUtil {
 			if (file != null && file.getName() != null && !file.isEmpty()) {
 				// 转存文件
 				String name = file.getOriginalFilename();
-				urlTream = "C:/pics/" + name;
+				urlTream = "C:/soft/tomcat/webapps/pics/" + name;
 				file.transferTo(new File(urlTream));
+				urlTream = "http://116.62.169.159:8083/pics" + name;
 				return  urlTream;
 			}
 		} catch (IllegalStateException e) {

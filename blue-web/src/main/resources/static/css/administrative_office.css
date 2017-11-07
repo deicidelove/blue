@@ -45,6 +45,14 @@ html,body{
 .office_li_center{
     font-size: 0.2rem;
     color:#626262;
+    width:75%;
+}
+.office_li_center div:last-child{
+    width:100%;
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 .office_li_center div:first-child{
     padding-top:0.3rem;
