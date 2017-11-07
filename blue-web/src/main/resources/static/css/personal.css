@@ -141,7 +141,14 @@ html,body{
 }
 
 
-
+.personal_head_img{
+    width:1.6rem;
+    height:1.6rem;
+    border-radius: 50%;
+    border:1px solid #fff;
+    background: url("../images/icon-101.png")no-repeat center;
+    background-size: cover;
+}
 
 
 

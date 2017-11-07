@@ -36,7 +36,7 @@ public class OrderDao {
 		return result;
 	}
 	
-	public List<OrderEntity> seleteByList(String status, Integer pageNum,
+	public List<OrderEntity> seleteByList(String status, String openId, Integer pageNum,
 			Integer pageSize){
 		String sql = " SELECT * FROM rc_a_order WHERE 1=1 ";
 		Map<String, Object> paramMap = Maps.newHashMap();
@@ -45,6 +45,12 @@ public class OrderDao {
 			paramMap.put("status", status);
 			sql += " and status = :status ";
 		}
+		
+		if(StringUtils.isNotEmpty(openId)){
+			paramMap.put("openId", openId);
+			sql += " and openId = :openId ";
+		}
+		
 		if(null != pageNum && null != pageSize){
 			paramMap.put("pageStartNum", (pageNum-1)*pageSize);
 			paramMap.put("pageSize", pageSize);
