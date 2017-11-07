@@ -98,12 +98,11 @@ $(function() {
 				"targets" : -1,
 				"data" : null,
 				"render" : function(data) {
-//					debugger;
 					var btn = "";
 					//btn = '<a class="btn btn-xs btn-info" target="modal" modal="lg" href="/addOur/view/'+ data.sid+ '">查看</a> &nbsp;';
-                    //btn +='<@shiro.hasPermission name="job/edit">'
-                    //+'<a class="btn btn-xs btn-info" onclick="addOurToListAjax();" target="modal" modal="lg" href="/addOur/edit/'+ data.sid+ '">修改</a> &nbsp;'
-                    //+'</@shiro.hasPermission>'
+                    btn +='<@shiro.hasPermission name="job/edit">'
+                    +'<a class="btn btn-xs btn-info" onclick="addOurToListAjax();" target="modal" modal="lg" href="/addOur/edit/'+ data.sid+ '">修改</a> &nbsp;'
+                    +'</@shiro.hasPermission>'
                     btn += '<@shiro.hasPermission name="job/delete">'
                     +'<a class="btn btn-xs btn-default" callback="addOurReload();" data-body="确认要删除吗？" target="ajaxTodo" href="/addOur/delete/'+ data.sid + '">删除</a>'
                     +'</@shiro.hasPermission>';

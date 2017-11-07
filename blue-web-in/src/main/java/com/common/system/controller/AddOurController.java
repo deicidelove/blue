@@ -73,13 +73,13 @@ public class AddOurController {
 		return result;
 	}
 	
-//	 @RequestMapping(value = "edit/{id}",method = RequestMethod.GET)
-//	    public ModelAndView edit(@PathVariable Integer id,ModelAndView modelAndView){
-//	        Result<BlueDept> result = deptService.findBySid(id);
-//	        modelAndView.addObject("bean",result.getData());
-//	        modelAndView.setViewName("/system/admin/addOur/edit");
-//	        return modelAndView;
-//	    }
+	 @RequestMapping(value = "edit/{id}",method = RequestMethod.GET)
+	    public ModelAndView edit(@PathVariable Integer id,ModelAndView modelAndView){
+	        Result<BlueNeedWork> result = needWorkService.findBySid(id);
+	        modelAndView.addObject("bean",result.getData());
+	        modelAndView.setViewName("/system/admin/addOur/edit");
+	        return modelAndView;
+	    }
 	 
 	 @RequestMapping(value = "add",method = RequestMethod.GET)
 	    public ModelAndView add(ModelAndView modelAndView){
@@ -93,10 +93,11 @@ public class AddOurController {
 	        return needWorkService.addWork(title, needNum, education, experience, wages, workTime, workAddress, description, requirement, fringeBenefits);
 	    }
 	 
-//	 @RequestMapping(value = "update",method = RequestMethod.POST)
-//	    public @ResponseBody Result<Integer> update(String deptName,String context, int sid){	       
-//	        return deptService.updateDept(deptName, context, sid);
-//	    }
+	 @RequestMapping(value = "update",method = RequestMethod.POST)
+	    public @ResponseBody Result<Integer> update(Integer sid,String title,Integer needNum,String education,String experience,String wages,
+				String workTime,String workAddress,String description,String requirement,String fringeBenefits){	       
+	        return needWorkService.updateWork(sid, title, needNum, education, experience, wages, workTime, workAddress, description, requirement, fringeBenefits);
+	    }
 	 
 	 
 

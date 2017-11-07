@@ -144,5 +144,26 @@ public class NeedWorkServiceImpl implements NeedWorkService {
 			return new Result<>(false, "删除失败，请刷新后操作！", null);
 		}
 	}
+	@Override
+	public Result<Integer> updateWork(Integer sid,String title, Integer needNum,
+			String education, String experience, String wages, String workTime,
+			String workAddress, String description, String requirement,
+			String fringeBenefits) {
+		BlueNeedWork work = new BlueNeedWork();
+		work.setSid(sid);
+		work.setTitle(title);
+		work.setNeedNum(needNum);
+		work.setEducation(education);
+		work.setExperience(experience);
+		work.setWages(wages);
+		work.setWorkTime(workTime);
+		work.setWorkAddress(workAddress);
+		work.setDescription(description);
+		work.setRequirement(requirement);
+		work.setFringeBenefits(fringeBenefits);
+		work.setCreateTime(new Date());
+		int count = workDao.updateWork(work);
+		return new Result<Integer>(true, "保存成功！", count);
+	}
 
 }

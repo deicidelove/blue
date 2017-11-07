@@ -35,4 +35,9 @@ public interface NeedWorkService {
 	
 	public Result<Integer> addWork(String title,Integer needNum,String education,String experience,String wages,
 			String workTime,String workAddress,String description,String requirement,String fringeBenefits);
+
+	public Result<Integer> updateWork(Integer sid,String title,Integer needNum,String education,String experience,String wages,
+			String workTime,String workAddress,String description,String requirement,String fringeBenefits);
+
+
 }
