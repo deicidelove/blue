@@ -32,8 +32,8 @@
 <#macro header>
 <header class="main-header">
     <a href="index2.html" class="logo">
-        <span class="logo-mini"><b>Rock</b></span>
-        <span class="logo-lg"><b>Rock</b></span>
+        <span class="logo-mini"><b>蓝鲟口腔</b></span>
+        <span class="logo-lg"><b>蓝鲟口腔</b></span>
     </a>
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -45,7 +45,7 @@
                 <li class="dropdown user user-menu">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> <span
-                            class="hidden-xs">Rock管理后台</span>
+                            class="hidden-xs">蓝鲟口腔管理后台</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
