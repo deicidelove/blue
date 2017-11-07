@@ -16,23 +16,25 @@ public class BlueDeptDoctorPic implements Serializable{
 	 */
 	private static final long serialVersionUID = 2632803607675047746L;
 	
-	private String sid;
+	private Integer sid;
 	
-	private String url;
+	private String url = "";
 	
-	private String deptId;
+	private String deptId = "";
+
+	
 
 	/**
 	 * @return the sid
 	 */
-	public String getSid() {
+	public Integer getSid() {
 		return sid;
 	}
 
 	/**
 	 * @param sid the sid to set
 	 */
-	public void setSid(String sid) {
+	public void setSid(Integer sid) {
 		this.sid = sid;
 	}
 

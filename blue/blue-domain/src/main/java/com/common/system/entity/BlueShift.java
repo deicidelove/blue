@@ -21,7 +21,7 @@ public class BlueShift implements Serializable{
 	
 	private Integer scheduleId;
 	
-	private String time;
+	private String time ="";
 	
 	private Integer count;
 	

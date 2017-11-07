@@ -25,21 +25,21 @@ public class BlueNeedWork implements Serializable{
 	
 	private Integer needNum;
 	
-	private String education;
+	private String education = "";
 	
-	private String experience;
+	private String experience = "";
 	
-	private String wages;
+	private String wages = "";
 	
-	private String workTime;
+	private String workTime = "";
 	
-	private String workAddress;
+	private String workAddress = "";
 	
-	private String description;
+	private String description = "";
 	
-	private String requirement;
+	private String requirement = "";
 	
-	private String fringeBenefits;
+	private String fringeBenefits = "";
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;

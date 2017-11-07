@@ -23,6 +23,10 @@ public class DateUtil {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟  
 		return sdf.format(date);
 	}
+	public static String formtStringLong(Date date) throws ParseException{
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//小写的mm表示的是分钟  
+		return sdf.format(date);
+	}
 	
 	public static Date firstDay(){
 		Calendar cal = getCal();
