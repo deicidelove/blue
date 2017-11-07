@@ -82,8 +82,7 @@
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.3.6
     </div>
-    <strong>Copyright &copy; 2017-2026 <a href="https://github.com/babylikebird/common-admin">Yang</a>.
-    </strong> All rights reserved.
+    <strong>蓝鲟口腔</strong> 
 </footer>
 </#macro>
 
