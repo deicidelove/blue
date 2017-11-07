@@ -154,7 +154,7 @@ public class WorkDao {
 		paramMap.put("title", needWork.getTitle());
 		paramMap.put("needNum", needWork.getNeedNum());
 		paramMap.put("education", needWork.getEducation());
-		paramMap.put("experience", needWork.getExperience()());
+		paramMap.put("experience", needWork.getExperience());
 		paramMap.put("wages", needWork.getWages());
 		paramMap.put("work_time", needWork.getWorkTime());
 		paramMap.put("work_address", needWork.getWorkAddress());
