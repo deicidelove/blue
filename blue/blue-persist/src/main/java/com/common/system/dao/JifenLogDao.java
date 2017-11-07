@@ -8,14 +8,14 @@ import javax.annotation.Resource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
-import com.common.system.entity.ActEntity;
 import com.common.system.entity.JifenLogEntity;
-import com.common.system.util.Convert;
 import com.google.common.collect.Maps;
 
+@Repository("jifenLogDao")
 public class JifenLogDao {
 	@Resource
 	private NamedParameterJdbcTemplate  namedParameterJdbcTemplate;
@@ -49,12 +49,12 @@ public class JifenLogDao {
 		return result;
 	}
 	
-	public int saveAct(JifenLogEntity jifenLogEntity){
+	public int save(JifenLogEntity jifenLogEntity){
 		Assert.notNull(jifenLogEntity,"jifenLogEntity is null");
-		String sql = "INSERT INTO `rc_a_act` ("
-				+ "`act_name`, `act_total_num`, `act_giving_num`, `act_periods`, `act_is_expire`, `act_is_delete`"
-				+ ") VALUES ("
-				+ ":actName, :actTotalNum, :actGivingNum, :actPeriods, :actIsExpire, :actIsDelete"
+		String sql = " INSERT INTO rc_a_jifen_log "
+				+ " (  open_id, jifen) "
+				+ " VALUES ("
+				+ ":openId, :open_id"
 				+ ")";
 		return namedParameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(jifenLogEntity));
 	}

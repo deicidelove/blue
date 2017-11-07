@@ -1,34 +1,39 @@
-window.PO = window.PO || {};
-PO.Order = (function () {
-	function Order(){
+$(function() {
+	PA.Personal.initClick();
+});
+
+window.PA = window.PA || {};
+PA.Personal = (function () {
+	function Personal(){
 		
 	};
-	Order.prototype.initClick = function(){
+	Personal.prototype.initClick = function(){
 		if($("#order")){
 			$("#order").off('click');
 			$("#order").on('click',function(){
-				window.location.href = basePath +"/personal/order;
+				window.location.href = basePath +"/personal/order";
 			});
 		}
 		if($("#invitation")){
 			$("#invitation").off('click');
 			$("#invitation").on('click',function(){
-				window.location.href = basePath +"/personal/invitation;
+				window.location.href = basePath +"/personal/invitation";
 			});
 		}
 		if($("#buyjifen")){
 			$("#buyjifen").off('click');
 			$("#buyjifen").on('click',function(){
-				window.location.href = basePath +"/personal/buyjifen;
+				window.location.href = basePath +"/personal/buyjifen";
 			});
 		}
 		if($("#jifendetail")){
 			$("#jifendetail").off('click');
 			$("#jifendetail").on('click',function(){
-				window.location.href = basePath +"/personal/jifendetail;
+				window.location.href = basePath +"/personal/jifendetail";
 			});
 		}
 	};
+	return new Personal;
 })();
 /**
  * 公共方法及变量

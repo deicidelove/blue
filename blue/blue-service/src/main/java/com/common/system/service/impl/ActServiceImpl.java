@@ -84,7 +84,7 @@ public class ActServiceImpl implements ActService {
 			List<ActEntity> resultList = actDao.seleteList(pageNum, pageSize);
 			result.setList(resultList);
 		} catch (Exception e) {
-			LOG.error("ActServiceImpl deleteById error!", e );
+			LOG.error("ActServiceImpl listForPage error!", e );
 		}
 		return result;
 	}
@@ -95,7 +95,7 @@ public class ActServiceImpl implements ActService {
 		try {
 			resultList = actDao.seleteList();
 		} catch (Exception e) {
-			LOG.error("ActServiceImpl deleteById error!", e );
+			LOG.error("ActServiceImpl list error!", e );
 		}
 		return resultList;
 	}

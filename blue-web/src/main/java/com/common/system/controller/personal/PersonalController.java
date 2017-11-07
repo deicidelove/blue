@@ -110,13 +110,7 @@ public class PersonalController {
 			HttpServletRequest request,
 			@RequestParam(value = "start", defaultValue = "1") int start,
 			@RequestParam(value = "length", defaultValue = "50") int pageSize) {
-		modelAndView.setViewName("/personal/order");
-		/*
-		 * try { if(StringUtils.isNoneBlank(code)){ WxMpOAuth2AccessToken token
-		 * = wxService.oauth2getAccessToken(code);
-		 * System.out.println(token.getOpenId()); } } catch (WxErrorException e)
-		 * { LOG.error("	"); }
-		 */
+		modelAndView.setViewName("/personal/personalorder");
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		// TODO
 		openId = "1";
@@ -127,33 +121,21 @@ public class PersonalController {
 		modelAndView.addObject("resultList", result.getList());
 		return modelAndView;
 	}
+	
 	@RequestMapping(value = "jifendetail", method = RequestMethod.GET)
 	public ModelAndView jifendetail(ModelAndView modelAndView,
-			HttpServletRequest request, int orderId) {
-		modelAndView.setViewName("/personal/jifendetail");
-		/*
-		 * try { if(StringUtils.isNoneBlank(code)){ WxMpOAuth2AccessToken token
-		 * = wxService.oauth2getAccessToken(code);
-		 * System.out.println(token.getOpenId()); } } catch (WxErrorException e)
-		 * { LOG.error("	"); }
-		 */
+			HttpServletRequest request) {
+		modelAndView.setViewName("/personal/personaljifendetail");
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		// TODO
 		openId = "1";
-
 		modelAndView.addObject("resultList", null);
 		return modelAndView;
 	}
 	@RequestMapping(value = "buyjifen", method = RequestMethod.GET)
 	public ModelAndView buyjifen(ModelAndView modelAndView,
 			HttpServletRequest request ) {
-		modelAndView.setViewName("/personal/buyjifen");
-		/*
-		 * try { if(StringUtils.isNoneBlank(code)){ WxMpOAuth2AccessToken token
-		 * = wxService.oauth2getAccessToken(code);
-		 * System.out.println(token.getOpenId()); } } catch (WxErrorException e)
-		 * { LOG.error("	"); }
-		 */
+		modelAndView.setViewName("/personal/personalbuyjifen");
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		// TODO
 		openId = "1";
@@ -166,13 +148,7 @@ public class PersonalController {
 			HttpServletRequest request,
 			@RequestParam(value = "start", defaultValue = "1") int start,
 			@RequestParam(value = "length", defaultValue = "50") int pageSize) {
-		modelAndView.setViewName("/personal/invitation");
-		/*
-		 * try { if(StringUtils.isNoneBlank(code)){ WxMpOAuth2AccessToken token
-		 * = wxService.oauth2getAccessToken(code);
-		 * System.out.println(token.getOpenId()); } } catch (WxErrorException e)
-		 * { LOG.error("	"); }
-		 */
+		modelAndView.setViewName("/personal/personalinvitation");
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		// TODO
 		openId = "1";
