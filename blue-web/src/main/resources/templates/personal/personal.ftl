@@ -86,3 +86,5 @@
 </div>
 </body>
 </html>
+<script src="../js/jquery.js"></script>
+<script src="../js/personal.js"></script>
