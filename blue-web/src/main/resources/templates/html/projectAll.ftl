@@ -14,16 +14,7 @@
     <div class="heade_text">所有项目</div>
     <div class="heade_back">返回</div>
 </div>
-<a href="/projectDetial/${projectFirst.sid}">
-<div class="oral_an notice_an brdt_nospace">
-    <#if projectFirst.url??>
-   		 <img class="artical_an" src="${projectFirst.url}" />
-    <#else>
-     	<img class="artical_an" src="../images/notice_img01.jpg" />
-    </#if>
-    <div class="oral_an_head">${projectFirst.name}</div>
-</div>
-</a>
+
 <ul class="encyclopedia_ul notice_ul">
     <#list projects as project>
     <a href="/projectDetial/${project.sid}">
