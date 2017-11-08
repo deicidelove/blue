@@ -14,16 +14,6 @@
     <div class="heade_text">重要通知</div>
     <div class="heade_back">返回</div>
 </div>
-<a href="/noticeDetialPage/${advertsFirst.sid}">
-<div class="oral_an notice_an brdt_nospace">
-    <#if advertsFirst.url??>
-   		 <img class="artical_an" src="${advertsFirst.url}" />
-    <#else>
-     	<img class="artical_an" src="../images/notice_img01.jpg" />
-    </#if>
-    <div class="oral_an_head">${advertsFirst.title}</div>
-</div>
-</a>
 <ul class="encyclopedia_ul notice_ul">
     <#list adverts as advert>
     <a href="/noticeDetialPage/${advert.sid}">
