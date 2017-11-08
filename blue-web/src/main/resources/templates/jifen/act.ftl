@@ -170,22 +170,36 @@
         <span class="left help_labe_text" id = "isShowTip">下次不再显示</span>
     </div>
 </div>
+<div class="margin_bottom"></div>
 <div class="footer box">
+    
     <div class="flex-1 footer_list">
+      <a href="/">
         <div class="footer_bg04_active"></div>
         <div class="footer_color">首页</div>
+     </a>
     </div>
+   
+   
     <div class="flex-1 footer_list">
+         <a href="/blueWebsite">
         <div class="footer_bg01"></div>
         <div>蓝鲟</div>
+        </a>
     </div>
+    
+   
     <div class="flex-1 footer_list">
+     <a href="/blueWebsite">
         <div class="footer_bg02"></div>
         <div>走进蓝鲟</div>
+    </a>
     </div>
     <div class="flex-1 footer_list">
-        <div class="footer_bg03"></div>
-        <div>我的</div>
+        <a href="/personal/index">
+            <div class="footer_bg03"></div>
+            <div>我的</div>
+        </a>
     </div>
 </div>
 </body>

@@ -181,10 +181,11 @@
         <div>走进蓝鲟</div>
     </a>
     </div>
-    
     <div class="flex-1 footer_list">
-        <div class="footer_bg03"></div>
-        <div>我的</div>
+        <a href="/personal/index">
+            <div class="footer_bg03"></div>
+            <div>我的</div>
+        </a>
     </div>
 </div>
 </body>
