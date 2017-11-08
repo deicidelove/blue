@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.common.system.entity.GoodsEntity;
+import com.common.system.entity.GoodsImgEntity;
 import com.common.system.entity.WxDetailEntity;
 
 public class GoodsDetailDTO implements Serializable{
@@ -20,6 +22,8 @@ public class GoodsDetailDTO implements Serializable{
 	private String goodsName;
 	
 	private String goodsTitle;
+	
+	private List<GoodsImgEntity> imgList;
 	
 	private BigDecimal goodsPrice;
 	/**
@@ -204,6 +208,20 @@ public class GoodsDetailDTO implements Serializable{
 	 */
 	public void setGoodsPrice(BigDecimal goodsPrice) {
 		this.goodsPrice = goodsPrice;
+	}
+
+	/**
+	 * @return the imgList
+	 */
+	public List<GoodsImgEntity> getImgList() {
+		return imgList;
+	}
+
+	/**
+	 * @param imgList the imgList to set
+	 */
+	public void setImgList(List<GoodsImgEntity> imgList) {
+		this.imgList = imgList;
 	}
 
 }

@@ -23,10 +23,11 @@
     <div class="swiper01">
         <div class="swiper-container banner" id="banner">
             <ul class="swiper-wrapper img-list" id="test">
-                <li class="swiper-slide"><img src="../images/icon-20.png" alt=""/></li>
-                <li class="swiper-slide"><img src="../images/icon-20.png" alt=""/></li>
-                <li class="swiper-slide"><img src="../images/icon-20.png" alt=""/></li>
-                <li class="swiper-slide"><img src="../images/icon-20.png" alt=""/></li>
+            	<#if (detailDTO.adImgList)??>
+            	<#list detailDTO.adImglist as temp>
+                <li class="swiper-slide"><img src="temp.goodsImgUrl" alt=""/></li>
+                </#list>
+                </#if>
             </ul>
             <div class="swiper-pagination"></div>
         </div>

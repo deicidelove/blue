@@ -189,6 +189,10 @@ public class JifenController {
         detailDTO.setParticipantsNum((consumerRelateEntityList.size()> actEntity.getActTotalNum())?actEntity.getActTotalNum(): consumerRelateEntityList.size() );
         detailDTO.setRemainingNum(
 				(actEntity.getActTotalNum() - consumerRelateEntityList.size())<0?0:(actEntity.getActTotalNum() - consumerRelateEntityList.size()));
+        List<GoodsImgEntity> goodsImgEntityList = goodsImgService.findByGoodsId(goodsId, "ad_img");
+        if(!CollectionUtils.isEmpty(goodsImgEntityList)){
+        	detailDTO.setImgList(goodsImgEntityList);
+        }
         modelAndView.addObject("detailDTO", detailDTO);
         modelAndView.addObject("actId", detailDTO.getActId());
         modelAndView.addObject("goodsId", detailDTO.getGoodsId());
