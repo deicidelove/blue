@@ -20,9 +20,25 @@ public class BlueDeptDoctorPic implements Serializable{
 	
 	private String url = "";
 	
-	private String deptId = "";
+	private String deptName = "";
+	
+	private Integer deptId;
 
 	
+
+	/**
+	 * @return the deptName
+	 */
+	public String getDeptName() {
+		return deptName;
+	}
+
+	/**
+	 * @param deptName the deptName to set
+	 */
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
 
 	/**
 	 * @return the sid
@@ -55,18 +71,16 @@ public class BlueDeptDoctorPic implements Serializable{
 	/**
 	 * @return the deptId
 	 */
-	public String getDeptId() {
+	public Integer getDeptId() {
 		return deptId;
 	}
 
 	/**
 	 * @param deptId the deptId to set
 	 */
-	public void setDeptId(String deptId) {
+	public void setDeptId(Integer deptId) {
 		this.deptId = deptId;
 	}
-	
-	
-	
+
 
 }

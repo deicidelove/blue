@@ -144,9 +144,6 @@ public class StaffDao {
 		paramMap.put("search", search);
 		List<BlueStaff> result = namedParameterJdbcTemplate.query(sql.toString(), paramMap, new BeanPropertyRowMapper<BlueStaff>(BlueStaff.class));
 		return result;
-		
-		
-		
 	}
 
 }
