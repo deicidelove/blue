@@ -125,7 +125,7 @@ $(function() {
 	});
 });
 
-function advertReload(){
+function encyclopediasReload(){
 	reloadTable(encyclopedias_tab,"#encyclopediasTime","#encyclopediasSelect");
 }
 

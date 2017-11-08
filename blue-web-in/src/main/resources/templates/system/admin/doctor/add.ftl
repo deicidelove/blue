@@ -13,37 +13,10 @@ var textStr;
                     alertMsg("添加失败:"+json.msg,"success");
                 }
 		 })
-function doctorSave(){
-	$("span").remove(".errorClass");
-	$("br").remove(".errorClass");
-	var status = 1;
-	if($("#name").val()==""){
-		$("#userNoLabel").prepend('<span class="errorClass" style="color:red">*账号不能为空</span><br class="errorClass"/>');
-		status = 0;
-	}
-	if(status == 0){
-		return false;
-	}else{
-		$.ajax({
-			url: '/doctor/save',
-	        type: 'post',
-	        dataType: 'text',
-	        data: $("#doctorAddForm").serialize(),
-	        success: function (data) {
-                var json = JSON.parse(data);
-                if (json.status){
-                    $("#lgModal").modal('hide');
-                    alertMsg("添加成功","success");
-                    reloadTable(list_ajax,"#doctorTime","#doctorPremise");
-                }else{
-                    alertMsg("添加失败:"+json.msg,"success");
-                }
-	        }
-		});
-	}
-}
+
 </script>
 <div class="row">
+	<iframe id="doctorAddTarget" name="doctorAddTarget" style="display:none"></iframe>
 	<div class="col-md-12">
 		<form id="doctorAddForm" method="post" enctype="multipart/form-data" action="/doctor/save" target="doctorAddTarget">
 			<div class="modal-body">
