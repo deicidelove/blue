@@ -18,35 +18,41 @@
     <div class="join_con">            
         <h4><span class="salary">${work.wages}</span>${work.title}</h4>
         <div class="join_infor">
-            <span class="com_pernum">招${work.needNum}人</span>
-            <span class="com_edu">${work.education}</span>
-            <span class="com_years">${work.experience}</span>
+            <span class="com_pernum"><#if work.needNum??>招${work.needNum}人</#if></span>
+            <span class="com_edu"><#if work.education??>${work.education}</#if></span>
+            <span class="com_years"><#if work.experience??>${work.experience}</#if></span>
         </div>
     </div>
     <div class="com_timeadres">
-        <p>工作时间：${work.workTime}</p>
-        <p>工作地址：${work.workAddress}</p>
+        <p>工作时间：<#if work.workTime??> ${work.workTime}</#if></p>
+        <p>工作地址：<#if work.workAddress??>${work.workAddress}</#if></p>
     </div>
     
     <div class="join_block mt_space">
         <div class="title"><span class="com_des">职位描述</span></div>
         <div class="desc">
+         <#if  work.description??>
             ${work.description}
+         </#if>
          </div>
     </div>
     
     <div class="join_block mt_space">
         <div class="title"><span class="com_trophy">职位要求</span></div>
         <div class="desc">
+        <#if  work.requirement??>
             ${work.requirement}
+         </#if>
          </div>
     </div>
     
     <div class="join_block mt_space">
         <div class="title"><span class="com_welfare">福利待遇</span></div>
         <div class="desc">
-        ${work.fringeBenefits}
-         </div>
+        <#if work.fringeBenefits??>
+            ${work.fringeBenefits}
+        </#if>
+        </div>
     </div>
 </div>    
 

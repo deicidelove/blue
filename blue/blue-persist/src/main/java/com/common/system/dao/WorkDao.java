@@ -149,7 +149,7 @@ public class WorkDao {
 
 	public int addWork(BlueNeedWork needWork) {
 
-		String sql = "UPDATE FROM tb_blue_needWork SET `title`=:, `needNum`, `education`, `experience`, `wages`, `work_time`, `work_address`, `description`, `requirement`,`fringe_benefits`, `create_time`) "
+		String sql = "INSERT INTO tb_blue_needWork ( `title`, `needNum`, `education`, `experience`, `wages`, `work_time`, `work_address`, `description`, `requirement`,`fringe_benefits`, `create_time`) "
 				+ "VALUES (:title, :needNum, :education, :experience, :wages, :work_time, :work_address, :description, :requirement,:fringe_benefits, :createTime)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("title", needWork.getTitle());
