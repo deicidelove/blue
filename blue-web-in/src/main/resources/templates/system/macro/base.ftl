@@ -31,7 +31,7 @@
 
 <#macro header>
 <header class="main-header">
-    <a href="index2.html" class="logo">
+    <a href="javascript:void(0)" class="logo">
         <span class="logo-mini"><b>蓝鲟口腔</b></span>
         <span class="logo-lg"><b>蓝鲟口腔</b></span>
     </a>
