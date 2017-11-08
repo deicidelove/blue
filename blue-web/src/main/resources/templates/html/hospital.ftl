@@ -28,14 +28,18 @@
                     <span class="left">推荐理由</span>
                 </div>
                 <div class="intro_cont_text">
-          			${hospitalJSA.context}
+          			<#if hospitalJSA??>
+          				${hospitalJSA.context}
+          			</#if>
                 </div>
                 <div class="intro_cont_head">
                     <span class="left"></span>
                     <span class="left">科室特色</span>
                 </div>
                 <div class="intro_cont_text">
+                 <#if hospitalJSB??>
                   ${hospitalJSB.context}
+                 </#if>
                 </div>
             </div>
         </div>
@@ -43,27 +47,35 @@
     <li class="tab_li displaynone">
         <div class="century_01">
             <div>
+             <#if hospitalBN1??>
               ${hospitalBN1.context}
+              </#if>
             </div>
         </div>
         <div class="century_02">
             <div>
-                <p> ${hospitalBN11.context}
+                <p>  
+                <#if hospitalBN11??>
+                	${hospitalBN11.context}
+                </#if>
                 </p>
-                
             </div>
         </div>
         <div class="century_03">
             <div>
                 <p>
+                <#if hospitalBN12??>
                      ${hospitalBN12.context}
+                 </#if>
                 </p>
                 
             </div>
         </div>
         <div class="century_04">
             <div>
+            <#if hospitalBN13??>
                ${hospitalBN13.context}
+            </#if>
             </div>
             <div>
                
@@ -72,7 +84,9 @@
         <div class="century_05">
             <div>
                 <p>
+                <#if hospitalBN14??>
                      ${hospitalBN14.context}
+                </#if>
                 </p>
             </div>
         </div>

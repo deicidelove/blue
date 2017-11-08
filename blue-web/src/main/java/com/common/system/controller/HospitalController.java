@@ -41,13 +41,13 @@ public class HospitalController {
 		List<BlueHospital> type22 = commonService.findHospitalByType(22);
 		
 		modelAndView.addObject("hospitalHJ0", type0);
-		modelAndView.addObject("hospitalBN1", type1.get(0));
-		modelAndView.addObject("hospitalJSA", type21.get(0));
-		modelAndView.addObject("hospitalJSB", type22.get(0));
-		modelAndView.addObject("hospitalBN11", type11.get(0));
-		modelAndView.addObject("hospitalBN12", type12.get(0));
-		modelAndView.addObject("hospitalBN13", type13.get(0));
-		modelAndView.addObject("hospitalBN14", type14.get(0));
+		modelAndView.addObject("hospitalBN1", type1.size()>1?type1.get(0):null);
+		modelAndView.addObject("hospitalJSA", type21.size()>1?type21.get(0):null);
+		modelAndView.addObject("hospitalJSB", type22.size()>1?type22.get(0):null);
+		modelAndView.addObject("hospitalBN11", type11.size()>1?type11.get(0):null);
+		modelAndView.addObject("hospitalBN12", type12.size()>1?type12.get(0):null);
+		modelAndView.addObject("hospitalBN13", type13.size()>1?type13.get(0):null);
+		modelAndView.addObject("hospitalBN14", type14.size()>1?type14.get(0):null);
 		modelAndView.setViewName("/html/hospital");
 		return modelAndView;
 	}
