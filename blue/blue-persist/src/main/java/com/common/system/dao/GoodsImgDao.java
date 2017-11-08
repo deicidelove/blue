@@ -24,7 +24,7 @@ public class GoodsImgDao {
 	@Resource
 	private NamedParameterJdbcTemplate  namedParameterJdbcTemplate;
 	
-	public GoodsImgEntity seleteById(Integer goodsId, String imgType){
+	public List<GoodsImgEntity> seleteById(Integer goodsId, String imgType){
 		Assert.notNull(goodsId,"goodsId is null");
 		Assert.notNull(imgType,"imgType is null");
 		String sql = " SELECT * FROM `rc_a_goods_img`  WHERE goods_id = :goodsId and img_type = :imgType ";
@@ -32,10 +32,22 @@ public class GoodsImgDao {
 		paramMap.put("goodsId", goodsId);
 		
 		paramMap.put("imgType", imgType);
-		GoodsImgEntity result = namedParameterJdbcTemplate
-				.queryForObject(sql, paramMap, new BeanPropertyRowMapper<GoodsImgEntity>(GoodsImgEntity.class));
+		List<GoodsImgEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<GoodsImgEntity>(GoodsImgEntity.class));
 				
-		return result;
+		return resultList;
+	}
+	
+	public List<GoodsImgEntity> seleteById(Integer goodsId){
+		Assert.notNull(goodsId,"goodsId is null");
+		String sql = " SELECT * FROM `rc_a_goods_img`  WHERE goods_id = :goodsId and img_type = :imgType ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("goodsId", goodsId);
+		
+		List<GoodsImgEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<GoodsImgEntity>(GoodsImgEntity.class));
+				
+		return resultList;
 	}
 	
 	public List<GoodsImgEntity> seleteByList(Integer pageNum,

@@ -129,9 +129,10 @@ public class JifenController {
 			actGoodsDTO.setRemainingNum(
 					(actEntity.getActTotalNum() - goodsConsumerRelateList.size())<0?0:(actEntity.getActTotalNum() - goodsConsumerRelateList.size()));
 			//获取图片
-			GoodsImgEntity imgEntity = goodsImgService.findByGoodsId(goodsEntity.getGoodsId(), "list_img");
-			if(null != imgEntity){
-				actGoodsDTO.setListImg(imgEntity.getGoodsImgUrl());
+			
+			List<GoodsImgEntity> imgEntityList = goodsImgService.findByGoodsId(goodsEntity.getGoodsId(), "list_img");
+			if(!CollectionUtils.isEmpty(imgEntityList)){
+				actGoodsDTO.setListImg(imgEntityList.get(0).getGoodsImgUrl());
 			}
 			resultList.add(actGoodsDTO);
 		}
@@ -285,9 +286,9 @@ public class JifenController {
 				Result<GoodsEntity> goodsResult = goodsService.getById(givingEntity.getGoodsId());
 				GoodsEntity goodsEntity = goodsResult.getData();
 				map.put("goodsName", goodsEntity.getGoodsName());
-				GoodsImgEntity goodsImgEntity = goodsImgService.findByGoodsId(givingEntity.getGoodsId(), "list_img");
-				if(null != goodsImgEntity){
-					map.put("goodsImgUrl", goodsImgEntity.getGoodsImgUrl());
+				List<GoodsImgEntity> goodsImgEntityList = goodsImgService.findByGoodsId(givingEntity.getGoodsId(), "list_img");
+				if(!CollectionUtils.isEmpty(goodsImgEntityList) && goodsImgEntityList.size() > 0 ){
+					map.put("goodsImgUrl", goodsImgEntityList.get(0).getGoodsImgUrl());
 				}
 				
 				WxDetailEntity wxUserEntity = wxDetailService.findByOpenId(givingEntity.getOpenId()) ;

@@ -1,17 +1,11 @@
 package com.common.system.controller;
 
-import com.common.system.dto.GoodsConsumerRelateDTO;
 import com.common.system.entity.ActEntity;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
-import com.common.system.entity.RcRole;
-import com.common.system.entity.RcUser;
 import com.common.system.service.ActService;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
-import com.common.system.service.RoleService;
-import com.common.system.service.UserService;
-import com.common.system.shiro.ShiroKit;
 import com.common.system.util.MsgCode;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
@@ -27,9 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Mr.Yangxiufeng on 2017/6/21.

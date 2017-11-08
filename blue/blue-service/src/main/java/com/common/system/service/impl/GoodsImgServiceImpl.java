@@ -1,5 +1,7 @@
 package com.common.system.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -19,17 +21,17 @@ public class GoodsImgServiceImpl implements GoodsImgService {
 	private static final Logger LOG = LoggerFactory.getLogger(GoodsImgServiceImpl.class);
 	
 	@Override
-	public GoodsImgEntity findByGoodsId(Integer goodsId, String imgType) {
+	public List<GoodsImgEntity> findByGoodsId(Integer goodsId, String imgType) {
 		
 		
-		GoodsImgEntity goodsImgEntity = null;
+		List<GoodsImgEntity> goodsImgEntityList = null;
 		
 		try {
-			goodsImgEntity = goodsImgDao.seleteById(goodsId, imgType);
+			goodsImgEntityList = goodsImgDao.seleteById(goodsId, imgType);
 		} catch (Exception e) {
 			LOG.error("findByGoodsId error!",e);
 		}
-		return goodsImgEntity;
+		return goodsImgEntityList;
 	}
 
 	@Override
