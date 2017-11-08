@@ -44,7 +44,7 @@ var textStr;
                            placeholder="输入文本...">
                 </div>
                 <div class="form-group">
-                	<img src="${bean.url!}" style=""/>
+                	<img src="${bean.url!}" style="width:200px;height:200px"/>
                 	<label>上传文件</label>
                     <input type="file" class="form-control" name="fileName" id="fileName" value="上传图片" >
                 </div>
