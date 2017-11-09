@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <label>类型</label>
                     <select name="type" class="form-control select2" style="width: 100%;">
-                        <option <#if bean.type == 0>selected="selected"</#if> value="0">广告</option>
+                        <option <#if bean.type == 0>selected="selected"</#if> value="0">通知</option>
                         <option <#if bean.type == 1>selected="selected"</#if> value="1">公告</option>
                     </select>
                 </div>

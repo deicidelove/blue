@@ -2,7 +2,7 @@
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header">
-				<h3 class="box-title">广告管理</h3>
+				<h3 class="box-title">公告通知管理</h3>
 				<div class="box-tools pull-right">
 					<@shiro.hasPermission name="advert/add">
 						<a onclick="advertToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/advert/add">添加</a>
@@ -24,7 +24,7 @@
 							<span class="input-group-addon"><i class="fa fa-search"></i></span>
 							<select name="search" id="advertSelect"  class="form-control select2" style="width: 100%;">
 								 <option select value="-1">全部</option>
-								 <option value="0">广告</option>
+								 <option value="0">通知</option>
 	                        	 <option value="1">公告</option>
                 			</select>
 						</div>
@@ -93,7 +93,7 @@ $(function() {
 			    data: null,
 			    render: function (data) {
 			    	if(data.type == 0){
-			    		return "广告";
+			    		return "通知";
 			    	}else{
 			    		return "公告";
 			    	}

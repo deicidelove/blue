@@ -27,7 +27,7 @@ import com.common.system.util.Result;
 @Service("projectService")
 public class ProjectServiceImpl implements ProjectService {
 
-	private Logger LOG = LoggerFactory.getLogger(ProjectService.class);
+	private Logger LOG = LoggerFactory.getLogger(ProjectServiceImpl.class);
 
 	@Resource
 	private ProjectDao projectDao;

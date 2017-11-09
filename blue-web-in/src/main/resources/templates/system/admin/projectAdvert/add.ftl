@@ -1,25 +1,25 @@
 <script type="text/javascript">
 
-var textStr;
-		$("#advertAddTarget").load(function(){
+	var textStr;
+		$("#projectAdvertAddTarget").load(function(){
 		     debugger;
 			 textStr=$(this);
 			 var data = textStr[0].contentDocument.body.textContent;
 		  	 var json = JSON.parse(data);
-            if (json.status){
-                    $("#lgModal").modal('hide');
-                    alertMsg("添加成功","success");
-                    reloadTable(list_ajax,"#advertTime","#advertSelect");
-                }else{
-                    alertMsg("添加失败:"+json.msg,"success");
-                }
+           if (json.status){
+	            $("#lgModal").modal('hide');
+	            alertMsg("添加成功","success");
+	            reloadTable(list_ajax,"#projectAdvertTime","#projectAdvertPremise");
+            }else{
+                alertMsg("添加失败:"+json.msg,"success");
+            }
 		 })
 
 </script>
 <div class="row">
-<iframe id="advertAddTarget" name="advertAddTarget" style="display:none"></iframe>
+<iframe id="projectAdvertAddTarget" name="projectAdvertAddTarget" style="display:none"></iframe>
 	<div class="col-md-12">
-		<form id="advertAddForm" method="post" enctype="multipart/form-data" action="/advert/save" target="advertAddTarget">
+		<form id="projectAdvertAddForm" method="post" enctype="multipart/form-data" action="/projectAdvert/save" target="projectAdvertAddTarget">
 			<div class="modal-body">
 				<div class="form-group">
                     <label id="titleLabel">标题</label>
@@ -31,13 +31,11 @@ var textStr;
                     <input type="text" class="form-control" name="context" id="context""
                            placeholder="输入内容...">
                 </div>
-				<div class="form-group">
-					<label>类型</label> 
-					<select name="type" class="form-control select2" style="width: 100%;">
-                        <option select value="0">通知</option>
-                        <option value="1">公告</option>
-                    </select>
-				</div>
+                <div class="form-group">
+                    <label id="contextLabel">跳转地址</label>
+                    <input type="text" class="form-control" name="jumpUrl" id="jumpUrl""
+                           placeholder="输入跳转地址...">
+                </div>
 				 <div class="form-group">
                     <label>上传文件</label>
                     <input type="file" class="form-control" name="fileName" id="fileName" value="上传图片" >
