@@ -29,8 +29,7 @@
     <#if project0??>
         <a href="/projectDetial/${project0.sid}">
         <div class="project_img_01 left" style="background: url(${project0.url})no-repeat center;">
-            <div>${project0.name}/div>
-          
+            <div>${project0.name}</div>   
         </div>
         </a>
     </#if>

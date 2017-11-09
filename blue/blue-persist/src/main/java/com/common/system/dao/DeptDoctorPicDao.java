@@ -97,11 +97,12 @@ public class DeptDoctorPicDao {
 	}
 
 	public int add(BlueDeptDoctorPic pic) {
-		String sql = "INSERT INTO `tb_blue_deptdoctor_pic` (`url`, `deptId`) "
-				+ "VALUES (:url, :deptId)";
+		String sql = "INSERT INTO `tb_blue_deptdoctor_pic` (`url`, `deptId`,`deptName`) "
+				+ "VALUES (:url, :deptId :deptName)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("url", pic.getUrl());
 		paramMap.put("deptId", pic.getDeptId());
+		paramMap.put("deptName", pic.getDeptName());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
 	}
