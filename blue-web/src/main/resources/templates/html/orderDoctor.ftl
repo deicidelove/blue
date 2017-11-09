@@ -17,8 +17,12 @@
     <div class="heade_back">返回</div>
 </div>
 <div class="subs_head">
-    <div class="head_bg left"></div>
-    <div class="head_name left">
+	 <#if doctor.headUrl??>
+    <div class="head_bg left" style="background: url(${doctor.headUrl})no-repeat center;"></div>
+    <#else>
+    <div class="head_bg left" ></div>
+    </#if>
+    <div class="head_name left" >
         <div>${doctor.name}</div>
         <div class="post">
             <span class="left">${doctor.positionName}</span>
@@ -122,7 +126,7 @@
 <div class="popup_bg"></div>
 <div class="popup">
     <div class="popup_head">
-        <span class="left">咨询热线: 025-888888</span>
+        <span class="left">咨询热线: 025-52251111</span>
         <span class="right close"></span>
     </div>
     <div class="popup_doctor">

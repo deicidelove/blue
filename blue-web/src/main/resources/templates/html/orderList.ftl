@@ -49,7 +49,11 @@
             <#list doctors as doctor>
             <a href="/doctorDetial/${doctor.sid}" >
             <li class="doctor_li">
-                <div class="doctor_img left"></div>
+	             <#if doctor.headUrl??>
+			    <div class="doctor_img left" style="background: url(${doctor.headUrl})no-repeat center;"></div>
+			    <#else>
+			    <div class="doctor_img left"></div>
+			    </#if>
                 <div class="doctor_xq left">
                     <div class="name">
                         <span>${doctor.name}</span>
