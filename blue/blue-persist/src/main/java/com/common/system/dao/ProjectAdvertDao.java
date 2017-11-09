@@ -80,7 +80,7 @@ public class ProjectAdvertDao {
 	}
 
 	public int updateProjectAdvert(BlueProjectAdvert projectAdvert) {
-		StringBuilder sql = new StringBuilder("UPDATE `tb_blue_projectAdvert` SET title =:name,context =:context,jump_url=:jump_url ");
+		StringBuilder sql = new StringBuilder("UPDATE `tb_blue_projectAdvert` SET title =:title,context =:context,jump_url=:jump_url ");
 	
 		Map<String, Object> paramMap = Maps.newHashMap();
 		if(!StringUtils.isEmpty(projectAdvert.getPicUrl())){
