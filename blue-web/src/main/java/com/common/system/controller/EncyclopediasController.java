@@ -39,9 +39,20 @@ public class EncyclopediasController {
 
 		List<BlueEncyclopedias> encyclopedias = commonService.findEncyclopedias(0);
 		List<BlueEncyclopedias> encyclopediasjx = commonService.findEncyclopedias(1);
-		encyclopedias = encyclopedias.size() >=3 ? encyclopedias.subList(0, 3):encyclopedias;
-		modelAndView.addObject("encyclopedias", encyclopedias);
-		modelAndView.addObject("encyclopediasjx", encyclopediasjx);
+		try {
+			modelAndView.addObject("encyclopediasjx0", encyclopediasjx.get(0));
+			modelAndView.addObject("encyclopediasjx1", encyclopediasjx.get(1));
+			modelAndView.addObject("encyclopediasjx2", encyclopediasjx.get(2));
+			modelAndView.addObject("encyclopediasjx3", encyclopediasjx.get(3));
+		} catch (Exception e) {
+		}
+		try {
+			modelAndView.addObject("encyclopedias0", encyclopedias.get(0));
+			modelAndView.addObject("encyclopedias1", encyclopedias.get(1));
+			modelAndView.addObject("encyclopedias2", encyclopedias.get(2));
+			modelAndView.addObject("encyclopedias3", encyclopedias.get(3));
+		} catch (Exception e) {
+		}
 		modelAndView.setViewName("/html/encyclopedias");
 		return modelAndView;
 	}

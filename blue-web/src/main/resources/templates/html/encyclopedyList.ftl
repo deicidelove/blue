@@ -20,11 +20,10 @@
     <a href="/encyclopediasDetial/${ency.sid}">
 	    <li class="encyclopedia_li">
 	         <#if ency.url??>
-	   			 <img class="artical_an" src="${ency.url}" />
+	   			 <img class="left artical_img" src="${ency.url}" />
 		    <#else>
 		     	<img class="left artical_img" src="../images/notice_img02.jpg" />
 		    </#if>
-	        
 	        <div class="left encyclopedia_li_cent">
 	            <div>${ency.title}</div>
 	            <div>${ency.context}</div>

@@ -29,24 +29,47 @@
     <span class="left">精选百科</span>
     <span class="left">SELECTED</span>
 </div>
+<div class="sift">
+    <span class="left">精选百科</span>
+    <span class="left">SELECTED</span>
+</div>
 <div class="sift_img">
     <div class="sift_img_top">
-        <div class="sift_img_top_left left">牙齿检查，让您与家人尽享美味</div>
-        <div class="sift_img_top_right left"></div>
+        <#if encyclopediasjx0??>
+	        <div class="sift_img_top_left left">${encyclopediasjx0.title}</div>
+	        <a href="/encyclopediasDetial/${encyclopediasjx0.sid}">
+	        <div class="sift_img_top_right left" style="background: url(${encyclopediasjx0.url})no-repeat center;"></div>
+	    	</a>
+    	<#else>
+	    	<div class="sift_img_top_left left">请设置精选百科</div>
+	        <div class="sift_img_top_right left" ></div>
+    	</#if>
     </div>
     <div class="sift_img_botm box">
-    	<#list encyclopediasjx as jx>
-	         <a href="/encyclopediasDetial/${jx.sid}">
-		        <div class="flex-1">
-		        	<#if jx.url??>
-		            <div class="sift_img_botm_bg01" style="background: url('${jx.url}')no-repeat center;"></div>
-		            <#else>
-		             <div class="sift_img_botm_bg01"></div>
-		            </#if>
-		            <div>${jx.title}</div>
-		        </div>
+    	<#if encyclopediasjx1??>
+	    	<a href="/encyclopediasDetial/${encyclopediasjx1.sid}">
+	        <div class="flex-1">
+	            <div class="sift_img_botm_bg01" style="background: url(${encyclopediasjx1.url})no-repeat center;"></div>
+	            <div>${encyclopediasjx1.title}</div>
+	        </div>
 	        </a>
-        </#list>
+        </#if>
+        <#if encyclopediasjx2??>
+	        <a href="/encyclopediasDetial/${encyclopediasjx2.sid}">
+	        <div class="flex-1 margin_13">
+	            <div class="sift_img_botm_bg02" style="background: url(${encyclopediasjx2.url})no-repeat center;"></div>
+	            <div>${encyclopediasjx2.title}</div>
+	        </div>
+	        </a>
+        </#if>
+        <#if encyclopediasjx3??>
+	        <a href="/encyclopediasDetial/${encyclopediasjx3.sid}">
+	        <div class="flex-1">
+	            <div class="sift_img_botm_bg03" style="background: url(${encyclopediasjx3.url})no-repeat center;"></div>
+	            <div>${encyclopediasjx3.title}</div>
+	        </div>
+	        </a>
+        </#if>
     </div>
 </div>
 <div class="swiper02">
@@ -67,27 +90,53 @@
         <span class="right"></span>
     </div>
 </a>
+<#if encyclopedias0??>
+<div class="oral_an">
+    <div class="oral_an_bg" style="background: url(${encyclopedias0.url})no-repeat center;"></div>
+    <div class="oral_an_head">${encyclopedias0.title}</div>
+</div>
+<#else>
 <div class="oral_an">
     <div class="oral_an_bg"></div>
-    <div class="oral_an_head">你的牙齿这么烂为啥不矫正？！</div>
+    <div class="oral_an_head">请设置口腔百科</div>
 </div>
+</#if>
 <ul class="encyclopedia_ul">
-    <#list encyclopedias as item>
-	    <a href="/encyclopediasDetial/${item.sid}">
-		    <li class="encyclopedia_li">
-	    		<#if item.url??>
-	            <div class="left encyclopedia_li_bg" style="background: url('${item.url}')no-repeat center;"></div>
-	            <#else>
-	             <div class="left encyclopedia_li_bg"></div>
-	            </#if>
-	        	<div class="left encyclopedia_li_cent">
-	            <div>${item.title}</div>
-	            <div>${item.context}</div>
-		        </div>
-		    </li>
-	    </a>
-    </#list>
+    <#if encyclopedias1??>
+    <a href="/encyclopediasDetial/${encyclopedias1.sid}">
+    <li class="encyclopedia_li">
+        <div class="left encyclopedia_li_bg" style="background: url(${encyclopedias1.url})no-repeat center;"></div>
+        <div class="left encyclopedia_li_cent">
+            <div>${encyclopedias1.title}</div>
+            <div>${encyclopedias1.context}</div>
+        </div>
+    </li>
+    </a>
+    </#if>
+     <#if encyclopedias2??>
+     <a href="/encyclopediasDetial/${encyclopedias2.sid}">
+    <li class="encyclopedia_li">
+        <div class="left encyclopedia_li_bg encyclopedia_li_bg02" style="background: url(${encyclopedias2.url})no-repeat center;"></div>
+        <div class="left encyclopedia_li_cent">
+            <div>${encyclopedias2.title}</div>
+             <div>${encyclopedias2.context}</div>
+        </div>
+    </li>
+    </a>
+    </#if>
+    <#if encyclopedias3??>
+    <a href="/encyclopediasDetial/${encyclopedias3.sid}">
+    <li class="encyclopedia_li">
+        <div class="left encyclopedia_li_bg encyclopedia_li_bg03" style="background: url(${encyclopedias3.url})no-repeat center;"></div>
+        <div class="left encyclopedia_li_cent">
+            <div>${encyclopedias3.title}</div>
+             <div>${encyclopedias3.context}</div>
+        </div>
+    </li>
+     </a>
+     </#if>
 </ul>
+
 <div class="margin_bottom"></div>
 <div class="footer box">
     
