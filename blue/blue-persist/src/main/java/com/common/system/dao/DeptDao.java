@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -60,11 +61,12 @@ public class DeptDao {
 	}
 
 	public int addDept(BlueDept dept) {
-		String sql = "INSERT INTO `tb_blue_dept` (`name`,`context`,`create_time`) "
-				+ "VALUES(:name,:context,:create_time)";
+		String sql = "INSERT INTO `tb_blue_dept` (`name`,`context`,`create_time`,`url`) "
+				+ "VALUES(:name,:context,:create_time,:url)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("name", dept.getName());
 		paramMap.put("context", dept.getContext());
+		paramMap.put("url", dept.getUrl());
 		paramMap.put("create_time", dept.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
@@ -86,12 +88,17 @@ public class DeptDao {
 	}
 
 	public int updateDept(BlueDept dept) {
-		String sql = "UPDATE `tb_blue_dept` SET name=:name,context=:context WHERE sid=:sid ";
 		Map<String, Object> paramMap = Maps.newHashMap();
+		StringBuilder sql = new StringBuilder("UPDATE `tb_blue_dept` SET name=:name,context=:context ");
+		if(StringUtils.isNotBlank(dept.getUrl())){
+			sql.append(" ,url=:url");
+			paramMap.put("url", dept.getUrl());
+		}	
+		sql.append(" WHERE sid=:sid ");
 		paramMap.put("name", dept.getName());
 		paramMap.put("context", dept.getContext());
 		paramMap.put("sid", dept.getSid());
-		int count = namedParameterJdbcTemplate.update(sql, paramMap);
+		int count = namedParameterJdbcTemplate.update(sql.toString(), paramMap);
 		return count;
 	}
 

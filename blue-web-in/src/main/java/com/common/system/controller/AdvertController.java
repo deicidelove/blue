@@ -131,9 +131,6 @@ public class AdvertController {
 	Result<Integer> updateAdvert(int type, String context, String title,
 			@RequestParam("fileName") MultipartFile file, int sid) {
 		return advertService.updateAdvert(type, context, title, file, sid);
-		// ModelAndView modelAndView = new ModelAndView();
-		// modelAndView.setViewName("/system/admin/advert/list");
-		// return modelAndView;
 	}
 	
 	@RequestMapping(value = "upFile", method = RequestMethod.POST)

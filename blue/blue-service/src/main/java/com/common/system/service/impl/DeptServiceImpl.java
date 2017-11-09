@@ -11,11 +11,13 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.common.system.dao.DeptDao;
 import com.common.system.entity.BlueDept;
 import com.common.system.service.DeptService;
 import com.common.system.util.PageBean;
+import com.common.system.util.PicUtil;
 import com.common.system.util.Result;
 
 /**
@@ -75,9 +77,11 @@ public class DeptServiceImpl implements DeptService {
 	}
 
 	@Override
-	public Result<Integer> addDept(String name, String context) {
+	public Result<Integer> addDept(String name, String context,MultipartFile file) {
 		try {
+			String urlTream =PicUtil.upFile(file);
 			BlueDept dept = new BlueDept();
+			dept.setUrl(urlTream);
 			dept.setContext(context);
 			dept.setName(name);
 			dept.setCreateTime(new Date());
@@ -91,9 +95,11 @@ public class DeptServiceImpl implements DeptService {
 	}
 
 	@Override
-	public Result<Integer> updateDept(String deptName,String context,int sid) {
+	public Result<Integer> updateDept(String deptName,String context,int sid,MultipartFile file) {
 		try {
+			String urlTream =PicUtil.upFile(file);
 			BlueDept dept = new BlueDept();
+			dept.setUrl(urlTream);
 			dept.setContext(context);
 			dept.setName(deptName);
 			dept.setSid(sid);

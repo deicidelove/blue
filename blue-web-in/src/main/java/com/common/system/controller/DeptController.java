@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.entity.BlueDept;
@@ -72,17 +73,13 @@ public class DeptController {
 	    }
 	 
 	 @RequestMapping(value = "save")
-	    public @ResponseBody Result<Integer> save(String deptName,String context){
-	        return deptService.addDept(deptName, context);
+	    public @ResponseBody Result<Integer> save(String deptName,String context,@RequestParam("fileName") MultipartFile file){
+	        return deptService.addDept(deptName, context,file);
 	    }
 	 
 	 @RequestMapping(value = "update",method = RequestMethod.POST)
-	    public @ResponseBody Result<Integer> update(String deptName,String context, int sid){	       
-	        return deptService.updateDept(deptName, context, sid);
+	    public @ResponseBody Result<Integer> update(String deptName,String context, int sid,@RequestParam("fileName") MultipartFile file){	       
+	        return deptService.updateDept(deptName, context, sid,file);
 	    }
-	 
-	 
-
-	
 
 }
