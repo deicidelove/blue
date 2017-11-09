@@ -131,7 +131,7 @@ public class DoctorServiceImpl implements DoctorService {
 	 */
 	@Override
 	public Result<Integer> updateDoctor(MultipartFile file,String name, int deptId,
-			int sex, String phone, int level, int sid,String introduce,String jobNum,String address) {
+			int sex, String phone, int level, int sid,String introduce,String jobNum,String address,String positionName) {
 		try {
 			String url = PicUtil.upFile(file);
 			BlueStaff staff = new BlueStaff();
@@ -139,6 +139,7 @@ public class DoctorServiceImpl implements DoctorService {
 			staff.setHeadUrl(url);
 			staff.setName(name);
 			staff.setDeptId(deptId);
+			staff.setPositionName(positionName);
 			BlueDept dept = deptDao.findBySid(deptId);
 			if(dept!=null){
 				staff.setDeptName(dept.getName());

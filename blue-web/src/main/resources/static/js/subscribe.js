@@ -33,7 +33,9 @@
                	   dataType:'json',  
                	   success:function(data) {
                		   if(data.status){
-               			    var shifts = data.data;
+               			    var shifts = data.data.shifts;
+               			    var date = data.data.date;
+               			    $('.popup_date').html(date);
                			    for(i=0;i<shifts.length;i++){
                			    	var item = shifts[i]; 
                			    	var time = item.time;

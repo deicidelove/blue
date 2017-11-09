@@ -30,7 +30,7 @@
 	<#list depts as dept>
 	    <a href="/deptDetial/${dept.sid}">
 		    <li class="office_li">
-		        <div class="office_li_left left office_01"></div>
+		        <div class="office_li_left left office_01" style="background: url(${dept.url})no-repeat center;"></div>
 		        <div class="office_li_center left">
 		            <div>${dept.name}</div>
 		            <div>${dept.context}</div>

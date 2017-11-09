@@ -58,8 +58,12 @@
                     </select>
                 </div>
                 <div class="form-group">
+					<label id="nickNameLabel">职称</label>
+					<input type="text" class="form-control" name="positionName" id="positionName" placeholder="输入职称..." value="${bean.positionName!}">
+				</div>
+                <div class="form-group">
                     <label>地址</label>
-                    <input type="text" class="form-control" name="address" id="introduce"  placeholder="输入地址..." value="${bean.address!}">
+                    <input type="text" class="form-control" name="address" id="address"  placeholder="输入地址..." value="${bean.address!}">
                 </div>
                  <div class="form-group">
                 	<img src="${bean.headUrl!}" style="width:200px;height:200px"/>

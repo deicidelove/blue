@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.dao.ShiftDao;
+import com.common.system.dto.OrderDto;
 import com.common.system.dto.ScheduleDto;
 import com.common.system.entity.BlueDept;
 import com.common.system.entity.BlueDoctorSchedule;
@@ -91,9 +92,14 @@ public class OrderController {
 
 	@RequestMapping(value = "doctorOrder")
 	@ResponseBody
-	public Result<List<BlueShift>> doctorOrder(Integer scheduleId) {
+	public Result<OrderDto> doctorOrder(Integer scheduleId) throws ParseException {
+		BlueDoctorSchedule bds = doctorSchedulEService.findBySid(
+				scheduleId).getData();
 		List<BlueShift> result = commonService.findBlueShift(scheduleId);
-		return new Result<List<BlueShift>>(true, "获取成功！", result);
+		OrderDto dto = new OrderDto();
+		dto.setDate(DateUtil.formtString(bds.getCreateTime()));
+		dto.setShifts(result);
+		return new Result<OrderDto>(true, "获取成功！", dto);
 
 	}
 

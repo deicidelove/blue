@@ -49,7 +49,7 @@ public interface DoctorService {
 	 * @return
 	 */
 	public Result<Integer> updateDoctor(MultipartFile file,String name, int deptId,
-			int sex, String phone, int level, int sid,String introduce,String jobNum,String address);
+			int sex, String phone, int level, int sid,String introduce,String jobNum,String address,String positionName);
 
 
 

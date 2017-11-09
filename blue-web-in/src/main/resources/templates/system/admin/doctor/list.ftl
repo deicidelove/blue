@@ -41,6 +41,7 @@
 								<th>序号</th>
 								<th>姓名</th>
 								<th>性别</th>
+								<th>职称</th>
 								<th>电话</th>
 								<th>科室</th>
 								<th>地址</th>
@@ -82,6 +83,7 @@ $(function() {
 		    {"data":null}, 
 			{"data":"name"},
 			{"data":null},
+			{"data":"positionName"},
 			{"data":"phone"},
 			{"data":"deptName"},
 			{"data":"address"},

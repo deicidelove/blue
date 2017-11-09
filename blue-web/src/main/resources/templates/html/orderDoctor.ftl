@@ -139,7 +139,7 @@
             <div class="doctor_price_div02">原价 ￥30.00</div>
         </div>
     </div>
-    <div class="popup_date">2017-09-25 星期一上午</div>
+    <div class="popup_date"></div>
     <ul class="popup_ul">
     </ul>
 </div>
