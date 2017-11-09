@@ -15,82 +15,60 @@
         <div class="heade_text">我的订单</div>
         <div class="heade_back">返回</div>
     </div>
-    
-    <div class="mgb_space">
-        <ul class="confirm_ul">
-            <li class="confirm_li">
-                <div class="order_li_left left">
-                	<img src="../images/actv_img.jpg" />
-                </div>
-                <div class="confirm_li_center left">
-                    献爱心献爱心献爱心献爱心献爱心
-                    献爱心献爱心献爱心献爱心献爱心
-                </div>
-                <div class="confirm_li_right right">
-                    <div>￥0.99</div>
-                    <div>x2</div>
-                </div>
-            </li>
-        </ul>
-        <div class="order_total">
-            <span>共2份 合计：￥<strong>1.98</strong></span>
-        </div>
-        <div class="order_set">
-            <div class="left color_org">未付款</div>
-            <div class="right graybr_btn">取消订单</div>
-        </div>
-    </div>
-    
-    <div class="mgb_space">
-        <ul class="confirm_ul">
-            <li class="confirm_li">
-                <div class="order_li_left left">
-                	<img src="../images/actv_img.jpg" />
-                </div>
-                <div class="confirm_li_center left">
-                    献爱心献爱心献爱心献爱心献爱心
-                    献爱心献爱心献爱心献爱心献爱心
-                </div>
-                <div class="confirm_li_right right">
-                    <div>￥0.99</div>
-                    <div>x2</div>
-                </div>
-            </li>
-        </ul>
-        <div class="order_total">
-            <span>共2份 合计：￥<strong>1.98</strong></span>
-        </div>
-        <div class="order_set">
-            <div class="left color_org">未付款</div>
-            <div class="right graybr_btn">取消订单</div>
-        </div>
-    </div>
-    
-    <div class="mgb_space">
-        <ul class="confirm_ul">
-            <li class="confirm_li">
-                <div class="order_li_left left">
-                	<img src="../images/actv_img.jpg" />
-                </div>
-                <div class="confirm_li_center left">
-                    献爱心献爱心献爱心献爱心献爱心
-                    献爱心献爱心献爱心献爱心献爱心
-                </div>
-                <div class="confirm_li_right right">
-                    <div>￥0.99</div>
-                    <div>x2</div>
-                </div>
-            </li>
-        </ul>
-        <div class="order_total">
-            <span>共2份 合计：￥<strong>1.98</strong></span>
-        </div>
-        <div class="order_set">
-            <div class="left color_org">已完成</div>
-            <div class="right graybr_btn">删除订单</div>
-        </div>
-    </div>
-
+    <#if resultList??>
+    	<#list resultList as orderDTO >
+    	<#if (orderDTO.orderEntity)?? && (orderDTO.goodsEntity)??>
+		    <div class="mgb_space">
+		        <ul class="confirm_ul">
+		            <li class="confirm_li">
+		                <div class="order_li_left left">
+		                	<#if (orderDTO.goodsImgEntity)??>
+		                	<img src="${orderDTO.goodsImgEntity.goodsImgUrl }" />
+		                	</#if>
+		                </div>
+		                <div class="confirm_li_center left">
+		                   ${orderDTO.goodsEntity.goodsName }
+		                </div>
+		                <div class="confirm_li_right right">
+		                    <div>￥${orderDTO.goodsEntity.price }</div>
+		                    <div>x${orderDTO.orderEntity.goodsNum }</div>
+		                </div>
+		            </li>
+		        </ul>
+		        <div class="order_total">
+		        	<#if orderDTO.orderEntity.type = "wxPayCode">
+		            <span>共${orderDTO.orderEntity.goodsNum }份 合计：￥<strong>${orderDTO.orderEntity.price }</strong></span>
+		            <#else>
+		            <span>共${orderDTO.orderEntity.goodsNum }份 合计：积分<strong>${orderDTO.orderEntity.jifen }</strong></span>
+		            </#if>
+		        </div>
+		        <div class="order_set">
+		        	<#if orderDTO.orderEntity.status == "wzf">
+			            <div class="left color_org">未付款</div>
+			            <div code="${orderDTO.orderEntity.orderId }" class="right graybr_btn" name ="deleteOrder">取消订单</div>
+		            <#elseif orderDTO.orderEntity.status == "yzf">
+			            <div class="left color_org">已完成</div>
+			            <div code="${orderDTO.orderEntity.orderId }" class="right graybr_btn" name ="deleteOrder">删除订单</div>
+		            </#if>
+		        </div>
+		    </div>    		
+    	</#if>
+    	</#list>
+    </#if>
 
 </body>
 </html>
+
+<script>
+	$("div[name='deleteOrder']").on("click",function(){
+		var orderId = $(this).attr("code");
+		if(!orderId){
+			return;
+		}
+		Request.sendPostRequest(basePath + "/personal/deleteOrder/", {
+			"orderId" : orderId
+		}, function(result) {
+			alert(result.message);
+		});
+	});
+</script>

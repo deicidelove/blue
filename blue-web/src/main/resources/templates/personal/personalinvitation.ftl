@@ -16,27 +16,17 @@
 </div>
 
 <ul class="yaoqing_ul">
-    <li class="activity_li">
-        <img src="../images/icon-23.png" class="yaoqing_img" />
-        <div class="activity_li_div02 left">
-            <div>蔚蓝色的天空</div>
-            <div>2017-10-12 11:07:58</div>
-        </div>
-    </li>
-    <li class="activity_li">
-        <img src="../images/icon-24.png" class="yaoqing_img" />
-        <div class="activity_li_div02 left">
-            <div>蔚蓝色的天空</div>
-            <div>2017-10-12 11:07:58</div>
-        </div>
-    </li>
-    <li class="activity_li">
-        <img src="../images/icon-23.png" class="yaoqing_img" />
-        <div class="activity_li_div02 left">
-            <div>蔚蓝色的天空</div>
-            <div>2017-10-12 11:07:58</div>
-        </div>
-    </li>
+		<#if resultList??>
+			<#list resultList as wxEntity >
+			    <li class="activity_li">
+			        <img src="${wxEntity.pic }" class="yaoqing_img" />
+			        <div class="activity_li_div02 left">
+			            <div>${wxEntity.name }</div>
+			            <div>${wxEntity.createTime }</div>
+			        </div>
+			    </li>
+			</#list>
+		</#if>
 </ul>
 
 </body>

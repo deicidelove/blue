@@ -141,6 +141,7 @@
         </div>
     </li>
 </ul>
+<#if (wxUserEntity.isShowTip)?? && !(wxUserEntity.isShowTip) >
 <div class="help_bg"></div>
 <div class="help">
     <div class="help_cont">
@@ -170,6 +171,7 @@
         <span class="left help_labe_text" id = "isShowTip">下次不再显示</span>
     </div>
 </div>
+</#if>
 <div class="margin_bottom"></div>
 <div class="footer box">
     

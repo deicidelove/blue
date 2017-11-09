@@ -15,34 +15,29 @@
     </div>
     
     <ul class="jifen_det">
-    	<li>
-        	<p>
-            	分享获得积分  
-            	<strong class="right">+ 3</strong> 
-            </p>
-            <p class="time">2016-07-10 10:36:41</p>
-        </li>
-        <li>
-        	<p>
-            	参与活动赢积分  
-            	<strong class="right">+ 3</strong> 
-            </p>
-            <p class="time">2016-07-10 10:36:41</p>
-        </li>
-        <li>
-        	<p>
-            	充值获取积分  
-            	<strong class="right">+ 3</strong> 
-            </p>
-            <p class="time">2016-07-10 10:36:41</p>
-        </li>
-        <li>
-        	<p>
-            	兑换抽奖  
-            	<strong class="right">- 100</strong> 
-            </p>
-            <p class="time">2016-07-10 10:36:41</p>
-        </li>
+    	<#if resultList??>
+    		<#list resultList as jifenEntity >
+		    	<li>
+		        	<p>
+		        	<#if jifenEntity.type == '1'>
+		            	分享获得积分  
+		            <#elseif jifenEntity.type == '2'>
+						参与活动赢积分
+		            <#elseif jifenEntity.type == '3'>
+		            	充值获取积分
+		            <#elseif jifenEntity.type == '3'>
+		            	兑换抽奖
+		            </#if>
+		            	<#if !jifenEntity.isReverse>
+		            	<strong class="right">+ ${jifenEntity.jifen }</strong> 
+		            	<#else>
+		            		<strong class="right">- ${jifenEntity.jifen }</strong> 
+		            	</#if>
+		            </p>
+		            <p class="time"> ${jifenEntity.createTime } </p>
+		        </li>
+	        </#list>
+    	</#if>
     </ul>
 		
 </body>

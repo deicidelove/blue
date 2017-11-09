@@ -52,9 +52,9 @@ public class JifenLogDao {
 	public int save(JifenLogEntity jifenLogEntity){
 		Assert.notNull(jifenLogEntity,"jifenLogEntity is null");
 		String sql = " INSERT INTO rc_a_jifen_log "
-				+ " (  open_id, jifen) "
+				+ " (  open_id, jifen, type , is_reverse) "
 				+ " VALUES ("
-				+ ":openId, :open_id"
+				+ ":openId, :open_id, :type, :isReverse"
 				+ ")";
 		return namedParameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(jifenLogEntity));
 	}

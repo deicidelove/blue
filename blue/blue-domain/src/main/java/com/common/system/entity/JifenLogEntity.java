@@ -26,6 +26,15 @@ public class JifenLogEntity {
 	private Integer jifen;
 	
 	/**
+	 * 积分类型
+	 */
+	private String type;
+	
+	/**
+	 * 是否逆向
+	 */
+	private Boolean isReverse;
+	/**
 	 * 創建時間
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -71,6 +80,34 @@ public class JifenLogEntity {
 	 */
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	/**
+	 * @return the isReverse
+	 */
+	public Boolean getIsReverse() {
+		return isReverse;
+	}
+
+	/**
+	 * @param isReverse the isReverse to set
+	 */
+	public void setIsReverse(Boolean isReverse) {
+		this.isReverse = isReverse;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

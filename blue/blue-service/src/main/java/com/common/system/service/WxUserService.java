@@ -18,6 +18,19 @@ public interface WxUserService {
 	
 	public PageInfo<WxUserEntity> listForPage(Integer pageNum, Integer pageSize);
 	
+	/**
+	 * <p>
+	 * <code>listForPage</code>
+	 * </p>
+	 * 通过superOpenId查询推荐人
+	 * @author taowang6
+	 * @param pageNum
+	 * @param pageSize
+	 * @param superOpenId
+	 * @return
+	 */
+	public PageInfo<WxUserEntity> listForPage(Integer pageNum, Integer pageSize, String superOpenId);
+	
 	public List<WxUserEntity> list();
 	
 	/**

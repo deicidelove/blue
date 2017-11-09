@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.common.system.dao.OrderDao;
 import com.common.system.entity.OrderEntity;
 import com.common.system.service.OrderService;
+import com.common.system.util.MsgCode;
+import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
 
 @Service("orderService")
@@ -81,13 +83,17 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public void delete(Integer orderId) {
-		
+	public Result<Integer> delete(Integer orderId) {
+		Result<Integer> result = new Result<Integer>();
 		try {
 			orderDao.deleteById(orderId);
+            result.setStatus(true);
+            result.setCode(MsgCode.SUCCESS);
+            result.setMsg("操作成功");
 		} catch (Exception e) {
 			LOG.error(" delete error!", e );
 		}
+		return result;
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class OrderDao {
 	
 	public OrderEntity seleteById(Integer orderId){
 		Assert.notNull(orderId,"orderId is null");
-		String sql = " SELECT * FROM `rc_a_order`  WHERE order_id = :goodsId  ";
+		String sql = " SELECT * FROM `rc_a_order`  WHERE 1=1 and is_delete is false and order_id = :goodsId  ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		
 		OrderEntity result = namedParameterJdbcTemplate
@@ -38,7 +38,7 @@ public class OrderDao {
 	
 	public List<OrderEntity> seleteByList(String status, String openId, Integer pageNum,
 			Integer pageSize){
-		String sql = " SELECT * FROM rc_a_order WHERE 1=1 ";
+		String sql = " SELECT * FROM rc_a_order WHERE 1=1 and is_delete is false ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 
 		if(StringUtils.isNotEmpty(status)){
@@ -56,13 +56,15 @@ public class OrderDao {
 			paramMap.put("pageSize", pageSize);
 			sql += " limit :pageStartNum, :pageSize ";
 		}
+		
+		sql += "  order by create_time desc ";
 		List<OrderEntity> resultList = namedParameterJdbcTemplate.query(sql, 
 				paramMap, BeanPropertyRowMapper.newInstance(OrderEntity.class));
 		return resultList;
 	}
 	
 	public List<OrderEntity> seleteByList(){
-		String sql = " SELECT * FROM rc_a_order WHERE 1=1 ";
+		String sql = " SELECT * FROM rc_a_order WHERE 1=1 and is_delete is false ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		List<OrderEntity> resultList = namedParameterJdbcTemplate.query(sql, 
 				paramMap, BeanPropertyRowMapper.newInstance(OrderEntity.class));
@@ -83,7 +85,7 @@ public class OrderDao {
 	 */
 	public void deleteById(Integer orderId){
 		Assert.notNull(orderId,"orderId is null");
-		String sql = "DELETE FROM `rc_a_order` WHERE `order_id`=:orderId";
+		String sql = "update  `rc_a_order` set is_delete = 1 WHERE `order_id`=:orderId";
 		Map<String,Object> paramMap = Maps.newHashMap();
 		paramMap.put("orderId", orderId);
 		namedParameterJdbcTemplate.update(sql, paramMap);

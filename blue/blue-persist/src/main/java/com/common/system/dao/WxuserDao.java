@@ -37,10 +37,21 @@ public class WxuserDao {
 	}
 	
 	public List<WxUserEntity> seleteList(Integer pageNum, Integer pageSize){
-		String sql = " SELECT * FROM rc_a_wx_user WHERE limit :pageStartNum, :pageSize";
+		String sql = " SELECT * FROM rc_a_wx_user WHERE limit :pageStartNum, :pageSize by create_time desc ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("pageStartNum", (pageNum-1)*pageSize);
 		paramMap.put("pageSize", pageSize);
+		List<WxUserEntity> result = namedParameterJdbcTemplate.query(sql, 
+				paramMap, BeanPropertyRowMapper.newInstance(WxUserEntity.class));
+		return result;
+	}
+	
+	public List<WxUserEntity> seleteList(Integer pageNum, Integer pageSize, String superOpenId){
+		String sql = " SELECT * FROM rc_a_wx_user WHERE super_open_id = :superOpenId limit :pageStartNum, :pageSize order by create_time desc ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("pageStartNum", (pageNum-1)*pageSize);
+		paramMap.put("pageSize", pageSize);
+		paramMap.put("superOpenId", superOpenId);
 		List<WxUserEntity> result = namedParameterJdbcTemplate.query(sql, 
 				paramMap, BeanPropertyRowMapper.newInstance(WxUserEntity.class));
 		return result;

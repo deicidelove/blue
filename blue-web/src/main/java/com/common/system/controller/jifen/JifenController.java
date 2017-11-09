@@ -243,7 +243,7 @@ public class JifenController {
     	orderEntity.setGoodsId(Integer.valueOf(goodsId));
     	orderEntity.setGoodsNum(Integer.valueOf(1));
     	orderEntity.setOpenId(openId);
-    	orderEntity.setSource("wxPayCode");
+    	orderEntity.setSource("jfPayCode");
     	orderEntity.setStatus("yzf");
     	orderEntity.setType("jfPayCode");
     	//目前只支持一个一个购买

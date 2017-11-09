@@ -103,4 +103,17 @@ public class WxUserServiceImpl implements WxUserService {
 		}
 	}
 
+	@Override
+	public PageInfo<WxUserEntity> listForPage(Integer pageNum,
+			Integer pageSize, String superOpenId) {
+		PageInfo<WxUserEntity> result = new PageInfo<WxUserEntity>();
+		try {
+			List<WxUserEntity> resultList = wxuserDao.seleteList(pageNum, pageSize, superOpenId);
+			result.setList(resultList);
+		} catch (Exception e) {
+			LOG.error("WxUserServiceImpl listForPage error!", e );
+		}
+		return result;
+	}
+
 }
