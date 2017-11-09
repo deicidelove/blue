@@ -48,7 +48,7 @@ public interface DoctorService {
 	 * 更新
 	 * @return
 	 */
-	public Result<Integer> updateDoctor(String name, int deptId,
+	public Result<Integer> updateDoctor(MultipartFile file,String name, int deptId,
 			int sex, String phone, int level, int sid,String introduce,String jobNum,String address);
 
 

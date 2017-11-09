@@ -80,8 +80,8 @@ public class DoctorController {
 	    }
 	 
 	 @RequestMapping(value = "update",method = RequestMethod.POST)
-	    public @ResponseBody Result<Integer> update(String name, int deptId,int sex,String phone, int sid,String introduce,String jobNum,String address){	       
-	        return doctorService.updateDoctor(name, deptId, sex, phone, 18, sid,introduce,jobNum,address);
+	    public @ResponseBody Result<Integer> update(@RequestParam("fileName") MultipartFile file,String name, int deptId,int sex,String phone, int sid,String introduce,String jobNum,String address){	       
+	        return doctorService.updateDoctor(file,name, deptId, sex, phone, 18, sid,introduce,jobNum,address);
 	    }
 	 
 	 @RequestMapping(value = "add",method = RequestMethod.GET)

@@ -1,33 +1,27 @@
+
 <script type="text/javascript">
-    function doctorUpdate() {
-        debugger;
-        $.ajax({
-            url: '/doctor/update',
-            type: 'post',
-            dataType: 'text',
-            data: $("#doctorEditForm").serialize(),
-            success: function (data) {
-                var json = JSON.parse(data);
-                if (json.status) {
-                    $("#lgModal").modal('hide');
-                    alertMsg("更新成功", "success");
-                    reloadTable(list_ajax, "#doctorTime", "#doctorPremise");
-                } else {
-                    alertMsg("更新失败:" + json.msg, "success");
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
-                alert(textStatus);
-            }
-        });
-    }
+		var textStr;
+		$("#doctorEditTarget").load(function(){
+		     debugger;
+			 textStr=$(this);
+			 var data = textStr[0].contentDocument.body.textContent;
+		 
+		  	 var json = JSON.parse(data);
+            if (json.status) {
+                $("#lgModal").modal('hide');
+                alertMsg("更新成功", "success");
+                reloadTable(list_ajax, "#doctorTime", "#doctorPremise");
+            } else {
+                alertMsg("更新失败:" + json.msg, "success");
+	            }
+		 })
 
 </script>
+
 <div class="row">
+<iframe id="doctorEditTarget" name="doctorEditTarget" style="display:none"></iframe>
     <div class="col-md-12">
-        <form id="doctorEditForm">
+        <form id="doctorEditForm" method="post" enctype="multipart/form-data" action="/doctor/update" target="doctorEditTarget">
             <input type="hidden" id="sid" name="sid" value="${bean.sid}">
 
             <div class="box-body">
@@ -66,7 +60,11 @@
                 <div class="form-group">
                     <label>地址</label>
                     <input type="text" class="form-control" name="address" id="introduce"  placeholder="输入地址..." value="${bean.address!}">
-                          
+                </div>
+                 <div class="form-group">
+                	<img src="${bean.headUrl!}" style="width:200px;height:200px"/>
+                	<label>上传文件</label>
+                    <input type="file" class="form-control" name="fileName" id="fileName" value="上传图片" >
                 </div>
               
             </div>
@@ -75,7 +73,7 @@
                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><i
                             class="fa fa-close"></i>关闭
                     </button>
-                    <button onclick="doctorUpdate();" type="button" class="btn btn-primary btn-sm"><i
+                    <button type="submit" class="btn btn-primary btn-sm"><i
                             class="fa fa-paste"></i>更新
                     </button>
                 </div>

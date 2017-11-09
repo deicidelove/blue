@@ -130,11 +130,13 @@ public class DoctorServiceImpl implements DoctorService {
 	 * @see com.common.system.service.DoctorService#updateDoctor(int, java.lang.String, int, int, java.lang.String, int, java.lang.String, int)
 	 */
 	@Override
-	public Result<Integer> updateDoctor(String name, int deptId,
+	public Result<Integer> updateDoctor(MultipartFile file,String name, int deptId,
 			int sex, String phone, int level, int sid,String introduce,String jobNum,String address) {
 		try {
+			String url = PicUtil.upFile(file);
 			BlueStaff staff = new BlueStaff();
 			staff.setSid(sid);
+			staff.setHeadUrl(url);
 			staff.setName(name);
 			staff.setDeptId(deptId);
 			BlueDept dept = deptDao.findBySid(deptId);

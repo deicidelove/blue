@@ -99,8 +99,13 @@ public class StaffDao {
 	}
 
 	public int updateStaff(BlueStaff staff) {
-		String sql = "UPDATE tb_blue_staff SET name =:name,dept_id =:deptId,sex =:sex,phone = :phone,position_id = :level,introduce = :introduce,address =:address WHERE sid =:sid";
 		Map<String, Object> paramMap = Maps.newHashMap();
+		StringBuilder sql =new StringBuilder("UPDATE tb_blue_staff SET name =:name,dept_id =:deptId,sex =:sex,phone = :phone,position_id = :level,introduce = :introduce,address =:address ");
+		if(!StringUtils.isEmpty(staff.getHeadUrl())){
+			sql.append(", head_url =:head_url");
+			paramMap.put("head_url", staff.getHeadUrl());
+		}
+		sql.append(" WHERE sid =:sid");
 		paramMap.put("name", staff.getName());
 		paramMap.put("deptId", staff.getDeptId());
 		paramMap.put("sex", staff.getSex());
@@ -109,7 +114,7 @@ public class StaffDao {
 		paramMap.put("sid", staff.getSid());
 		paramMap.put("address", staff.getAddress());
 		paramMap.put("introduce", staff.getIntroduce());
-		int count = namedParameterJdbcTemplate.update(sql, paramMap);
+		int count = namedParameterJdbcTemplate.update(sql.toString(), paramMap);
 		return count;
 	}
 
