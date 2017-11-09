@@ -104,7 +104,7 @@ public class ProjectAdvertController {
 	public @ResponseBody
 	Result<Integer> updateAdvert(String title, String context,String jumpUrl,
 			int sid, @RequestParam("fileName") MultipartFile file) {
-		return projectAdvertService.addProjectAdevert(title, context, jumpUrl, file);
+		return projectAdvertService.updateProjectAdevert(title, context, jumpUrl, sid, file);
 	}
 
 }
