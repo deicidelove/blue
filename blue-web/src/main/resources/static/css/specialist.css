@@ -40,13 +40,17 @@ html,body{
     position: relative;
 }
 .drop_down_btn{
-    width:2rem;
+    width:2.5rem;
     height:0.9rem;
-    padding:0 0.3rem 0 3rem;
+    margin:0 auto;
+    overflow: hidden;
 }
 .drop_down_span01{
+    width:2rem;
+    text-align: center;
     height:0.9rem;
     padding-right:0.3rem;
+    overflow: hidden;
 }
 .drop_down_span02{
     width: 0.2rem;

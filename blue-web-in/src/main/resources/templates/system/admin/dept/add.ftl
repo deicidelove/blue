@@ -8,7 +8,7 @@
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">介绍</label>
-					<input type="text" class="form-control" name="context" id="context" placeholder="输入介绍...">
+					<textarea class="form-control" name="context" id="context" placeholder="输入介绍..."></textarea>
 				</div>
 			</div>
 			<div class="modal-footer">

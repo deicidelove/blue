@@ -24,7 +24,7 @@
 						<button type="submit" onclick="addOurReload();" class="btn btn-primary">搜索</button>
 					</div>
 				</div>
-				<table id="addOur_tab" class="table table-bordered table-striped">
+				<table id="addOur_tab" class="table table-bordered table-striped" style="table-layout: fixed;">
 					<thead>
 						<tr>
 							<tr>
@@ -51,7 +51,7 @@
 
 <script type="text/javascript">
 var addOur_tab;
-$(function() {
+$(function() {	
 	//初始化时间选择器
 	$('#addOurTime').datepicker({
 		language: 'zh-CN',

@@ -25,43 +25,43 @@
             <div class="box-body">
                <div class="form-group">
 					<label id="deptLabel">标题</label>
-					<input type="text" class="form-control" name="title" id="title" value=${bean.title!} placeholder="输入标题...">
+					<input type="text" class="form-control" name="title" id="title" placeholder="输入标题..." value=${bean.title!} >
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">需要人数</label>
-					<input type="text" class="form-control" name="needNum" id="needNum" value=${bean.needNum!} placeholder="输入需要人数...">
+					<input type="text" class="form-control" name="needNum" id="needNum" placeholder="输入需要人数..." value=${bean.needNum!} >
 				</div>
 				<div class="form-group">
 					<label id="deptLabel">学历</label>
-					<input type="text" class="form-control" name="education" id="education" value=${bean.education!} placeholder="输入学历...">
+					<textarea  class="form-control" name="education" id="education" placeholder="输入学历...">${bean.education!}</textarea>
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">经验</label>
-					<input type="text" class="form-control" name="experience" id="experience" value=${bean.experience!} placeholder="输入经验...">
+					<textarea class="form-control" name="experience" id="experience"  placeholder="输入经验...">${bean.experience!}</textarea>
 				</div>
 				<div class="form-group">
 					<label id="deptLabel">工资</label>
-					<input type="text" class="form-control" name="wages" id="wages" value=${bean.wages!} placeholder="输入工资...">
+					<input type="text" class="form-control" name="wages" id="wages" placeholder="输入工资..." value=${bean.wages!} >
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">工资时间</label>
-					<input type="text" class="form-control" name="workTime" id="workTime" value=${bean.workTime!} placeholder="输入工作时间...">
+					<input type="text" class="form-control" name="workTime" id="workTime" placeholder="输入工作时间..." value=${bean.workTime!} >
 				</div>
 				<div class="form-group">
 					<label id="deptLabel">工作地址</label>
-					<input type="text" class="form-control" name="workAddress" id="workAddress" value=${bean.workAddress!} placeholder="输入地址...">
+					<input type="text" class="form-control" name="workAddress" id="workAddress" placeholder="输入地址..." value=${bean.workAddress!} >
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">描述</label>
-					<input type="text" class="form-control" name="description" id="description" value=${bean.description!} placeholder="输入描述...">
+					<textarea class="form-control" name="description" id="description"  placeholder="输入描述...">${bean.description!}</textarea>
 				</div>
 				<div class="form-group">
 					<label id="deptLabel">要求</label>
-					<input type="text" class="form-control" name="requirement" id="requirement" value=${bean.requirement!} placeholder="输入要求...">
+					<textarea class="form-control" name="requirement" id="requirement"  placeholder="输入要求...">${bean.requirement!}</textarea>
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">福利待遇</label>
-					<input type="text" class="form-control" name="fringeBenefits" id="fringeBenefits" placeholder="输入福利待遇..." value=${bean.fringeBenefits!} >
+					<textarea class="form-control" name="fringeBenefits" id="fringeBenefits" placeholder="输入福利待遇...">${bean.fringeBenefits!}</textarea>
 				</div>
             </div>
             <div class="box-footer">

@@ -31,6 +31,7 @@
                 jinzhi=1;
                 var $text = $(this).find('span').first().text();
                 var $span = '<span class="right down_li_bg"></span>';
+				$(this).find('.down_li_bg').remove();
                 $(this).addClass('down_li_color').siblings().removeClass('down_li_color');
                 $(this).append($span);
                 $(this).siblings().find('.down_li_bg').remove();

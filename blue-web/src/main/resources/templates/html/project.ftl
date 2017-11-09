@@ -26,22 +26,42 @@
     </div>
 </div>
 <div class="project_img">
-    <div class="project_img_01 left">
-        <div>定制化儿童体检</div>
-        <div>儿童护龈保健</div>
-    </div>
-    <div class="project_img_02 left">
-        <div>呼吸中心</div>
-    </div>
-    <div class="project_img_03 left">
-        <div>中医护龈</div>
-    </div>
-    <div class="project_img_04 left">
-        <div>牙龈肿痛</div>
-    </div>
-    <div class="project_img_05 left">
-        <div>正畸牙齿</div>
-    </div>
+    <#if project0??>
+        <a href="/projectDetial/${project0.sid}">
+        <div class="project_img_01 left" style="background: url(${project0.url})no-repeat center;">
+            <div>${project0.name}/div>
+          
+        </div>
+        </a>
+    </#if>
+    <#if project1??>
+        <a href="/projectDetial/${project1.sid}">
+        <div class="project_img_02 left" style="background: url(${project1.url})no-repeat center;">
+            <div>${project1.name}</div>
+        </div>
+         </a>
+    </#if>
+    <#if project2??>
+        <a href="/projectDetial/${project2.sid}">
+        <div class="project_img_03 left" style="background: url(${project2.url})no-repeat center;">
+            <div>${project2.name}</div>
+         </div>
+        </a>
+    </#if>
+    <#if project3??>
+        <a href="/projectDetial/${project3.sid}">
+        <div class="project_img_04 left" style="background: url(${project3.url})no-repeat center;">
+            <div>${project3.name}</div>
+        </div>
+      </a>
+    </#if>
+    <#if project4??>
+        <a href="/projectDetial/${project4.sid}">
+        <div class="project_img_05 left" style="background: url(${project4.url})no-repeat center;">
+            <div>${project4.name}</div>
+        </div>
+        </a>
+    </#if>
 </div>
 <a href="/projectPageAll">
 <div class="all_projects">
@@ -52,15 +72,33 @@
 </a>
 <div class="all_01"></div>
 <div class="all_bg box">
-	<#list projects as project>
-		<a href="/projectDetial/${project.sid}">
+     <#if project5??>
+		<a href="/projectDetial/${project5.sid}">
 	    <div class="all_bg_div left">
-	        <div class="all_02"><img src="${project.url}"/></div>
-	        <div class="all_text01">${project.name}</div>
-	        <div class="all_text02">${project.context}</div>
+	        <div class="all_02" style="background: url(${project5.url})no-repeat center;"></div>
+	        <div class="all_text01">${project5.name}</div>
+	        <div class="all_text02">${project5.context}</div>
     	</div>
 	    </a>
-   	</#list>
+    </#if>
+     <#if project6??>
+		<a href="/projectDetial/${project6.sid}">
+	    <div class="all_bg_div margin_12 left">
+	        <div class="all_03" style="background: url(${project6.url})no-repeat center;"></div>
+	        <div class="all_text01">${project6.name}</div>
+	        <div class="all_text02">${project6.context}</div>
+    	</div>
+	    </a>
+    </#if>
+     <#if project7??>
+		<a href="/projectDetial/${project7.sid}" >
+	    <div class="all_bg_div left">
+	        <div class="all_04" style="background: url(${project7.url})no-repeat center;"></div>
+	        <div class="all_text01">${project7.name}</div>
+	        <div class="all_text02">${project7.context}</div>
+    	</div>
+	    </a>
+    </#if>
 </div>
 <div class="swiper02">
     <div class="swiper-container banner02">

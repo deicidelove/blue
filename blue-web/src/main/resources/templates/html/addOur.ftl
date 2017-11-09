@@ -22,7 +22,7 @@
         </div>
         <div class="info_labels">
             <span class="com_mail">lxkq369@126.com</span>
-            <span class="com_telephone">025-52801811</span>
+            <span class="com_telephone">025-52251111</span>
         </div>
     </div>
 </div>

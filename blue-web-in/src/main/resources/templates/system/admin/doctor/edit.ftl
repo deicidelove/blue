@@ -33,8 +33,7 @@
             <div class="box-body">
                 <div class="form-group">
                     <label id="userNoLabel">姓名</label>
-                    <input type="text" class="form-control" name="name" id="name" value="${bean.name!}"
-                            placeholder="输入姓名...">
+                    <input type="text" class="form-control" name="name" id="name"  placeholder="输入姓名..." value="${bean.name!}">
                 </div>
                 
                 <div class="form-group">
@@ -46,18 +45,15 @@
                 </div>
                 <div class="form-group">
                     <label id="nickPhoneLabel">电话</label>
-                    <input type="text" class="form-control" name="phone" id="phone" value="${bean.phone!}"
-                           placeholder="输入电话...">
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="输入电话..." value="${bean.phone!}">
                 </div>
                 <div class="form-group">
                     <label id="nickIntroduceLabel">介绍</label>
-                    <input type="text" class="form-control" name="introduce" id="introduce" value="${bean.introduce!}"
-                           placeholder="输入简介...">
+                    <textarea class="form-control" name="introduce" id="introduce" placeholder="输入简介...">${bean.introduce!}</textarea>
                 </div>
                 <div class="form-group">
                     <label id="nickJobLabel">工号</label>
-                    <input type="text" class="form-control" name="jobNum" id="introduce" value="${bean.jobNum!}"
-                           placeholder="输入工号...">
+                    <input type="text" class="form-control" name="jobNum" id="introduce" placeholder="输入工号..." value="${bean.jobNum!}">
                 </div>
                 <div class="form-group">
                     <label>科室</label>
@@ -69,8 +65,8 @@
                 </div>
                 <div class="form-group">
                     <label>地址</label>
-                    <input type="text" class="form-control" name="address" id="introduce" value="${bean.address!}"
-                           placeholder="输入地址...">
+                    <input type="text" class="form-control" name="address" id="introduce"  placeholder="输入地址..." value="${bean.address!}">
+                          
                 </div>
               
             </div>

@@ -2,17 +2,15 @@
     <div class="col-md-12">
         <form id="blueDeptEditForm">
             <input type="hidden" id="id" name="sid" value="${bean.sid}">
-
             <div class="box-body">
             	<div class="form-group">
 					<label id="deptLabel">科室名</label>
-					<input type="text" class="form-control" name="deptName" id="deptName" value="${bean.name!}" 
-					placeholder="输入科室名...">
+					<input type="text" class="form-control" name="deptName" id="deptName" 
+					placeholder="输入科室名..." value="${bean.name!}" >
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">介绍</label>
-					<input type="text" class="form-control" name="context" id="context" value="${bean.context!}" 
-					placeholder="输入介绍...">
+					<textarea class="form-control" name="context" id="context" placeholder="输入介绍...">${bean.context!}</textarea>
 				</div>
             </div>
             <div class="box-footer">

@@ -3,6 +3,7 @@
 	border-bottom: 1px solid #dddddd;
 	border-collapse: separate;
 	*border-collapse: collapse;
+	table-layout: fixed;
 }
 
 .fixed-table-container {
@@ -94,3 +95,11 @@
 	margin: 0;
 	border: none;
 }
+
+/* support bootstrap 3 */
+.table thead>tr>td {
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
+

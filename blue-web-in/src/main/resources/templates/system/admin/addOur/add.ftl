@@ -12,11 +12,11 @@
 				</div>
 				<div class="form-group">
 					<label id="deptLabel">学历</label>
-					<input type="text" class="form-control" name="education" id="education" placeholder="输入学历...">
+					<textarea class="form-control" name="education" id="education" placeholder="输入学历..."></textarea>
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">经验</label>
-					<input type="text" class="form-control" name="experience" id="experience" placeholder="输入经验...">
+					<textarea class="form-control" name="experience" id="experience" placeholder="输入经验..."></textarea>
 				</div>
 				<div class="form-group">
 					<label id="deptLabel">工资</label>
@@ -32,15 +32,15 @@
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">描述</label>
-					<input type="text" class="form-control" name="description" id="description" placeholder="输入描述...">
+					<textarea class="form-control" name="description" id="description" placeholder="输入描述..."></textarea>
 				</div>
 				<div class="form-group">
 					<label id="deptLabel">要求</label>
-					<input type="text" class="form-control" name="requirement" id="requirement" placeholder="输入要求...">
+					<textarea class="form-control" name="requirement" id="requirement" placeholder="输入要求..."></textarea>
 				</div>
 				<div class="form-group">
 					<label id="introduceLabel">福利待遇</label>
-					<input type="text" class="form-control" name="fringeBenefits" id="fringeBenefits" placeholder="输入福利待遇...">
+					<textarea class="form-control" name="fringeBenefits" id="fringeBenefits" placeholder="输入福利待遇..."></textarea>
 				</div>
 			</div>
 			<div class="modal-footer">
