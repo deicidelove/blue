@@ -28,35 +28,35 @@
 <div class="project_img">
     <#if project0??>
         <a href="${project0.jumpUrl}">
-        <div class="project_img_01 left" style="background-image: url(${project0.picUrl})no-repeat center;">
+        <div class="project_img_01 left" style="background-image: url(${project0.picUrl})">
             <div>${project0.title}</div>   
         </div>
         </a>
     </#if>
     <#if project1??>
         <a href="${project1.jumpUrl}">
-        <div class="project_img_02 left" style="background-image: url(${project1.picUrl})no-repeat center;">
+        <div class="project_img_02 left" style="background-image: url(${project1.picUrl})">
             <div>${project1.title}</div>
         </div>
          </a>
     </#if>
     <#if project2??>
         <a href="${project2.jumpUrl}">
-        <div class="project_img_03 left" style="background-image: url(${project2.picUrl})no-repeat center;">
+        <div class="project_img_03 left" style="background-image: url(${project2.picUrl})">
             <div>${project2.title}</div>
          </div>
         </a>
     </#if>
     <#if project3??>
         <a href="${project3.jumpUrl}">
-        <div class="project_img_04 left" style="background-image: url(${project3.picUrl})no-repeat center;">
+        <div class="project_img_04 left" style="background-image: url(${project3.picUrl})">
             <div>${project3.title}</div>
         </div>
       </a>
     </#if>
     <#if project4??>
         <a href="${project4.jumpUrl}">
-        <div class="project_img_05 left" style="background-image: url(${project4.picUrl})no-repeat center;">
+        <div class="project_img_05 left" style="background-image: url(${project4.picUrl})">
             <div>${project4.title}</div>
         </div>
         </a>

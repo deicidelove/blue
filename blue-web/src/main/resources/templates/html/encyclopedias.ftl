@@ -38,7 +38,7 @@
         <#if encyclopediasjx0??>
 	        <div class="sift_img_top_left left">${encyclopediasjx0.title}</div>
 	        <a href="/encyclopediasDetial/${encyclopediasjx0.sid}">
-	        <div class="sift_img_top_right left" style="background: url(${encyclopediasjx0.url})no-repeat center;"></div>
+	        <div class="sift_img_top_right left" style="background-image: url(${encyclopediasjx0.url})"></div>
 	    	</a>
     	<#else>
 	    	<div class="sift_img_top_left left">请设置精选百科</div>
@@ -49,7 +49,7 @@
     	<#if encyclopediasjx1??>
 	    	<a href="/encyclopediasDetial/${encyclopediasjx1.sid}">
 	        <div class="flex-1">
-	            <div class="sift_img_botm_bg01" style="background: url(${encyclopediasjx1.url})no-repeat center;"></div>
+	            <div class="sift_img_botm_bg01" style="background-image: url(${encyclopediasjx1.url})"></div>
 	            <div>${encyclopediasjx1.title}</div>
 	        </div>
 	        </a>
@@ -57,7 +57,7 @@
         <#if encyclopediasjx2??>
 	        <a href="/encyclopediasDetial/${encyclopediasjx2.sid}">
 	        <div class="flex-1 margin_13">
-	            <div class="sift_img_botm_bg02" style="background: url(${encyclopediasjx2.url})no-repeat center;"></div>
+	            <div class="sift_img_botm_bg02" style="background-image: url(${encyclopediasjx2.url})"></div>
 	            <div>${encyclopediasjx2.title}</div>
 	        </div>
 	        </a>
@@ -65,7 +65,7 @@
         <#if encyclopediasjx3??>
 	        <a href="/encyclopediasDetial/${encyclopediasjx3.sid}">
 	        <div class="flex-1">
-	            <div class="sift_img_botm_bg03" style="background: url(${encyclopediasjx3.url})no-repeat center;"></div>
+	            <div class="sift_img_botm_bg03" style="background-image: url(${encyclopediasjx3.url})"></div>
 	            <div>${encyclopediasjx3.title}</div>
 	        </div>
 	        </a>
@@ -92,7 +92,7 @@
 </a>
 <#if encyclopedias0??>
 <div class="oral_an">
-    <div class="oral_an_bg" style="background: url(${encyclopedias0.url})no-repeat center;"></div>
+    <div class="oral_an_bg" style="background-image: url(${encyclopedias0.url})"></div>
     <div class="oral_an_head">${encyclopedias0.title}</div>
 </div>
 <#else>
@@ -105,7 +105,7 @@
     <#if encyclopedias1??>
     <a href="/encyclopediasDetial/${encyclopedias1.sid}">
     <li class="encyclopedia_li">
-        <div class="left encyclopedia_li_bg" style="background: url(${encyclopedias1.url})no-repeat center;"></div>
+        <div class="left encyclopedia_li_bg" style="background-image: url(${encyclopedias1.url})"></div>
         <div class="left encyclopedia_li_cent">
             <div>${encyclopedias1.title}</div>
             <div>${encyclopedias1.context}</div>
@@ -116,7 +116,7 @@
      <#if encyclopedias2??>
      <a href="/encyclopediasDetial/${encyclopedias2.sid}">
     <li class="encyclopedia_li">
-        <div class="left encyclopedia_li_bg encyclopedia_li_bg02" style="background: url(${encyclopedias2.url})no-repeat center;"></div>
+        <div class="left encyclopedia_li_bg encyclopedia_li_bg02" style="background-image: url(${encyclopedias2.url})"></div>
         <div class="left encyclopedia_li_cent">
             <div>${encyclopedias2.title}</div>
              <div>${encyclopedias2.context}</div>
@@ -127,7 +127,7 @@
     <#if encyclopedias3??>
     <a href="/encyclopediasDetial/${encyclopedias3.sid}">
     <li class="encyclopedia_li">
-        <div class="left encyclopedia_li_bg encyclopedia_li_bg03" style="background: url(${encyclopedias3.url})no-repeat center;"></div>
+        <div class="left encyclopedia_li_bg encyclopedia_li_bg03" style="background-image: url(${encyclopedias3.url})"></div>
         <div class="left encyclopedia_li_cent">
             <div>${encyclopedias3.title}</div>
              <div>${encyclopedias3.context}</div>

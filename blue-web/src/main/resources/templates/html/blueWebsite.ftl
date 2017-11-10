@@ -138,7 +138,7 @@
     <div class="lottery_bg">
          <#list goodsList as good>
             <a href="/jifen/index">
-                <div class="lottery_bg01 left" style="background: url(${good.goodsPicUrl})no-repeat center;"></div>
+                <div class="lottery_bg01 left" style="background-image: url(${good.goodsPicUrl})"></div>
             </a>
         </#list>
     </div>

@@ -18,7 +18,7 @@
 </div>
 <div class="subs_head">
 	 <#if doctor.headUrl??>
-    <div class="head_bg left" style="background: url(${doctor.headUrl})no-repeat center;"></div>
+    <div class="head_bg left" style="background-image: url(${doctor.headUrl})"></div>
     <#else>
     <div class="head_bg left" ></div>
     </#if>

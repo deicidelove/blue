@@ -50,13 +50,13 @@ var basePath = '${request.contextPath}';
     <div class="drop_down_bg"></div>
 </div>
 <div class="doctor">
-    <div class="specialist_bg" style="background:url(${url})no-repeat center;"></div>
+    <div class="specialist_bg" style="background-image:url(${url})"></div>
     <ul class="doctor_ul">
 	    <#list doctors as doctor>
 	        <a href="/doctorDetial/${doctor.sid}" >
 	        <li class="doctor_li">
                 <#if doctor.headUrl??>
-                <div class="doctor_img left" style="background: url(${doctor.headUrl})no-repeat center;"></div>
+                <div class="doctor_img left" style="background-image: url(${doctor.headUrl})"></div>
                 <#else>
                 <div class="doctor_img left" ></div>
                 </#if>

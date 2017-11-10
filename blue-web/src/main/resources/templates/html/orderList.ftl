@@ -50,7 +50,7 @@
             <a href="/doctorDetial/${doctor.sid}" >
             <li class="doctor_li">
 	             <#if doctor.headUrl??>
-			    <div class="doctor_img left" style="background: url(${doctor.headUrl})no-repeat center;"></div>
+			    <div class="doctor_img left" style="background-image: url(${doctor.headUrl})"></div>
 			    <#else>
 			    <div class="doctor_img left"></div>
 			    </#if>
