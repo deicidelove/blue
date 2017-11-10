@@ -82,11 +82,11 @@
         toweek:function(){
             var dd = new Date();
             var week=dd.getDay();         //获取当前星期X(0-6,0代表星期天)
-            for(var i=1;i<=7;i++){
-                var daycount=i-week;
-                var bak= subs.GetDateStr(daycount);
-                $('.month_day').eq(i-1).text(bak[0]);
-                $('.week').eq(i-1).text(bak[1]);
+            for(var i=0;i<7;i++){
+//                var daycount=i-week;
+                var bak= subs.GetDateStr(i);
+                $('.month_day').eq(i).text(bak[0]);
+                $('.week').eq(i).text(bak[1]);
             }
         },
         GetDateStr:function(AddDayCount) {

@@ -66,5 +66,13 @@ public class DateUtil {
         cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);
         return cal;
 	}
+	// //获取前后日期 i为正数 向后推迟i天，负数时向前提前i天
+	public static String getdate(int i)  {
+		 Calendar cd = Calendar.getInstance();
+		 cd.add(Calendar.DATE, i);
+		 Date date = cd.getTime();
+		 SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
+		 return dformat.format(date);
+	 }
 
 }

@@ -69,14 +69,26 @@ public class OrderController {
 		modelAndView.setViewName("/html/orderList");
 		return modelAndView;
 	}
+	@RequestMapping(value ="orderPageByDate")
+	@ResponseBody
+	public Result<List<BlueStaff>> orderPageByDate(String date) throws ParseException {
+		
+		List<BlueDoctorSchedule> schedules = doctorSchedulEService.findBlueDoctorSchedule(date);
+		List<Integer> staffIds = new ArrayList<>();
+		for (BlueDoctorSchedule dto : schedules) {
+			staffIds.add(dto.getStaffId());
+		}
+ 		List<BlueStaff> staffs = commonService.findStaff(staffIds);
+		return new Result<>(true, "获取成功！", staffs);
+	}
 
 	@RequestMapping(value = "doctorDetial/{sid}", method = RequestMethod.GET)
 	public ModelAndView doctorDetial(ModelAndView modelAndView,
 			@PathVariable Integer sid) throws ParseException {
 		Result<BlueStaff> ruseult = doctorService.findDoctor(sid);
 		modelAndView.addObject("doctor", ruseult.getData());
-		Date firstDay = DateUtil.firstDay();
-		Date endDay = DateUtil.endDay();
+		Date firstDay = DateUtil.formtString(DateUtil.getdate( 0));
+		Date endDay = DateUtil.formtString(DateUtil.getdate(6));
 		// 上午
 		List<BlueDoctorSchedule> scheduleMorning = doctorSchedulEService
 				.findByDateAndTime("上午", sid, DateUtil.formtString(firstDay), DateUtil.formtString(endDay));
@@ -100,7 +112,6 @@ public class OrderController {
 		dto.setDate(DateUtil.formtString(bds.getCreateTime()));
 		dto.setShifts(result);
 		return new Result<OrderDto>(true, "获取成功！", dto);
-
 	}
 
 	@RequestMapping(value = "orderInfo/{scheduleId}/{shiftsId}", method = RequestMethod.GET)
@@ -134,9 +145,9 @@ public class OrderController {
 		List<ScheduleDto> list = new ArrayList<>();
 		try {
 
-			// 从周一到周日遍历
+			// 从当前日遍历到后七天
 			for (int i = 0; i < 7; i++) {
-				String date = DateUtil.formtString(DateUtil.getWantDay(i));
+				String date = DateUtil.getdate(i);
 				ScheduleDto dto = new ScheduleDto();
 				for (BlueDoctorSchedule blueDoctorSchedule : schedule) {
 					String blueDate = DateUtil.formtString(blueDoctorSchedule

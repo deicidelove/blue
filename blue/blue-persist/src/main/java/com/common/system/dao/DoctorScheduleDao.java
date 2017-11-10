@@ -140,5 +140,14 @@ public class DoctorScheduleDao {
 						BlueDoctorSchedule.class));
 		return result;
 	}
+	
+	public List<BlueDoctorSchedule> findSchedulesByDate(String date){
+		Map<String, Object> paramMap = Maps.newHashMap();
+		String sql = "SELECT * FROM tb_blue_doctor_schedule WHERE create_time = :create_time" ;
+		paramMap.put("create_time", date);
+		List<BlueDoctorSchedule> result = namedParameterJdbcTemplate.query(sql.toString(), paramMap,
+				new BeanPropertyRowMapper<BlueDoctorSchedule>(BlueDoctorSchedule.class));
+		return result;
+	}
 
 }

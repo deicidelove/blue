@@ -15,6 +15,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.common.system.entity.BlueStaff;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 /**
@@ -149,6 +150,16 @@ public class StaffDao {
 		StringBuilder sql = new StringBuilder("SELECT * FROM tb_blue_staff WHERE introduce LIKE :search OR name LIKE :search ");
 		paramMap.put("search", search);
 		List<BlueStaff> result = namedParameterJdbcTemplate.query(sql.toString(), paramMap, new BeanPropertyRowMapper<BlueStaff>(BlueStaff.class));
+		return result;
+	}
+	
+	public List<BlueStaff> findBySids(List<Integer> staffIds){
+		StringBuilder sql = new StringBuilder("SELECT * FROM tb_blue_staff WHERE sid in( 0");
+		for (Integer sid : staffIds) {
+			sql.append(","+sid);
+		}
+		sql.append(")");
+		List<BlueStaff> result = namedParameterJdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<BlueStaff>(BlueStaff.class));
 		return result;
 	}
 

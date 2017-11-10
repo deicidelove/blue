@@ -29,6 +29,8 @@ public interface CommonService {
 	
 	public List<BlueStaff> findStaff();
 	
+	public List<BlueStaff> findStaff(List<Integer> staffIds);
+	
 	public String upFile(MultipartFile file, int sid,Object object);
 	
 	public List<BlueAdvert> findAdvert(int type);

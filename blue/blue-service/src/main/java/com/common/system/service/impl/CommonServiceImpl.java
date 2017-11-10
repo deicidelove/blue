@@ -271,5 +271,16 @@ public class CommonServiceImpl implements CommonService {
 		return null;
 	}
 
+	@Override
+	public List<BlueStaff> findStaff(List<Integer> staffIds) {
+		try {
+			List<BlueStaff> staffs = staffDao.findBySids(staffIds);
+			return staffs;
+		} catch (Exception e) {
+			LOG.error("获取所有医生失败！msg:{}", e);
+			return null;
+		}
+	}
+
 
 }

@@ -3,7 +3,6 @@
  */
 package com.common.system.service;
 
-import java.util.Date;
 import java.util.List;
 
 import com.common.system.entity.BlueDoctorSchedule;
@@ -30,5 +29,6 @@ public interface DoctorSchedulEService {
 			String shiftTime, int sid);
 	
 	public List<BlueDoctorSchedule> findByDateAndTime(String time,Integer staffId,String firstDay,String endDay);
-
+	
+	public List<BlueDoctorSchedule> findBlueDoctorSchedule(String date);
 }

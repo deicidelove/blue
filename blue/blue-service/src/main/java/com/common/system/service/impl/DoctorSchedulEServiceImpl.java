@@ -182,12 +182,6 @@ private void setBlueShift(int sid,String count,String shiftTime){
 		shiftDao.insert(shift);
 	}
 	
-	
-	
-	
-	
-	
-	
 }
 	private BlueDoctorSchedule setBlueDoctorSchedule(String date, String count,
 			int staffId, String shiftTime) throws ParseException {
@@ -215,6 +209,17 @@ private void setBlueShift(int sid,String count,String shiftTime){
 
 		} catch (Exception e) {
 			LOG.error("查询findByDateAndTime排班失败！msg:{};staffId:{}", e, staffId);
+		}
+		return null;
+	}
+
+	@Override
+	public List<BlueDoctorSchedule> findBlueDoctorSchedule(String date) {
+		try {
+			List<BlueDoctorSchedule> list = doctorScheduleDao.findSchedulesByDate(date);
+			return list;
+		} catch (Exception e) {
+			LOG.error("查询findBlueDoctorSchedule排班失败！msg:{}", e);
 		}
 		return null;
 	}

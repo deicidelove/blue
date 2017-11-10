@@ -27,37 +27,37 @@
 </div>
 <div class="project_img">
     <#if project0??>
-        <a href="/projectDetial/${project0.sid}">
-        <div class="project_img_01 left" style="background: url(${project0.url})no-repeat center;">
-            <div>${project0.name}</div>   
+        <a href="${project0.jumpUrl}">
+        <div class="project_img_01 left" style="background-image: url(${project0.picUrl})no-repeat center;">
+            <div>${project0.title}</div>   
         </div>
         </a>
     </#if>
     <#if project1??>
-        <a href="/projectDetial/${project1.sid}">
-        <div class="project_img_02 left" style="background: url(${project1.url})no-repeat center;">
-            <div>${project1.name}</div>
+        <a href="${project1.jumpUrl}">
+        <div class="project_img_02 left" style="background-image: url(${project1.picUrl})no-repeat center;">
+            <div>${project1.title}</div>
         </div>
          </a>
     </#if>
     <#if project2??>
-        <a href="/projectDetial/${project2.sid}">
-        <div class="project_img_03 left" style="background: url(${project2.url})no-repeat center;">
-            <div>${project2.name}</div>
+        <a href="${project2.jumpUrl}">
+        <div class="project_img_03 left" style="background-image: url(${project2.picUrl})no-repeat center;">
+            <div>${project2.title}</div>
          </div>
         </a>
     </#if>
     <#if project3??>
-        <a href="/projectDetial/${project3.sid}">
-        <div class="project_img_04 left" style="background: url(${project3.url})no-repeat center;">
-            <div>${project3.name}</div>
+        <a href="${project3.jumpUrl}">
+        <div class="project_img_04 left" style="background-image: url(${project3.picUrl})no-repeat center;">
+            <div>${project3.title}</div>
         </div>
       </a>
     </#if>
     <#if project4??>
-        <a href="/projectDetial/${project4.sid}">
-        <div class="project_img_05 left" style="background: url(${project4.url})no-repeat center;">
-            <div>${project4.name}</div>
+        <a href="${project4.jumpUrl}">
+        <div class="project_img_05 left" style="background-image: url(${project4.picUrl})no-repeat center;">
+            <div>${project4.title}</div>
         </div>
         </a>
     </#if>
@@ -72,31 +72,33 @@
 <div class="all_01"></div>
 <div class="all_bg box">
      <#if project5??>
-		<a href="/projectDetial/${project5.sid}">
 	    <div class="all_bg_div left">
-	        <div class="all_02" style="background: url(${project5.url})no-repeat center;"></div>
+	    <a href="/projectDetial/${project5.sid}">
+	        <div class="all_02" style="background-image: url(${project5.url})"></div>
 	        <div class="all_text01">${project5.name}</div>
 	        <div class="all_text02">${project5.context}</div>
+    	</a>
     	</div>
-	    </a>
     </#if>
      <#if project6??>
-		<a href="/projectDetial/${project6.sid}">
 	    <div class="all_bg_div margin_12 left">
-	        <div class="all_03" style="background: url(${project6.url})no-repeat center;"></div>
+	    <a href="/projectDetial/${project6.sid}">
+	        <div class="all_03" style="background-image: url(${project6.url})"></div>
 	        <div class="all_text01">${project6.name}</div>
 	        <div class="all_text02">${project6.context}</div>
+    	 </a>
     	</div>
-	    </a>
+	   
     </#if>
      <#if project7??>
-		<a href="/projectDetial/${project7.sid}" >
-	    <div class="all_bg_div left">
-	        <div class="all_04" style="background: url(${project7.url})no-repeat center;"></div>
+	    <div class="all_bg_div right">
+	    <a href="/projectDetial/${project7.sid}" >
+	        <div class="all_04" style="background-image: url(${project7.url})"></div>
 	        <div class="all_text01">${project7.name}</div>
 	        <div class="all_text02">${project7.context}</div>
+    	</a>
     	</div>
-	    </a>
+	    
     </#if>
 </div>
 <div class="swiper02">
