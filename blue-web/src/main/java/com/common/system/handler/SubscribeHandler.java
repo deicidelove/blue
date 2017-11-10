@@ -56,6 +56,7 @@ public class SubscribeHandler extends AbstractHandler {
         			wxDetailEntity.setOpenId(userWxInfo.getOpenId());
         			wxDetailEntity.setPic(userWxInfo.getHeadImgUrl());
         			wxDetailEntity.setSex(userWxInfo.getSex());
+        			wxDetailEntity.setName(userWxInfo.getNickname());
         			wxDetailService.save(wxDetailEntity);
         		}
 			} catch (Exception e) {
