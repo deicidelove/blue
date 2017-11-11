@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import com.common.system.entity.WxDetailEntity;
 import com.common.system.util.Convert;
@@ -30,10 +31,10 @@ public class WxDetailDao {
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("openId", openId);
 		
-		WxDetailEntity result = namedParameterJdbcTemplate
-				.queryForObject(sql, paramMap, new BeanPropertyRowMapper<WxDetailEntity>(WxDetailEntity.class));
+		List<WxDetailEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<WxDetailEntity>(WxDetailEntity.class));
 				
-		return result;
+		return CollectionUtils.isEmpty(resultList)?null: resultList.get(0);
 	}
 	
 	public List<WxDetailEntity> seleteByList(Integer pageNum,
@@ -58,8 +59,8 @@ public class WxDetailDao {
 	public void saveWxDetailEntity(WxDetailEntity wxDetailEntity){
 		Assert.notNull(wxDetailEntity,"wxDetailEntity is null");
 		String sql ="	INSERT INTO rc_a_wx_detail	"
-				+"	( open_id, openId, goods_img_ur)	"
-				+ "	VALUES (  :goodsId, :pic, :name)	";
+				+"	( open_id, sex, name, pic)	"
+				+ "	VALUES (  :openId, :sex, :name, :pic)	";
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(wxDetailEntity));
 	}
 	

@@ -8,6 +8,7 @@ import com.common.system.service.OrderService;
 import com.common.system.util.Result;
 import com.github.binarywang.wxpay.bean.WxPayApiData;
 import com.github.binarywang.wxpay.bean.coupon.*;
+import com.github.binarywang.wxpay.bean.notify.WxPayNotifyResponse;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.notify.WxPayRefundNotifyResult;
 import com.github.binarywang.wxpay.bean.request.*;
@@ -132,7 +133,7 @@ public class WxPayController {
     	request.setOutTradeNo(UUID.randomUUID().toString().replaceAll("-", ""));
     	request.setTotalFee((goodsEntity.getGoodsPrice().multiply(new BigDecimal(100))).intValue());
     	request.setSpbillCreateIp("123.12.12.123");
-    	request.setNotifyURL("http://www.weixin.qq.com/wxpay/pay.php");
+    	request.setNotifyURL("http://wx.njlxkq.com/pay/parseOrderNotifyResult");
     	request.setTradeType("JSAPI");
     	request.setOpenid(openId);
     	OrderEntity orderEntity = new OrderEntity();
@@ -223,8 +224,17 @@ public class WxPayController {
      */
   
     @PostMapping("/parseOrderNotifyResult")
-    public WxPayOrderNotifyResult parseOrderNotifyResult(@RequestBody String xmlData) throws WxPayException {
-        return this.wxService.parseOrderNotifyResult(xmlData);
+    public String parseOrderNotifyResult(@RequestBody String xmlData) throws WxPayException {
+        String resultMsg = "";
+    	try {
+        	
+        	WxPayOrderNotifyResult result = this.wxService.parseOrderNotifyResult(xmlData);
+        	resultMsg = WxPayNotifyResponse.success("成功了");
+		} catch (Exception e) {
+			resultMsg = WxPayNotifyResponse.fail("失败了");
+		}
+    	
+    	return resultMsg;
     }
 
     /**
