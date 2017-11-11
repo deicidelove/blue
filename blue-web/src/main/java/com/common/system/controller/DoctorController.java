@@ -78,6 +78,7 @@ public class DoctorController {
 		modelAndView.addObject("flag", true);
 		modelAndView.addObject("depts", depts);
 		modelAndView.addObject("doctors", staffs);
+		modelAndView.addObject("url","");
 		modelAndView.setViewName("/html/doctor");
 		return modelAndView;
 	}
