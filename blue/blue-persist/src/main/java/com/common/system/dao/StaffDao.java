@@ -101,7 +101,7 @@ public class StaffDao {
 
 	public int updateStaff(BlueStaff staff) {
 		Map<String, Object> paramMap = Maps.newHashMap();
-		StringBuilder sql =new StringBuilder("UPDATE tb_blue_staff SET name =:name,dept_id =:deptId,sex =:sex,phone = :phone,position_id = :level,introduce = :introduce,address =:address,positionName=:positionName ");
+		StringBuilder sql =new StringBuilder("UPDATE tb_blue_staff SET name =:name,dept_id =:deptId,sex =:sex,phone = :phone,position_id = :level,introduce = :introduce,address =:address,position_name=:positionName ");
 		if(!StringUtils.isEmpty(staff.getHeadUrl())){
 			sql.append(", head_url =:head_url");
 			paramMap.put("head_url", staff.getHeadUrl());
