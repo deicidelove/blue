@@ -62,14 +62,9 @@ public class OrderController {
 	private ShiftDao shiftDao;
 
 	@RequestMapping("/orderPage")
-	public ModelAndView orderPage(ModelAndView modelAndView) throws ParseException {
+	public ModelAndView orderPage(ModelAndView modelAndView) {
 
-		List<BlueDoctorSchedule> schedules = doctorSchedulEService.findBlueDoctorSchedule(DateUtil.formtString(new Date()));
-		List<Integer> staffIds = new ArrayList<>();
-		for (BlueDoctorSchedule dto : schedules) {
-			staffIds.add(dto.getStaffId());
-		}
- 		List<BlueStaff> staffs = commonService.findStaff(staffIds);
+		List<BlueStaff> staffs = commonService.findStaff();
 		modelAndView.addObject("doctors", staffs);
 		modelAndView.setViewName("/html/orderList");
 		return modelAndView;
