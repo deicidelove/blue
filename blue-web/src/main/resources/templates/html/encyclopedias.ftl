@@ -25,10 +25,7 @@
         <div class="swiper-pagination"></div>
     </div>
 </div>
-<div class="sift">
-    <span class="left">精选百科</span>
-    <span class="left">SELECTED</span>
-</div>
+
 <div class="sift">
     <span class="left">精选百科</span>
     <span class="left">SELECTED</span>
