@@ -41,7 +41,7 @@ public class GoodsDao {
 	
 	public List<GoodsEntity> seleteByList(Integer pageNum,
 			Integer pageSize){
-		String sql = " SELECT * FROM rc_a_goods WHERE 1=1 limit :pageStartNum, :pageSize";
+		String sql = " SELECT * FROM rc_a_goods WHERE 1=1 and is_delete is false order by createTime desc limit :pageStartNum, :pageSize";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("pageStartNum", (pageNum-1)*pageSize);
 		paramMap.put("pageSize", pageSize);
@@ -51,7 +51,7 @@ public class GoodsDao {
 	}
 	
 	public List<GoodsEntity> seleteByList(){
-		String sql = " SELECT * FROM rc_a_goods WHERE 1=1 ";
+		String sql = " SELECT * FROM rc_a_goods WHERE 1=1 and is_delete is false ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		List<GoodsEntity> resultList = namedParameterJdbcTemplate.query(sql, 
 				paramMap, BeanPropertyRowMapper.newInstance(GoodsEntity.class));
@@ -61,8 +61,8 @@ public class GoodsDao {
 	public Integer saveGoods(GoodsEntity goodsEntity){
 		Assert.notNull(goodsEntity,"goodsEntity is null");
 		String sql ="	INSERT INTO `rc_a_goods`	"
-				+"	( act_id, goods_name, goods_price,  goods_title, goods_detail, is_delete, category, jifen)	"
-				+ "	VALUES (:actId, :goodsName,:goodsPrice,:goodsTitle,:goodsDetail,:isDelete, :category, :jifen)	";
+				+"	( act_id, goods_name, goods_price,  goods_title, goods_detail , category, jifen)	"
+				+ "	VALUES (:actId, :goodsName,:goodsPrice,:goodsTitle,:goodsDetail, :category, :jifen)	";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		this.namedParameterJdbcTemplate.update(sql,
 				new BeanPropertySqlParameterSource(goodsEntity),
@@ -95,7 +95,7 @@ public class GoodsDao {
 	}
 
 	public List<GoodsEntity> listNoneOverGoods() {
-		String sql = "select * from rc_a_goods where is_over=0";
+		String sql = "select * from rc_a_goods where is_over=0 and is_delete is false ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		return namedParameterJdbcTemplate.query(sql, paramMap, BeanPropertyRowMapper.newInstance(GoodsEntity.class));
 	}

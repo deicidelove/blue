@@ -133,12 +133,14 @@
     <div class="lottery_head">
         <span class="left">积分抽奖</span>
         <span class="left">LUCK DRAW</span>
-        <span class="right"></span>
+        <span class="right" onclick="jifenRight()"></span>
     </div>
     <div class="lottery_bg">
-         <#list goodsList as good>
-            <a href="/jifen/index">
-                <div class="lottery_bg01 left" style="background-image: url(${good.goodsPicUrl})"></div>
+         <#list goodsList as goods>
+            <a href="/jifen/detail?goodsId=${goods.goodsId }">
+                <div class="lottery_bg01 left" >
+                	<img class="lottery_bg01 left"  src="${goods.goodsPicUrl }"/>
+                </div>
             </a>
         </#list>
     </div>
@@ -216,4 +218,8 @@
             autoplayDisableOnInteraction: false
         });
     },100);
+    
+    function jifenRight(){
+    	window.location.href = "/jifen/index";
+    }
 </script>
