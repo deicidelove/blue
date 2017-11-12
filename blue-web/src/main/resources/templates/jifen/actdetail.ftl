@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>积分活动-详情</title>
-    <script src="../js/common.js"></script>
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/swiper.min.css">
-    <link rel="stylesheet" href="../css/activity_xq.css" />
+    <script src="../../js/common.js"></script>
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/swiper.min.css">
+    <link rel="stylesheet" href="../../css/activity_xq.css" />
 </head>
 <script>
 	var actId = '${actId}';
@@ -126,9 +126,9 @@
 <div class="share_bg"></div>
 </body>
 </html>
-<script src="../js/jquery.js"></script>
-<script src="../js/activity_xq.js"></script>
-<script src="../js/swiper.min.js"></script>
+<script src="../../js/jquery.js"></script>
+<script src="../../js/activity_xq.js?v=6"></script>
+<script src="../../js/swiper.min.js"></script>
 <script src="../../js/bluecommon.js"></script>
 <script>
     var swiper = new Swiper('.swiper01 .swiper-container', {

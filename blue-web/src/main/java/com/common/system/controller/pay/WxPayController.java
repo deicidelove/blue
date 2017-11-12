@@ -1,10 +1,14 @@
 package com.common.system.controller.pay;
 
 import com.alibaba.fastjson.JSON;
+import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.OrderEntity;
+import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
 import com.common.system.service.OrderService;
+import com.common.system.service.PayCommonService;
+import com.common.system.util.CookieUtil;
 import com.common.system.util.Result;
 import com.github.binarywang.wxpay.bean.WxPayApiData;
 import com.github.binarywang.wxpay.bean.coupon.*;
@@ -25,10 +29,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import java.io.File;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +59,12 @@ public class WxPayController {
 
     @Resource
     private OrderService orderService;
+    
+    @Resource
+    private GoodsConsumerRelateService goodsConsumerRelateService;
+    
+    @Resource
+    private PayCommonService payCommonService;
     /**
      * <pre>
      * 查询订单(详见https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_2)
@@ -106,48 +115,20 @@ public class WxPayController {
     }
 
     @PostMapping("/createGoodsOrder")
-    public <T> T createGoodsOrder( String goodsId) throws WxPayException {
+    public <T> T createGoodsOrder( String goodsId, Float czFre, HttpServletRequest request) throws WxPayException {
     	
-    	Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
-    	GoodsEntity goodsEntity  = goodsResult.getData();
+    	Map<String, String> result = Maps.newHashMap();
     	
-    	String openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
+    	String openId = CookieUtil.getCookieValue(request, "openId");
+    	if(null != czFre ){// 充值
+    		result = payCommonService.payCZ(openId, goodsId, czFre);
+    	}else { //购买商品
+    		result = payCommonService.payGoods(openId, goodsId);
+    	}
     	
-    	WxPayUnifiedOrderRequest request = new WxPayUnifiedOrderRequest();
-    	request.setDeviceInfo("WEB");
-    	request.setBody("蓝鲟-充值");
-    	Map<String, List<Map<String,Object>>> map = Maps.newHashMap();
-    	
-    	Map<String,Object> temp = Maps.newHashMap();
-    	temp.put("goods_id", goodsEntity.getGoodsId());
-    	temp.put("wxpay_goods_id", goodsEntity.getGoodsId());
-    	temp.put("goods_name", goodsEntity.getGoodsName());
-    	temp.put("goods_num", Integer.valueOf(1));
-    	temp.put("price", goodsEntity.getGoodsPrice());
-    	temp.put("goods_category", StringUtil.isEmpty(goodsEntity.getCategory())? "活动":goodsEntity.getCategory());
-    	temp.put("body", goodsEntity.getGoodsTitle());
-    	List<Map<String,Object>> tempList = Lists.newArrayList();
-    	tempList.add(temp);
-    	map.put("goods_detail", tempList);	
-    	request.setDetail(JSON.toJSONString(map));
-    	request.setOutTradeNo(UUID.randomUUID().toString().replaceAll("-", ""));
-    	request.setTotalFee((goodsEntity.getGoodsPrice().multiply(new BigDecimal(100))).intValue());
-    	request.setSpbillCreateIp("123.12.12.123");
-    	request.setNotifyURL("http://wx.njlxkq.com/pay/parseOrderNotifyResult");
-    	request.setTradeType("JSAPI");
-    	request.setOpenid(openId);
-    	OrderEntity orderEntity = new OrderEntity();
-    	orderEntity.setGoodsId(Integer.valueOf(goodsId));
-    	orderEntity.setGoodsNum(1);
-    	orderEntity.setOpenId(openId);
-    	orderEntity.setSource("wxPayCode");
-    	orderEntity.setStatus("wzf");
-    	orderEntity.setType("wxPayCode");
-    	orderService.save(orderEntity);
-    	
-        return this.wxService.createOrder(request);
+        return (T) result;
     }
-
+    
     /**
      * 统一下单(详见https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_1)
      * 在发起微信支付前，需要调用统一下单接口，获取"预支付交易会话标识"
@@ -229,6 +210,10 @@ public class WxPayController {
     	try {
         	
         	WxPayOrderNotifyResult result = this.wxService.parseOrderNotifyResult(xmlData);
+        	OrderEntity orderEntity = orderService.findByOutTradeId(result.getOutTradeNo());
+        	//已完成
+        	orderService.update(orderEntity.getOrderId(), "ywc", orderEntity.getPrePayId());
+        	
         	resultMsg = WxPayNotifyResponse.success("成功了");
 		} catch (Exception e) {
 			resultMsg = WxPayNotifyResponse.fail("失败了");

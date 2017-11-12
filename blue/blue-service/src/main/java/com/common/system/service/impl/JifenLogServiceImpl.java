@@ -74,4 +74,25 @@ public class JifenLogServiceImpl implements JifenLogService{
 		return resultList;
 	}
 
+	@Override
+	public void deleteById(Integer jifenLogId) {
+		try {
+			jifenLogDao.delete(jifenLogId);
+		} catch (Exception e) {
+			LOG.error("JifenLogServiceImpl deleteById error!", e );
+		}
+		
+	}
+
+	@Override
+	public JifenLogEntity getByOpenIdAndType(String openId, String type) {
+		JifenLogEntity jifenLogEntity = null;
+		try {
+			jifenLogEntity = jifenLogDao.seleteByType(openId, type);
+		} catch (Exception e) {
+			LOG.error("JifenLogServiceImpl getByOpenIdAndType error!", e );
+		}
+		return jifenLogEntity;
+	}
+
 }

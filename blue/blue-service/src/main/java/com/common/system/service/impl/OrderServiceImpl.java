@@ -35,6 +35,17 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public OrderEntity findByOutTradeId(String outTradeId) {
+		OrderEntity orderEntity = null;
+		try {
+			orderEntity = orderDao.seleteByOutTradeId(outTradeId);
+		} catch (Exception e) {
+			LOG.error("  findByOrderId error!", e );
+		}
+		return orderEntity;
+	}
+	
+	@Override
 	public List<OrderEntity> seleteByList(String status, Integer pageNum,
 			Integer pageSize) {
 		List<OrderEntity> resultList = null;
@@ -60,12 +71,14 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public void save(OrderEntity orderEntity) {
+	public Integer save(OrderEntity orderEntity) {
+		Integer resultInt = null;
 		try {
-			orderDao.save(orderEntity);
+			resultInt = orderDao.save(orderEntity);
 		} catch (Exception e) {
 			LOG.error(" save error!", e );
 		}
+		return resultInt;
 	}
 
 	@Override
