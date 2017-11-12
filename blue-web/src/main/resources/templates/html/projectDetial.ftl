@@ -11,7 +11,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">项目中心</div>
-    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+    <div class="heade_back">返回</div>
 </div>
 <div class="project_bg"></div>
 <div class="project_cont">

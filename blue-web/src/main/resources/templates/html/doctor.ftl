@@ -14,7 +14,7 @@ var basePath = '${request.contextPath}';
 <body>
 <div class="heade">
     <div class="heade_text">蓝鲟专家</div>
-    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+    <div class="heade_back">返回</div>
 </div>
 <div class="search">
 	<#if search??>

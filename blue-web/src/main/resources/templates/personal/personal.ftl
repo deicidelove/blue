@@ -14,7 +14,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">个人中心</div>
-    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+    <div class="heade_back">返回</div>
 </div>
 <div class="integral_banner"></div>
 <div class="buy_credits">

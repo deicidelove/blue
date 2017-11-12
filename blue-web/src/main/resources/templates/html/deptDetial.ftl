@@ -11,7 +11,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">${dept.name}</div>
-   <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+    <div class="heade_back">返回</div>
 </div>
 <div class="health_bg"></div>
 <div class="health_content">

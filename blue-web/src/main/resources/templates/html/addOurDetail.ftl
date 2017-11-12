@@ -11,7 +11,7 @@
 <body class="gray_bg">
 <div class="heade">
     <div class="heade_text">加入我们</div>
-  <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+    <div class="heade_back">返回</div>
 </div>
 
 <div class="btn_bspace">
