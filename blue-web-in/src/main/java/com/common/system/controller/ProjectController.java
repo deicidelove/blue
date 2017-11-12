@@ -107,6 +107,7 @@ public class ProjectController {
 	public @ResponseBody
 	Result<Integer> updateAdvert(String context, String title,
 			@RequestParam("fileName") MultipartFile file, int sid) {
+		context = ContextUtil.setConent(context);
 		return projectService.updateProject(title, context, sid, file);
 		// ModelAndView modelAndView = new ModelAndView();
 		// modelAndView.setViewName("/system/admin/advert/list");

@@ -16,8 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label>商品详情</label> 
-                    <textarea rows="30" cols="50" name="goodsDetail" id="goodsDetail"  >${bean.goodsDetail!}
-                    </textarea>
+                    <script id="editor" name="goodsDetail" type="text/plain" style="width:100%;height:500px;" ></script>
                 </div>
                 
             </div>
@@ -60,4 +59,14 @@
         });
     }
 
+</script>
+
+<script type="text/javascript">
+	var editContext = '${bean.goodsDetail}';
+ 	var ue = UE.getEditor('editor');
+ 	 //异步回调
+    ue.ready(function() {
+         ue.execCommand('insertHtml', editContext);
+    });
+ 
 </script>

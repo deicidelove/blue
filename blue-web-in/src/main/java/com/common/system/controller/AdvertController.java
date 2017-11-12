@@ -132,6 +132,7 @@ public class AdvertController {
 	public @ResponseBody
 	Result<Integer> updateAdvert(int type, String context, String title,
 			@RequestParam("fileName") MultipartFile file, int sid) {
+		context = ContextUtil.setConent(context);
 		return advertService.updateAdvert(type, context, title, file, sid);
 	}
 	

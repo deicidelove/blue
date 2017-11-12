@@ -130,6 +130,7 @@ public class EncyclopediasController {
 	public @ResponseBody
 	Result<Integer> updateAdvert(int type, String context, String title,
 			@RequestParam("fileName") MultipartFile file, int sid) {
+		context = ContextUtil.setConent(context);
 		return encyclopediasService.updateEncyclopedias(type, context, title, file, sid);
 		// ModelAndView modelAndView = new ModelAndView();
 		// modelAndView.setViewName("/system/admin/advert/list");
