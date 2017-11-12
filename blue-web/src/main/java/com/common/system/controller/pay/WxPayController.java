@@ -1,15 +1,11 @@
 package com.common.system.controller.pay;
 
-import com.alibaba.fastjson.JSON;
-import com.common.system.entity.GoodsConsumerRelateEntity;
-import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.OrderEntity;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
 import com.common.system.service.OrderService;
-import com.common.system.service.PayCommonService;
+import com.common.system.controller.service.PayCommonService;
 import com.common.system.util.CookieUtil;
-import com.common.system.util.Result;
 import com.github.binarywang.wxpay.bean.WxPayApiData;
 import com.github.binarywang.wxpay.bean.coupon.*;
 import com.github.binarywang.wxpay.bean.notify.WxPayNotifyResponse;
@@ -20,8 +16,6 @@ import com.github.binarywang.wxpay.bean.result.*;
 import com.github.binarywang.wxpay.config.WxPayConfig;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
-import com.github.pagehelper.util.StringUtil;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import org.slf4j.Logger;
@@ -33,9 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.io.File;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 
 /**

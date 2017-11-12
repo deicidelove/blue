@@ -35,6 +35,7 @@
 							<tr>
 								<th>序号</th>
 								<th>活动Id</th>
+								<th>商品Id</th>
 								<th>商品名称</th>
 								<th>商品价格</th>
 								<th>商品积分</th>
@@ -74,6 +75,7 @@ $(function() {
 		"columns":[ 
 		    {"data":null}, 
 			{"data":"actId"},
+			{"data":"goodsId"},
 			{"data":"goodsName"},
 			{"data":null},
 			{"data":null},
@@ -91,7 +93,7 @@ $(function() {
 			    }
 			},
             {
-                targets: 3,
+                targets: 4,
                 data: null,
                 render: function (data) {
                     var actPeriods = data.goodsPrice;
@@ -99,15 +101,15 @@ $(function() {
                 }
             },
             {
-                targets: 4,
+                targets: 5,
                 data: null,
                 render: function (data) {
-                    var actPeriods = data.goodsPrice;
-                    return actPeriods+"积分";
+                    var jifen = data.jifen;
+                    return jifen+"积分";
                 }
             },
 			{
-			    targets: 5,
+			    targets: 6,
 			    data: null,
 			    render: function (data) {
 			    	if(data.isDelete == 0){

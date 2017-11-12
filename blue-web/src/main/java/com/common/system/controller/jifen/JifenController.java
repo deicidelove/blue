@@ -157,7 +157,7 @@ public class JifenController {
         GoodsEntity goodsEntity = goodsResult.getData();
         detailDTO.setActTotalNum(actEntity.getActTotalNum());
         
-        List<GoodsConsumerRelateEntity> consumerRelateEntityList = goodsConsumerRelateService.list(actId, goodsId);
+        List<GoodsConsumerRelateEntity> consumerRelateEntityList = goodsConsumerRelateService.listUsed(actId, goodsId);
         
         List<GoodsDetailWxDTO> goodsDetailWxDTOList = Lists.newArrayList();
         List<String> givingCodeList = Lists.newArrayList();
@@ -205,9 +205,6 @@ public class JifenController {
 		Map<String, String > resultMap  = Maps.newHashMap();
 		//TODO get openId 添加事务
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		
-		//TODO
-		openId = "1";
 		
 		Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
 		GoodsEntity goodsEntity = goodsResult.getData();

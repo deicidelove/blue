@@ -1,4 +1,4 @@
-package com.common.system.service.impl;
+package com.common.system.controller.service;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,7 +21,6 @@ import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
 import com.common.system.service.JifenLogService;
 import com.common.system.service.OrderService;
-import com.common.system.service.PayCommonService;
 import com.common.system.service.WxUserService;
 import com.common.system.util.Result;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
@@ -33,7 +32,7 @@ import com.google.common.collect.Maps;
 
 
 @Service("payCommonService")
-public class PayCommonServiceImpl implements PayCommonService {
+public class PayCommonService{
 
     @Resource(name = "wxPayService")
     private WxPayService wxService;
@@ -53,9 +52,8 @@ public class PayCommonServiceImpl implements PayCommonService {
     @Resource
     private WxUserService wxUserService;
 	
-    private static final Logger LOG = LoggerFactory.getLogger(PayCommonServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PayCommonService.class);
     
-	@Override
 	public Map<String, String> payGoods(String openId, String goodsId) {
     	Map<String, String> result = Maps.newHashMap();
 
@@ -146,7 +144,6 @@ public class PayCommonServiceImpl implements PayCommonService {
     	return result;
 	}
 
-	@Override
 	public Map<String, String> payCZ(String openId, String goodsId, Float czFre) {
 		Map<String, String> result =  Maps.newHashMap();
 		try {

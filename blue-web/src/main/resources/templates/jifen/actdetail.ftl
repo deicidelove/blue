@@ -23,10 +23,10 @@
     <div class="swiper01">
         <div class="swiper-container banner" id="banner">
             <ul class="swiper-wrapper img-list" id="test">
-            	<#if (detailDTO.adImgList)??>
-            	<#list detailDTO.adImglist as temp>
-                <li class="swiper-slide"><img src="temp.goodsImgUrl" alt=""/></li>
-                </#list>
+            	<#if (detailDTO.imgList)??>
+	            	<#list detailDTO.imgList as temp>
+	               		<li class="swiper-slide"><img src="${temp.goodsImgUrl!}" alt=""/></li>
+	                </#list>
                 </#if>
             </ul>
             <div class="swiper-pagination"></div>
@@ -88,10 +88,11 @@
     <div class="left">我的本期幸运号</div>
     <div class="right "></div>
 </div>
-<#list detailDTO.givingCodeList as givingCode>
-<div class="activity_num">${givingCode }</div>
-</#list>
-
+	<#if  (detailDTO.givingCodeList)?? >
+		<#list detailDTO.givingCodeList as givingCode>
+			<div class="activity_num">${givingCode}</div>
+		</#list>
+	</#if>
 <div class="height20"></div>
 <div class="rule">
     <div class="left">规则展示</div>

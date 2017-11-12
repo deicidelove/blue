@@ -3,7 +3,7 @@
 		<table class="table table-striped">
 			<tr>
 				<td>图片：</td>
-				<img src="${bean.url!}" style="width:300px;height:300px"/>
+				<img src="${bean.goodsImgUrl!}" style="width:300px;height:300px"/>
 			</tr>
 			
 			

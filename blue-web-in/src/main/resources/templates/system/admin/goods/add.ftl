@@ -20,7 +20,7 @@
 				</div>
 				<div class="form-group">
 					<label>商品积分</label> 
-					<input type="text" class="form-control" name="jifen" id=""jifen"" placeholder="输入商品积分...">
+					<input type="text" class="form-control" name="jifen" id="jifen" placeholder="输入商品积分...">
 				</div>
 				<div class="form-group">
 					<label>商品详情</label> 
