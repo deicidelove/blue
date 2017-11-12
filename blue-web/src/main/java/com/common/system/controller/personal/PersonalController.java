@@ -1,6 +1,7 @@
 package com.common.system.controller.personal;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.dto.PersonalOrderDTO;
+import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
 import com.common.system.entity.JifenLogEntity;
@@ -37,7 +39,9 @@ import com.common.system.service.WxUserService;
 import com.common.system.util.CookieUtil;
 import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.util.StringUtil;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @RestController
 @RequestMapping(value = "personal")
@@ -87,8 +91,10 @@ public class PersonalController {
 		 * { LOG.error("	"); }
 		 */
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		// TODO
-		openId = "1";
+		//TODO
+		if(StringUtil.isEmpty(openId)){
+			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
+		}
 		WxUserEntity wxUserEntity = wxUserService.getById(openId);
 		WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(openId);
 		modelAndView.addObject("wxUserEntity", wxUserEntity);
@@ -103,9 +109,10 @@ public class PersonalController {
 			@RequestParam(value = "length", defaultValue = "50") int pageSize) {
 		modelAndView.setViewName("/personal/personalorder");
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		// TODO
-		openId = "1";
-
+		//TODO
+		if(StringUtil.isEmpty(openId)){
+			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
+		}
 		PageInfo<OrderEntity> result = orderService.seleteListByOpenId(openId,
 				start, pageSize);
 		List<PersonalOrderDTO> resultList = null;
@@ -136,23 +143,55 @@ public class PersonalController {
 			@RequestParam(value = "length", defaultValue = "50") int pageSize) {
 		modelAndView.setViewName("/personal/personaljifendetail");
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		// TODO
-		openId = "1";
+		//TODO
+		if(StringUtil.isEmpty(openId)){
+			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
+		}
 		PageInfo<JifenLogEntity> jifenPage = jifenLogService.listForPage(start, pageSize, openId);
 		modelAndView.addObject("resultList", jifenPage);
 		return modelAndView;
 	}
-	@RequestMapping(value = "buyjifen", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "buyjifen/", method = RequestMethod.GET)
 	public ModelAndView buyjifen(ModelAndView modelAndView,
 			HttpServletRequest request ) {
 		modelAndView.setViewName("/personal/personalbuyjifen");
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		// TODO
-		openId = "1";
-		
-		modelAndView.addObject("resultList", null);
 		return modelAndView;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "payfail")
+    public String payfail(String outTradeId ,HttpServletRequest request ) {
+		String openId = CookieUtil.getCookieValue(request, "openId");
+		//TODO
+		if(StringUtil.isEmpty(openId)){
+			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
+		}
+		try {
+			
+			OrderEntity orderEntity = orderService.findByOutTradeId(outTradeId);
+			if(null == orderEntity){
+				return "failure";
+			}
+			WxUserEntity wxUserEntity = wxUserService.getById(openId);
+			if(null == wxUserEntity){
+				return "failure";
+			}
+			wxUserEntity.setJifen(wxUserEntity.getJifen() - orderEntity.getJifen());
+			//TODO
+			JifenLogEntity jifenLogEntity = jifenLogService.getByOpenIdAndType(openId, "buy");
+			if(null != jifenLogService){
+				jifenLogService.deleteById(jifenLogEntity.getSid());
+			}
+			
+		} catch (Exception e) {
+			LOG.error("updateShowTip error!", e);
+			return "failure";
+		}
+		return "success";
+	}
+	
 	@RequestMapping(value = "invitation", method = RequestMethod.GET)
 	public ModelAndView invitation(ModelAndView modelAndView,
 			HttpServletRequest request,
@@ -160,18 +199,30 @@ public class PersonalController {
 			@RequestParam(value = "length", defaultValue = "50") int pageSize) {
 		modelAndView.setViewName("/personal/personalinvitation");
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		// TODO
-		openId = "1";
+		//TODO
+		if(StringUtil.isEmpty(openId)){
+			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
+		}
 		PageInfo<WxUserEntity> invitatePage = wxUserService.listForPage(start, pageSize, openId);
 		modelAndView.addObject("resultList", invitatePage.getList());
 		return modelAndView;
 	}
 	
-    @RequestMapping(value = "deleteorder/{orderId}",method = RequestMethod.GET)
-    public @ResponseBody
-    Result<Integer> delete(@PathVariable Integer orderId){
-        Result<Integer> result = orderService.delete(orderId);
-        return result;
+	@ResponseBody
+	@RequestMapping(value = "deleteOrder")
+    public Map<String, String> delete( String orderId){
+		Map<String, String> map = Maps.newHashMap();
+		map.put("msg", "删除成功");
+		try {
+			
+			Result<Integer> result = orderService.delete(Integer.valueOf(orderId));
+		} catch (Exception e) {
+			LOG.error("删除订单失败！",e);
+			map.put("msg", "删除成功");
+		}
+        
+        
+        return map;
     }
 	
 }

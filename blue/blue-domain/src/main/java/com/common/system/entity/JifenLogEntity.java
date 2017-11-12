@@ -15,6 +15,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @version 1.0
  */
 public class JifenLogEntity {
+	
+	private Integer sid;
+	
 	/**
 	 * 微信唯一标识
 	 */
@@ -108,6 +111,20 @@ public class JifenLogEntity {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the sid
+	 */
+	public Integer getSid() {
+		return sid;
+	}
+
+	/**
+	 * @param sid the sid to set
+	 */
+	public void setSid(Integer sid) {
+		this.sid = sid;
 	}
 	
 	

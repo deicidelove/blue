@@ -37,6 +37,22 @@ public class GoodsConsumerRelateDao {
 	}
 	
 	/**
+	 * 目前givingCodeSource 为order表out_trade_id
+	 * @param givingCodeSource
+	 * @return
+	 */
+	public GoodsConsumerRelateEntity seleteByGivingCodeSource(String givingCodeSource){
+		Assert.notNull(givingCodeSource,"givingCodeSource is null");
+		String sql = " SELECT * FROM `rc_a_goods_consumer_relate`  WHERE giving_code_source = :givingCodeSource ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("givingCodeSource", givingCodeSource);
+		List<GoodsConsumerRelateEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<GoodsConsumerRelateEntity>(GoodsConsumerRelateEntity.class));
+				
+		return CollectionUtils.isEmpty(resultList)? null: resultList.get(0);
+	}
+	
+	/**
 	 * <p>
 	 * <code>randomById</code>
 	 * </p>

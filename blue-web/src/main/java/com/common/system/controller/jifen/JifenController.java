@@ -139,7 +139,7 @@ public class JifenController {
         return resultList;
     }
 	
-	@RequestMapping(value = "actdetail",method = RequestMethod.GET)
+	@RequestMapping(value = "actdetail/",method = RequestMethod.GET)
 	public ModelAndView actdetail(ModelAndView modelAndView, HttpServletRequest request, Integer actId, Integer goodsId){
 		
 		String openId = CookieUtil.getCookieValue(request, "openId");
@@ -226,19 +226,6 @@ public class JifenController {
 			return resultMap;
     	}
     	
-    	goodsConsumerRelateEntity.setOpenId(openId);
-    	goodsConsumerRelateEntity.setIsUsed(true);
-    	goodsConsumerRelateEntity.setGivingCodeSource("jifen");
-    	int result = goodsConsumerRelateService.updateConsumer(goodsConsumerRelateEntity);
-    	if(0 == result){//中奖被消费完
-			resultMap.put("status", "fail");
-    		resultMap.put("message", "你来晚了，该商品被抢购完");
-			return resultMap;
-    	}
-    	
-		wxUserEntity.setJifen(wxUserEntity.getJifen() - goodsEntity.getJifen());
-		wxUserService.updateJifen(wxUserEntity);
-		
 	  	OrderEntity orderEntity = new OrderEntity();
     	orderEntity.setGoodsId(Integer.valueOf(goodsId));
     	orderEntity.setGoodsNum(Integer.valueOf(1));
@@ -249,7 +236,26 @@ public class JifenController {
     	//目前只支持一个一个购买
     	orderEntity.setPrice(goodsEntity.getGoodsPrice().subtract(new BigDecimal(Integer.valueOf(1))));
     	orderEntity.setOutTradeId(UUID.randomUUID().toString().replaceAll("-", ""));
-    	orderService.save(orderEntity);
+    	Integer orderInt = orderService.save(orderEntity);
+    	if(null == orderInt){
+			resultMap.put("status", "fail");
+    		resultMap.put("message", "生成订单异常，请联系管理员！");
+			return resultMap;
+    	}
+    	
+		//消费一个中奖号码
+    	goodsConsumerRelateEntity.setOpenId(openId);
+    	goodsConsumerRelateEntity.setIsUsed(true);
+    	goodsConsumerRelateEntity.setGivingCodeSource(String.valueOf(orderInt));
+    	int result = goodsConsumerRelateService.updateConsumer(goodsConsumerRelateEntity);
+    	if(0 == result){//中奖被消费完
+			resultMap.put("status", "fail");
+    		resultMap.put("message", "你来晚了，该商品被抢购完");
+			return resultMap;
+    	}
+		wxUserEntity.setJifen(wxUserEntity.getJifen() - goodsEntity.getJifen());
+		wxUserService.updateJifen(wxUserEntity);
+    	
 		resultMap.put("status", "success");
 		resultMap.put("message", "支付成功");
 		return resultMap;
@@ -263,6 +269,30 @@ public class JifenController {
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		try {
 			wxUserService.updateTip(openId, false);
+		} catch (Exception e) {
+			LOG.error("updateShowTip error!", e);
+			return "failure";
+		}
+		return "success";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "payfail")
+    public String payfail(String outTradeId ,HttpServletRequest request ) {
+		//TODO get openId 
+		String openId = CookieUtil.getCookieValue(request, "openId");
+		try {
+			
+			OrderEntity orderEntity = orderService.findByOutTradeId(outTradeId);
+			if(null == orderEntity){
+				return "failure";
+			}
+			GoodsConsumerRelateEntity goodsConsumerRelateEntity = goodsConsumerRelateService.getByGivingCodeSource(outTradeId);
+	    	goodsConsumerRelateEntity.setOpenId(null);
+	    	goodsConsumerRelateEntity.setIsUsed(false);
+	    	goodsConsumerRelateEntity.setGivingCodeSource(null);
+	    	int result = goodsConsumerRelateService.updateConsumer(goodsConsumerRelateEntity);
+			
 		} catch (Exception e) {
 			LOG.error("updateShowTip error!", e);
 			return "failure";

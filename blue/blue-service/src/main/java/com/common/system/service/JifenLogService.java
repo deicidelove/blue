@@ -12,11 +12,17 @@ import com.github.pagehelper.PageInfo;
  *
  */
 public interface JifenLogService {
-	public Result<Integer> save(JifenLogEntity actEntity);
+	public Result<Integer> save(JifenLogEntity jifenLogEntity);
 	
-	public JifenLogEntity getById(Integer actId);
+	public JifenLogEntity getById(Integer jifenLogId);
+	
 	
 	public PageInfo<JifenLogEntity> listForPage(Integer pageNum, Integer pageSize, String openId);
 	
 	public List<JifenLogEntity> list( );
+	
+	public void deleteById(Integer jifenLogId);
+	
+	public JifenLogEntity getByOpenIdAndType(String openId, String type);
+	
 }

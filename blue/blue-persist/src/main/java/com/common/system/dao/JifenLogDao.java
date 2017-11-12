@@ -41,6 +41,17 @@ public class JifenLogDao {
 		return result;
 	}
 	
+	public JifenLogEntity seleteByType( String openId, String type){
+		String sql = " SELECT * FROM rc_a_jifen_log WHERE open_id = :openId and type = :type limit 1 order by create_time desc ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("openId", openId);
+		paramMap.put("type", type);
+		List<JifenLogEntity> result = namedParameterJdbcTemplate.query(sql, 
+				paramMap, BeanPropertyRowMapper.newInstance(JifenLogEntity.class));
+		
+		return !CollectionUtils.isEmpty(result) ? result.get(0): null;
+	}
+	
 	public List<JifenLogEntity> seleteList(){
 		String sql = " SELECT * FROM rc_a_jifen_log WHERE 1=1 order by create_time desc";
 		Map<String, Object> paramMap = Maps.newHashMap();
@@ -59,4 +70,12 @@ public class JifenLogDao {
 		return namedParameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(jifenLogEntity));
 	}
 	
+	public void delete(Integer jifenLogId){
+		Assert.notNull(jifenLogId,"jifenLogId is null");
+		String sql = " delete from rc_a_jifen_log "
+				+ "  where sid = :jifenLogId ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("jifenLogId", jifenLogId);
+		namedParameterJdbcTemplate.update(sql, paramMap);
+	}
 }

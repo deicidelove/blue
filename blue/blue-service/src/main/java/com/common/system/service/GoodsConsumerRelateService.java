@@ -25,6 +25,14 @@ public interface GoodsConsumerRelateService {
 	public int updateConsumer(GoodsConsumerRelateEntity goodsConsumerRelateEntity);
 	
 	public GoodsConsumerRelateEntity getById(Integer goodsConsumerId);
+	
+	/**
+	 * 
+	 * @param givingCodeSource  order表中的out_trade_id
+	 * @return
+	 */
+	public GoodsConsumerRelateEntity getByGivingCodeSource(String givingCodeSource);
+	
 	/**
 	 * <p>
 	 * <code>randomByGoodsId</code>

@@ -12,6 +12,8 @@ public interface OrderService {
 	
 	OrderEntity findByOrderId(Integer orderId);
 	
+	OrderEntity findByOutTradeId(String outTradeId);
+	
 	List<OrderEntity> seleteByList(String status, Integer pageNum,
 			Integer pageSize);
 	
@@ -20,7 +22,7 @@ public interface OrderService {
 	
 	PageInfo<OrderEntity> listForPage(String status, Integer pageNum, Integer pageSize);
 	
-	void save(OrderEntity orderEntity);
+	Integer save(OrderEntity orderEntity);
 	
 	void update(Integer orderId, String status, String prePayId);
 	

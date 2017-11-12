@@ -83,6 +83,17 @@ public class GoodsConsumerRelateServiceImpl implements GoodsConsumerRelateServic
 		}
 		return goodsConsumerRelateEntity;
 	}
+	
+	@Override
+	public GoodsConsumerRelateEntity getByGivingCodeSource(String givingCodeSource) {
+		GoodsConsumerRelateEntity goodsConsumerRelateEntity = null;
+		try {
+			goodsConsumerRelateEntity = goodsConsumerRelateDao.seleteByGivingCodeSource(givingCodeSource);
+		} catch (Exception e) {
+			LOG.error("GoodsUserRelateServiceImpl getByGivingCodeSource error!", e );
+		}
+		return goodsConsumerRelateEntity;
+	}
 
 	@Override
 	public PageInfo<GoodsConsumerRelateDTO> listForPage(Integer pageNum,

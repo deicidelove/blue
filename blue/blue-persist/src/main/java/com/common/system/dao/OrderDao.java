@@ -7,12 +7,15 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import com.common.system.entity.OrderEntity;
-import com.common.system.util.Convert;
 import com.google.common.collect.Maps;
 
 /**
@@ -27,13 +30,24 @@ public class OrderDao {
 	
 	public OrderEntity seleteById(Integer orderId){
 		Assert.notNull(orderId,"orderId is null");
-		String sql = " SELECT * FROM `rc_a_order`  WHERE 1=1 and is_delete is false and order_id = :goodsId  ";
+		String sql = " SELECT * FROM `rc_a_order`  WHERE 1=1 and is_delete is false and order_id = :orderId  ";
 		Map<String, Object> paramMap = Maps.newHashMap();
-		
+		paramMap.put("orderId", orderId);
 		OrderEntity result = namedParameterJdbcTemplate
 				.queryForObject(sql, paramMap, new BeanPropertyRowMapper<OrderEntity>(OrderEntity.class));
 				
 		return result;
+	}
+	
+	public OrderEntity seleteByOutTradeId(String outTradeId){
+		Assert.notNull(outTradeId,"outTradeId is null");
+		String sql = " SELECT * FROM `rc_a_order`  WHERE 1=1 and is_delete is false and out_trade_id = :outTradeId  ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("paramMap", paramMap);
+		paramMap.put("outTradeId", outTradeId);
+		List<OrderEntity> resultList = namedParameterJdbcTemplate
+				.query(sql, paramMap, new BeanPropertyRowMapper<OrderEntity>(OrderEntity.class));
+		return CollectionUtils.isEmpty(resultList)? null : resultList.get(0);
 	}
 	
 	public List<OrderEntity> seleteByList(String status, String openId, Integer pageNum,
@@ -48,16 +62,16 @@ public class OrderDao {
 		
 		if(StringUtils.isNotEmpty(openId)){
 			paramMap.put("openId", openId);
-			sql += " and openId = :openId ";
+			sql += " and open_id = :openId ";
 		}
 		
+		sql += "  order by create_time desc ";
 		if(null != pageNum && null != pageSize){
 			paramMap.put("pageStartNum", (pageNum-1)*pageSize);
 			paramMap.put("pageSize", pageSize);
 			sql += " limit :pageStartNum, :pageSize ";
 		}
 		
-		sql += "  order by create_time desc ";
 		List<OrderEntity> resultList = namedParameterJdbcTemplate.query(sql, 
 				paramMap, BeanPropertyRowMapper.newInstance(OrderEntity.class));
 		return resultList;
@@ -71,12 +85,16 @@ public class OrderDao {
 		return resultList;
 	}
 	
-	public void save(OrderEntity orderEntity){
+	public Integer save(OrderEntity orderEntity){
 		Assert.notNull(orderEntity,"orderEntity is null");
 		String sql ="	INSERT INTO rc_a_order	"
 				+"	(goods_id, goods_num, `type`, `source`, status, open_id, pre_pay_id, out_trade_id, price, jifen)	"
-				+ "	VALUES ( :goodsId, :goodsNum, :type, :source, :status, :openId, :prePayId, :outTradeId, :price,:jifen )	";
-		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(orderEntity));
+				+ "	VALUES ( :goodsId, :goodsNum, :type, :source, :status, :openId, :prePayId, :outTradeId, :price, :jifen )	";
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		this.namedParameterJdbcTemplate.update(sql,
+				new BeanPropertySqlParameterSource(orderEntity),
+				keyHolder);
+		return keyHolder.getKey().intValue();
 	}
 	
 	/**
