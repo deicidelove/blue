@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.entity.BlueProject;
 import com.common.system.service.ProjectService;
+import com.common.system.util.ContextUtil;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
 
@@ -80,6 +81,7 @@ public class ProjectController {
 	public @ResponseBody
 	Result<Integer> save(String context, String title,
 			@RequestParam("fileName") MultipartFile file) {
+		context = ContextUtil.setConent(context);
 		return projectService.addProject(title, context, file);
 	}
 

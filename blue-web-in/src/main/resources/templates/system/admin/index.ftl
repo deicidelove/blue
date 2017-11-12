@@ -4,6 +4,7 @@
   <#include "../macro/base.ftl"/>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
   <title>蓝鲟口腔后台</title>
   <@style/>
 </head>
