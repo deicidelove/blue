@@ -21,6 +21,7 @@ import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.RcUser;
 import com.common.system.service.AdvertService;
 import com.common.system.service.CommonService;
+import com.common.system.util.ContextUtil;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
 
@@ -105,6 +106,7 @@ public class AdvertController {
 	public @ResponseBody
 	Result<Integer> save(int type, String context, String title,
 			@RequestParam("fileName") MultipartFile file) {
+		context = ContextUtil.setConent(context);
 		return advertService.addAdver(type, context, title, file);
 	}
 

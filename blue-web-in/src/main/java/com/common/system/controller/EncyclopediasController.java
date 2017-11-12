@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.common.system.entity.BlueEncyclopedias;
 import com.common.system.service.CommonService;
 import com.common.system.service.EncyclopediasService;
+import com.common.system.util.ContextUtil;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
 
@@ -103,6 +104,7 @@ public class EncyclopediasController {
 	public @ResponseBody
 	Result<Integer> save(int type, String context, String title,
 			@RequestParam("fileName") MultipartFile file) {
+		context = ContextUtil.setConent(context);
 		return encyclopediasService.addEncyclopedias(type, context, title, file);
 	}
 

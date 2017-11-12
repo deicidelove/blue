@@ -28,8 +28,7 @@ var textStr;
                 </div>
                 <div class="form-group">
                     <label id="contextLabel">文本</label>
-                    <input type="text" class="form-control" name="context" id="context""
-                           placeholder="输入内容...">
+                    <script id="editor" name="context" type="text/plain" style="width:100%;height:500px;"></script>
                 </div>
 				<div class="form-group">
 					<label>类型</label> 
@@ -53,3 +52,7 @@ var textStr;
 		</form>
 	</div>
 </div>
+
+<script type="text/javascript">
+ var ue = UE.getEditor('editor');
+</script>

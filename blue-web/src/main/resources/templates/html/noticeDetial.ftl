@@ -11,7 +11,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">通知公告</div>
-    <div class="heade_back">返回</div>
+    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
 <div class="inform_cont">
     <div class="inform_bg01">
@@ -25,31 +25,7 @@
         <p class="inform_p">
           ${advert.context} 
         </p>
-        <div class="inform_number">01</div>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-        <div class="inform_number">02</div>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-        <div class="inform_number">03</div>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-        <div class="inform_number">04</div>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-    </div>
+       
     <div class="inform_bg02"></div>
 </div>
 </body>

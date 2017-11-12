@@ -12,7 +12,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">口腔百科详情</div>
-    <div class="heade_back">返回</div>
+    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
 <div class="inform_cont">
     <div class="inform_bg01">
@@ -22,36 +22,7 @@
         <p class="inform_p">
            ${bean.context}
         </p>
-        <div class="introduce_text01">01</div>
-        <div class="introduce_text02">第一部分</div>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-        <div class="introduce_text01">02</div>
-        <div class="introduce_text02">第二部分</div>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-        <div class="introduce_text01">03</div>
-        <div class="introduce_text02">第三部分</div>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-        <div class="introduce_text01">04</div>
-        <div class="introduce_text02">第四部分</div>
-        <p class="inform_p">
-            省市专家来院学术交流通知省市，专家来院学术交流通知省市专家来院。学术交流通，知省市专家来院学术交流通，知省市
-            专家来院学术，交流通知省市专家来院学术交流通知省市专家来院学术交流通知。
-        </p>
-    </div>
-    <div class="inform_bg02"></div>
+   <div class="inform_bg02"></div>
 </div>
 </body>
 </html>
