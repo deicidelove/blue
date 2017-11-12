@@ -11,7 +11,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">蓝鲟口腔医院</div>
-    <div class="heade_back">返回</div>
+   <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
 <div class="cont">
     <div class="logo_div">

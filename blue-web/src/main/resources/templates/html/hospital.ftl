@@ -11,7 +11,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">医院概况</div>
-    <div class="heade_back">返回</div>
+   <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
 <div class="general_tab box">
     <div class="flex-1 active">医院简介</div>

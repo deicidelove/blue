@@ -11,7 +11,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">选择就诊人</div>
-    <div class="heade_back">返回</div>
+   <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
     <a href="/managePationPage"><div class="heade_manage">管理</div></a>
 </div>
 <ul class="select_ul">
