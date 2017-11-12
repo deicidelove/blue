@@ -72,6 +72,7 @@ var basePath = '${request.contextPath}';
 			"orderId" : parseInt(orderId)
 		}, function(result) {
 			alert(result.msg);
+			location.reload();
 		});
 	});
 </script>
