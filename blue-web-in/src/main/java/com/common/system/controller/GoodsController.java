@@ -6,6 +6,7 @@ import com.common.system.entity.GoodsEntity;
 import com.common.system.service.ActService;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
+import com.common.system.util.ContextUtil;
 import com.common.system.util.MsgCode;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
@@ -81,6 +82,7 @@ public class GoodsController extends BaseController{
     }
     @RequestMapping(value = "update",method = RequestMethod.POST)
     public @ResponseBody Result<Integer> update( GoodsEntity goodsEntity){
+    	goodsEntity.setGoodsDetail(ContextUtil.setConent(goodsEntity.getGoodsDetail()));
         Result<GoodsEntity> goodsResult = goodsService.getById(goodsEntity.getGoodsId());
         Result<Integer> result = new Result<Integer>();
         GoodsEntity goods = goodsResult.getData();
@@ -94,6 +96,7 @@ public class GoodsController extends BaseController{
     public @ResponseBody Result save(GoodsEntity goodsEntity){
     	Result<Integer> result  = new Result<Integer>();
     	try {
+    		goodsEntity.setGoodsDetail(ContextUtil.setConent(goodsEntity.getGoodsDetail()));
     		ActEntity actEntity = actService.getById(goodsEntity.getActId());
     		if(null == actEntity){
     			result.setStatus(false);

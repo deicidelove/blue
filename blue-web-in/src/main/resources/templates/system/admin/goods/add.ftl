@@ -24,7 +24,7 @@
 				</div>
 				<div class="form-group">
 					<label>商品详情</label> 
-					<textarea rows="30" cols="50" name="goodsDetail" id="goodsDetail"></textarea>
+					<script id="editor" name="goodsDetail" type="text/plain" style="width:100%;height:500px;"></script>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -75,3 +75,6 @@ function isNumber(obj) {
     return typeof obj === 'number' && !isNaN(obj)  
 }  
 </script>
+<script type="text/javascript">
+ var ue = UE.getEditor('editor');
+ </script>
