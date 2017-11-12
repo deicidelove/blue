@@ -11,7 +11,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">预约挂号</div>
-    <div class="heade_back">返回</div>
+    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
 <div class="reg_date box">
     <div class="flex-1">
