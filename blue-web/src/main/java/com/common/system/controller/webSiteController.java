@@ -18,10 +18,13 @@ import com.common.system.dto.AdvertDto;
 import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
+import com.common.system.entity.LastActEntity;
 import com.common.system.service.CommonService;
 import com.common.system.service.GoodsImgService;
 import com.common.system.service.GoodsService;
+import com.common.system.service.LastActService;
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 
 /**
  * @author amkong
@@ -39,6 +42,9 @@ public class webSiteController {
 	
 	@Resource
 	private GoodsImgService goodsImgService;
+	
+	@Resource
+	private LastActService lastActService;
 	
 	 @RequestMapping("/blueWebsite")
 	    public ModelAndView greeting(ModelAndView modelAndView) {
@@ -69,9 +75,23 @@ public class webSiteController {
 		 			
 		 		}
 		 	}
-
 		 	goodsList = goodsList.size() >4 ? goodsList.subList(0, 4):goodsList;
 		 	modelAndView.addObject("goodsList", goodsList);
+		 	
+		 	//近期活动
+		 	PageInfo<LastActEntity> lastActPage = lastActService.listForPage(1, 4);
+		 	List<LastActEntity> lastActList = Lists.newArrayList();
+		 	if(!CollectionUtils.isEmpty(lastActPage.getList())){
+		 		for(int i = 0; i < lastActPage.getList().size(); i++){
+		 			if(i == 0 ){
+		 				modelAndView.addObject("firstLastAct", lastActPage.getList().get(0));
+		 				continue;
+		 			}
+		 			
+		 			lastActList.add(lastActPage.getList().get(i));
+		 		}
+		 	}
+		 	modelAndView.addObject("lastActList", lastActList);
 	        modelAndView.addObject("adverts",dtos);
 	        modelAndView.setViewName("/html/blueWebsite");
 			return modelAndView;

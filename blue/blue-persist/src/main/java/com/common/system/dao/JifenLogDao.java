@@ -31,7 +31,7 @@ public class JifenLogDao {
 	}
 	
 	public List<JifenLogEntity> seleteList(Integer pageNum, Integer pageSize, String openId){
-		String sql = " SELECT * FROM rc_a_jifen_log WHERE open_id = :openId limit :pageStartNum, :pageSize order by create_time desc ";
+		String sql = " SELECT * FROM rc_a_jifen_log WHERE open_id = :openId order by create_time desc limit :pageStartNum, :pageSize  ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("pageStartNum", (pageNum-1)*pageSize);
 		paramMap.put("pageSize", pageSize);

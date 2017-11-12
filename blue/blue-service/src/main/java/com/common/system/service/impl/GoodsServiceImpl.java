@@ -33,7 +33,7 @@ public class GoodsServiceImpl implements GoodsService {
             result.setMsg("操作成功");
             result.setData(goodsId);
 		} catch (Exception e) {
-			LOG.error("GivingServiceImpl saveAct error!", e );
+			LOG.error("GoodsServiceImpl saveAct error!", e );
 		}
 		return result;
 	}
@@ -47,7 +47,7 @@ public class GoodsServiceImpl implements GoodsService {
             result.setCode(MsgCode.SUCCESS);
             result.setMsg("操作成功");
 		} catch (Exception e) {
-			LOG.error("GivingServiceImpl deleteById error!", e );
+			LOG.error("GoodsServiceImpl deleteById error!", e );
 		}
 		return result;
 	}
@@ -61,7 +61,7 @@ public class GoodsServiceImpl implements GoodsService {
             result.setCode(MsgCode.SUCCESS);
             result.setMsg("操作成功");
 		} catch (Exception e) {
-			LOG.error("GivingServiceImpl update error!", e );
+			LOG.error("GoodsServiceImpl update error!", e );
 		}
 		return result;
 	}
@@ -78,7 +78,7 @@ public class GoodsServiceImpl implements GoodsService {
 	            result.setMsg("操作成功");
 	        }
 		} catch (Exception e) {
-			LOG.error("ActServiceImpl getById error!", e );
+			LOG.error("GoodsServiceImpl getById error!", e );
 		}
 		return result;
 	}
@@ -90,7 +90,7 @@ public class GoodsServiceImpl implements GoodsService {
 			List<GoodsEntity> resultList = goodsDao.seleteByList(pageNum, pageSize);
 			result.setList(resultList);
 		} catch (Exception e) {
-			LOG.error("ActServiceImpl listForPage error!", e );
+			LOG.error("GoodsServiceImpl listForPage error!", e );
 		}
 		return result;
 	}
@@ -101,7 +101,7 @@ public class GoodsServiceImpl implements GoodsService {
 		try {
 			resultList = goodsDao.seleteByList();
 		} catch (Exception e) {
-			LOG.error("ActServiceImpl list error!", e );
+			LOG.error("GoodsServiceImpl list error!", e );
 		}
 		return resultList;
 	}
@@ -112,7 +112,7 @@ public class GoodsServiceImpl implements GoodsService {
 		try {
 			resultList = goodsDao.listNoneOverGoods();
 		} catch (Exception e) {
-			LOG.error("ActServiceImpl listNoneOverGoods error!", e );
+			LOG.error("GoodsServiceImpl listNoneOverGoods error!", e );
 		}
 		return resultList;
 	}
