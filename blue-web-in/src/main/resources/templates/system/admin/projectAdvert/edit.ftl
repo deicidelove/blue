@@ -38,6 +38,20 @@
                     <input type="text" class="form-control" name="jumpUrl" id="jumpUrl" placeholder="输入跳转地址..." value="${bean.jumpUrl!}">
                 </div>
                 <div class="form-group">
+					<label>类型</label> 
+					<select name="type" class="form-control select2" style="width: 100%;">
+                        <option select value="0">首页轮播图</option>
+                        <option <#if bean.type == 1>selected="selected"</#if> value="1">首页中间广告</option>
+                        <option <#if bean.type == 2>selected="selected"</#if> value="2">首页近期活动广告</option>
+                        <option <#if bean.type == 3>selected="selected"</#if> value="3">项目中心轮播图</option>
+                        <option <#if bean.type == 4>selected="selected"</#if> value="4">项目中心中间广告</option>
+                        <option <#if bean.type == 5>selected="selected"</#if> value="5">项目中心底部广告</option>
+                        <option <#if bean.type == 6>selected="selected"</#if> value="6">项目中心上半部广告</option>
+                        <option <#if bean.type == 7>selected="selected"</#if> value="7">口腔百科轮播图</option>
+                        <option <#if bean.type == 8>selected="selected"</#if> value="8">口腔百科中间广告</option>
+                    </select>
+				</div>
+                <div class="form-group">
                 	<img src="${bean.picUrl!}" style="width:200px;height:200px"/>
                 	<label>上传文件</label>
                     <input type="file" class="form-control" name="fileName" id="fileName" value="上传图片" >

@@ -88,10 +88,12 @@
     </div>
 </a>
 <#if encyclopedias0??>
+ <a href="/encyclopediasDetial/${encyclopedias0.sid}">
 <div class="oral_an">
     <div class="oral_an_bg" style="background-image: url(${encyclopedias0.url})"></div>
     <div class="oral_an_head">${encyclopedias0.title}</div>
 </div>
+</a>
 <#else>
 <div class="oral_an">
     <div class="oral_an_bg"></div>

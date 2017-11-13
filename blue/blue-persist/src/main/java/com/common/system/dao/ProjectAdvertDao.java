@@ -67,20 +67,21 @@ public class ProjectAdvertDao {
 	}
 
 	public int addProjectAdvert(BlueProjectAdvert projectAdvert) {
-		String sql = "INSERT INTO `tb_blue_projectAdvert` ( `title`, `context`, `pic_url`, `jump_url`, `create_time`) "
-				+ "VALUES (:title, :context, :pic_url,:jump_url, :create_time)";
+		String sql = "INSERT INTO `tb_blue_projectAdvert` ( `title`, `context`, `pic_url`, `jump_url`,`type`, `create_time`) "
+				+ "VALUES (:title, :context, :pic_url,:jump_url,:type, :create_time)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("title", projectAdvert.getTitle());
 		paramMap.put("context", projectAdvert.getContext());
 		paramMap.put("pic_url", projectAdvert.getPicUrl());
 		paramMap.put("jump_url", projectAdvert.getJumpUrl());
+		paramMap.put("type", projectAdvert.getType());
 		paramMap.put("create_time", projectAdvert.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
 	}
 
 	public int updateProjectAdvert(BlueProjectAdvert projectAdvert) {
-		StringBuilder sql = new StringBuilder("UPDATE `tb_blue_projectAdvert` SET title =:title,context =:context,jump_url=:jump_url ");
+		StringBuilder sql = new StringBuilder("UPDATE `tb_blue_projectAdvert` SET title =:title,context =:context,jump_url=:jump_url,type=:type ");
 	
 		Map<String, Object> paramMap = Maps.newHashMap();
 		if(!StringUtils.isEmpty(projectAdvert.getPicUrl())){
@@ -91,6 +92,7 @@ public class ProjectAdvertDao {
 		paramMap.put("title", projectAdvert.getTitle());
 		paramMap.put("jump_url", projectAdvert.getJumpUrl());
 		paramMap.put("context", projectAdvert.getContext());
+		paramMap.put("type", projectAdvert.getType());
 		paramMap.put("sid", projectAdvert.getSid());
 		int count = namedParameterJdbcTemplate.update(sql.toString(), paramMap);
 		return count;
