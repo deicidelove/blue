@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.BlueDept;
 import com.common.system.entity.BlueEncyclopedias;
+import com.common.system.entity.BlueProjectAdvert;
 import com.common.system.entity.BlueStaff;
 import com.common.system.service.CommonService;
 import com.common.system.service.EncyclopediasService;
@@ -53,6 +54,12 @@ public class EncyclopediasController {
 			modelAndView.addObject("encyclopedias3", encyclopedias.get(3));
 		} catch (Exception e) {
 		}
+		//口腔百科轮播图
+	 	List<BlueProjectAdvert> encyclopedyLBT = commonService.findTypeAdvert(7);
+	 	//口腔百科中间广告
+	 	List<BlueProjectAdvert> encyclopedyMiddle = commonService.findTypeAdvert(8);
+	 	modelAndView.addObject("encyclopedyLBT", encyclopedyLBT);
+	 	modelAndView.addObject("encyclopedyMiddle", encyclopedyMiddle);
 		modelAndView.setViewName("/html/encyclopedias");
 		return modelAndView;
 	}
