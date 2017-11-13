@@ -30,6 +30,8 @@ public class BlueProjectAdvert implements Serializable{
 	private String picUrl;
 	private String jumpUrl;
 	
+	private Integer type;
+	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
 
@@ -116,7 +118,19 @@ public class BlueProjectAdvert implements Serializable{
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
-	
 
+	/**
+	 * @return the type
+	 */
+	public Integer getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	
 }

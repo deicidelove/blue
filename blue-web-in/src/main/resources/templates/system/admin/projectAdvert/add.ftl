@@ -31,11 +31,26 @@
                     <input type="text" class="form-control" name="context" id="context""
                            placeholder="输入内容...">
                 </div>
+                
                 <div class="form-group">
                     <label id="contextLabel">跳转地址</label>
                     <input type="text" class="form-control" name="jumpUrl" id="jumpUrl""
                            placeholder="输入跳转地址...">
                 </div>
+                <div class="form-group">
+					<label>类型</label> 
+					<select name="type" class="form-control select2" style="width: 100%;">
+                        <option select value="0">首页轮播图</option>
+                        <option value="1">首页中间广告</option>
+                        <option value="2">首页近期活动广告</option>
+                        <option value="3">项目中心轮播图</option>
+                        <option value="4">项目中心中间广告</option>
+                        <option value="5">项目中心底部广告</option>
+                        <option value="6">项目中心上半部广告</option>
+                        <option value="7">口腔百科轮播图</option>
+                        <option value="8">口腔百科中间广告</option>
+                    </select>
+				</div>
 				 <div class="form-group">
                     <label>上传文件</label>
                     <input type="file" class="form-control" name="fileName" id="fileName" value="上传图片" >

@@ -77,9 +77,9 @@ public class ProjectAdvertController {
 
 	@RequestMapping(value = "save")
 	public @ResponseBody
-	Result<Integer> save(String title, String context,String jumpUrl,
+	Result<Integer> save(String title, String context,String jumpUrl,int type,
 			@RequestParam("fileName") MultipartFile file) {
-		return projectAdvertService.addProjectAdevert(title, context, jumpUrl, file);
+		return projectAdvertService.addProjectAdevert(title, context, jumpUrl, file,type);
 	}
 
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
@@ -102,9 +102,9 @@ public class ProjectAdvertController {
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public @ResponseBody
-	Result<Integer> updateAdvert(String title, String context,String jumpUrl,
+	Result<Integer> updateAdvert(String title, String context,String jumpUrl,int type,
 			int sid, @RequestParam("fileName") MultipartFile file) {
-		return projectAdvertService.updateProjectAdevert(title, context, jumpUrl, sid, file);
+		return projectAdvertService.updateProjectAdevert(title, context, jumpUrl, sid, file, type);
 	}
 
 }

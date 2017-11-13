@@ -21,10 +21,10 @@ public interface ProjectAdvertService {
 	public Result<Integer> deleteProjectAdevert(int sid);
 
 	public Result<Integer> updateProjectAdevert(String title, String context,String jumpUrl,
-			int sid, MultipartFile file);
+			int sid, MultipartFile file,int type);
 
 	public Result<Integer> addProjectAdevert(String title, String context,String jumpUrl,
-			 MultipartFile file);
+			 MultipartFile file,int type);
 
 	public Result<BlueProjectAdvert> findProjectAdevert(int sid);
 

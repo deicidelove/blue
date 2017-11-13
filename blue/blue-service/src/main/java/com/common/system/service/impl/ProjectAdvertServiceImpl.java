@@ -78,10 +78,11 @@ public class ProjectAdvertServiceImpl implements ProjectAdvertService {
 	 */
 	@Override
 	public Result<Integer> updateProjectAdevert(String title, String context,String jumpUrl,
-			int sid, MultipartFile file) {
+			int sid, MultipartFile file,int type) {
 		try {
 			String url = PicUtil.upFile(file);
 			BlueProjectAdvert projectAdvert = new BlueProjectAdvert();
+			projectAdvert.setType(type);
 			projectAdvert.setTitle(title);
 			projectAdvert.setContext(context);
 			projectAdvert.setJumpUrl(jumpUrl);
@@ -100,10 +101,11 @@ public class ProjectAdvertServiceImpl implements ProjectAdvertService {
 	 */
 	@Override
 	public Result<Integer> addProjectAdevert(String title, String context,String jumpUrl,
-			 MultipartFile file) {
+			 MultipartFile file,int type) {
 		try {
 			String url = PicUtil.upFile(file);
 			BlueProjectAdvert projectAdvert = new BlueProjectAdvert();
+			projectAdvert.setType(type);
 			projectAdvert.setTitle(title);
 			projectAdvert.setContext(context);
 			projectAdvert.setJumpUrl(jumpUrl);
