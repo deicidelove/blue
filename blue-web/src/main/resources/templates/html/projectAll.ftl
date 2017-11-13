@@ -20,7 +20,7 @@
     <a href="/projectDetial/${project.sid}">
 	    <li class="encyclopedia_li">
 	         <#if project.url??>
-	   			 <img class="artical_an" src="${project.url}" />
+	   			 <img class="left artical_img" src="${project.url}" />
 		    <#else>
 		     	<img class="left artical_img" src="../images/notice_img02.jpg" />
 		    </#if>
