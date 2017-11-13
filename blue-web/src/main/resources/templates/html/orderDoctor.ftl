@@ -97,7 +97,8 @@
 	            	<td>
 	            		<div class="full">约满</div>
 	            	</td>
-	            <#else>
+	            </#if>
+	            <#if item.flag == 2>
 	            	<td></td>
 	            </#if>
             </#list>
