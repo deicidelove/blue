@@ -68,7 +68,7 @@ public class ProjectAdvertDao {
 
 	public int addProjectAdvert(BlueProjectAdvert projectAdvert) {
 		String sql = "INSERT INTO `tb_blue_projectAdvert` ( `title`, `context`, `pic_url`, `jump_url`,`type`, `create_time`) "
-				+ "VALUES (:title, :context, :pic_url,:jump_url,type, :create_time)";
+				+ "VALUES (:title, :context, :pic_url,:jump_url,:type, :create_time)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("title", projectAdvert.getTitle());
 		paramMap.put("context", projectAdvert.getContext());
