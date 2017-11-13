@@ -17,10 +17,13 @@
 <div class="swiper01">
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
-            <li class="swiper-slide"><img src="../images/icon-69.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-69.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-69.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-69.png" alt=""/></li>
+         <#list encyclopedyLBT as lbt>
+	        	<a href="${lbt.jumpUrl}">
+		            <li class="swiper-slide">
+		            	<img src="${lbt.picUrl}" alt=""/>
+		            </li>
+	            </a>
+            </#list>
         </ul>
         <div class="swiper-pagination"></div>
     </div>
@@ -72,10 +75,13 @@
 <div class="swiper02">
     <div class="swiper-container banner02">
         <ul class="swiper-wrapper img-list">
-            <li class="swiper-slide"><img src="../images/icon-74.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-74.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-74.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-74.png" alt=""/></li>
+             <#list encyclopedyMiddle as middle>
+	        	<a href="${middle.jumpUrl}">
+		            <li class="swiper-slide">
+		            	<img src="${middle.picUrl}" alt=""/>
+		            </li>
+	            </a>
+            </#list>
         </ul>
         <div class="swiper-pagination"></div>
     </div>
@@ -88,10 +94,12 @@
     </div>
 </a>
 <#if encyclopedias0??>
+ <a href="/encyclopediasDetial/${encyclopedias0.sid}">
 <div class="oral_an">
     <div class="oral_an_bg" style="background-image: url(${encyclopedias0.url})"></div>
     <div class="oral_an_head">${encyclopedias0.title}</div>
 </div>
+</a>
 <#else>
 <div class="oral_an">
     <div class="oral_an_bg"></div>

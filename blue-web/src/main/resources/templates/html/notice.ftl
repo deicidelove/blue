@@ -16,20 +16,21 @@
 </div>
 <ul class="encyclopedia_ul notice_ul">
     <#list adverts as advert>
-    <a href="/noticeDetialPage/${advert.sid}">
+   
 	    <li class="encyclopedia_li">
+	     <a href="/noticeDetialPage/${advert.sid}">
 	         <#if advert.url??>
-	   			 <img class="artical_an" src="${advert.url}" />
+	   			 <img class="left artical_img" src="${advert.url}" />
 		    <#else>
 		     	<img class="left artical_img" src="../images/notice_img02.jpg" />
 		    </#if>
-	        
 	        <div class="left encyclopedia_li_cent">
 	            <div>${advert.title}</div>
 	            <div>${advert.context}</div>
 	        </div>
+	         </a>
 	    </li>
-    </a>
+   
     </#list>
 </ul>
 

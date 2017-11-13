@@ -41,7 +41,7 @@ public class ProjectController {
 	@RequestMapping("/projectPage")
 	public ModelAndView projectPage(ModelAndView modelAndView){
 		List<BlueProject> projects = commonService.findProjects();
-		List<BlueProjectAdvert> pa = projectAdvertService.findProjectAdevertList(null, 0, Integer.MAX_VALUE).getData();
+		List<BlueProjectAdvert> pa = commonService.findTypeAdvert(6);
 		try {
 			modelAndView.addObject("project0", pa.get(0));
 			modelAndView.addObject("project1", pa.get(1));
@@ -57,6 +57,15 @@ public class ProjectController {
 			modelAndView.addObject("project7", projects.get(2));
 		} catch (Exception e) {
 		}
+		//项目中心轮播图
+		List<BlueProjectAdvert> projectLBT = commonService.findTypeAdvert(3);
+		//项目中心中间广告
+		List<BlueProjectAdvert> projectMiddle = commonService.findTypeAdvert(4);
+		//项目中心底部广告
+		List<BlueProjectAdvert> projectBottom = commonService.findTypeAdvert(5);
+		modelAndView.addObject("projectLBT", projectLBT);
+		modelAndView.addObject("projectMiddle",  (projectMiddle==null||projectMiddle.size() <=0) ? null : projectMiddle.get(0));
+		modelAndView.addObject("projectBottom", projectBottom);
 		modelAndView.setViewName("/html/project");
 		return modelAndView;
 	}

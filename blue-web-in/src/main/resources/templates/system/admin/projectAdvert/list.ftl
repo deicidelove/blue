@@ -34,6 +34,7 @@
 								<th>标题</th>
 								<th>文本</th>
 								<th>跳转地址</th>
+								<th>类型</th>
 								<th>创建时间</th>
 								<th>操作</th>
 							</tr>
@@ -71,6 +72,7 @@ $(function() {
 			{"data":"title"},
 			{"data":"context"},
 			{"data":"jumpUrl"},
+			{"data":"type"},
 			{"data":"createTime"},
 			{"data":null} 
 			],

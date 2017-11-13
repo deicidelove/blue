@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.dto.AdvertDto;
 import com.common.system.entity.BlueAdvert;
+import com.common.system.entity.BlueProjectAdvert;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
 import com.common.system.entity.LastActEntity;
@@ -91,8 +92,24 @@ public class webSiteController {
 		 			lastActList.add(lastActPage.getList().get(i));
 		 		}
 		 	}
+		 	//首页轮播图
+		 	List<BlueProjectAdvert> webLBT = commonService.findTypeAdvert(0);
+		 	//首页中间广告
+		 	List<BlueProjectAdvert> webZJ = commonService.findTypeAdvert(1);
+//		 	//首页近期活动广告
+//		 	List<BlueProjectAdvert> webJQHD = commonService.findTypeAdvert(2);
 		 	modelAndView.addObject("lastActList", lastActList);
 	        modelAndView.addObject("adverts",dtos);
+	        modelAndView.addObject("webLBT", webLBT);
+	        modelAndView.addObject("webZJ", (webZJ==null||webZJ.size() <=0) ? null : webZJ.get(0));
+//	        try {
+//	        	 modelAndView.addObject("webJQHD0", webJQHD.get(0));
+//	        	 modelAndView.addObject("webJQHD1", webJQHD.get(1));
+//	        	 modelAndView.addObject("webJQHD2", webJQHD.get(2));
+//	        	 modelAndView.addObject("webJQHD3", webJQHD.get(3));
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//			}
 	        modelAndView.setViewName("/html/blueWebsite");
 			return modelAndView;
 	    }
