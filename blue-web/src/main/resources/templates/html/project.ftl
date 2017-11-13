@@ -17,10 +17,13 @@
 <div class="swiper01">
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
-            <li class="swiper-slide"><img src="../images/icon-79.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-79.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-79.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-79.png" alt=""/></li>
+        	<#list projectLBT as lbt>
+	        	<a href="${lbt.jumpUrl}">
+		            <li class="swiper-slide">
+		            	<img src="${lbt.picUrl}" alt=""/>
+		            </li>
+	            </a>
+            </#list>
         </ul>
         <div class="swiper-pagination"></div>
     </div>
@@ -69,7 +72,11 @@
     <span class="right"></span>
 </div>
 </a>
-<div class="all_01"></div>
+<#if projectMiddle??>
+<a href="${projectMiddle.jumpUrl}"><div class="all_01" style="background-image:${projectMiddle.picUrl}"></div></a>
+<#else>
+<div class="all_01" ></div>
+</#if>
 <div class="all_bg box">
      <#if project5??>
 	    <div class="all_bg_div left">
@@ -104,10 +111,13 @@
 <div class="swiper02">
     <div class="swiper-container banner02">
         <ul class="swiper-wrapper img-list">
-            <li class="swiper-slide"><img src="../images/icon-89.jpg" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-89.jpg" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-89.jpg" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-89.jpg" alt=""/></li>
+        <#list projectBottom as bottom>
+	        	<a href="${bottom.jumpUrl}">
+		            <li class="swiper-slide">
+		            	<img src="${bottom.picUrl}" alt=""/>
+		            </li>
+	            </a>
+            </#list>
         </ul>
         <div class="swiper-pagination"></div>
     </div>

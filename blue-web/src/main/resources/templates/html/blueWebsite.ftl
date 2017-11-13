@@ -17,10 +17,13 @@
 <div class="swiper01">
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
-            <li class="swiper-slide"><img src="../images/icon-41.jpg" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-41.jpg" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-41.jpg" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-41.jpg" alt=""/></li>
+        	<#list webLBT as lbt>
+	        	<a href="${lbt.jumpUrl}">
+		            <li class="swiper-slide">
+		            	<img src="${lbt.picUrl}" alt=""/>
+		            </li>
+	            </a>
+            </#list>
         </ul>
         <div class="swiper-pagination"></div>
     </div>
@@ -128,7 +131,11 @@
     </div>
 </div>
 </a>
+<#if webZJ??>
+<a href="${webZJ.jumpUrl}"><div class="invite" style="background-image:${webZJ.picUrl}"></div></a>
+<#else>
 <div class="invite"></div>
+</#if>
 <div class="lottery">
     <div class="lottery_head">
         <span class="left">积分抽奖</span>

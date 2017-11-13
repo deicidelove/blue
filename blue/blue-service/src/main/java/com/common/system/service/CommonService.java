@@ -15,6 +15,7 @@ import com.common.system.entity.BlueHospital;
 import com.common.system.entity.BlueNeedWork;
 import com.common.system.entity.BluePation;
 import com.common.system.entity.BlueProject;
+import com.common.system.entity.BlueProjectAdvert;
 import com.common.system.entity.BlueShift;
 import com.common.system.entity.BlueStaff;
 import com.common.system.util.PageBean;
@@ -56,6 +57,8 @@ public interface CommonService {
 	public BluePation findPation(Integer sid);
 	
 	public BlueDeptDoctorPic findPic(Integer deptId);
+	
+	public List<BlueProjectAdvert> findTypeAdvert(int type);
 	
 	
 	

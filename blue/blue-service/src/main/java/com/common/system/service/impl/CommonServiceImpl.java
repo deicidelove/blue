@@ -18,6 +18,7 @@ import com.common.system.dao.DeptDoctorPicDao;
 import com.common.system.dao.EncyclopediasDao;
 import com.common.system.dao.HospitalDao;
 import com.common.system.dao.PationDao;
+import com.common.system.dao.ProjectAdvertDao;
 import com.common.system.dao.ProjectDao;
 import com.common.system.dao.ShiftDao;
 import com.common.system.dao.StaffDao;
@@ -30,6 +31,7 @@ import com.common.system.entity.BlueHospital;
 import com.common.system.entity.BlueNeedWork;
 import com.common.system.entity.BluePation;
 import com.common.system.entity.BlueProject;
+import com.common.system.entity.BlueProjectAdvert;
 import com.common.system.entity.BlueShift;
 import com.common.system.entity.BlueSource;
 import com.common.system.entity.BlueStaff;
@@ -72,6 +74,9 @@ public class CommonServiceImpl implements CommonService {
 	
 	@Resource
 	private DeptDoctorPicDao deptDoctorPicDao;
+	
+	@Resource
+	private ProjectAdvertDao projectAdvertDao;
 
 	private Logger LOG = LoggerFactory.getLogger(CommonServiceImpl.class);
 
@@ -278,6 +283,17 @@ public class CommonServiceImpl implements CommonService {
 			return staffs;
 		} catch (Exception e) {
 			LOG.error("获取所有医生失败！msg:{}", e);
+			return null;
+		}
+	}
+
+	@Override
+	public List<BlueProjectAdvert> findTypeAdvert(int type) {
+		try {
+			List<BlueProjectAdvert> adverts = projectAdvertDao.findTypeAdvert(type);
+			return adverts;
+		} catch (Exception e) {
+			LOG.error("获取findTypeAdvert失败！msg:{}", e);
 			return null;
 		}
 	}

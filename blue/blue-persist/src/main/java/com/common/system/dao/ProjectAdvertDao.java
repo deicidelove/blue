@@ -112,5 +112,16 @@ public class ProjectAdvertDao {
 			return null;
 		}
 	}
+	
+	public List<BlueProjectAdvert> findTypeAdvert(int type) {
+		String sql ="SELECT * FROM tb_blue_projectAdvert WHERE type =:type";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("type", type);
+		
+		List<BlueProjectAdvert> result =  namedParameterJdbcTemplate.query(
+				sql.toString(), paramMap,
+				new BeanPropertyRowMapper<BlueProjectAdvert>(BlueProjectAdvert.class));
+		return result;
+	}
 
 }
