@@ -52,8 +52,8 @@
         <span class="right"  onclick = "gotojifen()"></span>
     </div>
    	<a href="/jifen/actdetail/?goodsId=${goods.goodsId }">
-	    <div >
-	    	<img style=" height: 250px; width: 418px; " src="${goods.goodsPicUrl }" />
+	    <div class="lottery_img">
+	    	<img src="${goods.goodsPicUrl }" />
 	    </div>
 	</a>
     <ul class="lottery_ul">
@@ -62,7 +62,7 @@
     			<a href="/jifen/actdetail/?goodsId=${(actGoods.goodsId)! }">
     			<li class="lottery_li">
 		            <div class="lottery_li_left left">
-		            	<img style="height: 120px;width: 182px; " src="${(actGoods.listImg)! }" />
+		            	<img  src="${(actGoods.listImg)! }" />
 		            </div>
 		            <div class="lottery_li_right left">
 		                <div class="_li_top">
