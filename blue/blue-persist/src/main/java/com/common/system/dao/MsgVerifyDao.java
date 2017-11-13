@@ -25,17 +25,17 @@ public class MsgVerifyDao {
 	
 	
 	public void insert(MsgVerify verify) {
-		String sql = "insert into tb_msg_verify(weixinOpenId, checkCode, expireTime) values (:weixinOpenId, :checkCode, :expireTime)";
+		String sql = "insert into tb_msg_verify(phoneNumber, checkCode, expireTime) values (:phoneNumber, :checkCode, :expireTime)";
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(verify));
 	}
 	
 	
-	public MsgVerify getUnderTime(String openId, Date curTime) {
-		Assert.notNull(openId, "Parameter openId should not be null");
+	public MsgVerify getUnderTime(String phoneNumber, Date curTime) {
+		Assert.notNull(phoneNumber, "Parameter openId should not be null");
 		
-		String sql = "select * from tb_msg_verify where weixinOpenId=:openId and expireTime>:curTime";
+		String sql = "select * from tb_msg_verify where phoneNumber=:phoneNumber and expireTime>:curTime";
 		Map<String,Object> paramMap = Maps.newHashMap();
-		paramMap.put("openId", openId);
+		paramMap.put("phoneNumber", phoneNumber);
 		paramMap.put("curTime", curTime);
 		List<MsgVerify> verifies = namedParameterJdbcTemplate.query(sql, paramMap, BeanPropertyRowMapper.newInstance(MsgVerify.class));
 		if ( !CollectionUtils.isEmpty(verifies) ) {

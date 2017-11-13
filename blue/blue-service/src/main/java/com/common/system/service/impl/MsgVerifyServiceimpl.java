@@ -52,8 +52,8 @@ public class MsgVerifyServiceimpl implements MsgVerifyService {
 	}
 
 	@Override
-	public MsgVerify getUnderTime(String openId, Date curTime) {
-		return msgVerifyDao.getUnderTime(openId, curTime);
+	public MsgVerify getUnderTime(String phoneNumber, Date curTime) {
+		return msgVerifyDao.getUnderTime(phoneNumber, curTime);
 	}
 	
 	public MessageSendResult messageSend(String phoneNumber, String verifyCode) {

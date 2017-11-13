@@ -6,8 +6,8 @@ import java.util.Date;
 public class MsgVerify implements Serializable {
 	private static final long serialVersionUID = -5986453744780430881L;
 	private Integer id;
-	// 微信OpenId
-	private String weixinOpenId;
+	// 电话号码
+	private String phoneNumber;
 	// 过期时间
 	private Date expireTime;
 	// 验证码
@@ -15,8 +15,8 @@ public class MsgVerify implements Serializable {
 	
 	public MsgVerify(){}
 	
-	public MsgVerify(String weixinOpenId, String checkCode, Date expireTime) {
-		this.weixinOpenId = weixinOpenId;
+	public MsgVerify(String phoneNumber, String checkCode, Date expireTime) {
+		this.phoneNumber = phoneNumber;
 		this.expireTime = expireTime;
 		this.checkCode = checkCode;
 	}
@@ -35,12 +35,14 @@ public class MsgVerify implements Serializable {
 		this.checkCode = checkCode;
 	}
 
-	public String getWeixinOpenId() {
-		return weixinOpenId;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setWeixinOpenId(String weixinOpenId) {
-		this.weixinOpenId = weixinOpenId;
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
+
 	public Date getExpireTime() {
 		return expireTime;
 	}
