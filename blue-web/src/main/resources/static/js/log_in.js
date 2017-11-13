@@ -7,8 +7,8 @@
             log._bind();
         },
         _bind:function () {
-            $('.code_gain').on('click',log._verifyCode);
-            $('.register_submit').on('click',log._verification)
+            $('.code_gain').on('click', log._verifyCode);
+            $('.register_submit').on('click', log._verification)
         },
         _verifyCode: function() {
             var $phone = $('.phone').val();
@@ -18,10 +18,10 @@
             		var returned = eval('(' + result + ')');
             		if ( returned.result == 'success' ) {
             			// 保存验证码
-            			register._popx("短信发送成功，请注意查收！", 1.5);
+            			log._popx("短信发送成功，请注意查收！", 1.5);
             		} else {
             			// 显示错误信息
-            			register._popx(result.message, 1.5);
+            			log._popx(returned.message, 1.5);
             		}
             		// 倒计时
             		var step = 59;
@@ -61,12 +61,13 @@
                     var returned = eval('(' + result + ')');
                     if ( returned.result == 'success' ) {
                         // 保存验证码
-                        register._popx('登陆成功',1.5);
+                        log._popx('登陆成功',1.5);
                         // 登陆成功实现跳转
-                        $.get("/registerSuccessedRedirect", {'phoneNumber': $phone}, function(result){});
+                        //$.get("/registerSuccessedRedirect", {'phoneNumber': $phone}, function(result){});
+                        window.location.href = "/registerSuccessedRedirect";
                     } else {
                         // 显示错误信息
-                        register._popx(result.message, 1.5);
+                        log._popx(result.message, 1.5);
                     }
                 });
             }

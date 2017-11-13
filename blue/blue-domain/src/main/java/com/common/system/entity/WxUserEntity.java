@@ -20,6 +20,10 @@ public class WxUserEntity {
 	 */
 	private String openId;
 	/**
+	 * 用户名
+	 */
+	private String userName;
+	/**
 	 * 电话
 	 */
 	private String tel;
@@ -32,6 +36,11 @@ public class WxUserEntity {
 	 * 推荐人
 	 */
 	private String superOpenId;
+	
+	/**
+	 * 微信邀请ticket
+	 */
+	private String ticket;
 	/**
 	 * 二维码
 	 */
@@ -175,6 +184,22 @@ public class WxUserEntity {
 	 */
 	public void setIsShowTip(Boolean isShowTip) {
 		this.isShowTip = isShowTip;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(String ticket) {
+		this.ticket = ticket;
 	}
 	
 }

@@ -76,6 +76,30 @@ public class WxuserDao {
 	}
 	
 	/**
+	 * 更新用户信息
+	 * @param openId 微信OpenId
+	 * @param phoneNumber 电话号码
+	 * @param userName 用户名
+	 * @param ticket 微信邀请ticket
+	 * @param qrcodeUrl 二维码地址
+	 */
+	public void updateUserInfo(String openId, String phoneNumber, String userName, String ticket, String qrcodeUrl) {
+		Assert.notNull(openId, "openId should not be null");
+		Assert.notNull(phoneNumber, "phoneNumber should not be null");
+		Assert.notNull(ticket, "ticket should not be null");
+		Assert.notNull(qrcodeUrl, "qrcodeUrl should not be null");
+		
+		String sql = "update rc_a_wx_user set tel=:tel, user_name=:userName, ticket=:ticket, qr_code_url=:qrcodeUrl where open_id=:openId";
+		Map<String,Object> paramMap = Maps.newHashMap();
+		paramMap.put("tel", phoneNumber);
+		paramMap.put("userName", userName);
+		paramMap.put("ticket", ticket);
+		paramMap.put("openId", openId);
+		paramMap.put("qrcodeUrl", qrcodeUrl);
+		namedParameterJdbcTemplate.update(sql, paramMap);
+	}
+	
+	/**
 	 * 刪除并非真正刪除
 	 * @param actId
 	 */

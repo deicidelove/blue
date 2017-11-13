@@ -17,7 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.common.system.dto.MessageSendResult;
 import com.common.system.entity.MsgVerify;
 import com.common.system.service.MsgVerifyService;
-import com.common.system.service.WeiXinService;
+import com.common.system.service.WxUserService;
 import com.common.system.util.StandardJSONResult;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
@@ -27,13 +27,20 @@ public class LoginController {
 	
 	// 短信验证服务
 	@Resource MsgVerifyService msgVerifyService;
-	@Resource WeiXinService weixinService;
+	@Resource WxUserService wxUserService;
 	
 	
 	// 注册首页
 	@RequestMapping("/register")
 	public ModelAndView registerIndex(ModelAndView modelAndView) {
 		modelAndView.setViewName("/html/register");
+		return modelAndView;
+	}
+	
+	// 登陆首页
+	@RequestMapping("/login")
+	public ModelAndView loginIndex(ModelAndView modelAndView) {
+		modelAndView.setViewName("/html/login");
 		return modelAndView;
 	}
 	
@@ -69,9 +76,9 @@ public class LoginController {
 		if ( verify != null ) {
 			if ( verify.getCheckCode().equals(checkCode) ) {
 				// 写入到用户表中
-				String qrcodeUrl = weixinService.getUserQRCode(openId);
+				String qrcodeUrl = wxUserService.getUserQRCode(openId);
 				String ticket = qrcodeUrl.substring(qrcodeUrl.lastIndexOf('=')+1, qrcodeUrl.length());
-				weixinService.updateUserInfo(openId, userName, phoneNumber, ticket, qrcodeUrl);
+				wxUserService.updateUserInfo(openId, userName, phoneNumber, ticket, qrcodeUrl);
 				return JSON.toJSONString(StandardJSONResult.getSuccessInstance());
 			} else {
 				RegisterResult registerResult = new RegisterResult(false, "验证码错误,请重新输入!");

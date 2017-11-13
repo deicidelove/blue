@@ -25,7 +25,7 @@ public class MsgVerifyDao {
 	
 	
 	public void insert(MsgVerify verify) {
-		String sql = "insert into tb_msg_verify(phoneNumber, checkCode, expireTime) values (:phoneNumber, :checkCode, :expireTime)";
+		String sql = "insert into rc_msg_verify(phoneNumber, checkCode, expireTime) values (:phoneNumber, :checkCode, :expireTime)";
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(verify));
 	}
 	
@@ -33,7 +33,7 @@ public class MsgVerifyDao {
 	public MsgVerify getUnderTime(String phoneNumber, Date curTime) {
 		Assert.notNull(phoneNumber, "Parameter openId should not be null");
 		
-		String sql = "select * from tb_msg_verify where phoneNumber=:phoneNumber and expireTime>:curTime";
+		String sql = "select * from rc_msg_verify where phoneNumber=:phoneNumber and expireTime>:curTime";
 		Map<String,Object> paramMap = Maps.newHashMap();
 		paramMap.put("phoneNumber", phoneNumber);
 		paramMap.put("curTime", curTime);

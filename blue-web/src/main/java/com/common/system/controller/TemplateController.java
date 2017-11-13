@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
-import com.common.system.service.WeiXinService;
+import com.common.system.service.WxUserService;
 import com.common.system.util.StandardJSONResult;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
@@ -41,12 +41,12 @@ public class TemplateController {
 	private static final String PictureRoot = "picture";
 	
 	// 微信服务
-	@Resource WeiXinService weixinService;
+	@Resource WxUserService wxUserService;
 	private final ResourceLoader resourceLoader;  
 	
 	
 	@Autowired  
-	public TemplateController(ResourceLoader resourceLoader) {  
+	public TemplateController(ResourceLoader resourceLoader) {
 		this.resourceLoader = resourceLoader;  
 	} 
 	
@@ -56,7 +56,7 @@ public class TemplateController {
 	@ResponseBody
 	@RequestMapping("/getORCode")
 	public String getORCode(HttpServletResponse response, String phoneNumber) throws Exception {
-		String qrcodeUrl = weixinService.getUserQRCode(phoneNumber);
+		String qrcodeUrl = wxUserService.getUserQRCode(phoneNumber);
 		return qrcodeUrl;
 	}
 	
@@ -68,7 +68,7 @@ public class TemplateController {
 			return JSON.toJSONString(StandardJSONResult.getFailedInstance("请先选中上传一张图片"));
 		} else {
 			// 二维码网址
-			String qrcodeUrl = weixinService.getUserQRCode(openId);
+			String qrcodeUrl = wxUserService.getUserQRCode(openId);
 			// 二维码图片
 			BufferedImage qrcodeImg = getImage(qrcodeUrl);
 			if ( qrcodeImg != null ) {

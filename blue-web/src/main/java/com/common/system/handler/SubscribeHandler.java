@@ -48,6 +48,7 @@ public class SubscribeHandler extends AbstractHandler {
         		if(null == wxUserEntity){
         			wxUserEntity = new WxUserEntity();
         			wxUserEntity.setOpenId(userWxInfo.getOpenId());
+        			wxUserEntity.setSuperOpenId(wxMessage.getFromUser());
         			wxUserService.save(wxUserEntity);
         		}
         		WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(userWxInfo.getOpenId());
