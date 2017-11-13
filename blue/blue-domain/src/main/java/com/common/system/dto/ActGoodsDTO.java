@@ -40,6 +40,8 @@ public class ActGoodsDTO implements Serializable{
 	 */
 	private String listImg;
 	
+	private Integer jifen;
+	
 	/**
 	 * @return the goodsName
 	 */
@@ -172,6 +174,20 @@ public class ActGoodsDTO implements Serializable{
 	 */
 	public void setListImg(String listImg) {
 		this.listImg = listImg;
+	}
+
+	/**
+	 * @return the jifen
+	 */
+	public Integer getJifen() {
+		return jifen;
+	}
+
+	/**
+	 * @param jifen the jifen to set
+	 */
+	public void setJifen(Integer jifen) {
+		this.jifen = jifen;
 	}
 	
 }

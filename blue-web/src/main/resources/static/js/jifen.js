@@ -108,7 +108,7 @@ JF.Jifen = (function () {
 			
 			$(".unveiled_li.left").off('click');
 			$(".unveiled_li.left").on('click',function(){
-				window.location.href = basePath +"/jifen/actdetail/?actId="+$(this).attr("actId")+"&goodsId="+$(this).attr("goodsId");
+				window.location.href = basePath +"/jifen/actdetail/?goodsId="+$(this).attr("goodsId");
 			});
 		}
 	

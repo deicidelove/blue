@@ -137,7 +137,7 @@
     </div>
     <div class="lottery_bg">
          <#list goodsList as goods>
-            <a href="/jifen/detail?goodsId=${goods.goodsId }">
+            <a href="/jifen/actdetail/?goodsId=${goods.goodsId }">
                 <div class="lottery_bg01 left" >
                 	<img class="lottery_bg01 left"  src="${goods.goodsPicUrl }"/>
                 </div>
@@ -146,16 +146,29 @@
     </div>
 </div>
 <div class="activity">
-    <div class="lottery_head">
-        <span class="left">近期活动</span>
-        <span class="left">RECENT ACTIVITY</span>
-        <span class="right"></span>
-    </div>
-    <div class="activity_bg01"></div>
+	<a href="/lastact/index">
+	    <div class="lottery_head">
+	        <span class="left">近期活动</span>
+	        <span class="left">RECENT ACTIVITY</span>
+	        <span class="right" onclick = "gotoLastActFuli()"> </span>
+	    </div>
+    </a>
+    <a href="/lastact/detail?lastActId=${(firstLastAct.sid)! }">
+	    <div class="">
+	    	<img class="activity_bg01" src="${(firstLastAct.lastActListImg)! }">
+	    </div>
+    </a>
     <div class="activity_bglist box">
-        <div class="flex-1 activity_bg02"></div>
-        <div class="flex-1 activity_bg03"></div>
-        <div class="flex-1 activity_bg04"></div>
+    	<#if lastActList??>
+    		<#list lastActList as lastAct>
+    			<a href="/lastact/detail?lastActId=${(lastAct.sid)! }">
+	    			<div class="flex-1 activity_bg0${lastAct_index+2}"  >
+	    				<img style="    width: 94%; height: 2.1rem;  background-size: cover;  margin: 0 3% 1% 3%;" 
+    						class="flex-1 "  src="${(lastAct.lastActListImg)! }">
+	    			</div>
+	    		</a>
+    		</#list>
+    	</#if>
     </div>
 </div>
 <div class="margin_bottom"></div>
@@ -221,5 +234,10 @@
     
     function jifenRight(){
     	window.location.href = "/jifen/index";
+    }
+    
+    
+    function gotoLastActFuli(){
+    	window.location.href = "/lastact/index";
     }
 </script>

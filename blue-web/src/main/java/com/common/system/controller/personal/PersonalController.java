@@ -11,7 +11,6 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.dto.PersonalOrderDTO;
-import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
 import com.common.system.entity.JifenLogEntity;
@@ -148,7 +146,7 @@ public class PersonalController {
 			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
 		}
 		PageInfo<JifenLogEntity> jifenPage = jifenLogService.listForPage(start, pageSize, openId);
-		modelAndView.addObject("resultList", jifenPage);
+		modelAndView.addObject("resultList", jifenPage.getList());
 		return modelAndView;
 	}
 	

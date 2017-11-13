@@ -47,7 +47,7 @@ public class WxuserDao {
 	}
 	
 	public List<WxUserEntity> seleteList(Integer pageNum, Integer pageSize, String superOpenId){
-		String sql = " SELECT * FROM rc_a_wx_user WHERE super_open_id = :superOpenId limit :pageStartNum, :pageSize order by create_time desc ";
+		String sql = " SELECT * FROM rc_a_wx_user WHERE super_open_id = :superOpenId order by create_time desc limit :pageStartNum, :pageSize  ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("pageStartNum", (pageNum-1)*pageSize);
 		paramMap.put("pageSize", pageSize);

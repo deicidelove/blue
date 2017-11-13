@@ -140,24 +140,24 @@ public class JifenController {
     }
 	
 	@RequestMapping(value = "actdetail/",method = RequestMethod.GET)
-	public ModelAndView actdetail(ModelAndView modelAndView, HttpServletRequest request, Integer actId, Integer goodsId){
+	public ModelAndView actdetail(ModelAndView modelAndView, HttpServletRequest request, String goodsId){
 		
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		
         modelAndView.setViewName("/jifen/actDetail");
         GoodsDetailDTO detailDTO = new GoodsDetailDTO();
-        //act
-        detailDTO.setActId(actId);
-        detailDTO.setGoodsId(goodsId);
-        
-        ActEntity actEntity = actService.getById(actId);
-        
         //goods
-        Result<GoodsEntity> goodsResult = goodsService.getById(goodsId);
+        Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
+        //act
+        Integer actId = goodsResult.getData().getActId();
+        detailDTO.setActId(actId);
+        detailDTO.setGoodsId(Integer.valueOf(goodsId));
+        
+        ActEntity actEntity = actService.getById(goodsResult.getData().getActId());
         GoodsEntity goodsEntity = goodsResult.getData();
         detailDTO.setActTotalNum(actEntity.getActTotalNum());
         
-        List<GoodsConsumerRelateEntity> consumerRelateEntityList = goodsConsumerRelateService.listUsed(actId, goodsId);
+        List<GoodsConsumerRelateEntity> consumerRelateEntityList = goodsConsumerRelateService.listUsed(actId, Integer.valueOf(goodsId));
         
         List<GoodsDetailWxDTO> goodsDetailWxDTOList = Lists.newArrayList();
         List<String> givingCodeList = Lists.newArrayList();
@@ -189,7 +189,7 @@ public class JifenController {
         detailDTO.setParticipantsNum((consumerRelateEntityList.size()> actEntity.getActTotalNum())?actEntity.getActTotalNum(): consumerRelateEntityList.size() );
         detailDTO.setRemainingNum(
 				(actEntity.getActTotalNum() - consumerRelateEntityList.size())<0?0:(actEntity.getActTotalNum() - consumerRelateEntityList.size()));
-        List<GoodsImgEntity> goodsImgEntityList = goodsImgService.findByGoodsId(goodsId, "ad_img");
+        List<GoodsImgEntity> goodsImgEntityList = goodsImgService.findByGoodsId(Integer.valueOf(goodsId), "ad_img");
         if(!CollectionUtils.isEmpty(goodsImgEntityList)){
         	detailDTO.setImgList(goodsImgEntityList);
         }
