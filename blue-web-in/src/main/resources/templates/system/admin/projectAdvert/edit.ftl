@@ -49,6 +49,7 @@
                         <option <#if bean.type == 6>selected="selected"</#if> value="6">项目中心上半部广告</option>
                         <option <#if bean.type == 7>selected="selected"</#if> value="7">口腔百科轮播图</option>
                         <option <#if bean.type == 8>selected="selected"</#if> value="8">口腔百科中间广告</option>
+                        <option <#if bean.type == 9>selected="selected"</#if> value="9">科室轮播图</option>
                     </select>
 				</div>
                 <div class="form-group">

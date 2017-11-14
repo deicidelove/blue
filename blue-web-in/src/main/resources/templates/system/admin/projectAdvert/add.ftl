@@ -49,6 +49,7 @@
                         <option value="6">项目中心上半部广告</option>
                         <option value="7">口腔百科轮播图</option>
                         <option value="8">口腔百科中间广告</option>
+                         <option value="9">科室轮播图</option>
                     </select>
 				</div>
 				 <div class="form-group">
