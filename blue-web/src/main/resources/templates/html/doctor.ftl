@@ -18,7 +18,7 @@ var basePath = '${request.contextPath}';
 </div>
 <div class="search">
 	<#if search??>
-	<input name="search" type="text" class="search_input" placeholder="${search}"/>
+	<input name="search" type="text" class="search_input" placeholder="${search}" value="${search}"/>
 	<#else>
 	<input name="search" type="text" class="search_input" placeholder="搜索疾病，医生姓名"/>
 	</#if>
@@ -29,7 +29,7 @@ var basePath = '${request.contextPath}';
 	
     <div class="drop_down_btn">
     	<#if flag>
-        <span class="left drop_down_span01">请先选择科室</span>
+        <span class="left drop_down_span01">请选择科室</span>
         <#else>
 	     <span class="left drop_down_span01">${deptName}</span>
 	     </#if>
@@ -50,9 +50,10 @@ var basePath = '${request.contextPath}';
     <div class="drop_down_bg"></div>
 </div>
 <div class="doctor">
-    <div class="specialist_bg" style="background-image:url(${url})"></div>
+<#list doctors as temp>
+    <div class="specialist_bg" style="background-image:url(${temp.url})"></div>
     <ul class="doctor_ul">
-	    <#list doctors as doctor>
+	    <#list temp.doctors as doctor>
 	        <a href="/doctorDetial/${doctor.sid}" >
 	        <li class="doctor_li">
                 <#if doctor.headUrl??>
@@ -74,6 +75,7 @@ var basePath = '${request.contextPath}';
 	        </a>
 	      </#list>
     </ul>
+</#list>
 </div>
 <div class="height13"></div>
 <div class="margin_bottom"></div>
