@@ -15,24 +15,42 @@
     <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
 
-<ul class="encyclopedia_ul notice_ul">
-    <#list projects as project>
-    <a href="/projectDetial/${project.sid}">
-	    <li class="encyclopedia_li">
-	         <#if project.url??>
-	   			 <img class="left artical_img" src="${project.url}" />
-		    <#else>
-		     	<img class="left artical_img" src="../images/notice_img02.jpg" />
-		    </#if>
-	        
-	        <div class="left encyclopedia_li_cent">
-	            <div>${project.name}</div>
-	            <div>${project.context}</div>
-	        </div>
-	    </li>
-    </a>
-    </#list>
-</ul>
+<#assign i=1>
+<#list  projects as project>
+	<#if (i+3)%4==0>
+		<a href="/projectDetial/${project.sid}">
+			<div class="oral_an notice_an brdt_nospace">
+			     <#if project.url??>
+			   		<img class="artical_an" src="${project.url}" />
+			     <#else>
+			     	<img class="artical_an" src="../images/notice_img01.jpg" />
+			     </#if>
+			    <div class="oral_an_head">${project.name}</div>
+			</div>
+		</a>
+	<#else>
+		<#if (i+3)%4==1>
+		<ul class="encyclopedia_ul notice_ul">
+		</#if>
+		    <li class="encyclopedia_li">
+			     <a href="/projectDetial/${project.sid}">
+			         <#if project.url??>
+			   			 <img class="left artical_img" src="${project.url}" />
+				     <#else>
+				     	<img class="left artical_img" src="../images/notice_img02.jpg" />
+				     </#if>
+			        <div class="left encyclopedia_li_cent">
+			            <div>${project.name}</div>
+			            <div>${project.context}</div>
+			        </div>
+			      </a>
+		    </li>
+		<#if (i+3)%4==3>
+		</ul>
+		</#if>
+	</#if>
+<#assign i=i+1>
+</#list>
 
 </body>
 </html>
