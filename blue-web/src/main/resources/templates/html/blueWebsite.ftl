@@ -145,13 +145,15 @@
         <span class="right" onclick="jifenRight()"></span>
     </div>
     <div class="lottery_bg">
-         <#list goodsList as goods>
-            <a href="/jifen/actdetail/?goodsId=${goods.goodsId }">
+    <#if gwJFHDList??>
+         <#list gwJFHDList as jfhd>
+            <a href="${(jfhd.jumpUrl)! }">
                 <div class="lottery_bg01 left" >
-                	<img class="lottery_bg01 left"  src="${goods.goodsPicUrl }"/>
+                	<img class="lottery_bg01 left"  src="${(jfhd.picUrl)! }"/>
                 </div>
             </a>
         </#list>
+     </#if>
     </div>
 </div>
 <div class="activity">
@@ -162,18 +164,18 @@
 	        <span class="right" onclick = "gotoLastActFuli()"> </span>
 	    </div>
     </a>
-    <a href="/lastact/detail?lastActId=${(firstLastAct.sid)! }">
+    <a href="${(firstZJHD.jumpUrl)! }">
 	    <div class="">
-	    	<img class="activity_bg01" src="${(firstLastAct.lastActListImg)! }">
+	    	<img class="activity_bg01" src="${(firstZJHD.picUrl)! }">
 	    </div>
     </a>
     <div class="activity_bglist box">
-    	<#if lastActList??>
-    		<#list lastActList as lastAct>
-    			<a href="/lastact/detail?lastActId=${(lastAct.sid)! }">
-	    			<div class="flex-1 activity_bg0${lastAct_index+2}"  >
+    	<#if gwZJHDList??>
+    		<#list gwZJHDList as zjhd>
+    			<a href="${(zjhd.jumpUrl)! }">
+	    			<div class="flex-1 activity_bg0${zjhd_index+2}"  >
 	    				<img style="    width: 94%; height: 2.1rem;  background-size: cover;  margin: 0 3% 1% 3%;" 
-    						class="flex-1 "  src="${(lastAct.lastActListImg)! }">
+    						class="flex-1 "  src="${(zjhd.picUrl)! }">
 	    			</div>
 	    		</a>
     		</#list>

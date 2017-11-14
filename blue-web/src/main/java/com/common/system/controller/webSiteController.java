@@ -61,44 +61,25 @@ public class webSiteController {
 		 		}
 		 		dtos.add(dto);
 			}
-		 	PageInfo<GoodsEntity> goodsPage = goodsService.listForPage(1, 10);
-		 	List<GoodsEntity> goodsList = goodsPage.getList();
-		 	if(!CollectionUtils.isEmpty(goodsList)){
-		 		Iterator<GoodsEntity> iterator = goodsList.iterator();
-		 		while(iterator.hasNext()){
-		 			GoodsEntity goods = iterator.next();
-		 			List<GoodsImgEntity> imgList = goodsImgService.findByGoodsId(goods.getGoodsId(), "list_img");
-		 			if(!CollectionUtils.isEmpty(imgList)){
-		 				goods.setGoodsPicUrl(imgList.get(0).getGoodsImgUrl());
-		 			}else{
-		 				iterator.remove();
-		 			}
-		 			
-		 		}
+		 	//蓝鲟官网-积分活动
+		 	List<BlueProjectAdvert> gwJFHDList =commonService.findTypeAdvert(10);
+		 	if(!CollectionUtils.isEmpty(gwJFHDList)){
+		 		gwJFHDList = gwJFHDList.size()>=2?gwJFHDList.subList(0, 2) : gwJFHDList;
 		 	}
-		 	goodsList = goodsList.size() >4 ? goodsList.subList(0, 4):goodsList;
-		 	modelAndView.addObject("goodsList", goodsList);
-		 	
-		 	//近期活动
-		 	PageInfo<LastActEntity> lastActPage = lastActService.listForPage(1, 4);
-		 	List<LastActEntity> lastActList = Lists.newArrayList();
-		 	if(!CollectionUtils.isEmpty(lastActPage.getList())){
-		 		for(int i = 0; i < lastActPage.getList().size(); i++){
-		 			if(i == 0 ){
-		 				modelAndView.addObject("firstLastAct", lastActPage.getList().get(0));
-		 				continue;
-		 			}
-		 			
-		 			lastActList.add(lastActPage.getList().get(i));
-		 		}
+		 	modelAndView.addObject("gwJFHDList", gwJFHDList);
+		 	//蓝鲟官网-近期活动
+		 	List<BlueProjectAdvert> gwZJHDList =commonService.findTypeAdvert(11);
+		 	if(!CollectionUtils.isEmpty(gwZJHDList)){
+		 		modelAndView.addObject("firstZJHD", gwZJHDList.get(0));
+		 		gwZJHDList = gwZJHDList.size()>=4?gwZJHDList.subList(1, 4) : gwZJHDList;
 		 	}
+		 	modelAndView.addObject("gwZJHDList", gwZJHDList);
 		 	//首页轮播图
 		 	List<BlueProjectAdvert> webLBT = commonService.findTypeAdvert(0);
 		 	//首页中间广告
 		 	List<BlueProjectAdvert> webZJ = commonService.findTypeAdvert(1);
 //		 	//首页近期活动广告
 //		 	List<BlueProjectAdvert> webJQHD = commonService.findTypeAdvert(2);
-		 	modelAndView.addObject("lastActList", lastActList);
 	        modelAndView.addObject("adverts",dtos);
 	        modelAndView.addObject("webLBT", webLBT);
 	        modelAndView.addObject("webZJ", (webZJ==null||webZJ.size() <=0) ? null : webZJ.get(0));

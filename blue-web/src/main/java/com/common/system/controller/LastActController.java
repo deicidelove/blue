@@ -25,6 +25,7 @@ import com.common.system.dto.AdvertDto;
 import com.common.system.dto.PersonalOrderDTO;
 import com.common.system.entity.ActEntity;
 import com.common.system.entity.BlueAdvert;
+import com.common.system.entity.BlueProjectAdvert;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
@@ -158,9 +159,26 @@ public class LastActController {
 	 		}
 	 	}
 	 	modelAndView.addObject("actGoodsList", actGoodsList);
-	 	//近期活动
-	 	PageInfo<LastActEntity> lastActPage = lastActService.listForPage(1, 2);
-	 	modelAndView.addObject("lastActList", lastActPage.getList());
+	 	//福利中心-积分活动
+	 	List<BlueProjectAdvert> flJFHDList =commonService.findTypeAdvert(12);
+	 	if(!CollectionUtils.isEmpty(flJFHDList)){
+	 		
+	 		modelAndView.addObject("flJFHD", flJFHDList.get(0));
+	 	}
+	 	//福利中心-近期活动
+	 	List<BlueProjectAdvert> flZJHDList =commonService.findTypeAdvert(13);
+	 	if(!CollectionUtils.isEmpty(flZJHDList)){
+	 		flZJHDList = flZJHDList.size()>=2?flZJHDList.subList(0, 2) : flZJHDList;
+	 	}
+	 	modelAndView.addObject("flZJHDList", flZJHDList);
+	 	
+	 	//福利中心-近期活动
+	 	List<BlueProjectAdvert> flLXHDList =commonService.findTypeAdvert(14);
+	 	if(!CollectionUtils.isEmpty(flLXHDList)){
+	 		flLXHDList = flZJHDList.size()>=4?flLXHDList.subList(0, 4) : flLXHDList;
+	 	}
+	 	modelAndView.addObject("flLXHDList", flLXHDList);
+	 	
         modelAndView.addObject("adverts",dtos);
         modelAndView.setViewName("/html/lastactfulicent");
 		return modelAndView;

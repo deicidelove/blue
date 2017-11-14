@@ -17,10 +17,11 @@
 <div class="swiper01">
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
-            <li class="swiper-slide"><img src="../images/icon-54.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-54.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-54.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-54.png" alt=""/></li>
+	          <#if flLXHDList??>
+	    		<#list flLXHDList as lunxun>
+		            <li class="swiper-slide"><img src="${(lunxun.picUrl)! }" alt=""/></li>
+	    		</#list>
+	    	</#if>
             
         </ul>
         <div class="swiper-pagination"></div>
@@ -33,12 +34,12 @@
         <span class="right" onclick = "gotoLastActList()"></span>
     </div>
     <div class="activity_bg box">
-    	<#if lastActList??>
-    		<#list lastActList as lastAct>
-    			<a href="/lastact/detail?lastActId=${(lastAct.sid)! }">
+    	<#if flZJHDList??>
+    		<#list flZJHDList as lastAct>
+    			<a href="${(lastAct.jumpUrl)! }">
 	    			<div class="flex-1 activity_bg0${lastAct_index+1}"  >
 	    				<img style="    width: 94%; height: 2.1rem;  background-size: cover;  margin: 0 3% 1% 3%;" 
-    						class="flex-1 "  src="${(lastAct.lastActListImg)! }">
+    						class="flex-1 "  src="${(lastAct.picUrl)! }">
 	    			</div>
 	    		</a>
     		</#list>
@@ -51,9 +52,9 @@
         <span class="left">积分抽奖</span>
         <span class="right"  onclick = "gotojifen()"></span>
     </div>
-   	<a href="/jifen/actdetail/?goodsId=${goods.goodsId }">
+   	<a href="${(flJFHD.jumpUrl)! }">
 	    <div class="lottery_img">
-	    	<img src="${goods.goodsPicUrl }" />
+	    	<img src="${(flJFHD.picUrl)! }" />
 	    </div>
 	</a>
     <ul class="lottery_ul">
