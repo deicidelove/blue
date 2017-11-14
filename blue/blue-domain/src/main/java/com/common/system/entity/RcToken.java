@@ -6,15 +6,15 @@ import java.util.Date;
 public class RcToken implements Serializable {
 	private static final long serialVersionUID = 6861310738784110334L;
 	
-	private String id;
+	private Integer id;
 	private String appId;
 	private String token;
 	private Date expireTime;
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getAppId() {

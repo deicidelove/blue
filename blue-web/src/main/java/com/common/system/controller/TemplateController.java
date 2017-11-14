@@ -55,8 +55,8 @@ public class TemplateController {
 	/** 根据电话号码获取用户二维码  **/
 	@ResponseBody
 	@RequestMapping("/getORCode")
-	public String getORCode(HttpServletResponse response, String phoneNumber) throws Exception {
-		String qrcodeUrl = wxUserService.getUserQRCode(phoneNumber);
+	public String getORCode(HttpServletResponse response, String openId) throws Exception {
+		String qrcodeUrl = wxUserService.getUserQRCode(openId);
 		return qrcodeUrl;
 	}
 	

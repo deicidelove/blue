@@ -3,7 +3,6 @@ package com.common.system.service.impl;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -51,7 +50,7 @@ public class WxUserServiceImpl implements WxUserService {
 	@Resource WxuserDao wxuserDao;
 	@Resource TokenDao tokenDao;
 	
-	private static final Logger LOG = LoggerFactory.getLogger(WxUserServiceImpl.class);
+	
 	@Override
 	public Result<Integer> save(WxUserEntity wxUserEntity) {
 		Result<Integer> result = new Result<Integer>();
@@ -61,7 +60,7 @@ public class WxUserServiceImpl implements WxUserService {
             result.setCode(MsgCode.SUCCESS);
             result.setMsg("操作成功");
 		} catch (Exception e) {
-			LOG.error("WxUserServiceImpl save error!", e );
+			logger.error("WxUserServiceImpl save error!", e );
 		}
 		return result;
 	}
@@ -75,7 +74,7 @@ public class WxUserServiceImpl implements WxUserService {
             result.setCode(MsgCode.SUCCESS);
             result.setMsg("操作成功");
 		} catch (Exception e) {
-			LOG.error("WxUserServiceImpl deleteById error!", e );
+			logger.error("WxUserServiceImpl deleteById error!", e );
 		}
 		return result;
 	}
@@ -85,7 +84,7 @@ public class WxUserServiceImpl implements WxUserService {
 		try {
 			wxuserDao.updateJifen(wxUserEntity);
 		} catch (Exception e) {
-			LOG.error("WxUserServiceImpl updateJifen error!", e );
+			logger.error("WxUserServiceImpl updateJifen error!", e );
 		}
 
 	}
@@ -96,7 +95,7 @@ public class WxUserServiceImpl implements WxUserService {
 		try {
 			wxUserEntity = wxuserDao.seleteById(openId);
 		} catch (Exception e) {
-			LOG.error("WxUserServiceImpl getById error!", e );
+			logger.error("WxUserServiceImpl getById error!", e );
 		}
 		return wxUserEntity;
 	}
@@ -108,7 +107,7 @@ public class WxUserServiceImpl implements WxUserService {
 			List<WxUserEntity> resultList = wxuserDao.seleteList(pageNum, pageSize);
 			result.setList(resultList);
 		} catch (Exception e) {
-			LOG.error("WxUserServiceImpl listForPage error!", e );
+			logger.error("WxUserServiceImpl listForPage error!", e );
 		}
 		return result;
 	}
@@ -119,7 +118,7 @@ public class WxUserServiceImpl implements WxUserService {
 		try {
 			resultList = wxuserDao.seleteList();
 		} catch (Exception e) {
-			LOG.error("WxUserServiceImpl list error!", e );
+			logger.error("WxUserServiceImpl list error!", e );
 		}
 		return resultList;
 	}
@@ -129,7 +128,7 @@ public class WxUserServiceImpl implements WxUserService {
 		try {
 			wxuserDao.updateTip(openId, isShowTip);
 		} catch (Exception e) {
-			LOG.error("updateTip error!", e);
+			logger.error("updateTip error!", e);
 		}
 	}
 
@@ -141,7 +140,7 @@ public class WxUserServiceImpl implements WxUserService {
 			List<WxUserEntity> resultList = wxuserDao.seleteList(pageNum, pageSize, superOpenId);
 			result.setList(resultList);
 		} catch (Exception e) {
-			LOG.error("WxUserServiceImpl listForPage error!", e );
+			logger.error("WxUserServiceImpl listForPage error!", e );
 		}
 		return result;
 	}
@@ -188,7 +187,6 @@ public class WxUserServiceImpl implements WxUserService {
 					ApplyTokenResult applyTokenResult = JSON.parseObject(response.getBody(), ApplyTokenResult.class);
 					if ( !Strings.isNullOrEmpty(applyTokenResult.getAccess_token()) ) {
 						token = new RcToken();
-						token.setId(UUID.randomUUID().toString());
 						token.setAppId(weixinAppId);
 						token.setToken(applyTokenResult.getAccess_token());
 						token.setExpireTime(timeAfer(applyTokenResult.getExpires_in()));

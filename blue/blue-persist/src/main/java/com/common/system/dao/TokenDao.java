@@ -26,7 +26,7 @@ public class TokenDao {
 	public void insert(RcToken token) {
 		Assert.notNull(token, "token should not be null");
 		
-		String sql = "insert into rc_token(id,appId,token,expireTime) values(:id,:appId,:token,:expireTime)";
+		String sql = "insert into rc_token(id,app_id,token,expire_time) values(:id,:appId,:token,:expireTime)";
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(token));
 		
 	}
@@ -36,7 +36,7 @@ public class TokenDao {
 		Assert.notNull(appId, "appId should not be null");
 		Assert.notNull(time, "time should not be null");
 		
-		String sql = "select * from rc_token where appId=:appId and expireTime>:time";
+		String sql = "select * from rc_token where app_id=:appId and expire_time>:time";
 		Map<String,Object> paramMap = Maps.newHashMap();
 		paramMap.put("appId", appId);
 		paramMap.put("time", time);
