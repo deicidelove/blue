@@ -18,11 +18,13 @@
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
          <#list encyclopedyLBT as lbt>
-	        	<a href="${lbt.jumpUrl}">
+	        	
 		            <li class="swiper-slide">
+		            <a href="${lbt.jumpUrl}">
 		            	<img src="${lbt.picUrl}" alt=""/>
+		            </a>
 		            </li>
-	            </a>
+	           
             </#list>
         </ul>
         <div class="swiper-pagination"></div>
@@ -76,11 +78,13 @@
     <div class="swiper-container banner02">
         <ul class="swiper-wrapper img-list">
              <#list encyclopedyMiddle as middle>
-	        	<a href="${middle.jumpUrl}">
+	        	
 		            <li class="swiper-slide">
+		            <a href="${middle.jumpUrl}">
 		            	<img src="${middle.picUrl}" alt=""/>
+		             </a>
 		            </li>
-	            </a>
+	           
             </#list>
         </ul>
         <div class="swiper-pagination"></div>

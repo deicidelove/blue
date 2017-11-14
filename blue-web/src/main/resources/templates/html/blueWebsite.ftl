@@ -18,11 +18,13 @@
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
         	<#list webLBT as lbt>
-	        	<a href="${lbt.jumpUrl}">
+	        	
 		            <li class="swiper-slide">
+		            	<a href="${lbt.jumpUrl}">
 		            	<img src="${lbt.picUrl}" alt=""/>
+		            	 </a>
 		            </li>
-	            </a>
+	           
             </#list>
         </ul>
         <div class="swiper-pagination"></div>

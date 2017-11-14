@@ -18,11 +18,13 @@
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
         	<#list projectLBT as lbt>
-	        	<a href="${lbt.jumpUrl}">
+	        	
 		            <li class="swiper-slide">
+		            <a href="${lbt.jumpUrl}">
 		            	<img src="${lbt.picUrl}" alt=""/>
-		            </li>
-	            </a>
+					 </a>		           
+					</li>
+	           
             </#list>
         </ul>
         <div class="swiper-pagination"></div>
@@ -112,11 +114,13 @@
     <div class="swiper-container banner02">
         <ul class="swiper-wrapper img-list">
         <#list projectBottom as bottom>
-	        	<a href="${bottom.jumpUrl}">
+	        	
 		            <li class="swiper-slide">
+		            <a href="${bottom.jumpUrl}">
 		            	<img src="${bottom.picUrl}" alt=""/>
+		             </a>
 		            </li>
-	            </a>
+	           
             </#list>
         </ul>
         <div class="swiper-pagination"></div>

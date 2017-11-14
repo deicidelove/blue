@@ -17,10 +17,15 @@
 <div class="swiper01">
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
-            <li class="swiper-slide"><img src="../images/icon-03.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-03.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-03.png" alt=""/></li>
-            <li class="swiper-slide"><img src="../images/icon-03.png" alt=""/></li>
+            <#list deptLBT as lbt>
+	        	
+		            <li class="swiper-slide">
+		            	<a href="${lbt.jumpUrl}">
+		            	<img src="${lbt.picUrl}" alt=""/>
+		            	 </a>
+		            </li>
+	           
+            </#list>
         </ul>
         <div class="swiper-pagination"></div>
     </div>
