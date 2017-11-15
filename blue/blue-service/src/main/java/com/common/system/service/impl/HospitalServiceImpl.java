@@ -45,7 +45,7 @@ public class HospitalServiceImpl implements HospitalService {
 		try {
 			int count = hospitalDao.findCount(date,type);
 			List<BlueHospital> list = hospitalDao.findBlueHospitals(date,type,
-					startPage * limitLength, limitLength);
+					startPage, limitLength);
 			PageBean<BlueHospital> pageList = new PageBean<>();
 			pageList.setiDisplayStart(startPage);
 			pageList.setiDisplayLength(limitLength);

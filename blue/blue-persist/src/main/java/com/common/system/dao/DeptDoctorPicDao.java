@@ -45,6 +45,22 @@ public class DeptDoctorPicDao {
 			return null;
 		}
 	}
+	
+	public BlueDeptDoctorPic findBySid(int sid) {
+		String sql = "SELECT * FROM tb_blue_deptdoctor_pic WHERE sid =:sid";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("sid", sid);
+
+		List<BlueDeptDoctorPic> result = namedParameterJdbcTemplate.query(sql
+				.toString(), paramMap,
+				new BeanPropertyRowMapper<BlueDeptDoctorPic>(
+						BlueDeptDoctorPic.class));
+		if (!CollectionUtils.isEmpty(result)) {
+			return result.get(0);
+		} else {
+			return null;
+		}
+	}
 
 	public int findAllCount(String date, String deptId) {
 
@@ -100,6 +116,18 @@ public class DeptDoctorPicDao {
 		String sql = "INSERT INTO `tb_blue_deptdoctor_pic` (`url`, `deptId`,`deptName`) "
 				+ "VALUES (:url, :deptId, :deptName)";
 		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("url", pic.getUrl());
+		paramMap.put("deptId", pic.getDeptId());
+		paramMap.put("deptName", pic.getDeptName());
+		int count = namedParameterJdbcTemplate.update(sql, paramMap);
+		return count;
+	}
+	
+	public int update(BlueDeptDoctorPic pic) {
+		String sql = "UPDATE FROM  `tb_blue_deptdoctor_pic` SET url:=url, deptId=:deptId,deptName=:deptName ) "
+				+ " WHERE sid = :sid ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("sid", pic.getSid());
 		paramMap.put("url", pic.getUrl());
 		paramMap.put("deptId", pic.getDeptId());
 		paramMap.put("deptName", pic.getDeptName());

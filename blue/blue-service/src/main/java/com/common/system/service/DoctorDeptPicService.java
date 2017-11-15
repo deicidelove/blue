@@ -19,8 +19,12 @@ public interface DoctorDeptPicService {
 			int limitLength,String date);
 	
 	public Result<Integer> deletePic(int sid);
+	
+	public Result<BlueDeptDoctorPic> findDeptPic(int sid);
 
 	public Result<Integer> addDoctorDeptPic(Integer deptId,MultipartFile file);
+	
+	public Result<Integer> updateDoctorDeptPic(Integer sid,Integer deptId,MultipartFile file);
 
 
 }

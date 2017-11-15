@@ -36,7 +36,7 @@ public class DeptServiceImpl implements DeptService {
 	public PageBean<BlueDept> findDepts(int start,int limit) {
 		try {
 			int count = deptDao.findCount();
-			List<BlueDept> depts = deptDao.findDepts(start*limit,limit);
+			List<BlueDept> depts = deptDao.findDepts(start,limit);
 			PageBean<BlueDept> page = new PageBean<>();
 			page.setData(depts);
 			page.setiDisplayStart(start);

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.common.system.dao.DeptDao;
 import com.common.system.dao.DeptDoctorPicDao;
 import com.common.system.entity.BlueDeptDoctorPic;
+import com.common.system.entity.BlueStaff;
 import com.common.system.service.DoctorDeptPicService;
 import com.common.system.util.PageBean;
 import com.common.system.util.PicUtil;
@@ -77,6 +78,35 @@ public class DoctorDeptPicServiceImpl implements DoctorDeptPicService {
 		try {
 			String url =PicUtil.upFile(file);
 			BlueDeptDoctorPic pic = new BlueDeptDoctorPic();
+			pic.setUrl(url);
+			pic.setDeptId(deptId);
+			pic.setDeptName(deptDao.findBySid(deptId).getName());
+			int count = deptDoctorPicDao.add(pic);
+			return new Result<Integer>(true,"保存成功！",count);
+		} catch (Exception e) {
+			LOG.error("保存失败！msg:{}", e);
+		}
+		return new Result<>(false,"保存失败！",0);
+	}
+
+	@Override
+	public Result<BlueDeptDoctorPic> findDeptPic(int sid) {
+		try {
+			BlueDeptDoctorPic deptPic = deptDoctorPicDao.findBySid(sid);
+			return new Result<BlueDeptDoctorPic>(true,"查询成功！",deptPic);
+		} catch (Exception e) {
+			LOG.error("查询findDeptPic失败！msg:{};sid:{}",e,sid);
+		}
+		return new Result<BlueDeptDoctorPic>(false,"查询失败！",null);
+	}
+
+	@Override
+	public Result<Integer> updateDoctorDeptPic(Integer sid, Integer deptId,
+			MultipartFile file) {
+		try {
+			String url =PicUtil.upFile(file);
+			BlueDeptDoctorPic pic = new BlueDeptDoctorPic();
+			pic.setSid(sid);
 			pic.setUrl(url);
 			pic.setDeptId(deptId);
 			pic.setDeptName(deptDao.findBySid(deptId).getName());

@@ -192,7 +192,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		   <resources>
+		<!--<resources>
             <resource>
                 <directory>${project.basedir}/lib</directory>
                 <targetPath>BOOT-INF/lib/</targetPath>
@@ -204,7 +204,7 @@
                 <directory>src/main/resources</directory>
                 <targetPath>BOOT-INF/classes/</targetPath>
             </resource>
-        </resources>
+        </resources> -->
 	</build>
 
 
