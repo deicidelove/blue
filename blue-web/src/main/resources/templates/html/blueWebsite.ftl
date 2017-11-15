@@ -113,14 +113,14 @@
         <div class="swiper02">
             <div class="swiper-container swiper-container-v">
                 <ul class="message_r left swiper-wrapper">
- 					<#list adverts as item>                   
+ 					<#list adverts as item>       
  						<li class="swiper-slide">
  							<div class="message_div01">
                             	<span class="left"></span>
                             	<span class="left" value="${item.advert.sid}">${item.advert.title}</span>
                         	</div>
                         	 <#if item.flag>
-                      		 <div class="message_div01">
+                      		 <div class="message_div02">
                            	 	<span class="left"></span>
                           	  	<span class="left" value="${item.advertNext.sid}">${item.advertNext.title}</span>
                        		 </div>
