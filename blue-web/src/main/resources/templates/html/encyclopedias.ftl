@@ -49,28 +49,34 @@
     </div>
     <div class="sift_img_botm box">
     	<#if encyclopediasjx1??>
-	    	<a href="/encyclopediasDetial/${encyclopediasjx1.sid}">
+	    	
 	        <div class="flex-1">
-	            <div class="sift_img_botm_bg01" style="background-image: url(${encyclopediasjx1.url})"></div>
-	            <div>${encyclopediasjx1.title}</div>
+	        	<a href="/encyclopediasDetial/${encyclopediasjx1.sid}">
+		            <div class="sift_img_botm_bg01" style="background-image: url(${encyclopediasjx1.url})"></div>
+		            <div>${encyclopediasjx1.title}</div>
+	            </a> 
 	        </div>
-	        </a>
+	       
         </#if>
         <#if encyclopediasjx2??>
-	        <a href="/encyclopediasDetial/${encyclopediasjx2.sid}">
+	        
 	        <div class="flex-1 margin_13">
-	            <div class="sift_img_botm_bg02" style="background-image: url(${encyclopediasjx2.url})"></div>
-	            <div>${encyclopediasjx2.title}</div>
+	        	<a href="/encyclopediasDetial/${encyclopediasjx2.sid}">
+		            <div class="sift_img_botm_bg02" style="background-image: url(${encyclopediasjx2.url})"></div>
+		            <div>${encyclopediasjx2.title}</div>
+	         	</a>
 	        </div>
-	        </a>
+	       
         </#if>
         <#if encyclopediasjx3??>
-	        <a href="/encyclopediasDetial/${encyclopediasjx3.sid}">
+	       
 	        <div class="flex-1">
-	            <div class="sift_img_botm_bg03" style="background-image: url(${encyclopediasjx3.url})"></div>
-	            <div>${encyclopediasjx3.title}</div>
+		         <a href="/encyclopediasDetial/${encyclopediasjx3.sid}">
+		            <div class="sift_img_botm_bg03" style="background-image: url(${encyclopediasjx3.url})"></div>
+		            <div>${encyclopediasjx3.title}</div>
+		         </a>
 	        </div>
-	        </a>
+	       
         </#if>
     </div>
 </div>
