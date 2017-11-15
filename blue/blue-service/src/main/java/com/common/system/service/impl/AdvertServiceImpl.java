@@ -41,7 +41,7 @@ public class AdvertServiceImpl implements AdvertService {
 		try {
 			int count = advertDao.findNum(type,date);
 			List<BlueAdvert> advertList = advertDao.findList(type,date,
-					startPage  * limitLength, limitLength);
+					startPage, limitLength);
 			PageBean<BlueAdvert> pageList = new PageBean<BlueAdvert>();
 			pageList.setiDisplayStart(startPage);
 			pageList.setiDisplayLength(limitLength);

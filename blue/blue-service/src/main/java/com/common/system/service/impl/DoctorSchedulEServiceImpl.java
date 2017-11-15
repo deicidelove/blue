@@ -61,7 +61,7 @@ public class DoctorSchedulEServiceImpl implements DoctorSchedulEService {
 		try {
 			int count = doctorScheduleDao.findCount(date, deptId);
 			List<BlueDoctorSchedule> doctorList = doctorScheduleDao.findList(
-					start * limit, limit, date, deptId);
+					start, limit, date, deptId);
 			PageBean<BlueDoctorSchedule> pageList = new PageBean<BlueDoctorSchedule>();
 			pageList.setiDisplayStart(start + 1);
 			pageList.setiDisplayLength(limit);

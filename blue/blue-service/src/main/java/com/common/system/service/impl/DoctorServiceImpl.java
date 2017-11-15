@@ -49,7 +49,7 @@ public class DoctorServiceImpl implements DoctorService {
 		
 		try {
 			int count = staffDao.findAllCount(date, type);
-			List<BlueStaff> doctortList = staffDao.findAllStaff(date,type,startPage*limitLength, limitLength);
+			List<BlueStaff> doctortList = staffDao.findAllStaff(date,type,startPage, limitLength);
 			PageBean<BlueStaff> pageList = new PageBean<BlueStaff>();
 			pageList.setiDisplayStart(startPage);
 			pageList.setiDisplayLength(limitLength);

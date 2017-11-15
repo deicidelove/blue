@@ -41,7 +41,7 @@ public class EncyclopediasServiceImpl implements EncyclopediasService {
 		try {
 			int count = encyclopediasDao.findNum(type,date);
 			List<BlueEncyclopedias> EncyclopediasList = encyclopediasDao.findList(type,date,
-					startPage  * limitLength, limitLength);
+					startPage, limitLength);
 			PageBean<BlueEncyclopedias> pageList = new PageBean<BlueEncyclopedias>();
 			pageList.setiDisplayStart(startPage);
 			pageList.setiDisplayLength(limitLength);

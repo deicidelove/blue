@@ -41,8 +41,7 @@ public class ProjectAdvertServiceImpl implements ProjectAdvertService {
 			int startPage, int limitLength) {
 		try {
 			int count = projectAdvertDao.findCount(date);
-			List<BlueProjectAdvert> list = projectAdvertDao.findProjectList(date,startPage 
-					* limitLength, limitLength);
+			List<BlueProjectAdvert> list = projectAdvertDao.findProjectList(date,startPage, limitLength);
 			PageBean<BlueProjectAdvert> page = new PageBean<BlueProjectAdvert>();
 			page.setiDisplayLength(limitLength);
 			page.setiDisplayStart(startPage);

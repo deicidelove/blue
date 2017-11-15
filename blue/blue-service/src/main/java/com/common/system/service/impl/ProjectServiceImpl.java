@@ -42,7 +42,7 @@ public class ProjectServiceImpl implements ProjectService {
 		try {
 			int count = projectDao.findCount(date);
 			List<BlueProject> list = projectDao.findProjectList(date,startPage 
-					* limitLength, limitLength);
+					, limitLength);
 			PageBean<BlueProject> page = new PageBean<>();
 			page.setiDisplayLength(limitLength);
 			page.setiDisplayStart(startPage);

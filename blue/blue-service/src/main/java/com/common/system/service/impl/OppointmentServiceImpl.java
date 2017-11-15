@@ -49,7 +49,7 @@ public class OppointmentServiceImpl implements OppointmentService {
 			int startPage, int limitLength, String date) {
 		try {
 			int count = oppointmentDao.findCount(date, type);
-			List<BlueOppointment> dto = oppointmentDao.findList(startPage*limitLength, limitLength, date, type);
+			List<BlueOppointment> dto = oppointmentDao.findList(startPage, limitLength, date, type);
 			PageBean<BlueOppointment> pageList = new PageBean<BlueOppointment>();
 			pageList.setiDisplayStart(startPage);
 			pageList.setiDisplayLength(limitLength);

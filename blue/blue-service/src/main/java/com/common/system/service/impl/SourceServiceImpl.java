@@ -59,7 +59,7 @@ public class SourceServiceImpl implements SourceService {
 				int count = sourceDao.findSourceListCount(deptId,
 						staff.getPositionId());
 				List<BlueSource> list = sourceDao.findSourceList(deptId,
-						staff.getPositionId(), (startPage - 1) * limit, limit);
+						staff.getPositionId(), startPage, limit);
 				PageBean<BlueSource> pageList = new PageBean<BlueSource>();
 				pageList.setiDisplayStart(startPage);
 				pageList.setiDisplayLength(limit);
