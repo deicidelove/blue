@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.entity.BlueDept;
 import com.common.system.entity.BlueDeptDoctorPic;
+import com.common.system.entity.BlueStaff;
 import com.common.system.service.CommonService;
 import com.common.system.service.DoctorDeptPicService;
 import com.common.system.util.PageBean;
@@ -79,6 +80,22 @@ public class DoctorDeptPicController {
 	 @RequestMapping(value = "save")
 	    public @ResponseBody Result<Integer> save(int deptId,@RequestParam("fileName") MultipartFile file){
 	        return doctorDeptPicService.addDoctorDeptPic(deptId, file);
+	    }
+	 
+	 
+	 @RequestMapping(value = "edit/{id}",method = RequestMethod.GET)
+	    public ModelAndView edit(@PathVariable Integer id,ModelAndView modelAndView){
+	        Result<BlueDeptDoctorPic> result = doctorDeptPicService.findDeptPic(id);
+	        List<BlueDept> depts = commonService.findDept();
+			modelAndView.addObject("depts", depts);
+	        modelAndView.addObject("bean",result.getData());
+	        modelAndView.setViewName("/system/admin/doctorDeptPic/edit");
+	        return modelAndView;
+	    }
+	 
+	 @RequestMapping(value = "update",method = RequestMethod.POST)
+	    public @ResponseBody Result<Integer> update(@RequestParam("fileName") MultipartFile file, int deptId,int sex,int sid){	       
+	        return doctorDeptPicService.updateDoctorDeptPic(sid, deptId, file);
 	    }
 	
 }
