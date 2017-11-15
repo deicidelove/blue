@@ -8,16 +8,11 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import me.chanjar.weixin.common.api.WxConsts;
-import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
-import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -86,17 +81,8 @@ public class JifenController {
 	@RequestMapping(value = "index",method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request){
         modelAndView.setViewName("/jifen/act");
-       /* try {
-        	if(StringUtils.isNoneBlank(code)){
-        		WxMpOAuth2AccessToken token = wxService.oauth2getAccessToken(code);
-        		System.out.println(token.getOpenId());
-        	}
-		} catch (WxErrorException e) {
-			LOG.error("	");
-		}*/
+
         String openId = CookieUtil.getCookieValue(request, "openId");
-        //TODO
-        openId = "1";
         WxUserEntity wxUserEntity = wxUserService.getById(openId);
         modelAndView.addObject("wxUserEntity", wxUserEntity);
         return modelAndView;
@@ -140,13 +126,13 @@ public class JifenController {
     }
 	
 	@RequestMapping(value = "actdetail/",method = RequestMethod.GET)
-	public ModelAndView actdetail(ModelAndView modelAndView, HttpServletRequest request, String goodsId){
+	public ModelAndView actdetail(ModelAndView modelAndView, HttpServletRequest request ){
 		
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		
-        modelAndView.setViewName("/jifen/actDetail");
         GoodsDetailDTO detailDTO = new GoodsDetailDTO();
         //goods
+        String goodsId = request.getParameter("goodsId");
         Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
         //act
         Integer actId = goodsResult.getData().getActId();
@@ -196,6 +182,7 @@ public class JifenController {
         modelAndView.addObject("detailDTO", detailDTO);
         modelAndView.addObject("actId", detailDTO.getActId());
         modelAndView.addObject("goodsId", detailDTO.getGoodsId());
+        modelAndView.setViewName("/jifen/actdetail");
         return modelAndView;
 	}
 	

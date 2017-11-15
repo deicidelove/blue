@@ -50,6 +50,12 @@
                         <option <#if bean.type == 7>selected="selected"</#if> value="7">口腔百科轮播图</option>
                         <option <#if bean.type == 8>selected="selected"</#if> value="8">口腔百科中间广告</option>
                         <option <#if bean.type == 9>selected="selected"</#if> value="9">科室轮播图</option>
+                        <option <#if bean.type == 10>selected="selected"</#if> value="10">蓝鲟官网-积分抽奖广告</option>
+                        <option <#if bean.type == 11>selected="selected"</#if> value="11">蓝鲟官网-近期活动广告</option>
+                        <option <#if bean.type == 12>selected="selected"</#if> value="12">福利中心-积分抽奖广告</option>
+                        <option <#if bean.type == 13>selected="selected"</#if> value="13">福利中心-近期活动广告</option>
+                       	<option <#if bean.type == 14>selected="selected"</#if> value="14">福利中心-轮询广告</option>
+                        
                     </select>
 				</div>
                 <div class="form-group">
