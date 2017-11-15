@@ -10,6 +10,8 @@ public class LastActEntity {
 	
 	private String lastActName;
 	
+	private String lastActEnname;
+	
 	private String lastActTitle;
 	
 	private String lastActListImg;
@@ -118,4 +120,20 @@ public class LastActEntity {
 	public void setLastActContent(String lastActContent) {
 		this.lastActContent = lastActContent;
 	}
+
+	/**
+	 * @return the lastActEnname
+	 */
+	public String getLastActEnname() {
+		return lastActEnname;
+	}
+
+	/**
+	 * @param lastActEnname the lastActEnname to set
+	 */
+	public void setLastActEnname(String lastActEnname) {
+		this.lastActEnname = lastActEnname;
+	}
+
+
 }

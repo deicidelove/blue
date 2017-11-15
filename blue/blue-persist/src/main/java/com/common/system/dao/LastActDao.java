@@ -55,9 +55,9 @@ public class LastActDao {
 	
 	public int save(LastActEntity lastActEntity){
 		Assert.notNull(lastActEntity,"lastActEntity is null");
-		String sql = "INSERT INTO  `tb_blue_lastact` ( `last_act_name`, `last_act_title`, `last_act_content`, `last_act_list_img`) "
+		String sql = "INSERT INTO  `tb_blue_lastact` ( `last_act_name`, `last_act_enname`,  `last_act_title`, `last_act_content`, `last_act_list_img`) "
 				+ " VALUES "
-				+ "( :lastActName, :lastActTitle, :lastActContent, :lastActListImg ) ";
+				+ "( :lastActName,:lastActEnname, :lastActTitle, :lastActContent, :lastActListImg ) ";
 		return namedParameterJdbcTemplate.update(sql, Convert.beanToMap(lastActEntity));
 	}
 	
@@ -67,7 +67,7 @@ public class LastActDao {
 	 */
 	public void deleteById(Integer lastActId){
 		Assert.notNull(lastActId,"lastActId is null");
-		String sql = "UPDATE `tb_blue_lastact` SET ` is_delete`='1' WHERE (`sid`=:lastActId)";
+		String sql = "UPDATE `tb_blue_lastact` SET is_delete=1 WHERE (`sid`=:lastActId)";
 		Map<String,Object> paramMap = Maps.newHashMap();
 		paramMap.put("lastActId", lastActId);
 		namedParameterJdbcTemplate.update(sql, paramMap);

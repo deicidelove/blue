@@ -45,12 +45,9 @@ import com.common.system.service.LastActService;
 import com.common.system.service.OrderService;
 import com.common.system.service.WxDetailService;
 import com.common.system.service.WxUserService;
-import com.common.system.util.CookieUtil;
 import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
-import com.github.pagehelper.util.StringUtil;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 @RestController
 @RequestMapping(value = "lastact")
