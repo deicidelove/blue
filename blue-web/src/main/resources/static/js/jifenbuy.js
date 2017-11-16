@@ -8,7 +8,7 @@
         	buyjifen._bind();
         },
         _bind: function () {
-        	$("#jifenCount").on("change", function(){
+        	$("#jifenCount").on("mouseout", function(){
         		var count = $(this).val();
         	
         		if(!reg.test(count) && count >= 10){
@@ -22,14 +22,14 @@
         	//确认按钮
         	$('#buyjifen').on('click',function(){
         		var czFre = $("#czFre").val();
-        		Request.sendPostRequest(basePath + "/personal/buyjifen/", {
+        		Request.sendPostRequest(basePath + "/pay/createGoodsOrder/", {
         			"goodsId" : "-1",
         			"czFre" : czFre
         		}, function(result) {
-        			if(result.status == 'fail'){
-        				alert(result.message);
+        			if(result.result_code == 'fail'){
+        				alert(result.result_msg);
         				return ;
-        			}else if( result.status == 'success'){
+        			}else if( result.result_code == 'success'){
         				payParam.appId = result.appId;
         				payParam.timeStamp = result.timeStamp;
         				payParam.nonceStr = result.nonceStr;

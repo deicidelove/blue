@@ -19,11 +19,11 @@
 <div class="integral_banner"></div>
 <div class="buy_credits">
     <div class="buy_credits_cont">
-        <div class="personal_head"><img class="personal_head_img"  src = "${wxDetailEntity.pic! }"/></div>
-        <div class="personal_name">${wxDetailEntity.name! }</div>
+        <div class="personal_head"><img class="personal_head_img"  src = "${(wxDetailEntity.pic)! }"/></div>
+        <div class="personal_name">${(wxDetailEntity.name)! }</div>
         <div class="personal_integral">
             <span class="left"></span>
-            <span class="left">积分${wxUserEntity.jifen! }</span>
+            <span class="left">积分${(wxUserEntity.jifen)! }</span>
         </div>
     </div>
     <div class="chain_L"></div>
@@ -56,7 +56,7 @@
     </li>
     <li class="integral_li">
         <div class="left integral_li_bg05"></div>
-        <div class="left" id = "buyjifen">购买积分</div>
+        <div class="left"  id = "buyjifen">购买积分</div>
         <div class="right"></div>
     </li>
     <li class="integral_li">
@@ -64,8 +64,8 @@
         <div class="left" id = "jifendetail">我的积分明细</div>
         <div class="right"></div>
     </li>
-    <li class="integral_li bordernone">
-        <div class="left integral_li_bg07"></div>
+    <li class="integral_li bordernone" id = "qr">
+        <div class="left integral_li_bg07" ></div>
         <div class="left">我的二维码分享</div>
         <div class="right"></div>
     </li>
@@ -103,4 +103,4 @@
 </body>
 </html>
 <script src="../js/jquery.js"></script>
-<script src="../js/personal.js"></script>
+<script src="../js/personal.js?v=2"></script>

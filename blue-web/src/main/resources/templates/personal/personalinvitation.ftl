@@ -19,10 +19,10 @@
 		<#if resultList??>
 			<#list resultList as wxEntity >
 			    <li class="activity_li">
-			        <img src="${wxEntity.pic }" class="yaoqing_img" />
+			        <img src="${(wxEntity.pic)! }" class="yaoqing_img" />
 			        <div class="activity_li_div02 left">
-			            <div>${wxEntity.name }</div>
-			            <div>${wxEntity.createTime }</div>
+			            <div>${(wxEntity.name)! }</div>
+			            <div>${(wxEntity.createTime)! }</div>
 			        </div>
 			    </li>
 			</#list>

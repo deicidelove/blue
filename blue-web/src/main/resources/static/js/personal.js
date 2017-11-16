@@ -23,13 +23,19 @@ PA.Personal = (function () {
 		if($("#buyjifen")){
 			$("#buyjifen").off('click');
 			$("#buyjifen").on('click',function(){
-				window.location.href = basePath +"/personal/buyjifen";
+				window.location.href = basePath +"/personal/buyjifen/";
 			});
 		}
 		if($("#jifendetail")){
 			$("#jifendetail").off('click');
 			$("#jifendetail").on('click',function(){
 				window.location.href = basePath +"/personal/jifendetail";
+			});
+		}
+		if($("#qr")){
+			$("#qr").off('click');
+			$("#qr").on('click',function(){
+				window.location.href = basePath +"/personal/queryqr";
 			});
 		}
 	};

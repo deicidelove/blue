@@ -40,7 +40,7 @@ public class Application {
     	 try {
     		 String code = request.getParameter("code");
     		 
-		    	if(StringUtils.isNoneBlank(code)){
+		    	if(StringUtils.isNotBlank(code)){
 		    		WxMpOAuth2AccessToken token = wxService.oauth2getAccessToken(code);
 		    		CookieUtil.setCookie(response, "openId",token.getOpenId() );
 		    	}
@@ -58,13 +58,16 @@ public class Application {
     		WxMpService wxMpService = ctx.getBean("wxMpService",WxMpService.class);
     		WxMenu wxMenu = new WxMenu();
     		List<WxMenuButton> buttons = Lists.newArrayList();
-    		WxMenuButton wxMenuButton = new WxMenuButton();
-    		wxMenuButton.setName("蓝鲟首页");
-    		wxMenuButton.setUrl("http://wx.njlxkq.com/");
-    		wxMenuButton.setKey("lanxun_01");
-    		wxMenuButton.setType("click");
-    		
-    		buttons.add(wxMenuButton);
+    		WxMenuButton wxMenuButton1 = new WxMenuButton();
+    		wxMenuButton1.setName("蓝鲟官网");
+    		List<WxMenuButton> subButtons = Lists.newArrayList();
+    		WxMenuButton subButton = new WxMenuButton();
+    		subButton.setName("蓝鲟官网");
+    		subButton.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcf685d2194e26db2&redirect_uri=http%3a%2f%2fwx.njlxkq.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
+    		subButton.setType("view");
+    		subButtons.add(subButton);
+    		wxMenuButton1.setSubButtons(subButtons);
+    		buttons.add(wxMenuButton1);
     		wxMenu.setButtons(buttons);
     		wxMpService.getMenuService().menuCreate(wxMenu);
     		

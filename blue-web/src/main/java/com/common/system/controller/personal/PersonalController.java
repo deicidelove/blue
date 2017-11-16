@@ -93,10 +93,6 @@ public class PersonalController {
 		 * { LOG.error("	"); }
 		 */
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		//TODO
-		if(StringUtil.isEmpty(openId)){
-			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
-		}
 		WxUserEntity wxUserEntity = wxUserService.getById(openId);
 		WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(openId);
 		modelAndView.addObject("wxUserEntity", wxUserEntity);
@@ -111,10 +107,6 @@ public class PersonalController {
 			@RequestParam(value = "length", defaultValue = "50") int pageSize) {
 		modelAndView.setViewName("/personal/personalorder");
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		//TODO
-		if(StringUtil.isEmpty(openId)){
-			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
-		}
 		PageInfo<OrderEntity> result = orderService.seleteListByOpenId(openId,
 				start, pageSize);
 		List<PersonalOrderDTO> resultList = null;
@@ -145,10 +137,6 @@ public class PersonalController {
 			@RequestParam(value = "length", defaultValue = "50") int pageSize) {
 		modelAndView.setViewName("/personal/personaljifendetail");
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		//TODO
-		if(StringUtil.isEmpty(openId)){
-			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
-		}
 		PageInfo<JifenLogEntity> jifenPage = jifenLogService.listForPage(start, pageSize, openId);
 		modelAndView.addObject("resultList", jifenPage.getList());
 		return modelAndView;
@@ -162,12 +150,15 @@ public class PersonalController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "queryqr/", method = RequestMethod.GET)
+	@RequestMapping(value = "queryqr", method = RequestMethod.GET)
 	public ModelAndView queryQR(ModelAndView modelAndView,
 			HttpServletRequest request ) {
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		WxUserEntity wxUserEntity = wxUserService.getById(openId);
 		modelAndView.setViewName("/personal/personalqrtemplate");
+		if(null == wxUserEntity){
+			return modelAndView;
+		}
 		String url = wxUserEntity.getQrCodeUrl();
 		Map<String, String> urlMap = Maps.newHashMap();
 		if(StringUtils.isNotBlank(url)){
@@ -175,6 +166,9 @@ public class PersonalController {
 					new TypeReference<HashMap<String, String>>() {
 					});
 		}
+		urlMap.put("1", "http");
+		urlMap.put("2", "http");
+		urlMap.put("3", "http");
 		modelAndView.addObject("urlMap",urlMap);
 		return modelAndView;
 	}
@@ -183,10 +177,6 @@ public class PersonalController {
 	@RequestMapping(value = "payfail")
     public String payfail(String outTradeId ,HttpServletRequest request ) {
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		//TODO
-		if(StringUtil.isEmpty(openId)){
-			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
-		}
 		try {
 			
 			OrderEntity orderEntity = orderService.findByOutTradeId(outTradeId);
@@ -218,10 +208,6 @@ public class PersonalController {
 			@RequestParam(value = "length", defaultValue = "50") int pageSize) {
 		modelAndView.setViewName("/personal/personalinvitation");
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		//TODO
-		if(StringUtil.isEmpty(openId)){
-			openId = "okbfzs2TG2WwpAgWOBq97ZOxfUHY";
-		}
 		PageInfo<WxUserEntity> invitatePage = wxUserService.listForPage(start, pageSize, openId);
 		modelAndView.addObject("resultList", invitatePage.getList());
 		return modelAndView;
