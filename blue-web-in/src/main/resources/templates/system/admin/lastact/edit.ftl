@@ -1,6 +1,25 @@
+<script type="text/javascript">
+		var textStr;
+		$("#lastActEditTarget").load(function(){
+		     debugger;
+			 textStr=$(this);
+			 var data = textStr[0].contentDocument.body.textContent;
+		 
+		  	 var json = JSON.parse(data);
+            if (json.status) {
+                $("#lgModal").modal('hide');
+                alertMsg("更新成功", "success");
+                reloadTable(list_ajax, "#goodsTime", "#goodsPremise");
+            } else {
+                alertMsg("更新失败:" + json.msg, "success");
+	            }
+		 })
+
+</script>
 <div class="row">
     <div class="col-md-12">
-        <form id="lastActEditForm">
+    <iframe id="lastActEditTarget" name="lastActEditTarget" style="display:none"></iframe>
+        <form id="lastActEditForm" method="post" enctype="multipart/form-data" action="/lastact/update" target="lastActEditTarget">
             <input type="hidden" id="lastActId" name="lastActId" value="${bean.sid}">
 
             <div class="box-body">
@@ -24,13 +43,19 @@
                     <script id="editor" name="lastActContext" type="text/plain" style="width:100%;height:500px;" ></script>
                 </div>
                 
+                <div class="form-group">
+                	<img src="${bean.lastActListImg!}" style="width:200px;height:200px"/>
+                	<label>上传文件</label>
+                    <input type="file" class="form-control" name="fileName" id="fileName" value="上传图片" >
+                </div>
+                
             </div>
             <div class="box-footer">
                 <div class="pull-right">
                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><i
                             class="fa fa-close"></i>关闭
                     </button>
-                    <button onclick="lastActUpdate();" type="button" class="btn btn-primary btn-sm"><i
+                    <button type="submit" class="btn btn-primary btn-sm"><i
                             class="fa fa-paste"></i>更新
                     </button>
                 </div>
@@ -38,33 +63,7 @@
         </form>
     </div>
 </div>
-<script type="text/javascript">
-    function lastActUpdate() {
-        debugger;
-        $.ajax({
-            url: '/lastact/update',
-            type: 'post',
-            dataType: 'text',
-            data: $("#lastActEditForm").serialize(),
-            success: function (data) {
-                var json = JSON.parse(data);
-                if (json.status) {
-                    $("#lgModal").modal('hide');
-                    alertMsg("更新成功", "success");
-                    reloadTable(list_ajax, "#goodsTime", "#goodsPremise");
-                } else {
-                    alertMsg("更新失败:" + json.msg, "success");
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
-                alert(textStatus);
-            }
-        });
-    }
 
-</script>
 
 <script type="text/javascript">
 	var editContext = '${bean.lastActContent}';
