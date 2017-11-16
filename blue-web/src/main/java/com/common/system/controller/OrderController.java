@@ -141,7 +141,7 @@ public class OrderController {
 	public Result<Integer> orderSubmit(HttpServletResponse response,HttpServletRequest request ,Integer staffId,String staffName,String pay,String deptName,Integer pationId,Integer deptId,String orderTime,Integer scheduleId) throws ParseException {
 		String userId = CookieUtil.getCookieValue(request, "openId");
 		String oppoId = CookieUtil.getCookieValue(request, "oppoId");
-		if(!"-1".equals(oppoId)){
+		if(!"-1".equals(oppoId) && StringUtils.isNoneBlank(oppoId)){
 			oppointmentService.deleteOppo(Integer.valueOf(oppoId));
 			CookieUtil.setCookie(response, "oppoId", null);
 		}
