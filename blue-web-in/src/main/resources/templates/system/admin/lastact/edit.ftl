@@ -20,7 +20,7 @@
     <div class="col-md-12">
     <iframe id="lastActEditTarget" name="lastActEditTarget" style="display:none"></iframe>
         <form id="lastActEditForm" method="post" enctype="multipart/form-data" action="/lastact/update" target="lastActEditTarget">
-            <input type="hidden" id="lastActId" name="lastActId" value="${bean.sid}">
+            <input type="hidden" id="lastActId" name="sid" value="${bean.sid}">
 
             <div class="box-body">
                 <div class="form-group">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label>最近活动内容</label> 
-                    <script id="editor" name="lastActContext" type="text/plain" style="width:100%;height:500px;" ></script>
+                    <script id="editor" name="lastActContent" type="text/plain" style="width:100%;height:500px;" ></script>
                 </div>
                 
                 <div class="form-group">

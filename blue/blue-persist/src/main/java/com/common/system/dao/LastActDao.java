@@ -76,9 +76,9 @@ public class LastActDao {
 	
 	public void update(LastActEntity lastActEntity){
 		Assert.notNull(lastActEntity,"lastActEntity is null");
-		String sql = "UPDATE `rc_a_act` "
+		String sql = "UPDATE `tb_blue_lastact` "
 				+ "SET `last_act_name`=:lastActName, `last_act_title`=:lastActTitle, "
-				+ "`last_act_content`=:lastActContent, `last_act_list_img`=:lastActListImg, "
+				+ "`last_act_content`=:lastActContent, `last_act_list_img`=:lastActListImg "
 				+ "  WHERE `sid`=:sid";
 		
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(lastActEntity));

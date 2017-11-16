@@ -124,7 +124,7 @@ public class DeptDoctorPicDao {
 	}
 	
 	public int update(BlueDeptDoctorPic pic) {
-		String sql = "UPDATE FROM  `tb_blue_deptdoctor_pic` SET url:=url, deptId=:deptId,deptName=:deptName ) "
+		String sql = "UPDATE  `tb_blue_deptdoctor_pic` SET url:=url, deptId=:deptId,deptName=:deptName  "
 				+ " WHERE sid = :sid ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("sid", pic.getSid());
