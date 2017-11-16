@@ -47,7 +47,7 @@
     <div class="doctor">
         <ul class="doctor_ul">
             <#list doctors as doctor>
-            <a href="/doctorDetial/${doctor.sid}" >
+            <a href="/doctorDetial/${doctor.sid}/-1" >
             <li class="doctor_li">
 	             <#if doctor.headUrl??>
 			    <div class="doctor_img left" style="background-image: url(${doctor.headUrl})"></div>

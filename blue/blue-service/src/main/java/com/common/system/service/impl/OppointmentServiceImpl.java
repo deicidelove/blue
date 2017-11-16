@@ -120,9 +120,20 @@ public class OppointmentServiceImpl implements OppointmentService {
 			BlueOppointment oppo = oppointmentDao.findBySid(sid);
 			return new Result<BlueOppointment>(true,"查询成功！",oppo);
 		} catch (Exception e) {
-			LOG.error("查询医生失败！msg:{};sid:{}",e,sid);
+			LOG.error("查询findOppo失败！msg:{};sid:{}",e,sid);
 		}
 		return new Result<BlueOppointment>(false,"查询失败！",null);
+	}
+
+	@Override
+	public List<BlueOppointment> findByUserId(String userId) {
+		try {
+			List<BlueOppointment> list = oppointmentDao.findByUserId(userId);
+			return list;
+		} catch (Exception e) {
+			LOG.error("查询findByUserId失败！msg:{};",e);
+		}
+		return null;
 	}
 
 }

@@ -3,6 +3,8 @@
  */
 package com.common.system.service;
 
+import java.util.List;
+
 import com.common.system.entity.BlueOppointment;
 import com.common.system.entity.BlueStaff;
 import com.common.system.util.PageBean;
@@ -38,5 +40,7 @@ public interface OppointmentService {
 	 * @return
 	 */
 	public Result<BlueOppointment> findOppo(int sid);
+	
+	public List<BlueOppointment> findByUserId(String userId);
 
 }

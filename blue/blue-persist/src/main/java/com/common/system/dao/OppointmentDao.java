@@ -121,5 +121,16 @@ public class OppointmentDao {
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
 	}
+	
+	public List<BlueOppointment> findByUserId(String userId){
+		String sql ="SELECT * FROM tb_blue_oppointment WHERE user_id =:user_id";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("user_id", userId);
+		
+		List<BlueOppointment> result =  namedParameterJdbcTemplate.query(
+				sql.toString(), paramMap,
+				new BeanPropertyRowMapper<BlueOppointment>(BlueOppointment.class));
+		return result;
+	}
 
 }

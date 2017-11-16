@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>预约挂号</title>
-    <script src="../js/common.js"></script>
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/subscribe.css" />
+     <script src="../../js/common.js"></script>
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/subscribe.css" />
 </head>
 <script type="text/javascript">
 	var callFee = '${doctor.callFee}';
@@ -179,5 +179,6 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript" src="../js/subscribe.js"></script>
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/subscribe.js"></script>

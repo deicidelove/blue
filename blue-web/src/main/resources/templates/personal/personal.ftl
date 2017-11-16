@@ -31,14 +31,18 @@
 </div>
 <ul class="integral_ul">
     <li class="integral_li">
+        <a href="/myOrderList">
         <div class="left integral_li_bg01"></div>
         <div class="left">我的预约</div>
         <div class="right"></div>
+        </a>
     </li>
     <li class="integral_li">
+    	<a href="/managePationPage  ">
         <div class="left integral_li_bg02"></div>
         <div class="left">就诊人管理</div>
         <div class="right"></div>
+        </a>
     </li>
     <li class="integral_li">
         <div class="left integral_li_bg03"></div>

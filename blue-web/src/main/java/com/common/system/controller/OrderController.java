@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.dao.ShiftDao;
+import com.common.system.dto.OpposDto;
 import com.common.system.dto.OrderDto;
 import com.common.system.dto.ScheduleDto;
 import com.common.system.entity.BlueDept;
 import com.common.system.entity.BlueDoctorSchedule;
+import com.common.system.entity.BlueOppointment;
 import com.common.system.entity.BluePation;
 import com.common.system.entity.BlueShift;
 import com.common.system.entity.BlueStaff;
@@ -82,9 +85,10 @@ public class OrderController {
 		return new Result<>(true, "获取成功！", staffs);
 	}
 
-	@RequestMapping(value = "doctorDetial/{sid}", method = RequestMethod.GET)
+	@RequestMapping(value = "doctorDetial/{sid}/{oppoId}", method = RequestMethod.GET)
 	public ModelAndView doctorDetial(ModelAndView modelAndView,
-			@PathVariable Integer sid) throws ParseException {
+			@PathVariable Integer sid,@PathVariable Integer oppoId, HttpServletResponse response) throws ParseException {
+		CookieUtil.setCookie(response, "oppoId", String.valueOf(oppoId));
 		Result<BlueStaff> ruseult = doctorService.findDoctor(sid);
 		modelAndView.addObject("doctor", ruseult.getData());
 		Date firstDay = DateUtil.formtString(DateUtil.getdate( 0));
@@ -134,11 +138,15 @@ public class OrderController {
 	
 	@RequestMapping(value = "orderSubmit")
 	@ResponseBody
-	public Result<Integer> orderSubmit(HttpServletRequest request ,Integer staffId,String staffName,String pay,String deptName,Integer pationId,Integer deptId,String orderTime,Integer scheduleId) throws ParseException {
+	public Result<Integer> orderSubmit(HttpServletResponse response,HttpServletRequest request ,Integer staffId,String staffName,String pay,String deptName,Integer pationId,Integer deptId,String orderTime,Integer scheduleId) throws ParseException {
 		String userId = CookieUtil.getCookieValue(request, "openId");
+		String oppoId = CookieUtil.getCookieValue(request, "oppoId");
+		if(!"-1".equals(oppoId)){
+			oppointmentService.deleteOppo(Integer.valueOf(oppoId));
+			CookieUtil.setCookie(response, "oppoId", null);
+		}
 		Result<Integer> result = oppointmentService.addOppo(staffId, orderTime, pay,userId,pationId,scheduleId);
 		return result;
-
 	}
 
 	private List<ScheduleDto> setScheduleDto(List<BlueDoctorSchedule> schedule) {
@@ -175,6 +183,58 @@ public class OrderController {
 			e.printStackTrace();
 		}
 		return list;
+
+	}
+	
+	/**
+	 * 我的预约
+	 * @param modelAndView
+	 * @return
+	 * @throws ParseException 
+	 */
+	@RequestMapping("/myOrderList")
+	@ResponseBody
+	public ModelAndView myOrderList(HttpServletRequest request ,ModelAndView modelAndView) throws ParseException{
+		String userId = CookieUtil.getCookieValue(request, "openId");
+		List<BlueOppointment> oppos = oppointmentService.findByUserId(userId);
+		List<OpposDto> oppoDtos = new ArrayList<>();
+		for (BlueOppointment blueOppointment : oppos) {
+			OpposDto dto = new OpposDto();
+			dto.setSid(blueOppointment.getSid());
+			dto.setContext(blueOppointment.getContext());
+			dto.setCreateTime(blueOppointment.getCreateTime());
+			dto.setDeptId(blueOppointment.getDeptId());
+			dto.setDeptName(blueOppointment.getDeptName());
+			dto.setOrderTime(blueOppointment.getOrderTime());
+			dto.setPationId(blueOppointment.getPationId());
+			dto.setPayMoney(blueOppointment.getPayMoney());
+			dto.setStaffId(blueOppointment.getStaffId());
+			dto.setStaffName(blueOppointment.getStaffName());
+			dto.setUserId(blueOppointment.getUserId());
+			BlueStaff staff = doctorService.findDoctor(blueOppointment.getStaffId()).getData();
+			dto.setHead_url(staff.getHeadUrl()==null?"":staff.getHeadUrl());
+			dto.setIntroduce(staff.getIntroduce());
+			dto.setPositionName(staff.getPositionName());
+			String date = blueOppointment.getOrderTime().substring(0, 10);
+			Date orderDate = DateUtil.formtString(date);
+			Date now = DateUtil.formtString(DateUtil.getdate( 0));
+			if(orderDate.compareTo(now) < 0){
+				dto.setIsPass(1);
+			}else{
+				dto.setIsPass(0);
+			}
+			oppoDtos.add(dto);
+		}
+		modelAndView.addObject("oppos", oppoDtos);
+		modelAndView.setViewName("/personal/myOrder");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "deleteOppo")
+	@ResponseBody
+	public Result<Integer> deleteOppo(Integer sid) {
+		Result<Integer> result = oppointmentService.deleteOppo(sid);
+		return result;
 
 	}
 

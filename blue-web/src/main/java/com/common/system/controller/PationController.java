@@ -94,9 +94,7 @@ public class PationController {
 	public ModelAndView managePationPage(HttpServletRequest request ,ModelAndView modelAndView) throws ParseException {
 		String userId= CookieUtil.getCookieValue(request, "openId");
 		List<BluePation> pations = commonService.findPations(userId);
-		
 		modelAndView.addObject("pations", pations);
-		
 		modelAndView.setViewName("/html/managePation");
 		return modelAndView;
 	}
@@ -106,7 +104,6 @@ public class PationController {
 	public Result<Integer> updateIsDefault(Integer sid,Integer isDefault) {
 		Result<Integer> result = pationService.updatePationIsDefault(sid, isDefault);
 		return result;
-
 	}
 	
 	@RequestMapping(value = "deletePation")
