@@ -11,6 +11,59 @@ html,body{
     width:3.6rem;
     height:5.8rem;
     margin:0.4rem auto 0;
+    position: relative;
+}
+.qr_code{
+    width:0.6rem;
+    height:1rem;
+    position: absolute;
+    bottom:0.05rem;
+    right:0.25rem;
+}
+.qr_code_big{
+    display: none;
+    border: 0.2rem solid #eee;
+    width:3rem;
+    height:3rem;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin:-1.7rem 0 0 -1.7rem;
+    z-index: 2;
+}
+.qr_code_big img{
+    width:100%;
+    height:100%;
+}
+.qr_code_big_bg{
+    display: none;
+    width:100%;
+    height:100%;
+    background: #000;
+    opacity: 0.6;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 1;
+}
+.qr_code div:first-child{
+    width:100%;
+    height:0.55rem;
+}
+.qr_code div:first-child img{
+    width:100%;
+    height:100%;
+    /*padding:0 64px 64px 0;*/
+}
+.qr_code div:last-child{
+    width:100%;
+    height:0.25rem;
+    overflow: hidden;
+}
+.qr_code div:last-child img{
+    width:100%;
+    height:100%;
+    display: block;
 }
 .big_img_div img{
     width:100%;

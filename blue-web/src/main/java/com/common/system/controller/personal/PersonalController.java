@@ -1,5 +1,6 @@
 package com.common.system.controller.personal;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import me.chanjar.weixin.mp.api.WxMpService;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.common.system.dto.PersonalOrderDTO;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
@@ -155,6 +159,23 @@ public class PersonalController {
 			HttpServletRequest request ) {
 		modelAndView.setViewName("/personal/personalbuyjifen");
 		String openId = CookieUtil.getCookieValue(request, "openId");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "queryqr/", method = RequestMethod.GET)
+	public ModelAndView queryQR(ModelAndView modelAndView,
+			HttpServletRequest request ) {
+		String openId = CookieUtil.getCookieValue(request, "openId");
+		WxUserEntity wxUserEntity = wxUserService.getById(openId);
+		modelAndView.setViewName("/personal/personalqrtemplate");
+		String url = wxUserEntity.getQrCodeUrl();
+		Map<String, String> urlMap = Maps.newHashMap();
+		if(StringUtils.isNotBlank(url)){
+			urlMap = JSON.parseObject(url, 
+					new TypeReference<HashMap<String, String>>() {
+					});
+		}
+		modelAndView.addObject("urlMap",urlMap);
 		return modelAndView;
 	}
 	
