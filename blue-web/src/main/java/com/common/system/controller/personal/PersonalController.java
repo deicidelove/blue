@@ -247,7 +247,15 @@ public class PersonalController {
 		modelAndView.setViewName("/personal/personalinvitation");
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		PageInfo<WxUserEntity> invitatePage = wxUserBLueService.listForPage(start, pageSize, openId);
-		modelAndView.addObject("resultList", invitatePage.getList());
+		List<WxDetailEntity> detailList = Lists.newArrayList();
+		if(!CollectionUtils.isEmpty(invitatePage.getList())){
+			for(WxUserEntity wxUserEntity :invitatePage.getList()){
+				WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(wxUserEntity.getOpenId());
+				detailList.add(wxDetailEntity);
+			}
+		}
+		
+		modelAndView.addObject("resultList", detailList);
 		return modelAndView;
 	}
 	

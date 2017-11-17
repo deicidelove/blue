@@ -45,10 +45,12 @@ public class Application {
     	 try {
     		 String code = request.getParameter("code");
     		 String openId = CookieUtil.getCookieValue(request, "openId");
-	    	if(StringUtils.isNotBlank(code) && StringUtils.isNotBlank(openId)){
-	    		WxMpOAuth2AccessToken token = wxService.oauth2getAccessToken(code);
-	    		CookieUtil.setCookie(response, "openId",token.getOpenId() );
-	    	}
+    		 if(StringUtils.isEmpty(openId)){
+    			 if(StringUtils.isNotBlank(code) ){
+    				 WxMpOAuth2AccessToken token = wxService.oauth2getAccessToken(code);
+    				 CookieUtil.setCookie(response, "openId",token.getOpenId() );
+    			 }
+    		 }
 		} catch (WxErrorException e) {
 			LOG.error("	获取微信信息异常！",e);
 		}	
