@@ -37,7 +37,7 @@ import com.common.system.service.GoodsService;
 import com.common.system.service.JifenLogService;
 import com.common.system.service.OrderService;
 import com.common.system.service.WxDetailService;
-import com.common.system.service.WxUserService;
+import com.common.system.service.WxUserBLueService;
 import com.common.system.util.CookieUtil;
 import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
@@ -64,7 +64,7 @@ public class PersonalController {
 	private WxDetailService wxDetailService;
 
 	@Resource
-	private WxUserService wxUserService;
+	private WxUserBLueService wxUserBLueService;
 
 	@Resource
 	private OrderService orderService;
@@ -92,7 +92,7 @@ public class PersonalController {
 		 * { LOG.error("	"); }
 		 */
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		WxUserEntity wxUserEntity = wxUserService.getById(openId);
+		WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
 		WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(openId);
 		modelAndView.addObject("wxUserEntity", wxUserEntity);
 		modelAndView.addObject("wxDetailEntity", wxDetailEntity);
@@ -153,7 +153,7 @@ public class PersonalController {
 	public ModelAndView queryQR(ModelAndView modelAndView,
 			HttpServletRequest request ) {
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		WxUserEntity wxUserEntity = wxUserService.getById(openId);
+		WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
 		modelAndView.setViewName("/personal/personalqrtemplate");
 		if(null == wxUserEntity){
 			return modelAndView;
@@ -205,7 +205,7 @@ public class PersonalController {
 	        	result.put("result_msg", "支付失败！");
 				return "failure";
 			}
-			WxUserEntity wxUserEntity = wxUserService.getById(openId);
+			WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
 			if(null == wxUserEntity){
 				return "failure";
 			}
@@ -230,7 +230,7 @@ public class PersonalController {
 			@RequestParam(value = "length", defaultValue = "50") int pageSize) {
 		modelAndView.setViewName("/personal/personalinvitation");
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		PageInfo<WxUserEntity> invitatePage = wxUserService.listForPage(start, pageSize, openId);
+		PageInfo<WxUserEntity> invitatePage = wxUserBLueService.listForPage(start, pageSize, openId);
 		modelAndView.addObject("resultList", invitatePage.getList());
 		return modelAndView;
 	}

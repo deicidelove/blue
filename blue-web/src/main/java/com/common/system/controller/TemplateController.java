@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.common.system.entity.WxUserEntity;
-import com.common.system.service.WxUserService;
+import com.common.system.service.WxUserBLueService;
 import com.common.system.util.StandardJSONResult;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
@@ -43,7 +43,7 @@ public class TemplateController {
 	private static final String PictureRoot = "picture";
 	
 	// 微信服务
-	@Resource WxUserService wxUserService;
+	@Resource WxUserBLueService wxUserBLueService;
 	private final ResourceLoader resourceLoader;  
 	
 	
@@ -58,7 +58,7 @@ public class TemplateController {
 	@ResponseBody
 	@RequestMapping("/getORCode")
 	public String getORCode(HttpServletResponse response, String openId) throws Exception {
-		String qrcodeUrl = wxUserService.getUserQRCode(openId);
+		String qrcodeUrl = wxUserBLueService.getUserQRCode(openId);
 		return qrcodeUrl;
 	}
 	
@@ -66,7 +66,7 @@ public class TemplateController {
 	@ResponseBody
 	@RequestMapping(value = "/getCombinePic", method = RequestMethod.POST)
 	public String getCombinePic(String fileUrl, String openId) throws Exception {
-		WxUserEntity wxUser = wxUserService.getById(openId);
+		WxUserEntity wxUser = wxUserBLueService.getById(openId);
 		if ( wxUser == null ) {
 			return JSON.toJSONString(StandardJSONResult.getFailedInstance("无法确定您的身份,请重新登录"));
 		} else {
@@ -82,7 +82,7 @@ public class TemplateController {
 			} else {
 				// 二维码网址
 				try {
-					String qrCodeUrl = wxUserService.getUserQRCode(openId);
+					String qrCodeUrl = wxUserBLueService.getUserQRCode(openId);
 					BufferedImage qrcodeImg = getImage(openId, qrCodeUrl);
 					if ( qrcodeImg != null ) {
 						InputStream in = Unirest.get(fileUrl).asBinary()
@@ -108,7 +108,7 @@ public class TemplateController {
 							combinedFile.getParentFile().mkdirs();
 							ImageIO.write(finalImg, "jpg", new File(localFilePath));
 							// 更新合成后的本地文件地址
-							wxUserService.updateCombinedPicturePath(openId, localFilePath);
+							wxUserBLueService.updateCombinedPicturePath(openId, localFilePath);
 							return JSON.toJSONString(StandardJSONResult.getSuccessInstance(JSON.toJSONString(new PictureFilePath(downloadFilePath, pictureName))));
 						}
 					} else {

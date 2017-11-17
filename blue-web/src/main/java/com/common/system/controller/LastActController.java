@@ -3,7 +3,6 @@ package com.common.system.controller;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -16,24 +15,18 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.dto.ActGoodsDTO;
 import com.common.system.dto.AdvertDto;
-import com.common.system.dto.PersonalOrderDTO;
 import com.common.system.entity.ActEntity;
 import com.common.system.entity.BlueAdvert;
 import com.common.system.entity.BlueProjectAdvert;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
-import com.common.system.entity.JifenLogEntity;
 import com.common.system.entity.LastActEntity;
-import com.common.system.entity.OrderEntity;
-import com.common.system.entity.WxDetailEntity;
-import com.common.system.entity.WxUserEntity;
 import com.common.system.service.ActService;
 import com.common.system.service.CommonService;
 import com.common.system.service.GivingService;
@@ -44,7 +37,7 @@ import com.common.system.service.JifenLogService;
 import com.common.system.service.LastActService;
 import com.common.system.service.OrderService;
 import com.common.system.service.WxDetailService;
-import com.common.system.service.WxUserService;
+import com.common.system.service.WxUserBLueService;
 import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
@@ -69,7 +62,7 @@ public class LastActController {
 	private WxDetailService wxDetailService;
 
 	@Resource
-	private WxUserService wxUserService;
+	private WxUserBLueService wxUserBLueService;
 
 	@Resource
 	private OrderService orderService;

@@ -21,7 +21,7 @@ import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
 import com.common.system.service.JifenLogService;
 import com.common.system.service.OrderService;
-import com.common.system.service.WxUserService;
+import com.common.system.service.WxUserBLueService;
 import com.common.system.util.Result;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.exception.WxPayException;
@@ -50,7 +50,7 @@ public class PayCommonService{
     private JifenLogService jifenLogService;
     
     @Resource
-    private WxUserService wxUserService;
+    private WxUserBLueService wxUserBLueService;
 	
     private static final Logger LOG = LoggerFactory.getLogger(PayCommonService.class);
     
@@ -198,9 +198,9 @@ public class PayCommonService{
         	jifenLogEntity.setType("buy");
         	jifenLogService.save(jifenLogEntity);
         	
-        	WxUserEntity wxUserEntity = wxUserService.getById(openId);
+        	WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
         	wxUserEntity.setJifen(wxUserEntity.getJifen() + (new BigDecimal(czFre).multiply(new BigDecimal(100))).intValue());
-        	wxUserService.updateJifen(wxUserEntity);
+        	wxUserBLueService.updateJifen(wxUserEntity);
         	
 		} catch (Exception e) {
 			LOG.error("充值异常！", e);

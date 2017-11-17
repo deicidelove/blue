@@ -18,7 +18,7 @@ import com.common.system.dao.TokenDao;
 import com.common.system.dao.WxuserDao;
 import com.common.system.entity.RcToken;
 import com.common.system.entity.WxUserEntity;
-import com.common.system.service.WxUserService;
+import com.common.system.service.WxUserBLueService;
 import com.common.system.util.MsgCode;
 import com.common.system.util.Result;
 import com.common.system.weixin.dto.ApplyTokenResult;
@@ -31,9 +31,9 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-@Service("wxUserService")
-public class WxUserServiceImpl implements WxUserService {
-	private static final Logger logger = LoggerFactory.getLogger(WxUserServiceImpl.class);
+@Service("wxUserBLueService")
+public class WxUserBlueServiceImpl implements WxUserBLueService {
+	private static final Logger logger = LoggerFactory.getLogger(WxUserBlueServiceImpl.class);
 	
 	// 申请Token请求地址
 	public static final String ApplyTokenURL = "https://api.weixin.qq.com/cgi-bin/token";

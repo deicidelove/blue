@@ -16,9 +16,9 @@
                 $('.big_img_div>img').attr('src',$url);
             });
             $("#generateImg").on('click', function(){
-            	var type = $(".small_img_boder").attr("type");
+            	var imgUrl = $(".big_img_div img").attr("src")
         		Request.sendPostRequest(basePath + "/personal/generateimg", {
-        			"type" : type
+        			"imgUrl" : imgUrl
         		}, function(result) {
         			if(result.result_code == 'fail'){
         				alert(result.result_msg);

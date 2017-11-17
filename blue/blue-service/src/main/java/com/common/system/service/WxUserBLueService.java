@@ -8,7 +8,7 @@ import com.common.system.weixin.dto.ApplyTokenResult;
 import com.common.system.weixin.dto.CreateTicketResult;
 import com.github.pagehelper.PageInfo;
 
-public interface WxUserService {
+public interface WxUserBLueService {
 	
 	public Result<Integer> save(WxUserEntity wxUserEntity);
 	

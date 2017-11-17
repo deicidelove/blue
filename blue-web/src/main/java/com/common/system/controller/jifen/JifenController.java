@@ -39,7 +39,7 @@ import com.common.system.service.GoodsImgService;
 import com.common.system.service.GoodsService;
 import com.common.system.service.OrderService;
 import com.common.system.service.WxDetailService;
-import com.common.system.service.WxUserService;
+import com.common.system.service.WxUserBLueService;
 import com.common.system.util.CookieUtil;
 import com.common.system.util.Result;
 import com.google.common.collect.Lists;
@@ -65,7 +65,7 @@ public class JifenController {
 	private WxDetailService wxDetailService;
 	
 	@Resource
-	private WxUserService wxUserService;
+	private WxUserBLueService wxUserBLueService;
 	
 	@Resource
 	private OrderService orderService;
@@ -83,7 +83,7 @@ public class JifenController {
         modelAndView.setViewName("/jifen/act");
 
         String openId = CookieUtil.getCookieValue(request, "openId");
-        WxUserEntity wxUserEntity = wxUserService.getById(openId);
+        WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
         modelAndView.addObject("wxUserEntity", wxUserEntity);
         return modelAndView;
 	}
@@ -195,7 +195,7 @@ public class JifenController {
 		
 		Result<GoodsEntity> goodsResult = goodsService.getById(Integer.valueOf(goodsId));
 		GoodsEntity goodsEntity = goodsResult.getData();
-		WxUserEntity wxUserEntity = wxUserService.getById(openId);
+		WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
 		if(goodsEntity.getJifen() > wxUserEntity.getJifen()){
 			resultMap.put("status", "fail");
 			resultMap.put("message", "积分不足！");
@@ -238,7 +238,7 @@ public class JifenController {
 			return resultMap;
     	}
 		wxUserEntity.setJifen(wxUserEntity.getJifen() - goodsEntity.getJifen());
-		wxUserService.updateJifen(wxUserEntity);
+		wxUserBLueService.updateJifen(wxUserEntity);
     	
 		resultMap.put("status", "success");
 		resultMap.put("message", "支付成功");
@@ -252,7 +252,7 @@ public class JifenController {
 		//TODO get openId 添加事务
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		try {
-			wxUserService.updateTip(openId, false);
+			wxUserBLueService.updateTip(openId, false);
 		} catch (Exception e) {
 			LOG.error("updateShowTip error!", e);
 			return "failure";

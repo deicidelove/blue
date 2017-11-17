@@ -4,7 +4,7 @@ import com.common.system.builder.TextBuilder;
 import com.common.system.entity.WxDetailEntity;
 import com.common.system.entity.WxUserEntity;
 import com.common.system.service.WxDetailService;
-import com.common.system.service.WxUserService;
+import com.common.system.service.WxUserBLueService;
 
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
@@ -27,7 +27,7 @@ import javax.annotation.Resource;
 public class SubscribeHandler extends AbstractHandler {
 
 	@Resource
-	private WxUserService wxUserService;
+	private WxUserBLueService wxUserBLueService;
 	@Resource
 	private WxDetailService wxDetailService;
 	
@@ -45,7 +45,7 @@ public class SubscribeHandler extends AbstractHandler {
         if (userWxInfo != null) {
             // TODO 可以添加关注用户到本地
         	try {
-        		WxUserEntity wxUserEntity = wxUserService.getById(userWxInfo.getOpenId());
+        		WxUserEntity wxUserEntity = wxUserBLueService.getById(userWxInfo.getOpenId());
         		if(null == wxUserEntity){
         			wxUserEntity = new WxUserEntity();
         			wxUserEntity.setOpenId(userWxInfo.getOpenId());
@@ -54,7 +54,7 @@ public class SubscribeHandler extends AbstractHandler {
         			String superOpenId = wxMessage.getEventKey().split("_")[1];
         			wxUserEntity.setSuperOpenId(superOpenId);
         		}
-        		wxUserService.save(wxUserEntity);
+        		wxUserBLueService.save(wxUserEntity);
         		WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(userWxInfo.getOpenId());
         		if(null == wxDetailEntity){
         			wxDetailEntity = new WxDetailEntity();
