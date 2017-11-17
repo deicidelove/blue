@@ -46,6 +46,10 @@ public class WxUserEntity {
 	 */
 	private String qrCodeUrl;
 	/**
+	 * 合成图片路径 
+	 */
+	private String combinedPicturePath;
+	/**
 	 * 是否删除
 	 */
 	private Boolean isDelete;
@@ -200,6 +204,14 @@ public class WxUserEntity {
 
 	public void setTicket(String ticket) {
 		this.ticket = ticket;
+	}
+
+	public String getCombinedPicturePath() {
+		return combinedPicturePath;
+	}
+
+	public void setCombinedPicturePath(String combinedPicturePath) {
+		this.combinedPicturePath = combinedPicturePath;
 	}
 	
 }

@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
+import com.common.system.entity.WxUserEntity;
 import com.common.system.service.WxUserService;
 import com.common.system.util.StandardJSONResult;
 import com.google.common.base.Joiner;
@@ -63,40 +64,57 @@ public class TemplateController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/getCombinePic", method = RequestMethod.POST)
-	public String getCombinePic(@RequestParam("file") MultipartFile file, String openId) throws Exception {
-		if ( file == null ) {
-			return JSON.toJSONString(StandardJSONResult.getFailedInstance("请先选中上传一张图片"));
+	public String getCombinePic(@RequestParam(value="file", required=false) MultipartFile file, String openId) throws Exception {
+		WxUserEntity wxUser = wxUserService.getById(openId);
+		if ( wxUser == null ) {
+			return JSON.toJSONString(StandardJSONResult.getFailedInstance("无法确定您的身份,请重新登录"));
 		} else {
-			// 二维码网址
-			String qrcodeUrl = wxUserService.getUserQRCode(openId);
-			// 二维码图片
-			BufferedImage qrcodeImg = getImage(qrcodeUrl);
-			if ( qrcodeImg != null ) {
-				BufferedImage userImg = fileToImage(file.getInputStream());
-				if ( userImg == null ) {
-					return JSON.toJSONString(StandardJSONResult.getFailedInstance("不是合法图片,请重新上传"));
+			// 文件名
+			String pictureName = openId + ".jpg";
+			if ( file == null ) {
+				if ( Strings.isNullOrEmpty(wxUser.getCombinedPicturePath()) ) {
+					return JSON.toJSONString(StandardJSONResult.getFailedInstance("请先选中上传一张图片"));
 				} else {
-					// 生成空白图片
-					BufferedImage blankPic = buildBlankPic(userImg.getWidth(), userImg.getHeight()/4);
-					// 缩小二维码
-					Integer zoomSize = getZoomSize(blankPic.getWidth(), blankPic.getHeight());
-					BufferedImage zoomQRCode = zoomPic(qrcodeImg, zoomSize, zoomSize);
-					// 合成图片
-					overlapImage(blankPic, zoomQRCode);
-					// 拼接图片
-					BufferedImage finalImg = combineImages(userImg, blankPic);
-					// 写入本地
-					String pictureName = openId + ".jpg";
-					String localFilePath = Joiner.on(File.separator).join(PictureRoot, pictureName);
-					String downloadFilePath = Joiner.on("/").join("picture", pictureName);
-					// 先创建父文件夹
-					File combinedFile = new File(localFilePath);
-					combinedFile.getParentFile().mkdirs();
-					ImageIO.write(finalImg, "jpg", new File(localFilePath));
-					return JSON.toJSONString(StandardJSONResult.getSuccessInstance(JSON.toJSONString(new PictureFilePath(downloadFilePath, pictureName))));
+					return JSON.toJSONString(StandardJSONResult.getSuccessInstance(
+							JSON.toJSONString(new PictureFilePath(wxUser.getCombinedPicturePath(), pictureName))));
 				}
 			} else {
-				return JSON.toJSONString(StandardJSONResult.getFailedInstance("在获取用户二维码图片时发生异常"));
+				// 二维码网址
+				try {
+					String qrCodeUrl = wxUserService.getUserQRCode(openId);
+					BufferedImage qrcodeImg = getImage(openId, qrCodeUrl);
+					if ( qrcodeImg != null ) {
+						BufferedImage userImg = fileToImage(file.getInputStream());
+						if ( userImg == null ) {
+							return JSON.toJSONString(StandardJSONResult.getFailedInstance("不是合法图片,请重新上传"));
+						} else {
+							// 生成空白图片
+							BufferedImage blankPic = buildBlankPic(userImg.getWidth(), userImg.getHeight()/4);
+							// 缩小二维码
+							Integer zoomSize = getZoomSize(blankPic.getWidth(), blankPic.getHeight());
+							BufferedImage zoomQRCode = zoomPic(qrcodeImg, zoomSize, zoomSize);
+							// 合成图片
+							overlapImage(blankPic, zoomQRCode);
+							// 拼接图片
+							BufferedImage finalImg = combineImages(userImg, blankPic);
+							// 写入本地
+							String localFilePath = Joiner.on(File.separator).join(PictureRoot, pictureName);
+							String downloadFilePath = Joiner.on("/").join("picture", pictureName);
+							// 先创建父文件夹
+							File combinedFile = new File(localFilePath);
+							combinedFile.getParentFile().mkdirs();
+							ImageIO.write(finalImg, "jpg", new File(localFilePath));
+							// 更新合成后的本地文件地址
+							wxUserService.updateCombinedPicturePath(openId, localFilePath);
+							return JSON.toJSONString(StandardJSONResult.getSuccessInstance(JSON.toJSONString(new PictureFilePath(downloadFilePath, pictureName))));
+						}
+					} else {
+						return JSON.toJSONString(StandardJSONResult.getFailedInstance("在获取用户二维码图片时发生异常"));
+					}
+				} catch (Exception e) {
+					logger.error("用户" + openId + "在获取二维码图片时发生异常", e);
+					return JSON.toJSONString(StandardJSONResult.getFailedInstance("在获取用户二维码图片时发生异常"));
+				}
 			}
 		}
 	}
@@ -170,7 +188,7 @@ public class TemplateController {
 		return image;
 	}
 	
-	private BufferedImage getImage(String url) {
+	private BufferedImage getImage(String openId, String url) {
 		if ( !Strings.isNullOrEmpty(url) ) {
 			try {
 				HttpResponse<InputStream> response = Unirest.get(url).asBinary();
@@ -180,6 +198,8 @@ public class TemplateController {
 			} catch (Exception e) {
 				logger.error("在下载用户二维码图片时发生异常", e);
 			}
+		} else {
+			logger.error("用户{}的二维码图片地址为空,无法合成二维码图片", openId);
 		}
 		return null;
 	}
@@ -207,7 +227,7 @@ public class TemplateController {
 	private void overlapImage(BufferedImage big, BufferedImage small) {  
         try {  
         	Graphics2D g = big.createGraphics();
-            int x = big.getWidth()*1/2 - small.getWidth()/2;  
+            int x = 3*big.getWidth()/4 - small.getWidth()/2;  
             int y = big.getHeight()/2 - small.getHeight()/2;  
             g.drawImage(small, x, y, small.getWidth(), small.getHeight(), null);  
             g.dispose();  

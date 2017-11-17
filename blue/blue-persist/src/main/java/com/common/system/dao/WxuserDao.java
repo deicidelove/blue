@@ -99,6 +99,26 @@ public class WxuserDao {
 		namedParameterJdbcTemplate.update(sql, paramMap);
 	}
 	
+	
+	/**
+	 * 更新用户二维码信息
+	 * @param openId 微信OpenId
+	 * @param ticket 微信邀请ticket
+	 * @param qrcodeUrl 二维码地址
+	 */
+	public void updateUserQRCodeUrl(String openId, String ticket, String qrcodeUrl) {
+		Assert.notNull(openId, "openId should not be null");
+		Assert.notNull(ticket, "ticket should not be null");
+		Assert.notNull(qrcodeUrl, "qrcodeUrl should not be null");
+		
+		String sql = "update rc_a_wx_user set ticket=:ticket, qr_code_url=:qrcodeUrl where open_id=:openId";
+		Map<String,Object> paramMap = Maps.newHashMap();
+		paramMap.put("ticket", ticket);
+		paramMap.put("openId", openId);
+		paramMap.put("qrcodeUrl", qrcodeUrl);
+		namedParameterJdbcTemplate.update(sql, paramMap);
+	}
+	
 	/**
 	 * 刪除并非真正刪除
 	 * @param actId
@@ -138,6 +158,22 @@ public class WxuserDao {
 		Map<String,Object> paramMap = Maps.newHashMap();
 		paramMap.put("openId", openId);
 		paramMap.put("isShowTip", isShowTip);
+		namedParameterJdbcTemplate.update(sql, paramMap);
+	}
+	
+	
+	/**
+	 * 更新合成图片路径
+	 * @param openId
+	 * @param combinedPicturePath
+	 */
+	public void updateCombinedPicturePath(String openId, String combinedPicturePath){
+		String sql = "UPDATE `rc_a_wx_user` "
+				+ "SET `combined_picture_path` = :combinedPicturePath "
+				+ "WHERE `open_id` = :openId";
+		Map<String,Object> paramMap = Maps.newHashMap();
+		paramMap.put("openId", openId);
+		paramMap.put("combinedPicturePath", combinedPicturePath);
 		namedParameterJdbcTemplate.update(sql, paramMap);
 	}
 }

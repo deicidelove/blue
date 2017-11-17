@@ -70,4 +70,12 @@ public interface WxUserService {
 	 * @param openId
 	 */
 	void updateUserInfo(String openId, String userName, String phoneNumber, String ticket, String qrcodeUrl);
+	
+	
+	/**
+	 * 更新合成图片路径
+	 * @param openId
+	 * @param combinedPicturePath
+	 */
+	void updateCombinedPicturePath(String openId, String combinedPicturePath);
 }

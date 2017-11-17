@@ -161,7 +161,10 @@ public class WxUserServiceImpl implements WxUserService {
 				// 2. 申请ticket
 				CreateTicketResult createTicketResult = createTicket(applyTokenResult.getAccess_token(), openId);
 				if ( createTicketResult != null ) {
-					return ShowQRCodeURL + "?ticket=" + createTicketResult.getTicket();
+					// 3. 保存
+					String qrcodeUrl = ShowQRCodeURL + "?ticket=" + createTicketResult.getTicket();
+					wxuserDao.updateUserQRCodeUrl(openId, createTicketResult.getTicket(), qrcodeUrl);
+					return qrcodeUrl;
 				}
 			}
 			return null;
@@ -189,7 +192,8 @@ public class WxUserServiceImpl implements WxUserService {
 						token = new RcToken();
 						token.setAppId(weixinAppId);
 						token.setToken(applyTokenResult.getAccess_token());
-						token.setExpireTime(timeAfer(applyTokenResult.getExpires_in()));
+						// IP地址不固定导致token在5分钟内过期,因此暂时将有效期设为5分钟
+						token.setExpireTime(timeAfer(300));
 						tokenDao.insert(token);
 					}
 					return applyTokenResult;
@@ -225,6 +229,12 @@ public class WxUserServiceImpl implements WxUserService {
 	@Override
 	public void updateUserInfo(String openId, String userName, String phoneNumber, String ticket, String qrcodeUrl) {
 		wxuserDao.updateUserInfo(openId, phoneNumber, userName, ticket, qrcodeUrl);
+	}
+	
+	
+	@Override
+	public void updateCombinedPicturePath(String openId, String combinedPicturePath) {
+		wxuserDao.updateCombinedPicturePath(openId, combinedPicturePath);
 	}
 	
 	
