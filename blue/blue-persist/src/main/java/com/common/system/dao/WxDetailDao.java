@@ -60,7 +60,8 @@ public class WxDetailDao {
 		Assert.notNull(wxDetailEntity,"wxDetailEntity is null");
 		String sql ="	INSERT INTO rc_a_wx_detail	"
 				+"	( open_id, sex, name, pic)	"
-				+ "	VALUES (  :openId, :sex, :name, :pic)	";
+				+ "	VALUES (  :openId, :sex, :name, :pic) "
+				+ " ON DUPLICATE KEY UPDATE name=:name";
 		namedParameterJdbcTemplate.update(sql, Convert.beanToMap(wxDetailEntity));
 	}
 	
