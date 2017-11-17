@@ -10,6 +10,8 @@
 </head>
 <script>
    var basePath = '${request.contextPath}';
+   var urlMaps = ${urlMaps};
+   var openId = "${openId}"
 </script>
 
 <body>
@@ -21,7 +23,7 @@
     <div class="big_img_div">
         <img src="../images/icon-132.jpg" alt="大图" />
         <div class="qr_code">
-            <img src="../images/icon-141.png" alt="二维码"/>
+            <img src="${qrCodeUrl! }" alt="二维码"/>
         </div>
     </div>
 </div>
@@ -40,4 +42,4 @@
 </html>
 <script src="../../js/jquery.js"></script>
 <script src="../../js/bluecommon.js"></script>
-<script src="../js/template.js"></script>
+<script src="../js/template.js?v=5"></script>

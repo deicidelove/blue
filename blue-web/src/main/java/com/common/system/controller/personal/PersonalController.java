@@ -162,16 +162,19 @@ public class PersonalController {
 			HttpServletRequest request ) throws WxErrorException {
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
-		if(StringUtils.isBlank(wxUserEntity.getQrCodeUrl())){
-			// 生成获取二维码图片并保存
-	    	WxMpQrCodeTicket ticket = wxService.getQrcodeService().qrCodeCreateLastTicket(openId);
-	    	String qrcodeUrl = ShowQRCodeURL + "?ticket=" + ticket.getTicket();
-			wxUserBLueService.updateUserQRCodeUrl(openId, ticket.getTicket(), qrcodeUrl);
-		}
 		modelAndView.setViewName("/personal/personalqrtemplate");
 		if(null == wxUserEntity){
 			return modelAndView;
 		}
+		
+		if(StringUtils.isBlank(wxUserEntity.getQrCodeUrl())){
+			// 生成获取二维码图片并保存
+	    	WxMpQrCodeTicket ticket = wxService.getQrcodeService().qrCodeCreateLastTicket(openId);
+	    	String qrcodeUrl = ShowQRCodeURL + "?ticket=" + ticket.getTicket();
+	    	wxUserEntity.setQrCodeUrl(qrcodeUrl);
+			wxUserBLueService.updateUserQRCodeUrl(openId, ticket.getTicket(), qrcodeUrl);
+		}
+		
 		String url = wxUserEntity.getCombinedPicturePath();
 		Map<String, String> urlMap = Maps.newHashMap();
 		if(StringUtils.isNotBlank(url)){
@@ -180,7 +183,8 @@ public class PersonalController {
 					});
 		}
 		modelAndView.addObject("qrCodeUrl", wxUserEntity.getQrCodeUrl());
-		modelAndView.addObject("urlMap",urlMap);
+		modelAndView.addObject("urlMaps",JSON.toJSONString(urlMap));
+		modelAndView.addObject("openId",openId);
 		return modelAndView;
 	}
 	
