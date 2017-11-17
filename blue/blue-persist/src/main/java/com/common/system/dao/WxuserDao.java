@@ -69,9 +69,8 @@ public class WxuserDao {
 		Assert.notNull(wxUserEntity	,"wxUserEntity is null");
 		String sql = "INSERT INTO rc_a_wx_user"
 				+ "( open_id, tel, super_open_id, qr_code_url )"
-				+ " VALUES "
-				+ "(:openId, :tel, :superOpenId, :qrCodeUrl"
-				+ ")";
+				+ " VALUES (:openId, :tel, :superOpenId, :qrCodeUrl)"
+				+ " ON DUPLICATE KEY UPDATE tel=:tel,super_open_id=:superOpenId,qr_code_url=:qrCodeUrl ";
 		return namedParameterJdbcTemplate.update(sql, Convert.beanToMap(wxUserEntity));
 	}
 	
