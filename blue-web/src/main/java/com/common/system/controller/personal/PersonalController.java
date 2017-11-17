@@ -84,7 +84,11 @@ public class PersonalController {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(PersonalController.class);
-
+	
+	// 通过ticket换取二维码
+	public static final String ShowQRCodeURL = "https://mp.weixin.qq.com/cgi-bin/showqrcode";
+	
+	
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView modelAndView,
 			HttpServletRequest request) {
@@ -159,10 +163,10 @@ public class PersonalController {
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
 		if(StringUtils.isBlank(wxUserEntity.getQrCodeUrl())){
+			// 生成获取二维码图片并保存
 	    	WxMpQrCodeTicket ticket = wxService.getQrcodeService().qrCodeCreateLastTicket(openId);
-	    	File file = wxService.getQrcodeService().qrCodePicture(ticket);
-	    	//上传并保存
-	    	
+	    	String qrcodeUrl = ShowQRCodeURL + "?ticket=" + ticket.getTicket();
+			wxUserBLueService.updateUserQRCodeUrl(openId, ticket.getTicket(), qrcodeUrl);
 		}
 		modelAndView.setViewName("/personal/personalqrtemplate");
 		if(null == wxUserEntity){

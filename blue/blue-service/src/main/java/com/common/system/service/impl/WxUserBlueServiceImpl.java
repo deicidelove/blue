@@ -22,15 +22,12 @@ import com.common.system.service.WxUserBLueService;
 import com.common.system.util.MsgCode;
 import com.common.system.util.Result;
 import com.common.system.weixin.dto.ApplyTokenResult;
-import com.common.system.weixin.dto.CreateTicketResult;
-import com.common.system.weixin.dto.CreateTokenAction;
-import com.common.system.weixin.dto.CreateTokenActionInfo;
-import com.common.system.weixin.dto.CreateTokenActionScene;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+
 @Service("wxUserBLueService")
 public class WxUserBlueServiceImpl implements WxUserBLueService {
 	private static final Logger logger = LoggerFactory.getLogger(WxUserBlueServiceImpl.class);
@@ -153,22 +150,8 @@ public class WxUserBlueServiceImpl implements WxUserBLueService {
 		WxUserEntity user = wxuserDao.seleteById(openId);
 		if ( user != null && !Strings.isNullOrEmpty(user.getQrCodeUrl())) {
 			return user.getQrCodeUrl();
-		} else {
-			// 1. 申请token
-			ApplyTokenResult applyTokenResult = applyToken();
-			// 不为空,且请求成功
-			if ( applyTokenResult != null && !Strings.isNullOrEmpty(applyTokenResult.getAccess_token()) ) {
-				// 2. 申请ticket
-				CreateTicketResult createTicketResult = createTicket(applyTokenResult.getAccess_token(), openId);
-				if ( createTicketResult != null ) {
-					// 3. 保存
-					String qrcodeUrl = ShowQRCodeURL + "?ticket=" + createTicketResult.getTicket();
-					wxuserDao.updateUserQRCodeUrl(openId, createTicketResult.getTicket(), qrcodeUrl);
-					return qrcodeUrl;
-				}
-			}
-			return null;
 		}
+		return null;
 	}
 	
 	
@@ -207,26 +190,6 @@ public class WxUserBlueServiceImpl implements WxUserBLueService {
 
 
 	@Override
-	public CreateTicketResult createTicket(String token, String sceneStr) {
-		Assert.notNull(token, "token不可为空");
-		Assert.notNull(sceneStr, "sceneStr不可为空");
-		
-		CreateTokenAction action = getAction(sceneStr);
-		try {
-			HttpResponse<String> response = Unirest.post(CreateTiecktURL).queryString("access_token", token)
-					.body(JSON.toJSONString(action))
-					.asString();
-			if ( response != null ) {
-				return JSON.parseObject(response.getBody(), CreateTicketResult.class);
-			}
-		} catch (Exception e) {
-			logger.error("在创建Ticket时发生异常", e);
-		}
-		return null;
-	}
-	
-	
-	@Override
 	public void updateUserInfo(String openId, String userName, String phoneNumber, String ticket, String qrcodeUrl) {
 		wxuserDao.updateUserInfo(openId, phoneNumber, userName, ticket, qrcodeUrl);
 	}
@@ -237,24 +200,18 @@ public class WxUserBlueServiceImpl implements WxUserBLueService {
 		wxuserDao.updateCombinedPicturePath(openId, combinedPicturePath);
 	}
 	
-	
-	//******************************************************************************************************************
-	private CreateTokenAction getAction(String sceneStr) {
-		CreateTokenAction action = new CreateTokenAction();
-		action.setAction_name("QR_LIMIT_SCENE");
-		CreateTokenActionInfo actionInfo = new CreateTokenActionInfo();
-		CreateTokenActionScene scene = new CreateTokenActionScene();
-		scene.setScene_str(sceneStr);
-		actionInfo.setScene(scene);
-		action.setAction_info(actionInfo);
-		return action;
+	@Override
+	public void updateUserQRCodeUrl(String openId, String ticket, String qrcodeUrl) {
+		wxuserDao.updateUserQRCodeUrl(openId, ticket, qrcodeUrl);
 	}
 
 	
+	//******************************************************************************************************************
 	private Date timeAfer(Integer second) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.SECOND, second);
 		return calendar.getTime();
 	}
+
 
 }

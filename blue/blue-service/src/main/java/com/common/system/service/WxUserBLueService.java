@@ -5,7 +5,6 @@ import java.util.List;
 import com.common.system.entity.WxUserEntity;
 import com.common.system.util.Result;
 import com.common.system.weixin.dto.ApplyTokenResult;
-import com.common.system.weixin.dto.CreateTicketResult;
 import com.github.pagehelper.PageInfo;
 
 public interface WxUserBLueService {
@@ -56,14 +55,6 @@ public interface WxUserBLueService {
 	ApplyTokenResult applyToken();
 	
 	/**
-	 * 为用户申请永久Ticket
-	 * @param token
-	 * @param sceneStr
-	 * @return
-	 */
-	CreateTicketResult createTicket(String token, String sceneStr);
-	
-	/**
 	 * 注册更新用户信息
 	 * @param userName
 	 * @param phoneNumber
@@ -78,4 +69,13 @@ public interface WxUserBLueService {
 	 * @param combinedPicturePath
 	 */
 	void updateCombinedPicturePath(String openId, String combinedPicturePath);
+	
+	
+	/**
+	 * 更新用户二维码信息
+	 * @param openId 微信OpenId
+	 * @param ticket 微信邀请ticket
+	 * @param qrcodeUrl 二维码地址
+	 */
+	public void updateUserQRCodeUrl(String openId, String ticket, String qrcodeUrl);
 }
