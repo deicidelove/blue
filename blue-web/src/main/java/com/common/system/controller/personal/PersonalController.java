@@ -1,5 +1,6 @@
 package com.common.system.controller.personal;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,7 +8,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -39,6 +42,7 @@ import com.common.system.service.OrderService;
 import com.common.system.service.WxDetailService;
 import com.common.system.service.WxUserBLueService;
 import com.common.system.util.CookieUtil;
+import com.common.system.util.PicUtil;
 import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
@@ -151,23 +155,27 @@ public class PersonalController {
 	
 	@RequestMapping(value = "queryqr", method = RequestMethod.GET)
 	public ModelAndView queryQR(ModelAndView modelAndView,
-			HttpServletRequest request ) {
+			HttpServletRequest request ) throws WxErrorException {
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
+		if(StringUtils.isBlank(wxUserEntity.getQrCodeUrl())){
+	    	WxMpQrCodeTicket ticket = wxService.getQrcodeService().qrCodeCreateLastTicket(openId);
+	    	File file = wxService.getQrcodeService().qrCodePicture(ticket);
+	    	//上传并保存
+	    	
+		}
 		modelAndView.setViewName("/personal/personalqrtemplate");
 		if(null == wxUserEntity){
 			return modelAndView;
 		}
-		String url = wxUserEntity.getQrCodeUrl();
+		String url = wxUserEntity.getCombinedPicturePath();
 		Map<String, String> urlMap = Maps.newHashMap();
 		if(StringUtils.isNotBlank(url)){
 			urlMap = JSON.parseObject(url, 
 					new TypeReference<HashMap<String, String>>() {
 					});
 		}
-		urlMap.put("1", "http");
-		urlMap.put("2", "http");
-		urlMap.put("3", "http");
+		modelAndView.addObject("qrCodeUrl", wxUserEntity.getQrCodeUrl());
 		modelAndView.addObject("urlMap",urlMap);
 		return modelAndView;
 	}
