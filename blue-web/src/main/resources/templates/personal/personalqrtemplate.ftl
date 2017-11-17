@@ -8,33 +8,36 @@
     <link rel="stylesheet" href="../css/common.css" />
     <link rel="stylesheet" href="../css/template.css" />
 </head>
+<script>
+   var basePath = '${request.contextPath}';
+</script>
+
 <body>
 <div class="heade">
     <div class="heade_text">选择模板</div>
-    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+    <div class="heade_back">返回</div>
 </div>
 <div class="big_img">
     <div class="big_img_div">
         <img src="../images/icon-132.jpg" alt="大图" />
-        <div class="qr_code"></div>
-        <div class="qr_code_big">
-            <img src="../images/icon-141.png" alt="大二维码"/>
+        <div class="qr_code">
+            <img src="../images/icon-141.png" alt="二维码"/>
         </div>
-        <div class="qr_code_big_bg"></div>
     </div>
 </div>
 <div class="small_img">
     <div class="small_list box">
-        <div class="flex-1 small_img01 small_img_boder"></div>
-        <div class="flex-1 small_img02"></div>
-        <div class="flex-1 small_img03"></div>
+        <div class="flex-1 small_img01 small_img_boder" type="1"></div>
+        <div class="flex-1 small_img02" type="2"></div>
+        <div class="flex-1 small_img03" type="3"></div>
     </div>
     <div class="small_div">
         <span class="left small_div01"></span>
-        <span class="right small_div02">确定</span>
+        <span class="right small_div02" id="generateImg">确定</span>
     </div>
 </div>
 </body>
 </html>
-<script src="../js/jquery.js"></script>
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bluecommon.js"></script>
 <script src="../js/template.js"></script>

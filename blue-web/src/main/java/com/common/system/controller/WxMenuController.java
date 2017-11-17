@@ -1,5 +1,7 @@
 package com.common.system.controller;
 
+import javax.annotation.Resource;
+
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.bean.menu.WxMenu;
 import me.chanjar.weixin.common.bean.menu.WxMenuButton;
@@ -8,6 +10,7 @@ import me.chanjar.weixin.mp.api.WxMpMenuService;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.menu.WxMpGetSelfMenuInfoResult;
 import me.chanjar.weixin.mp.bean.menu.WxMpMenu;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/wechat/menu")
 public class WxMenuController implements WxMpMenuService {
 
-    @Autowired
+	@Resource(name = "wxMpService")
     private WxMpService wxService;
 
     /**

@@ -70,7 +70,7 @@ public class JifenController {
 	@Resource
 	private OrderService orderService;
 	
-	@Resource
+	@Resource(name = "wxMpService")
     private WxMpService wxService;
 	
 	@Resource
@@ -269,7 +269,7 @@ public class JifenController {
 			
 			OrderEntity orderEntity = orderService.findByOutTradeId(outTradeId);
 			if(null == orderEntity){
-				return "failure";
+				return "fail";
 			}
 			GoodsConsumerRelateEntity goodsConsumerRelateEntity = goodsConsumerRelateService.getByGivingCodeSource(outTradeId);
 	    	goodsConsumerRelateEntity.setOpenId(null);
@@ -279,7 +279,7 @@ public class JifenController {
 			
 		} catch (Exception e) {
 			LOG.error("updateShowTip error!", e);
-			return "failure";
+			return "fail";
 		}
 		return "success";
 	}

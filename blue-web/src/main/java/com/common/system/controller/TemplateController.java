@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,14 +65,14 @@ public class TemplateController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/getCombinePic", method = RequestMethod.POST)
-	public String getCombinePic(@RequestParam(value="file", required=false) MultipartFile file, String openId) throws Exception {
+	public String getCombinePic(String fileUrl, String openId) throws Exception {
 		WxUserEntity wxUser = wxUserService.getById(openId);
 		if ( wxUser == null ) {
 			return JSON.toJSONString(StandardJSONResult.getFailedInstance("无法确定您的身份,请重新登录"));
 		} else {
 			// 文件名
 			String pictureName = openId + ".jpg";
-			if ( file == null ) {
+			if ( StringUtils.isEmpty(fileUrl) ) {
 				if ( Strings.isNullOrEmpty(wxUser.getCombinedPicturePath()) ) {
 					return JSON.toJSONString(StandardJSONResult.getFailedInstance("请先选中上传一张图片"));
 				} else {
@@ -84,7 +85,9 @@ public class TemplateController {
 					String qrCodeUrl = wxUserService.getUserQRCode(openId);
 					BufferedImage qrcodeImg = getImage(openId, qrCodeUrl);
 					if ( qrcodeImg != null ) {
-						BufferedImage userImg = fileToImage(file.getInputStream());
+						InputStream in = Unirest.get(fileUrl).asBinary()
+								.getBody();
+						BufferedImage userImg = fileToImage(in);
 						if ( userImg == null ) {
 							return JSON.toJSONString(StandardJSONResult.getFailedInstance("不是合法图片,请重新上传"));
 						} else {

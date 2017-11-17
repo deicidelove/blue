@@ -13,6 +13,7 @@ import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -48,9 +49,12 @@ public class SubscribeHandler extends AbstractHandler {
         		if(null == wxUserEntity){
         			wxUserEntity = new WxUserEntity();
         			wxUserEntity.setOpenId(userWxInfo.getOpenId());
-        			wxUserEntity.setSuperOpenId(wxMessage.getFromUser());
-        			wxUserService.save(wxUserEntity);
         		}
+        		if(StringUtils.isNotBlank(wxMessage.getEventKey())){
+        			String superOpenId = wxMessage.getEventKey().split("_")[1];
+        			wxUserEntity.setSuperOpenId(superOpenId);
+        		}
+        		wxUserService.save(wxUserEntity);
         		WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(userWxInfo.getOpenId());
         		if(null == wxDetailEntity){
         			wxDetailEntity = new WxDetailEntity();
@@ -58,8 +62,8 @@ public class SubscribeHandler extends AbstractHandler {
         			wxDetailEntity.setPic(userWxInfo.getHeadImgUrl());
         			wxDetailEntity.setSex(userWxInfo.getSex());
         			wxDetailEntity.setName(userWxInfo.getNickname());
-        			wxDetailService.save(wxDetailEntity);
         		}
+        		wxDetailService.save(wxDetailEntity);
 			} catch (Exception e) {
 				this.logger.error("保存用户信息报错！", e);
 			}

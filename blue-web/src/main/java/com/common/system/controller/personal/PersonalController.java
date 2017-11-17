@@ -41,7 +41,6 @@ import com.common.system.service.WxUserService;
 import com.common.system.util.CookieUtil;
 import com.common.system.util.Result;
 import com.github.pagehelper.PageInfo;
-import com.github.pagehelper.util.StringUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -70,8 +69,8 @@ public class PersonalController {
 	@Resource
 	private OrderService orderService;
 
-	@Resource
-	private WxMpService wxService;
+	@Resource(name = "wxMpService")
+    private WxMpService wxService;
 
 	@Resource
 	private GivingService givingService;
@@ -174,13 +173,36 @@ public class PersonalController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "payfail")
-    public String payfail(String outTradeId ,HttpServletRequest request ) {
-		String openId = CookieUtil.getCookieValue(request, "openId");
+	@RequestMapping(value = "generateimg")
+    public Map<String, String> generateimg( String type){
+		Map<String, String> result = Maps.newHashMap();
+		result.put("result_code", "success");
+		result.put("result_msg", "success");
 		try {
 			
+			
+		} catch (Exception e) {
+			LOG.error("生成自定义图片失败，请联系管理员！",e);
+			result.put("result_code", "fail");
+			result.put("result_msg", "生成自定义图片失败，请联系管理员！");
+		}
+        
+        return result;
+    }
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "payfail")
+    public String payfail(String outTradeId ,HttpServletRequest request ) {
+		Map<String, String> result =  Maps.newHashMap();
+		try {
+			result.put("result_code", "success");
+			result.put("result_msg", "success");
+			String openId = CookieUtil.getCookieValue(request, "openId");
 			OrderEntity orderEntity = orderService.findByOutTradeId(outTradeId);
 			if(null == orderEntity){
+	    		result.put("result_code", "fail");
+	        	result.put("result_msg", "支付失败！");
 				return "failure";
 			}
 			WxUserEntity wxUserEntity = wxUserService.getById(openId);

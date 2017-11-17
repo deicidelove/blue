@@ -10,28 +10,25 @@
             $('.heade_back').on('click',function(){
                 window.history.back();
             });
-            $('.qr_code').on('click',function(event){
-                event.stopPropagation();
-                $('.qr_code_big').show();
-                $('.qr_code_big_bg').show();
-            });
-            $('.qr_code_big').on('click',function(event){
-                event.stopPropagation();
-                template._hidden();
-            });
-            $('.qr_code_big_bg').on('click',function(event){
-                event.stopPropagation();
-                template._hidden();
-            });
             $('.small_list>div').on('click',function(){
                 $(this).addClass('small_img_boder').siblings().removeClass('small_img_boder');
                 var $url = $(this).css("background-image").split("\"")[1];
                 $('.big_img_div>img').attr('src',$url);
-            })
-        },
-        _hidden:function(){
-            $('.qr_code_big').hide();
-            $('.qr_code_big_bg').hide();
+            });
+            $("#generateImg").on('click', function(){
+            	var type = $(".small_img_boder").attr("type");
+        		Request.sendPostRequest(basePath + "/personal/generateimg", {
+        			"type" : type
+        		}, function(result) {
+        			if(result.result_code == 'fail'){
+        				alert(result.result_msg);
+        				return ;
+        			}else if( result.result_code == 'success'){
+        				alert(result.result_msg)
+        			}
+        			
+        		});
+            });
         }
     };
     template.init();

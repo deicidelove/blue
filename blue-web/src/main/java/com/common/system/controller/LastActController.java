@@ -74,8 +74,8 @@ public class LastActController {
 	@Resource
 	private OrderService orderService;
 
-	@Resource
-	private WxMpService wxService;
+	@Resource(name = "wxMpService")
+    private WxMpService wxService;
 
 	@Resource
 	private GivingService givingService;
