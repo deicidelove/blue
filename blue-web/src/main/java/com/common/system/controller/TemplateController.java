@@ -108,7 +108,7 @@ public class TemplateController {
 								// 拼接图片
 								BufferedImage finalImg = combineImages(userImg, blankPic);
 								// 写入本地
-								String pictureName = openId + ".jpg";
+								String pictureName = openId + "_" + type + ".jpg";
 								String localFilePath = Joiner.on("/").join(PictureRoot, pictureName);
 								String downloadFilePath = Joiner.on("/").join(PictureRoot, pictureName);
 								// 先创建父文件夹
