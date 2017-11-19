@@ -2,7 +2,7 @@
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header">
-				<h3 class="box-title">活动管理</h3>
+				<h3 class="box-title">中獎管理</h3>
 				<div class="box-tools pull-right">
 					<@shiro.hasPermission name="goodsconsumerrelate/add">
 						<a onclick="securityToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/goodsconsumerrelate/add">添加</a>
@@ -82,9 +82,9 @@ $(function() {
 			{"data":null},
 			{"data":"goodsId"},
 			{"data":"goodsName"},
-			{"data":"consumerId"},
-			{"data":"consumerName"},
-			{"data":"consumerGivingCode"},
+			{"data":"openId"},
+			{"data":"name"},
+			{"data":"givingCode"},
 			{"data":"createTime"},
 			{"data":null}
 			],

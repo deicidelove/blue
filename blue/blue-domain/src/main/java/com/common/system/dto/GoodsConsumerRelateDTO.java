@@ -4,6 +4,11 @@ import com.common.system.entity.GoodsConsumerRelateEntity;
 
 public class GoodsConsumerRelateDTO extends GoodsConsumerRelateEntity{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5577220286893459581L;
+
 	private String goodsName;
 	
 	private String consumerName;
