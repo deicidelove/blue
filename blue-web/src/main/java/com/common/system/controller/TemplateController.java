@@ -110,12 +110,6 @@ public class TemplateController {
 								BufferedImage finalImg = combineImages(userImg, blankPic);
 								// 写入本地
 								String pictureName = openId +type+ ".jpg";
-		/*						String localFilePath = Joiner.on("/").join(PictureRoot, pictureName);
-								String downloadFilePath = Joiner.on("/").join(PictureRoot, pictureName);
-								// 先创建父文件夹
-								File combinedFile = new File(localFilePath);
-								combinedFile.getParentFile().mkdirs();
-								ImageIO.write(finalImg, "jpg", new File(localFilePath));*/
 								String picUrl =PicUtil.upFile(finalImg, pictureName);
 								// 更新合成后的本地文件地址
 								wxUserBLueService.updateCombinedPicturePath(openId, putPicturePath(typePicMap, type, picUrl));
