@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -81,7 +82,7 @@ public class ProjectController {
 	public @ResponseBody
 	Result<Integer> save(String context, String title,
 			@RequestParam("fileName") MultipartFile file) {
-		context = ContextUtil.setConent(context);
+		context = StringUtils.isEmpty(context)?"": ContextUtil.setConent(context);
 		return projectService.addProject(title, context, file);
 	}
 
@@ -107,7 +108,7 @@ public class ProjectController {
 	public @ResponseBody
 	Result<Integer> updateAdvert(String context, String title,
 			@RequestParam("fileName") MultipartFile file, int sid) {
-		context = ContextUtil.setConent(context);
+		context = StringUtils.isEmpty(context)?"": ContextUtil.setConent(context);
 		return projectService.updateProject(title, context, sid, file);
 		// ModelAndView modelAndView = new ModelAndView();
 		// modelAndView.setViewName("/system/admin/advert/list");

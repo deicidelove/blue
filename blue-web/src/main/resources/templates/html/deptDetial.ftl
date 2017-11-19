@@ -13,7 +13,9 @@
     <div class="heade_text">${dept.name}</div>
     <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
-<div class="health_bg"></div>
+<div class="health_bg">
+	<img src = "${dept.url}"/ >
+</div>
 <div class="health_content">
     <div class="introduce">
         <div class="headline">科室介绍</div>

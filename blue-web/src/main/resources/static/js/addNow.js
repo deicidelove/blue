@@ -2,6 +2,7 @@
  * Created by lonvov2 on 2017/10/12.
  */
 (function () {
+	var t ;
     var addNow = {
         init: function () {
         	addNow._bind();
@@ -30,7 +31,10 @@
             	   dataType:'json',  
             	   success:function(data) {
             		   if(data.status){
-            			   alert("提交成功！");  
+            			   alert("提交成功！");
+            			   var timer1=window.setTimeout(function(){
+            				   window.location.href = "/workNeedPage";
+            				   },2000)
             		   }else{
             			   alert("提交失败！请稍后重试！"); 
             		   }
@@ -46,4 +50,5 @@
        
     };
     addNow.init();
+
 })();

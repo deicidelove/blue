@@ -31,6 +31,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.common.system.entity.WxUserEntity;
 import com.common.system.service.WxUserBLueService;
+import com.common.system.util.PicUtil;
 import com.common.system.util.StandardJSONResult;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
@@ -108,16 +109,17 @@ public class TemplateController {
 								// 拼接图片
 								BufferedImage finalImg = combineImages(userImg, blankPic);
 								// 写入本地
-								String pictureName = openId + ".jpg";
-								String localFilePath = Joiner.on("/").join(PictureRoot, pictureName);
+								String pictureName = openId +type+ ".jpg";
+		/*						String localFilePath = Joiner.on("/").join(PictureRoot, pictureName);
 								String downloadFilePath = Joiner.on("/").join(PictureRoot, pictureName);
 								// 先创建父文件夹
 								File combinedFile = new File(localFilePath);
 								combinedFile.getParentFile().mkdirs();
-								ImageIO.write(finalImg, "jpg", new File(localFilePath));
+								ImageIO.write(finalImg, "jpg", new File(localFilePath));*/
+								String picUrl =PicUtil.upFile(finalImg, pictureName);
 								// 更新合成后的本地文件地址
-								wxUserBLueService.updateCombinedPicturePath(openId, putPicturePath(typePicMap, type, localFilePath));
-								return JSON.toJSONString(StandardJSONResult.getSuccessInstance(JSON.toJSONString(new PictureFilePath(downloadFilePath, pictureName))));
+								wxUserBLueService.updateCombinedPicturePath(openId, putPicturePath(typePicMap, type, picUrl));
+								return JSON.toJSONString(StandardJSONResult.getSuccessInstance(JSON.toJSONString(new PictureFilePath(picUrl, picUrl))));
 							}
 						} else {
 							return JSON.toJSONString(StandardJSONResult.getFailedInstance("在获取用户二维码图片时发生异常"));

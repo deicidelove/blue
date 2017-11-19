@@ -31,6 +31,7 @@
             				return ;
             			}else if( result.status == 'success'){
             				alert(result.message);
+            				location.reload();
             			}
             		});
             	}else if("xianjin" == exchangeType){

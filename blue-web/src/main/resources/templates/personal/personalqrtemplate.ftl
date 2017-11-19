@@ -42,4 +42,4 @@
 </html>
 <script src="../../js/jquery.js"></script>
 <script src="../../js/bluecommon.js"></script>
-<script src="../js/template.js?v=5"></script>
+<script src="../js/template.js?v=7"></script>

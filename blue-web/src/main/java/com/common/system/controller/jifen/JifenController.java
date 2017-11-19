@@ -29,6 +29,7 @@ import com.common.system.entity.GivingEntity;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
 import com.common.system.entity.GoodsImgEntity;
+import com.common.system.entity.JifenLogEntity;
 import com.common.system.entity.OrderEntity;
 import com.common.system.entity.WxDetailEntity;
 import com.common.system.entity.WxUserEntity;
@@ -37,6 +38,7 @@ import com.common.system.service.GivingService;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsImgService;
 import com.common.system.service.GoodsService;
+import com.common.system.service.JifenLogService;
 import com.common.system.service.OrderService;
 import com.common.system.service.WxDetailService;
 import com.common.system.service.WxUserBLueService;
@@ -75,12 +77,16 @@ public class JifenController {
 	
 	@Resource
 	private GivingService givingService;
+	
+	@Resource
+	private JifenLogService jifenLogService;
     
 	private static final Logger LOG = LoggerFactory.getLogger(JifenController.class);
 	
 	@RequestMapping(value = "index",method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request){
-        modelAndView.setViewName("/jifen/act");
+
+		modelAndView.setViewName("/jifen/act");
 
         String openId = CookieUtil.getCookieValue(request, "openId");
         WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
@@ -129,7 +135,6 @@ public class JifenController {
 	public ModelAndView actdetail(ModelAndView modelAndView, HttpServletRequest request ){
 		
 		String openId = CookieUtil.getCookieValue(request, "openId");
-		
         GoodsDetailDTO detailDTO = new GoodsDetailDTO();
         //goods
         String goodsId = request.getParameter("goodsId");
@@ -239,7 +244,12 @@ public class JifenController {
     	}
 		wxUserEntity.setJifen(wxUserEntity.getJifen() - goodsEntity.getJifen());
 		wxUserBLueService.updateJifen(wxUserEntity);
-    	
+		JifenLogEntity jifenLogEntity = new JifenLogEntity();
+		jifenLogEntity.setIsReverse(true);
+		jifenLogEntity.setJifen(goodsEntity.getJifen());
+		jifenLogEntity.setOpenId(openId);
+		jifenLogEntity.setType("jifen_xf");
+		jifenLogService.save(jifenLogEntity);
 		resultMap.put("status", "success");
 		resultMap.put("message", "支付成功");
 		return resultMap;

@@ -44,7 +44,7 @@
                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><i
                             class="fa fa-close"></i>关闭
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm"><i
+                    <button type="submit" class="btn btn-primary btn-sm"><i
                             class="fa fa-paste"></i>更新
                     </button>
                 </div>

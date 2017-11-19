@@ -136,7 +136,7 @@
 <#if webZJ??>
 <a href="${webZJ.jumpUrl}"><div class="invite" style="background-image:${webZJ.picUrl}"></div></a>
 <#else>
-<div class="invite"></div>
+<div class="invite" onclick="jifenRight()"></div>
 </#if>
 <div class="lottery">
     <div class="lottery_head">
@@ -148,8 +148,8 @@
     <#if gwJFHDList??>
          <#list gwJFHDList as jfhd>
             <a href="${(jfhd.jumpUrl)! }">
-                <div class="lottery_bg01 left" >
-                	<img class="lottery_bg01 left"  src="${(jfhd.picUrl)! }"/>
+                <div >
+                	<img class="lottery_bg0${jfhd_index+1} left"  src="${(jfhd.picUrl)! }"/>
                 </div>
             </a>
         </#list>

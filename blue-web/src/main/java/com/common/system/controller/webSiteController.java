@@ -64,7 +64,7 @@ public class webSiteController {
 		 	//蓝鲟官网-积分活动
 		 	List<BlueProjectAdvert> gwJFHDList =commonService.findTypeAdvert(10);
 		 	if(!CollectionUtils.isEmpty(gwJFHDList)){
-		 		gwJFHDList = gwJFHDList.size()>=2?gwJFHDList.subList(0, 2) : gwJFHDList;
+		 		gwJFHDList = gwJFHDList.size()>=3?gwJFHDList.subList(0, 3) : gwJFHDList;
 		 	}
 		 	modelAndView.addObject("gwJFHDList", gwJFHDList);
 		 	//蓝鲟官网-近期活动

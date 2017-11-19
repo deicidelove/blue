@@ -19,13 +19,13 @@
     		<#list resultList as jifenEntity >
 		    	<li>
 		        	<p>
-		        	<#if jifenEntity.type == '1'>
+		        	<#if jifenEntity.type == 'qr_fx'>
 		            	分享获得积分  
 		            <#elseif jifenEntity.type == '2'>
 						参与活动赢积分
 		            <#elseif jifenEntity.type == '3'>
 		            	充值获取积分
-		            <#elseif jifenEntity.type == '3'>
+		            <#elseif jifenEntity.type == 'jifen_xf'>
 		            	兑换抽奖
 		            </#if>
 		            	<#if !jifenEntity.isReverse>

@@ -63,7 +63,7 @@
 	<#list detailDTO.goodsDetailWxDTOList as temp>
 	    <li class="activity_li">
 	        <div class="activity_li_div01 left">
-	        	<img src="${temp.wxDetailEntity.pic}" class="activity_li_div01 left"/>
+	        	<img src="${temp.wxDetailEntity.pic}" class="activity_li_div01 left" style="margin-top: -1px;"/>
 	        </div>
 	        <div class="activity_li_div02 left">
 	            <div>${temp.wxDetailEntity.name}抢购了1人次</div>
@@ -128,7 +128,7 @@
 </body>
 </html>
 <script src="../../js/jquery.js"></script>
-<script src="../../js/activity_xq.js?v=6"></script>
+<script src="../../js/activity_xq.js?v=7"></script>
 <script src="../../js/swiper.min.js"></script>
 <script src="../../js/bluecommon.js"></script>
 <script>

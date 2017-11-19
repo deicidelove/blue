@@ -47,4 +47,4 @@
 </body>
 </html>
 <script type="text/javascript" src="../js/jquery.js"></script>
-<script src="../js/addNow.js"></script>
+<script src="../js/addNow.js?v=2"></script>

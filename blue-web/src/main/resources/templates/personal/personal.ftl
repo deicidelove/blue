@@ -44,24 +44,24 @@
         <div class="right"></div>
         </a>
     </li>
-    <li class="integral_li">
+    <li class="integral_li" id= "order">
         <div class="left integral_li_bg03"></div>
-        <div class="left" id= "order">我的订单</div>
+        <div class="left" >我的订单</div>
         <div class="right"></div>
     </li>
-    <li class="integral_li">
+    <li class="integral_li" id = "invitation">
         <div class="left integral_li_bg04"></div>
-        <div class="left" id = "invitation">我的邀请</div>
+        <div class="left" >我的邀请</div>
         <div class="right"></div>
     </li>
-    <li class="integral_li">
+    <li class="integral_li" id = "buyjifen">
         <div class="left integral_li_bg05"></div>
-        <div class="left"  id = "buyjifen">购买积分</div>
+        <div class="left"  >购买积分</div>
         <div class="right"></div>
     </li>
-    <li class="integral_li">
+    <li class="integral_li" id = "jifendetail"> 
         <div class="left integral_li_bg06"></div>
-        <div class="left" id = "jifendetail">我的积分明细</div>
+        <div class="left" >我的积分明细</div>
         <div class="right"></div>
     </li>
     <li class="integral_li bordernone" id = "qr">

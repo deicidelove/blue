@@ -1,8 +1,10 @@
 package com.common.system.handler;
 
 import com.common.system.builder.TextBuilder;
+import com.common.system.entity.JifenLogEntity;
 import com.common.system.entity.WxDetailEntity;
 import com.common.system.entity.WxUserEntity;
+import com.common.system.service.JifenLogService;
 import com.common.system.service.WxDetailService;
 import com.common.system.service.WxUserBLueService;
 
@@ -30,6 +32,8 @@ public class SubscribeHandler extends AbstractHandler {
 	private WxUserBLueService wxUserBLueService;
 	@Resource
 	private WxDetailService wxDetailService;
+	@Resource
+	private JifenLogService jifenLogService;
 	
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -52,7 +56,28 @@ public class SubscribeHandler extends AbstractHandler {
         		}
         		if(StringUtils.isNotBlank(wxMessage.getEventKey())){
         			String superOpenId = wxMessage.getEventKey().split("_")[1];
-        			wxUserEntity.setSuperOpenId(superOpenId);
+        			if(!StringUtils.isBlank(superOpenId)
+        					&& superOpenId.length()> 5){
+        				
+        				wxUserEntity.setSuperOpenId(superOpenId);
+        				
+        				WxUserEntity superWxUser = wxUserBLueService.getById(superOpenId);
+        				if(null != superWxUser){
+        					try {
+								
+        						JifenLogEntity jifenLogEntity = new JifenLogEntity();
+        						jifenLogEntity.setOpenId(superOpenId);
+        						jifenLogEntity.setJifen(3);
+        						jifenLogEntity.setIsReverse(false);
+        						jifenLogEntity.setType("qr_fx");
+        						jifenLogService.save(jifenLogEntity);
+        						superWxUser.setJifen(superWxUser.getJifen()+3);
+        						wxUserBLueService.updateJifen(superWxUser);
+							} catch (Exception e) {
+								logger.error("分享二维码更新积分异常！",e);
+							}
+        				}
+        			}
         		}
         		wxUserBLueService.save(wxUserEntity);
         		WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(userWxInfo.getOpenId());

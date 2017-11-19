@@ -26,7 +26,6 @@
             });
             $("#generateImg").on('click', function(){
             	var originalUrl = $(".big_img_div img").attr("src");
-            	alert(originalUrl);
             	var type = $(".small_img_boder").attr("type");
             	if($('.qr_code').is(":hidden")){
             		alert("二维码已生成，请直接下载分享！");
@@ -39,8 +38,7 @@
         		}, function(result) {
         			if( result.result == 'success'){
         				var urlObj = eval('('+result.message+')');
-        				$('.big_img_div>img').attr('src',basePath+"/"+urlObj.showFilePath);
-        				alert(JSON.stringify($('.big_img_div>img').attr('src')))
+        				$('.big_img_div>img').attr('src',urlObj.showFilePath);
         				$('.qr_code').hide();
         				urlMaps[type] = urlObj.showFilePath;
         			}else {

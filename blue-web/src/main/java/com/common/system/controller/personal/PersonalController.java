@@ -162,25 +162,33 @@ public class PersonalController {
 			HttpServletRequest request ) throws WxErrorException {
 		String openId = CookieUtil.getCookieValue(request, "openId");
 		WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
+		Map<String, String> urlMap = Maps.newHashMap();
+		
 		modelAndView.setViewName("/personal/personalqrtemplate");
 		if(null == wxUserEntity){
+			modelAndView.addObject("urlMaps",JSON.toJSONString(urlMap));
+			modelAndView.addObject("openId",openId);
 			return modelAndView;
 		}
-		
-		if(StringUtils.isBlank(wxUserEntity.getQrCodeUrl())){
-			// 生成获取二维码图片并保存
-	    	WxMpQrCodeTicket ticket = wxService.getQrcodeService().qrCodeCreateLastTicket(openId);
-	    	String qrcodeUrl = ShowQRCodeURL + "?ticket=" + ticket.getTicket();
-	    	wxUserEntity.setQrCodeUrl(qrcodeUrl);
-			wxUserBLueService.updateUserQRCodeUrl(openId, ticket.getTicket(), qrcodeUrl);
-		}
-		
-		String url = wxUserEntity.getCombinedPicturePath();
-		Map<String, String> urlMap = Maps.newHashMap();
-		if(StringUtils.isNotBlank(url)){
-			urlMap = JSON.parseObject(url, 
-					new TypeReference<HashMap<String, String>>() {
-					});
+		try {
+			
+			if(StringUtils.isBlank(wxUserEntity.getQrCodeUrl())){
+				// 生成获取二维码图片并保存
+				WxMpQrCodeTicket ticket = wxService.getQrcodeService().qrCodeCreateLastTicket(openId);
+				String qrcodeUrl = ShowQRCodeURL + "?ticket=" + ticket.getTicket();
+				wxUserEntity.setQrCodeUrl(qrcodeUrl);
+				wxUserBLueService.updateUserQRCodeUrl(openId, ticket.getTicket(), qrcodeUrl);
+			}
+			
+			String url = wxUserEntity.getCombinedPicturePath();
+			
+			if(StringUtils.isNotBlank(url)){
+				urlMap = JSON.parseObject(url, 
+						new TypeReference<HashMap<String, String>>() {
+				});
+			}
+		} catch (Exception e) {
+			LOG.error("获取二维码失败",e);
 		}
 		modelAndView.addObject("qrCodeUrl", wxUserEntity.getQrCodeUrl());
 		modelAndView.addObject("urlMaps",JSON.toJSONString(urlMap));
