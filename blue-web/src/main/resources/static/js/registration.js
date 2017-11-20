@@ -28,7 +28,7 @@
             			    $('.doctor_ul').html("");
             			    for(i=0;i<staffs.length;i++){
             			    	var staff = staffs[i];
-            			    	var html = "<a href=\"/doctorDetial/"+staff.sid+"\"><li class=\"doctor_li\">";
+            			    	var html = "<a href=\"/doctorDetial/"+staff.sid+"/-1\"><li class=\"doctor_li\">";
             			    	if(staff.headUrl!=null){
             			    		html+="<div class=\"doctor_img left\" style=\"background-image:url("+staff.headUrl+")\"></div>"
             			    	}else{
