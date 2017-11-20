@@ -23,6 +23,8 @@ public class BlueDeptDoctorPic implements Serializable{
 	private String deptName = "";
 	
 	private Integer deptId;
+	
+	private Integer type;
 
 	
 
@@ -80,6 +82,20 @@ public class BlueDeptDoctorPic implements Serializable{
 	 */
 	public void setDeptId(Integer deptId) {
 		this.deptId = deptId;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public Integer getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 

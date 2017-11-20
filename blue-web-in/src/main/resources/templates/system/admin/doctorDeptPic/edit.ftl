@@ -32,6 +32,13 @@
             			</#list>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label>类型</label>
+                    <select name="type" class="form-control select2" style="width: 100%;">
+                        <option <#if bean.type == 0>selected="selected"</#if> value="0">主治医生宣传图</option>
+                        <option <#if bean.type == 1>selected="selected"</#if> value="1">科室详情背景图</option>
+                    </select>
+                </div>
                <div class="form-group">
                 	<img src="${bean.url!}" style="width:200px;height:200px"/>
                 	<label>上传文件</label>

@@ -22,9 +22,9 @@ public interface DoctorDeptPicService {
 	
 	public Result<BlueDeptDoctorPic> findDeptPic(int sid);
 
-	public Result<Integer> addDoctorDeptPic(Integer deptId,MultipartFile file);
+	public Result<Integer> addDoctorDeptPic(Integer deptId,int type,MultipartFile file);
 	
-	public Result<Integer> updateDoctorDeptPic(Integer sid,Integer deptId,MultipartFile file);
+	public Result<Integer> updateDoctorDeptPic(Integer sid,Integer deptId,int type,MultipartFile file);
 
 
 }

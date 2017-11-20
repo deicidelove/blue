@@ -30,10 +30,11 @@ public class DeptDoctorPicDao {
 	@Resource
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	public BlueDeptDoctorPic findByDeptId(int deptId) {
-		String sql = "SELECT * FROM tb_blue_deptdoctor_pic WHERE deptId =:deptId";
+	public BlueDeptDoctorPic findByDeptId(int type,int deptId) {
+		String sql = "SELECT * FROM tb_blue_deptdoctor_pic WHERE deptId =:deptId AND type =:type";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("deptId", deptId);
+		paramMap.put("type", type);
 
 		List<BlueDeptDoctorPic> result = namedParameterJdbcTemplate.query(sql
 				.toString(), paramMap,
@@ -113,24 +114,26 @@ public class DeptDoctorPicDao {
 	}
 
 	public int add(BlueDeptDoctorPic pic) {
-		String sql = "INSERT INTO `tb_blue_deptdoctor_pic` (`url`, `deptId`,`deptName`) "
-				+ "VALUES (:url, :deptId, :deptName)";
+		String sql = "INSERT INTO `tb_blue_deptdoctor_pic` (`url`, `deptId`,`deptName`,`type`) "
+				+ "VALUES (:url, :deptId, :deptName,:type)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("url", pic.getUrl());
 		paramMap.put("deptId", pic.getDeptId());
 		paramMap.put("deptName", pic.getDeptName());
+		paramMap.put("type", pic.getType());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
 	}
 	
 	public int update(BlueDeptDoctorPic pic) {
-		String sql = "UPDATE  `tb_blue_deptdoctor_pic` SET url:=url, deptId=:deptId,deptName=:deptName  "
+		String sql = "UPDATE  `tb_blue_deptdoctor_pic` SET url:=url, deptId=:deptId,deptName=:deptName,type=:type  "
 				+ " WHERE sid = :sid ";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("sid", pic.getSid());
 		paramMap.put("url", pic.getUrl());
 		paramMap.put("deptId", pic.getDeptId());
 		paramMap.put("deptName", pic.getDeptName());
+		paramMap.put("type", pic.getType());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
 	}

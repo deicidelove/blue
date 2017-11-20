@@ -45,7 +45,7 @@ public class DoctorController {
 		
 		for (BlueDept dept : depts) {
 			DoctorDto dto = new DoctorDto();
-			BlueDeptDoctorPic url = commonService.findPic(dept.getSid());
+			BlueDeptDoctorPic url = commonService.findPic(0,dept.getSid());
 			List<BlueStaff> staffs = commonService.findStaffByDeptId(dept.getSid());
 			dto.setDoctors(staffs);
 			dto.setUrl(url.getUrl());
@@ -61,7 +61,7 @@ public class DoctorController {
 			@PathVariable Integer sid) {
 		List<BlueDept> depts = commonService.findDept();
 		List<BlueStaff> staffs = commonService.findStaffByDeptId(sid);
-		BlueDeptDoctorPic url = commonService.findPic(sid);
+		BlueDeptDoctorPic url = commonService.findPic(0,sid);
 		List<BlueDept> newDepts = new ArrayList<>();
 		for (BlueDept blueDept : depts) {
 			if(blueDept.getSid().equals(sid)){
@@ -96,7 +96,7 @@ public class DoctorController {
 		
 		for (Integer deptId : deptIds) {
 			DoctorDto dto = new DoctorDto();
-			BlueDeptDoctorPic url = commonService.findPic(deptId);
+			BlueDeptDoctorPic url = commonService.findPic(0,deptId);
 			List<BlueStaff> staffTemp = commonService.findStaffByDeptId(deptId);
 			dto.setDoctors(staffTemp);
 			dto.setUrl(url.getUrl());

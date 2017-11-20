@@ -78,8 +78,8 @@ public class DoctorDeptPicController {
 	    }
 	 
 	 @RequestMapping(value = "save")
-	    public @ResponseBody Result<Integer> save(int deptId,@RequestParam("fileName") MultipartFile file){
-	        return doctorDeptPicService.addDoctorDeptPic(deptId, file);
+	    public @ResponseBody Result<Integer> save(int deptId,int type,@RequestParam("fileName") MultipartFile file){
+	        return doctorDeptPicService.addDoctorDeptPic(deptId,type, file);
 	    }
 	 
 	 
@@ -94,8 +94,8 @@ public class DoctorDeptPicController {
 	    }
 	 
 	 @RequestMapping(value = "update",method = RequestMethod.POST)
-	    public @ResponseBody Result<Integer> update(@RequestParam("fileName") MultipartFile file, int deptId,int sex,int sid){	       
-	        return doctorDeptPicService.updateDoctorDeptPic(sid, deptId, file);
+	    public @ResponseBody Result<Integer> update(@RequestParam("fileName") MultipartFile file,int type, int deptId,int sex,int sid){	       
+	        return doctorDeptPicService.updateDoctorDeptPic(sid, deptId,type, file);
 	    }
 	
 }

@@ -29,7 +29,13 @@ var textStr;
             			</#list>
                     </select>
                 </div>
-               
+                <div class="form-group">
+                    <label>类型</label>
+                    <select name="type" class="form-control select2" style="width: 100%;">
+                        <option value="0">主治医生宣传图</option>
+                        <option value="1">科室详情背景图</option>
+                    </select>
+                </div>
                  <div class="form-group">
                     <label>上传文件</label>
                     <input type="file" class="form-control" name="fileName" id="fileName" value="上传头像" >

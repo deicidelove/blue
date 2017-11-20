@@ -5,6 +5,8 @@ package com.common.system.controller;
 
 import java.util.List;
 
+import javassist.expr.NewArray;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.entity.BlueDept;
+import com.common.system.entity.BlueDeptDoctorPic;
 import com.common.system.entity.BlueProjectAdvert;
 import com.common.system.entity.BlueStaff;
 import com.common.system.service.CommonService;
@@ -49,11 +52,13 @@ public class DeptController {
 	public ModelAndView deptDetialById(ModelAndView modelAndView,
 			@PathVariable Integer sid) {
 		List<BlueProjectAdvert> deptLBT = commonService.findTypeAdvert(9);
+		BlueDeptDoctorPic deptBg = commonService.findPic(1,sid);
 		Result<BlueDept> result = deptService.findBySid(sid);
 		List<BlueStaff> staffs = commonService.findStaffByDeptId(sid);
         modelAndView.addObject("dept",result.getData());
         modelAndView.addObject("doctors",staffs);
         modelAndView.addObject("deptLBT", deptLBT);
+        modelAndView.addObject("deptBg", deptBg==null?new BlueDeptDoctorPic():deptBg);
         modelAndView.setViewName("/html/deptDetial");
         return modelAndView;
 

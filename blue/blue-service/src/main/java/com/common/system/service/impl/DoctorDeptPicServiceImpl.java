@@ -74,12 +74,13 @@ public class DoctorDeptPicServiceImpl implements DoctorDeptPicService {
 	 * @see com.common.system.service.DoctorDeptPicService#addDoctorDeptPic(java.lang.Integer, org.springframework.web.multipart.MultipartFile)
 	 */
 	@Override
-	public Result<Integer> addDoctorDeptPic(Integer deptId, MultipartFile file) {
+	public Result<Integer> addDoctorDeptPic(Integer deptId,int type, MultipartFile file) {
 		try {
 			String url =PicUtil.upFile(file);
 			BlueDeptDoctorPic pic = new BlueDeptDoctorPic();
 			pic.setUrl(url);
 			pic.setDeptId(deptId);
+			pic.setType(type);
 			pic.setDeptName(deptDao.findBySid(deptId).getName());
 			int count = deptDoctorPicDao.add(pic);
 			return new Result<Integer>(true,"保存成功！",count);
@@ -101,7 +102,7 @@ public class DoctorDeptPicServiceImpl implements DoctorDeptPicService {
 	}
 
 	@Override
-	public Result<Integer> updateDoctorDeptPic(Integer sid, Integer deptId,
+	public Result<Integer> updateDoctorDeptPic(Integer sid, Integer deptId,int type,
 			MultipartFile file) {
 		try {
 			String url =PicUtil.upFile(file);
@@ -109,6 +110,7 @@ public class DoctorDeptPicServiceImpl implements DoctorDeptPicService {
 			pic.setSid(sid);
 			pic.setUrl(url);
 			pic.setDeptId(deptId);
+			pic.setType(type);
 			pic.setDeptName(deptDao.findBySid(deptId).getName());
 			int count = deptDoctorPicDao.add(pic);
 			return new Result<Integer>(true,"更新成功！",count);

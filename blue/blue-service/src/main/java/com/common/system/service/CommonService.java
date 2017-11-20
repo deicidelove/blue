@@ -56,7 +56,7 @@ public interface CommonService {
 	
 	public BluePation findPation(Integer sid);
 	
-	public BlueDeptDoctorPic findPic(Integer deptId);
+	public BlueDeptDoctorPic findPic(int type,Integer deptId);
 	
 	public List<BlueProjectAdvert> findTypeAdvert(int type);
 	

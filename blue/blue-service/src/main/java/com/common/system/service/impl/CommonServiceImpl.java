@@ -266,9 +266,9 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public BlueDeptDoctorPic findPic(Integer deptId) {
+	public BlueDeptDoctorPic findPic(int type,Integer deptId) {
 		try {
-			BlueDeptDoctorPic pic = deptDoctorPicDao.findByDeptId(deptId);
+			BlueDeptDoctorPic pic = deptDoctorPicDao.findByDeptId(type,deptId);
 			return pic;
 		} catch (Exception e) {
 			LOG.error("查询findPations失败！msg:{}", e);

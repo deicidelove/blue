@@ -41,6 +41,7 @@
 								<th>序号</th>
 								<th>科室名</th>
 								<th>图片地址</th>
+								<th>类型</th>
 								<th>操作</th>
 							</tr>
 						</tr>
@@ -76,6 +77,7 @@ $(function() {
 		    {"data":null}, 
 			{"data":"deptName"},
 			{"data":"url"},
+			{"data":null},
 			{"data":null} 
 			],
 		"columnDefs":[
@@ -85,6 +87,17 @@ $(function() {
 			    render: function (data) {
 			    	No=No+1;
 			        return No;
+			    }
+			},
+			{
+			    targets: 3,
+			    data: null,
+			    render: function (data) {
+			    	if(data.type == 0){
+			    		return "主治医生宣传图";
+			    	}else{
+			    		return "科室详情背景图";
+			    	}
 			    }
 			},
 			
