@@ -207,6 +207,6 @@
 </body>
 </html>
 <script src="../../js/jquery.js"></script>
-<script src="../../js/integral.js"></script>
+<script src="../../js/integral.js?v=2"></script>
 <script src="../../js/bluecommon.js"></script>
 <script src="../../js/jifen.js?v=1"></script>

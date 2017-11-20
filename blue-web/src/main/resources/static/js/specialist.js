@@ -38,6 +38,9 @@
                 $('.drop_down_span01').text($text);
             });
             $('.search_btn').on('click',function(){
+            	if(!$('.search_input').val()){
+            		return;
+            	}
               	var url = basePath+ "/doctorFindBySearch/"+$('.search_input').val();
             	window.location.href=url;
             });

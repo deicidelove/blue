@@ -34,7 +34,7 @@
         <div class="flex-1 small_img03" type="3"></div>
     </div>
     <div class="small_div">
-        <span class="left small_div01"></span>
+        <!-- <span class="left small_div01"></span> -->
         <span class="right small_div02" id="generateImg">确定</span>
     </div>
 </div>
@@ -42,4 +42,4 @@
 </html>
 <script src="../../js/jquery.js"></script>
 <script src="../../js/bluecommon.js"></script>
-<script src="../js/template.js?v=7"></script>
+<script src="../js/template.js?v=11"></script>

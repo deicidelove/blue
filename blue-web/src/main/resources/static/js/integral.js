@@ -7,6 +7,7 @@
     var integral = {
         init:function () {
             integral._bind();
+            jinzhi=1;
         },
         _bind:function () {
             $('.integral_tab01').on('click',function(){
@@ -16,6 +17,7 @@
                 $('.integral_ul').hide();
                 $('.unveiled_ul').show();
                 JF.Jifen.getActList();
+                jinzhi=1;
             });
             $('.integral_tab02').on('click',function(){
                 $(this).addClass('_color').siblings().removeClass('_color');
@@ -24,6 +26,7 @@
                 $('.integral_ul').show();
                 $('.unveiled_ul').hide();
                 JF.Jifen.getGivingCodeList();
+                jinzhi=1;
             });
             $('.help_btn01').on('click',function(){
                 $('.help').hide();

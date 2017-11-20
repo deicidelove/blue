@@ -69,7 +69,13 @@ public class TemplateController {
 		return qrcodeUrl;
 	}
 	
-	
+	public static void main(String[] args) {
+		String fileUrl = "../images/icon-132.jpg";
+		if(fileUrl.indexOf("..") != -1){
+			fileUrl = "http://wx.njlxkq.com"+fileUrl.substring(2);
+		}
+		System.out.println(fileUrl);
+	}
 	@ResponseBody
 	@RequestMapping(value = "/getCombinePic", method = RequestMethod.POST)
 	public String getCombinePic(String fileUrl, String openId, String type) throws Exception {
@@ -83,6 +89,9 @@ public class TemplateController {
 			} else {
 				// 二维码网址
 				try {
+					if(fileUrl.indexOf("..") != -1){
+						fileUrl = "http://wx.njlxkq.com"+fileUrl.substring(2);
+					}
 					String picturePathStr = wxUser.getCombinedPicturePath();
 					Map<String, String> typePicMap = JSON.parseObject(picturePathStr, new TypeReference<Map<String, String>>(){});
 					if ( !CollectionUtils.isEmpty(typePicMap) && typePicMap.containsKey(type) ) {

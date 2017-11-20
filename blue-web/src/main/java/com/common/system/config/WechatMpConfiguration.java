@@ -131,7 +131,7 @@ public class WechatMpConfiguration {
                 .event(WxConsts.EVT_SCAN).handler(this.getScanHandler()).end();
 
         // 默认
-        newRouter.rule().async(false).handler(this.getMsgHandler()).end();
+//        newRouter.rule().async(false).handler(this.getMsgHandler()).end();
 
         return newRouter;
     }

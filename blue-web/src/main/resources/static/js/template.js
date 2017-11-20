@@ -13,6 +13,9 @@
             $('.small_list>div').on('click',function(){
                 $(this).addClass('small_img_boder').siblings().removeClass('small_img_boder');
                 var $url = $(this).css("background-image").split("\"")[1];
+                if(!$url){
+                	$url =$(this).css("background-image").split("(")[1].split(")")[0];
+                }
                 $('.big_img_div>img').attr('src',$url);
                 var type = $(this).attr("type");
                 if(urlMaps){
@@ -59,7 +62,7 @@
         		return true;
         	}
     	  }); 
-    	$("div[type="+1+"]").trigger("click");
     }
+    $("div[type="+1+"]").trigger("click");
     
 })();
