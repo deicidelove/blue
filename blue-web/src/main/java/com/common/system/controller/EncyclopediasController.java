@@ -77,7 +77,7 @@ public class EncyclopediasController {
 	public ModelAndView deptDetialById(ModelAndView modelAndView,
 			@PathVariable Integer sid) {
 		Result<BlueEncyclopedias> result = encyclopediasService.findEncyclopedias(sid);
-        modelAndView.addObject("bean",result.getData());
+        modelAndView.addObject("bean",result.getData() == null?new BlueEncyclopedias():result.getData());
         modelAndView.setViewName("/html/encyclopediasDetial");
         return modelAndView;
 

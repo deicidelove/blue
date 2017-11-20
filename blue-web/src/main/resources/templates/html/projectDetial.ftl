@@ -13,7 +13,7 @@
     <div class="heade_text">项目中心</div>
     <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
-<div class="project_bg"></div>
+<div class="project_bg" style="background-image: url(${project.url})"></div>
 <div class="project_cont">
     <div class="introduce">
         <div class="introduce_bg01">

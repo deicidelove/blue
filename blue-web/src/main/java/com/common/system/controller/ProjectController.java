@@ -86,7 +86,7 @@ public class ProjectController {
 	public ModelAndView deptDetialById(ModelAndView modelAndView,
 			@PathVariable Integer sid) {
 		Result<BlueProject> result = projectService.findProject(sid);
-        modelAndView.addObject("project",result.getData());
+        modelAndView.addObject("project",result.getData()==null?new BlueProject():result.getData());
         modelAndView.setViewName("/html/projectDetial");
         return modelAndView;
 
