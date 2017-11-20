@@ -79,6 +79,14 @@
     color:#555;
     line-height: 0.4rem;
 }
+.sift_img_botm .flex-1 div:last-child{
+    padding:0 0.1rem;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+}
 .sift_img_botm_bg01{
     height:1.52rem;
     background: url("../images/icon-71.png")no-repeat center;

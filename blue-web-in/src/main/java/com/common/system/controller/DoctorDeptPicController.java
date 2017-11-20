@@ -94,7 +94,7 @@ public class DoctorDeptPicController {
 	    }
 	 
 	 @RequestMapping(value = "update",method = RequestMethod.POST)
-	    public @ResponseBody Result<Integer> update(@RequestParam("fileName") MultipartFile file,int type, int deptId,int sex,int sid){	       
+	    public @ResponseBody Result<Integer> update(@RequestParam("fileName") MultipartFile file,int type, int deptId,int sid){	       
 	        return doctorDeptPicService.updateDoctorDeptPic(sid, deptId,type, file);
 	    }
 	

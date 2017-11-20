@@ -112,7 +112,7 @@ public class DoctorDeptPicServiceImpl implements DoctorDeptPicService {
 			pic.setDeptId(deptId);
 			pic.setType(type);
 			pic.setDeptName(deptDao.findBySid(deptId).getName());
-			int count = deptDoctorPicDao.add(pic);
+			int count = deptDoctorPicDao.update(pic);
 			return new Result<Integer>(true,"更新成功！",count);
 		} catch (Exception e) {
 			LOG.error("更新失败！msg:{}", e);
