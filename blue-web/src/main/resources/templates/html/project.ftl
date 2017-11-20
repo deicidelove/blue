@@ -74,26 +74,24 @@
     <span class="right"></span>
 </div>
 </a>
-<#if projectMiddle??>
-<a href="${projectMiddle.jumpUrl}"><div class="all_01" style="background-image:${projectMiddle.picUrl}"></div></a>
-<#else>
-<div class="all_01" ></div>
-</#if>
+
+<a href="${projectBigMiddle.jumpUrl}"><div class="all_01" style="background-image:url(${projectBigMiddle.picUrl})"></div></a>
+
 <div class="all_bg box">
      <#if project5??>
 	    <div class="all_bg_div left">
-	    <a href="/projectDetial/${project5.sid}">
-	        <div class="all_02" style="background-image: url(${project5.url})"></div>
-	        <div class="all_text01">${project5.name}</div>
+	    <a href="${project5.jumpUrl}">
+	        <div class="all_02" style="background-image: url(${project5.picUrl})"></div>
+	        <div class="all_text01">${project5.title}</div>
 	        <div class="all_text02">${project5.context}</div>
     	</a>
     	</div>
     </#if>
      <#if project6??>
 	    <div class="all_bg_div margin_12 left">
-	    <a href="/projectDetial/${project6.sid}">
-	        <div class="all_03" style="background-image: url(${project6.url})"></div>
-	        <div class="all_text01">${project6.name}</div>
+	    <a href="${project6.jumpUrl}">
+	        <div class="all_03" style="background-image: url(${project6.picUrl})"></div>
+	        <div class="all_text01">${project6.title}</div>
 	        <div class="all_text02">${project6.context}</div>
     	 </a>
     	</div>
@@ -101,9 +99,9 @@
     </#if>
      <#if project7??>
 	    <div class="all_bg_div right">
-	    <a href="/projectDetial/${project7.sid}" >
-	        <div class="all_04" style="background-image: url(${project7.url})"></div>
-	        <div class="all_text01">${project7.name}</div>
+	    <a href="${project7.jumpUrl}" >
+	        <div class="all_04" style="background-image: url(${project7.picUrl})"></div>
+	        <div class="all_text01">${project7.title}</div>
 	        <div class="all_text02">${project7.context}</div>
     	</a>
     	</div>

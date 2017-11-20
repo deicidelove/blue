@@ -55,7 +55,7 @@
                         <option <#if bean.type == 12>selected="selected"</#if> value="12">福利中心-积分抽奖广告</option>
                         <option <#if bean.type == 13>selected="selected"</#if> value="13">福利中心-近期活动广告</option>
                        	<option <#if bean.type == 14>selected="selected"</#if> value="14">福利中心-轮询广告</option>
-                        
+                        <option <#if bean.type == 15>selected="selected"</#if> value="15">项目中心所有项目小图</option>
                     </select>
 				</div>
                 <div class="form-group">

@@ -23,12 +23,12 @@ public class BlueProjectAdvert implements Serializable{
 	
 	
 	
-	private String title;
+	private String title="";
 	
-	private String context;
+	private String context="";
 	
-	private String picUrl;
-	private String jumpUrl;
+	private String picUrl ="";
+	private String jumpUrl="";
 	
 	private Integer type;
 	

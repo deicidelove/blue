@@ -44,7 +44,7 @@
                         <option value="1">首页中间广告</option>
                         <option value="2">首页近期活动广告</option>
                         <option value="3">项目中心轮播图</option>
-                        <option value="4">项目中心中间广告</option>
+                        <option value="4">项目中心所有项目大图</option>
                         <option value="5">项目中心底部广告</option>
                         <option value="6">项目中心上半部广告</option>
                         <option value="7">口腔百科轮播图</option>
@@ -55,6 +55,7 @@
                         <option value="12">福利中心-积分抽奖广告</option>
                         <option value="13">福利中心-近期活动广告</option>
                     	<option value="14">福利中心-轮询广告</option>
+                    	<option value="15">项目中心所有项目小图</option>
                     </select>
 				</div>
 				 <div class="form-group">
