@@ -75,8 +75,8 @@
     
     <div class="flex-1 footer_list">
       <a href="/">
-        <div class="footer_bg04_active"></div>
-        <div class="footer_color">首页</div>
+        <div class="footer_bg04"></div>
+        <div >首页</div>
      </a>
     </div>
     
@@ -93,10 +93,10 @@
         <div>走进蓝鲟</div>
     </a>
     </div>
-    <div class="flex-1 footer_list">
+    <div class="flex-1 footer_list ">
         <a href="/personal/index">
-            <div class="footer_bg03"></div>
-            <div>我的</div>
+            <div class="footer_bg03_active"></div>
+            <div class ="footer_color">我的</div>
         </a>
     </div>
 </div>
