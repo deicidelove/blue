@@ -21,7 +21,7 @@
 <ul class="tab_ul">
     <li class="tab_li">
         <div class="intro">
-            <div class="intro_bg"></div>
+            <div class="intro_bg" style="background-image: url(${hospitalJSA.url})"></div>
             <div class="intro_cont">
                 <div class="intro_cont_head">
                     <span class="left"></span>
