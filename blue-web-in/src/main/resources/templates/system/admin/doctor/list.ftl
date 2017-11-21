@@ -71,6 +71,7 @@ $(function() {
 	//初始化表格
 	debugger;
 	var No=0;
+	$('#doctor_tab').dataTable().fnDestroy();
 	doctor_tab=$('#doctor_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,

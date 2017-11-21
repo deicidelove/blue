@@ -54,5 +54,6 @@ var textStr;
 </div>
 
 <script type="text/javascript">
+UE.getEditor('editor');
  var ue = UE.getEditor('editor');
 </script>

@@ -106,7 +106,7 @@ public class SubscribeHandler extends AbstractHandler {
         }
 
         try {
-            return new TextBuilder().build("感谢关注", wxMessage, weixinService);
+            return new TextBuilder().build("走进蓝鲟，微笑出行", wxMessage, weixinService);
         } catch (Exception e) {
             this.logger.error(e.getMessage(), e);
         }

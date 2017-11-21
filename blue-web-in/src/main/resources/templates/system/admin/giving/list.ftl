@@ -29,7 +29,7 @@
 						<button type="submit" onclick="securityReload();" class="btn btn-primary">搜索</button>
 					</div>
 				</div>
-				<table id="security_tab" class="table table-bordered table-striped">
+				<table id="giving_tab" class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<tr>
@@ -51,7 +51,7 @@
 </div>
 
 <script type="text/javascript">
-var security_tab;
+var giving_tab;
 $(function() {
 	//初始化时间选择器
 	$('#securityTime').datepicker({
@@ -63,7 +63,8 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
-	security_tab=$('#security_tab').DataTable({
+	$('#giving_tab').dataTable().fnDestroy();
+	giving_tab=$('#giving_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,
 		"searching":false,
@@ -134,16 +135,16 @@ $(function() {
     } );
 	
 	$("#securitySeek").on("click",function(){
- 		reloadTable(security_tab,"#securityTime","#securityPremise");
+ 		reloadTable(giving_tab,"#securityTime","#securityPremise");
 	});
 });
 
 function securityReload(){
-	reloadTable(security_tab,"#securityTime","#securityPremise");
+	reloadTable(giving_tab,"#securityTime","#securityPremise");
 }
 
 function securityToListAjax(){
-	list_ajax = security_tab;
+	list_ajax = giving_tab;
 	console.log(list_ajax);
 }
 function isNull(data){

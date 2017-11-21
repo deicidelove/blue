@@ -57,6 +57,7 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
+	$('#project_tab').dataTable().fnDestroy();
 	project_tab=$('#project_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,

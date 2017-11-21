@@ -59,6 +59,8 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
+	
+	$('#projectAdvert_tab').dataTable().fnDestroy();
 	projectAdvert_tab=$('#projectAdvert_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,

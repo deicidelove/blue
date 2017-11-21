@@ -24,7 +24,7 @@
 				</div>
 				<div class="form-group">
 					<label>商品详情</label> 
-					<script id="editor" name="goodsDetail" type="text/plain" style="width:100%;height:500px;"></script>
+					<script id="editorAdd" name="goodsDetail" type="text/plain" style="width:100%;height:500px;"></script>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -76,5 +76,14 @@ function isNumber(obj) {
 }  
 </script>
 <script type="text/javascript">
- var ue = UE.getEditor('editor');
+ var ue = UE.getEditor('editorAdd');
  </script>
+ 
+ <script>
+   $(function () { 
+	   $('#lgModal').on('hide.bs.modal', function () {
+		   $(this).removeData("bs.modal"); 
+		   $(".modal-body").children().remove();
+      })
+   });
+</script>

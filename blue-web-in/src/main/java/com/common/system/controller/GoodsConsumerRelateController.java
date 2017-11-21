@@ -90,7 +90,7 @@ public class GoodsConsumerRelateController extends BaseController{
         		if(null != goodsResult.getData()){
         			givingMap.put("goodsName", goodsResult.getData().getGoodsName());
         		}
-        		givingMap.put("goodsId", givingEntity.getOpenId());
+        		givingMap.put("openId", givingEntity.getOpenId());
         		WxDetailEntity wxDetailEntity = wxDetailService.findByOpenId(givingEntity.getOpenId());
         		if(null != wxDetailEntity){
         			givingMap.put("name", wxDetailEntity.getName());

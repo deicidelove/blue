@@ -62,6 +62,7 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
+	$('#addOur_tab').dataTable().fnDestroy();
 	addOur_tab=$('#addOur_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,

@@ -69,6 +69,7 @@ $(function() {
 	//初始化表格
 	 debugger;
 	var No=0;
+	$('#DoctorSchedule_tab').dataTable().fnDestroy();
 	DoctorSchedule_tab=$('#DoctorSchedule_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,

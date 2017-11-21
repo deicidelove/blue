@@ -67,6 +67,7 @@ $(function() {
 	//初始化表格
 	debugger;
 	var No=0;
+	$('#oppointment_tab').dataTable().fnDestroy();
 	oppointment_tab=$('#oppointment_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,

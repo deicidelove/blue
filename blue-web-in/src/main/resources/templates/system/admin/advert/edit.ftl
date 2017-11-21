@@ -61,6 +61,7 @@
 
 <script type="text/javascript">
 	var editContext = '${bean.context}';
+	UE.getEditor('editor');
  	var ue = UE.getEditor('editor');
  	 //异步回调
     ue.ready(function() {

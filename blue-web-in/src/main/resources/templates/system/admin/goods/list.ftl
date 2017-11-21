@@ -5,7 +5,7 @@
 				<h3 class="box-title">商品管理</h3>
 				<div class="box-tools pull-right">
 					<@shiro.hasPermission name="goodsAdd">
-						<a onclick="securityToListAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/goods/add">添加</a>
+						<a onclick="securityToListAjax();" class="btn btn-sm btn-primary"  target="modal" modal="lg" href="/goods/add">添加</a>
 					</@shiro.hasPermission>
 				</div>
 			</div>
@@ -64,6 +64,7 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
+	$('#goods_tab').dataTable().fnDestroy();
 	goods_tab=$('#goods_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,

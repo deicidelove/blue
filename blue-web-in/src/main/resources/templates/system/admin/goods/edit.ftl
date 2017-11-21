@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label>商品详情</label> 
-                    <script id="editor" name="goodsDetail" type="text/plain" style="width:100%;height:500px;" ></script>
+                    <script id="editorEdit" name="goodsDetail" type="text/plain" style="width:100%;height:500px;" ></script>
                 </div>
                 
             </div>
@@ -63,7 +63,8 @@
 
 <script type="text/javascript">
 	var editContext = '${bean.goodsDetail}';
- 	var ue = UE.getEditor('editor');
+	UE.delEditor('editorEdit');
+ 	var ue = UE.getEditor('editorEdit');
  	 //异步回调
     ue.ready(function() {
          ue.execCommand('insertHtml', editContext);

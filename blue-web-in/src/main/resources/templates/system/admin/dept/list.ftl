@@ -40,6 +40,7 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
+	$('#blueDept_tab').dataTable().fnDestroy();
 	blueDept_tab=$('#blueDept_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,

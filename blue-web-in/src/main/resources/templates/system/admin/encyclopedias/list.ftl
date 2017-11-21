@@ -64,6 +64,7 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
+	$('#encyclopedias_tab').dataTable().fnDestroy();
 	encyclopedias_tab=$('#encyclopedias_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,
@@ -130,7 +131,7 @@ function encyclopediasReload(){
 }
 
 function encyclopediasToListAjax(){
-	list_ajax = esncyclopedias_tab;
+	list_ajax = encyclopedias_tab;
 	console.log(list_ajax);
 }
 function isNull(data){

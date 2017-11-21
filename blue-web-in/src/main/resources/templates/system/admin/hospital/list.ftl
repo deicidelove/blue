@@ -66,6 +66,7 @@ $(function() {
 	//初始化表格
 	
 	var No=0;
+	$('#hospital_tab').dataTable().fnDestroy();
 	hospital_tab=$('#hospital_tab').DataTable({
 		"dom":'itflp',
 		"processing":true,
