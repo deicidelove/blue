@@ -101,18 +101,15 @@ public class TemplateController {
 							if ( userImg == null ) {
 								return JSON.toJSONString(StandardJSONResult.getFailedInstance("不是合法图片,请重新上传"));
 							} else {
-								// 生成空白图片
-								BufferedImage blankPic = buildBlankPic(userImg.getWidth(), userImg.getHeight()/4);
+								// (588, 1150) (689, 1249)
 								// 缩小二维码
-								Integer zoomSize = getZoomSize(blankPic.getWidth(), blankPic.getHeight());
+								Integer zoomSize = getZoomSize();
 								BufferedImage zoomQRCode = zoomPic(qrcodeImg, zoomSize, zoomSize);
 								// 合成图片
-								overlapImage(blankPic, zoomQRCode);
-								// 拼接图片
-								BufferedImage finalImg = combineImages(userImg, blankPic);
+								overlapImage(userImg, zoomQRCode, 590, 1150);
 								// 写入本地
 								String pictureName = openId +type+ ".jpg";
-								String picUrl =PicUtil.upFile(finalImg, pictureName);
+								String picUrl =PicUtil.upFile(userImg, pictureName);
 								// 更新合成后的本地文件地址
 								wxUserBLueService.updateCombinedPicturePath(openId, putPicturePath(typePicMap, type, picUrl));
 								return JSON.toJSONString(StandardJSONResult.getSuccessInstance(JSON.toJSONString(new PictureFilePath(picUrl, picUrl))));
@@ -197,23 +194,11 @@ public class TemplateController {
 	}
 	
 	
+	// 默认二维码宽度为100
+	private Integer getZoomSize() {
+		return 100;
+	}
 	
-	private Integer getZoomSize(int width, int height) {
-		Integer smallWidth = width/2;
-		Integer smallHeight = height/2;
-		return smallWidth > smallHeight ? smallHeight : smallWidth;
-	}
-
-
-	private BufferedImage combineImages(BufferedImage userImg, BufferedImage blankPic) {
-		BufferedImage imageNew = 
-				new BufferedImage(userImg.getWidth(), userImg.getHeight() + blankPic.getHeight(), BufferedImage.TYPE_INT_RGB);
-		int[] imageRGBArrOne = getImageRGB(userImg);
-		int[] imageRGBArrTwo = getImageRGB(blankPic);
-		imageNew.setRGB(0, 0, userImg.getWidth(), userImg.getHeight(), imageRGBArrOne, 0, userImg.getWidth());
-		imageNew.setRGB(0, userImg.getHeight(), blankPic.getWidth(), blankPic.getHeight(), imageRGBArrTwo, 0, blankPic.getWidth());
-		return imageNew;
-	}
 	
 	private int[] getImageRGB(BufferedImage image) {
 		int[] ImageRGBArr = new int[image.getWidth() * image.getHeight()];
@@ -254,26 +239,35 @@ public class TemplateController {
 	}
 	
 	
-	private BufferedImage buildBlankPic(int width, int height) {
-		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);  
-        Graphics g = image.getGraphics();// 得到图片 
-        g.fillRect(0, 0, width, height);    
-        g.setColor(Color.WHITE);  
-        return image;
-	}
-	
-	
-	private void overlapImage(BufferedImage big, BufferedImage small) {  
+	private void overlapImage(BufferedImage big, BufferedImage small, int x, int y) {  
         try {  
         	Graphics2D g = big.createGraphics();
-            int x = 3*big.getWidth()/4 - small.getWidth()/2;  
-            int y = big.getHeight()/2 - small.getHeight()/2;  
-            g.drawImage(small, x, y, small.getWidth(), small.getHeight(), null);  
-            g.dispose();  
+        	g.drawImage(small, x, y, small.getWidth(), small.getHeight(), null);  
+            g.dispose();
         } catch (Exception e) {  
             logger.error("在合成二维码图片时发生异常", e);
-        }  
+        }
     }
 	
 	
+	//****************************************************************************************************************************
+	@SuppressWarnings("unused")
+	private BufferedImage combineImages(BufferedImage userImg, BufferedImage blankPic) {
+		BufferedImage imageNew = 
+				new BufferedImage(userImg.getWidth(), userImg.getHeight() + blankPic.getHeight(), BufferedImage.TYPE_INT_RGB);
+		int[] imageRGBArrOne = getImageRGB(userImg);
+		int[] imageRGBArrTwo = getImageRGB(blankPic);
+		imageNew.setRGB(0, 0, userImg.getWidth(), userImg.getHeight(), imageRGBArrOne, 0, userImg.getWidth());
+		imageNew.setRGB(0, userImg.getHeight(), blankPic.getWidth(), blankPic.getHeight(), imageRGBArrTwo, 0, blankPic.getWidth());
+		return imageNew;
+	}
+	
+	@SuppressWarnings("unused")
+	private BufferedImage buildBlankPic(int width, int height) {
+		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);  
+		Graphics g = image.getGraphics();// 得到图片 
+		g.fillRect(0, 0, width, height);    
+		g.setColor(Color.WHITE);  
+		return image;
+	}
 }
