@@ -63,7 +63,6 @@
 
 <script type="text/javascript">
 	var editContext = '${bean.goodsDetail}';
-	UE.delEditor('editorEdit');
  	var ue = UE.getEditor('editorEdit');
  	 //异步回调
     ue.ready(function() {

@@ -37,7 +37,7 @@ var textStr;
 				</div>
 				<div class="form-group">
 					<label>最近活动内容</label> 
-					<script id="editor" name="lastActContent" type="text/plain" style="width:100%;height:500px;"></script>
+					<script id="editorLastActAdd" name="lastActContent" type="text/plain" style="width:100%;height:500px;"></script>
 				</div>
 				 <div class="form-group">
                     <label>上传文件</label>
@@ -55,7 +55,14 @@ var textStr;
 	</div>
 </div>
 <script type="text/javascript">
-UE.getEditor('editor');
-	var ue = UE.getEditor('editor');
+	var ue = UE.getEditor('editorLastActAdd');
 	
+</script>
+ <script>
+   $(function () { 
+	   $('#lgModal').on('hide.bs.modal', function () {
+		   $(this).removeData("bs.modal"); 
+		   $(".modal-body").children().remove();
+      })
+   });
 </script>

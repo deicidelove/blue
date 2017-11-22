@@ -187,16 +187,16 @@
     
     <div class="flex-1 footer_list">
       <a href="/">
-        <div class="footer_bg04_active"></div>
-        <div class="footer_color">首页</div>
+        <div class="footer_bg04"></div>
+        <div >首页</div>
      </a>
     </div>
    
    
     <div class="flex-1 footer_list">
          <a href="/blueWebsite">
-        <div class="footer_bg01"></div>
-        <div>蓝鲟</div>
+        <div class="footer_bg01_active"></div>
+        <div class="footer_color">蓝鲟</div>
         </a>
     </div>
     
