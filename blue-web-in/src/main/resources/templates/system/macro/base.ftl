@@ -148,6 +148,11 @@
  		z-index: 9999!important;
  	}
  </style>
+  <style>
+ 	.form-group .form-control{
+ 		z-index: 9999!important;
+ 	}
+ </style>
 <script>
     function onClickCheckbox(clickName, target) {
         var status = false;
@@ -456,7 +461,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="lgModal">
+<div class="modal fade" id="lgModal" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

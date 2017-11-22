@@ -1,6 +1,6 @@
 
 <script type="text/javascript">
-
+$(document).ready(function(){
 	//初始化时间选择器
 	$('#doctorSchAddTime').datepicker({
 		language: 'zh-CN',
@@ -8,6 +8,7 @@
 		autoclose: true,
 		todayHighlight: true
 	});
+	 });
 	
 	function doctorSave(){
 		$("span").remove(".errorClass");
@@ -28,6 +29,8 @@
 		        success: function (data) {
 	                var json = JSON.parse(data);
 	                if (json.status){
+	                 $(this).removeData("bs.modal"); 
+		  			 $(".modal-body").children().remove();
 	                    $("#lgModal").modal('hide');
 	                    alertMsg("添加成功","success");
 	                    reloadTable(list_ajax,"#doctorSchListTime","#deptNameSelect");
@@ -40,7 +43,7 @@
 	}
 
 </script>
-<div class="row">
+<div class="row"  >
 	<div class="col-md-12">
 		<form id="doctorSchAddForm">
 			<div class="modal-body">
@@ -76,10 +79,26 @@
 			</div>
 			<div class="modal-footer">
 				<div class="pull-right">
-					<button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>关闭</button>
+					<button type="button" class="btn btn-default btn-sm" data-dismiss="modal" onclick="doctorClose();"><i class="fa fa-close"></i>关闭</button>
 					<button type="button" class="btn btn-primary btn-sm" onclick="doctorSave();"><i class="fa fa-save"></i>保存</button>
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
+ 
+ <script>
+	 $('.close').on('click',function(){
+	 		debugger;
+		   $(this).removeData("bs.modal"); 
+		   $(".modal-body").children().remove();
+		   $("#lgModal").modal('hide');
+	 
+	 });
+   function doctorClose(){
+    	debugger;
+		   $(this).removeData("bs.modal"); 
+		   $(".modal-body").children().remove();
+		    $("#lgModal").modal('hide');
+   }
+</script>

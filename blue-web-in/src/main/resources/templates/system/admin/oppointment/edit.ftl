@@ -14,7 +14,7 @@
             </div>
             <div class="box-footer">
                 <div class="pull-right">
-                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><i
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" onclick="oppoUpdateClose();"><i
                             class="fa fa-close"></i>关闭
                     </button>
                     <button onclick="oppoUpdate();" type="button" class="btn btn-primary btn-sm"><i
@@ -26,6 +26,7 @@
     </div>
 </div>
 <script type="text/javascript">
+	$(document).ready(function(){
 	//初始化时间选择器
 	$('#oppoEditTime').datepicker({
 		language: 'zh-CN',
@@ -33,6 +34,7 @@
 		autoclose: true,
 		todayHighlight: true
 	});
+  });
 	  function oppoUpdate() {
         debugger;
         $.ajax({
@@ -42,7 +44,10 @@
             data: $("#oppoEditForm").serialize(),
             success: function (data) {
                 var json = JSON.parse(data);
-                if (json.status) {
+                if (json.status) 
+                {
+                 $(this).removeData("bs.modal"); 
+		   		$(".modal-body").children().remove();
                     $("#lgModal").modal('hide');
                     alertMsg("更新成功", "success");
                     reloadTable(list_ajax, "#oppointmentTime", "#deptOppointmentSelect");
@@ -57,4 +62,19 @@
             }
         });
     }
+</script>
+ <script>
+  $('.close').on('click',function(){
+	 		debugger;
+		   $(this).removeData("bs.modal"); 
+		   $(".modal-body").children().remove();
+		   $("#lgModal").modal('hide');
+	 
+	 });
+   function oppoUpdateClose(){
+    	debugger;
+		   $(this).removeData("bs.modal"); 
+		   $(".modal-body").children().remove();
+		   $("#lgModal").modal('hide');
+   }
 </script>
