@@ -54,6 +54,13 @@ var textStr;
 </div>
 
 <script type="text/javascript">
-UE.getEditor('editor');
  var ue = UE.getEditor('editor');
+</script>
+ <script>
+   $(function () { 
+	   $('#lgModal').on('hide.bs.modal', function () {
+		   $(this).removeData("bs.modal"); 
+		   $(".modal-body").children().remove();
+      })
+   });
 </script>
