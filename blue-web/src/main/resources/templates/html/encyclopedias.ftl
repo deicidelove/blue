@@ -123,7 +123,7 @@
         <div class="left encyclopedia_li_bg" style="background-image: url(${encyclopedias1.url})"></div>
         <div class="left encyclopedia_li_cent">
             <div>${encyclopedias1.title}</div>
-            <div>${encyclopedias1.context}</div>
+            <div name="clearHtml">${encyclopedias1.context}</div>
         </div>
     </li>
     </a>
@@ -134,7 +134,7 @@
         <div class="left encyclopedia_li_bg encyclopedia_li_bg02" style="background-image: url(${encyclopedias2.url})"></div>
         <div class="left encyclopedia_li_cent">
             <div>${encyclopedias2.title}</div>
-             <div>${encyclopedias2.context}</div>
+             <div name="clearHtml">${encyclopedias2.context}</div>
         </div>
     </li>
     </a>
@@ -145,7 +145,7 @@
         <div class="left encyclopedia_li_bg encyclopedia_li_bg03" style="background-image: url(${encyclopedias3.url})"></div>
         <div class="left encyclopedia_li_cent">
             <div>${encyclopedias3.title}</div>
-             <div>${encyclopedias3.context}</div>
+             <div name="clearHtml">${encyclopedias3.context}</div>
         </div>
     </li>
      </a>
@@ -189,6 +189,7 @@
 </html>
 <script src="../js/jquery.js"></script>
 <script src="../js/swiper.min.js"></script>
+
 <script>
     var swiper = new Swiper('.swiper01 .swiper-container', {
         pagination: '.swiper-pagination',
@@ -212,4 +213,12 @@
         autoplay: 1500,
         autoplayDisableOnInteraction: false
     });
+</script>
+<script>
+	debugger;
+ 		$("[name=clearHtml]").each(function () {
+            var that = $(this);
+            var textNoHtml = that.text();
+			that.text(textNoHtml); 
+        });
 </script>
