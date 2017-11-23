@@ -41,7 +41,7 @@
 				     </#if>
 			        <div class="left encyclopedia_li_cent">
 			            <div>${advert.title}</div>
-			            <div>${advert.context}</div>
+			            <div name="clearHtml">${advert.context}</div>
 			        </div>
 			      </a>
 		    </li>
@@ -53,3 +53,14 @@
 </#list>
 </body>
 </html>
+
+<script src="../js/jquery.js"></script>
+<script>
+	debugger;
+ 		$("[name=clearHtml]").each(function () {
+            var that = $(this);
+            var textNoHtml = that.text();
+			that.text(textNoHtml); 
+        });
+</script>
+
