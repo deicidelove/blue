@@ -48,7 +48,7 @@ public class DoctorController {
 			BlueDeptDoctorPic url = commonService.findPic(0,dept.getSid());
 			List<BlueStaff> staffs = commonService.findStaffByDeptId(dept.getSid());
 			dto.setDoctors(staffs);
-			dto.setUrl(url.getUrl());
+			dto.setUrl(url==null?"":url.getUrl());
 			doctors.add(dto);
 		}
 		modelAndView.addObject("doctors", doctors);
