@@ -56,7 +56,6 @@
 
 <script src="../js/jquery.js"></script>
 <script>
-	debugger;
  		$("[name=clearHtml]").each(function () {
             var that = $(this);
             var textNoHtml = that.text();
