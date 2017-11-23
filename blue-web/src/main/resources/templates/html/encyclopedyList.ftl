@@ -16,16 +16,17 @@
 </div>
 
 <#assign i=1>
+<#if encys??>
 <#list encys as ency>
 	<#if (i+3)%4==0>
 		<a href="/encyclopediasDetial/${ency.sid}">
 			<div class="oral_an notice_an brdt_nospace">
 			     <#if ency.url??>
-			   		<img class="artical_an" src="${ency.url}" />
+			   		<img class="artical_an" src="${ency.url!}" />
 			     <#else>
 			     	<img class="artical_an" src="../images/notice_img01.jpg" />
 			     </#if>
-			    <div class="oral_an_head">${ency.title}</div>
+			    <div class="oral_an_head">${ency.title!}</div>
 			</div>
 		</a>
 	<#else>
@@ -35,13 +36,13 @@
 		    <li class="encyclopedia_li">
 			     <a href="/encyclopediasDetial/${ency.sid}">
 			         <#if ency.url??>
-			   			 <img class="left artical_img" src="${ency.url}" />
+			   			 <img class="left artical_img" src="${ency.url!}" />
 				     <#else>
 				     	<img class="left artical_img" src="../images/notice_img02.jpg" />
 				     </#if>
 			        <div class="left encyclopedia_li_cent">
-			            <div>${ency.title}</div>
-			            <div name="clearHtml">${ency.context}</div>
+			            <div>${ency.title!}</div>
+			            <div name="clearHtml">${ency.context!}</div>
 			        </div>
 			      </a>
 		    </li>
@@ -51,6 +52,7 @@
 	</#if>
 <#assign i=i+1>
 </#list>
+</#if>
 
 
 </body>

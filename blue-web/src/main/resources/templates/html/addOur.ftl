@@ -28,18 +28,21 @@
 </div>
 
 <ul class="job_list">
+<#if needWorks??>
 	<#list needWorks as needWork>
 		<a href="/workNeedDetial/${needWork.sid}">
 		<li>                     
-	        <h4><span class="salary">${needWork.wages}</span>${needWork.title}</h4>
+	        <h4><span class="salary">${needWork.wages}</span>${needWork.title!}</h4>
 	        <div class="info_labels">
-	            <span>招${needWork.needNum}人</span><em></em>
-	            <span>${needWork.education}</span><em></em>
-	            <span>${needWork.experience}</span>
+	            <span>招${needWork.needNum!}人</span><em></em>
+	            <span>${needWork.education!}</span><em></em>
+	            <span>${needWork.experience!}</span>
 	        </div>
 	    </li>
 	    </a>
+	   
     </#list>
+</#if>
 </ul>
 </body>
 </html>

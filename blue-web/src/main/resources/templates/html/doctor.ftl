@@ -18,7 +18,7 @@ var basePath = '${request.contextPath}';
 </div>
 <div class="search">
 	<#if search??>
-	<input name="search" type="text" class="search_input" placeholder="${search}" value="${search}"/>
+	<input name="search" type="text" class="search_input" placeholder="${search!}" value="${search!}"/>
 	<#else>
 	<input name="search" type="text" class="search_input" placeholder="搜索疾病，医生姓名"/>
 	</#if>
@@ -31,7 +31,7 @@ var basePath = '${request.contextPath}';
     	<#if flag>
         <span class="left drop_down_span01">请选择科室</span>
         <#else>
-	     <span class="left drop_down_span01">${deptName}</span>
+	     <span class="left drop_down_span01">${deptName!}</span>
 	     </#if>
         <span class="left drop_down_span02"></span>
         <span class="left drop_down_span03"></span>
@@ -41,7 +41,7 @@ var basePath = '${request.contextPath}';
         <#list  depts as dept>
 	         <a href="/findDoctor/${dept.sid}">
 		        <li class="down_li">
-		           <span class="left">${dept.name}</span>
+		           <span class="left">${dept.name!}</span>
 		            <!--<span class="right down_li_bg"></span>-->
 		        </li>
 	        </a>
@@ -50,32 +50,36 @@ var basePath = '${request.contextPath}';
     <div class="drop_down_bg"></div>
 </div>
 <div class="doctor">
+<#if doctors??>
 <#list doctors as temp>
-    <div class="specialist_bg" style="background-image:url(${temp.url})"></div>
+    <div class="specialist_bg" style="background-image:url(${temp.url!})"></div>
     <ul class="doctor_ul">
+    <#if temp.doctors??>
 	    <#list temp.doctors as doctor>
 	        <a href="/doctorDetial/${doctor.sid}/-1" >
 	        <li class="doctor_li">
                 <#if doctor.headUrl??>
-                <div class="doctor_img left" style="background-image: url(${doctor.headUrl})"></div>
+                <div class="doctor_img left" style="background-image: url(${doctor.headUrl!})"></div>
                 <#else>
                 <div class="doctor_img left" ></div>
                 </#if>
 	            
 	            <div class="doctor_xq left">
 	                <div class="name">
-	                    <span>${doctor.name}</span>
-	                    <span>${doctor.positionName}</span>
+	                    <span>${doctor.name!}</span>
+	                    <span>${doctor.positionName!}</span>
 	                </div>
-	                <div class="point">${doctor.introduce}</div>
+	                <div class="point">${doctor.introduce!}</div>
 	                <div class="specialist">专家门诊</div>
 	            </div>
 	            <div class="doctor_more right">预约</div>
 	        </li>
 	        </a>
 	      </#list>
+	      </#if>
     </ul>
 </#list>
+</#if>
 </div>
 <div class="height13"></div>
 <div class="margin_bottom"></div>

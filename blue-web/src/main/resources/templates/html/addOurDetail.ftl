@@ -16,11 +16,11 @@
 
 <div class="btn_bspace">
     <div class="join_con">            
-        <h4><span class="salary">${work.wages}</span>${work.title}</h4>
+        <h4><span class="salary">${work.wages!}</span>${work.title!}</h4>
         <div class="join_infor">
-            <span class="com_pernum"><#if work.needNum??>招${work.needNum}人</#if></span>
-            <span class="com_edu"><#if work.education??>${work.education}</#if></span>
-            <span class="com_years"><#if work.experience??>${work.experience}</#if></span>
+            <span class="com_pernum"><#if work.needNum??>招${work.needNum!}人</#if></span>
+            <span class="com_edu"><#if work.education??>${work.education!}</#if></span>
+            <span class="com_years"><#if work.experience??>${work.experience!}</#if></span>
         </div>
     </div>
     <div class="com_timeadres">

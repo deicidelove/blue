@@ -17,15 +17,17 @@
 <div class="swiper01">
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
+        <#if deptLBT??>
             <#list deptLBT as lbt>
 	        	
 		            <li class="swiper-slide">
-		            	<a href="${lbt.jumpUrl}">
-		            	<img src="${lbt.picUrl}" alt=""/>
+		            	<a href="${lbt.jumpUrl!}">
+		            	<img src="${lbt.picUrl!}" alt=""/>
 		            	 </a>
 		            </li>
 	           
             </#list>
+            </#if>
         </ul>
         <div class="swiper-pagination"></div>
     </div>
@@ -35,14 +37,10 @@
 	<#list depts as dept>
 	    <a href="/deptDetial/${dept.sid}">
 		    <li class="office_li">
-		    <#if dept.url??>
-		        <div class="office_li_left left office_01" style="background-image: url(${dept.url})"></div>
-		     <#else>
-		    	 <div class="office_li_left left office_01" style="background-image: url()"></div>
-		     </#if>
+		        <div class="office_li_left left office_01" style="background-image: url(${dept.url!})"></div>
 		        <div class="office_li_center left">
-		            <div>${dept.name}</div>
-		            <div>${dept.context}</div>
+		            <div>${dept.name!}</div>
+		            <div>${dept.context!}</div>
 		        </div>
 		        <div class="office_li_right right"></div>
 		    </li>

@@ -15,9 +15,11 @@
     <a href="/managePationPage"><div class="heade_manage">管理</div></a>
 </div>
 <ul class="select_ul">
+<#if pations??>
 	<#list pations as pation>
-    	<li class="select_li" sid="${pation.sid}" scheduleId="${scheduleId}">${pation.name}</li>
+    	<li class="select_li" sid="${pation.sid}" scheduleId="${scheduleId}">${pation.name!}</li>
     </#list>
+</#if>
 </ul>
 </body>
 </html>

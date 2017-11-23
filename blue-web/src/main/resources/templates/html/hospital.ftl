@@ -21,7 +21,7 @@
 <ul class="tab_ul">
     <li class="tab_li">
         <div class="intro">
-            <div class="intro_bg" style="background-image: url(${hospitalJSA.url})"></div>
+            <div class="intro_bg" style="background-image: url(${hospitalJSA.url!})"></div>
             <div class="intro_cont">
                 <div class="intro_cont_head">
                     <span class="left"></span>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="intro_cont_text">
           			<#if hospitalJSA??>
-          				${hospitalJSA.context}
+          				${hospitalJSA.context!}
           			</#if>
                 </div>
                 <div class="intro_cont_head">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="intro_cont_text">
                  <#if hospitalJSB??>
-                  ${hospitalJSB.context}
+                  ${hospitalJSB.context!}
                  </#if>
                 </div>
             </div>
@@ -46,35 +46,35 @@
     </li>
     <li class="tab_li displaynone">
        <#if hospitalBN1??>
-        <div class="century_01" style="background-image: url(${hospitalBN1.url})">
+        <div class="century_01" style="background-image: url(${hospitalBN1.url!})">
             <div>
-              ${hospitalBN1.context}
+              ${hospitalBN1.context!}
             </div>
         </div>
        </#if>
        <#if hospitalBN11??>
-        <div class="century_02" style="background-image: url(${hospitalBN11.url})">
+        <div class="century_02" style="background-image: url(${hospitalBN11.url!})">
             <div>
                 <p>  
-                	${hospitalBN11.context}
+                	${hospitalBN11.context!}
                 </p>
             </div>
         </div>
        </#if>
        <#if hospitalBN12??>
-        <div class="century_03" style="background-image: url(${hospitalBN12.url})">
+        <div class="century_03" style="background-image: url(${hospitalBN12.url!})">
             <div>
                 <p>
-                     ${hospitalBN12.context}
+                     ${hospitalBN12.context!}
                 </p>
                 
             </div>
         </div>
         </#if>
         <#if hospitalBN13??>
-        <div class="century_04" style="background-image: url(${hospitalBN13.url})">
+        <div class="century_04" style="background-image: url(${hospitalBN13.url!})">
             <div>
-               ${hospitalBN13.context}
+               ${hospitalBN13.context!}
             </div>
             <div>
                
@@ -82,10 +82,10 @@
         </div>
         </#if>
          <#if hospitalBN14??>
-        <div class="century_05" style="background-image: url(${hospitalBN14.url})">
+        <div class="century_05" style="background-image: url(${hospitalBN14.url!})">
             <div>
                 <p>
-                     ${hospitalBN14.context}
+                     ${hospitalBN14.context!}
                 
                 </p>
             </div>
@@ -97,11 +97,11 @@
         <#list hospitalHJ0 as hj>
             <div class="survey_concet">
             	<#if hj.url ?? && hj.url !="">
-                	<img src="${hj.url}" alt=""/>
+                	<img src="${hj.url!}" alt=""/>
                 <#else>
                 	<img name="position" src="../images/icon-130.png" alt=""/>
                 </#if>
-                <div>${hj.context}</div>
+                <div>${hj.context!}</div>
             </div>
          </#list>                      
         </div>

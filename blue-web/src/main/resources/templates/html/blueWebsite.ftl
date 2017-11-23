@@ -17,15 +17,15 @@
 <div class="swiper01">
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
+        	<#if webLBT??>
         	<#list webLBT as lbt>
-	        	
 		            <li class="swiper-slide">
-		            	<a href="${lbt.jumpUrl}">
-		            	<img src="${lbt.picUrl}" alt=""/>
+		            	<a href="${(lbt.jumpUrl)!}">
+		            	<img src="${(lbt.picUrl)!}" alt=""/>
 		            	 </a>
 		            </li>
-	           
             </#list>
+            </#if>
         </ul>
         <div class="swiper-pagination"></div>
     </div>
@@ -113,6 +113,7 @@
         <div class="swiper02">
             <div class="swiper-container swiper-container-v">
                 <ul class="message_r left swiper-wrapper">
+ 					<#if adverts??>
  					<#list adverts as item>       
  						<li class="swiper-slide">
  							<div class="message_div01">
@@ -127,6 +128,7 @@
                        		 </#if>
                     	</li>
 					</#list>
+					</#if>
                 </ul>
             </div>
         </div>

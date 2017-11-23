@@ -10,35 +10,36 @@
 </head>
 <body>
 <div class="heade">
-    <div class="heade_text">${dept.name}</div>
+    <div class="heade_text">${(dept.name)!}</div>
     <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
-<div class="health_bg" style="background-image: url(${deptBg.url})">
+<div class="health_bg" style="background-image: url(${(deptBg.url)!})">
 </div>
 <div class="health_content" >
     <div class="introduce">
         <div class="headline">科室介绍</div>
         <div class="introduce_cont">
-            ${dept.context}
+            ${dept.context!}
         </div>
     </div>
     <div class="doctor">
         <div class="headline">科室医生</div>
         <ul class="doctor_ul">
+        <#if doctors??>
             <#list doctors as doctor>
 	            <li class="doctor_li">
 	                <a href="/doctorDetial/${doctor.sid}/-1">
                     <#if doctor.headUrl??>
-                    <div class="doctor_img left" style="background-image: url(${doctor.headUrl})"></div>
+                    <div class="doctor_img left" style="background-image: url(${doctor.headUrl!})"></div>
                     <#else>
                     <div class="doctor_img left" ></div>
                     </#if>
 	                <div class="doctor_xq left">                       
 	                    <div class="name">
-	                        <span>${doctor.name}</span>
-	                        <span>${doctor.positionName}</span>
+	                        <span>${doctor.name!}</span>
+	                        <span>${doctor.positionName!}</span>
 	                    </div>
-	                    <div class="point">${doctor.introduce}</div>
+	                    <div class="point">${doctor.introduce!}</div>
 	                    <div class="specialist">专家门诊</div>
                        
 	                </div>
@@ -46,6 +47,7 @@
                      </a>
 	            </li>
             </#list>
+            </#if>
         </ul>
     </div>
 </div>

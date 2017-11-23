@@ -13,13 +13,13 @@
     <div class="heade_text">项目中心</div>
     <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
-<div class="project_bg" style="background-image: url(${project.url})"></div>
+<div class="project_bg" style="background-image: url(${project.url!})"></div>
 <div class="project_cont">
     <div class="introduce">
         <div class="introduce_bg01">
             <div class="introduce_text04">项目介绍</div>
             <div class="introduce_text05">PROJECT INTRODUCTION</div>
-            <div class="introduce_text06">${project.context}</div>            
+            <div class="introduce_text06">${project.context!}</div>            
         <div class="introduce_bg02"></div>
     </div>
 </div>

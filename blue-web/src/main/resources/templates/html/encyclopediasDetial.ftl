@@ -16,11 +16,11 @@
 </div>
 <div class="inform_cont">
     <div class="inform_bg01">
-        <div class="inform_head">${bean.title}</div>
+        <div class="inform_head">${bean.title!}</div>
         <div class="inform_time">2017-09-22 14:55:07</div>
-        <img src="${bean.url}" alt="" class="inform_img"/>
+        <img src="${bean.url!}" alt="" class="inform_img"/>
         <p class="inform_p">
-           ${bean.context}
+           ${bean.context!}
         </p>
    <div class="inform_bg02"></div>
 </div>

@@ -17,52 +17,54 @@
 <div class="swiper01">
     <div class="swiper-container banner" id="banner">
         <ul class="swiper-wrapper img-list" id="test">
+        	<#if projectLBT??>
         	<#list projectLBT as lbt>
 	        	
 		            <li class="swiper-slide">
-		            <a href="${lbt.jumpUrl}">
-		            	<img src="${lbt.picUrl}" alt=""/>
+		            <a href="${lbt.jumpUrl!}">
+		            	<img src="${lbt.picUrl!}" alt=""/>
 					 </a>		           
 					</li>
 	           
             </#list>
+            </#if>
         </ul>
         <div class="swiper-pagination"></div>
     </div>
 </div>
 <div class="project_img">
     <#if project0??>
-        <a href="${project0.jumpUrl}">
-        <div class="project_img_01 left" style="background-image: url(${project0.picUrl})">
-            <div>${project0.title}</div>   
+        <a href="${project0.jumpUrl!}">
+        <div class="project_img_01 left" style="background-image: url(${project0.picUrl!})">
+            <div>${project0.title!}</div>   
         </div>
         </a>
     </#if>
     <#if project1??>
-        <a href="${project1.jumpUrl}">
-        <div class="project_img_02 left" style="background-image: url(${project1.picUrl})">
-            <div>${project1.title}</div>
+        <a href="${project1.jumpUrl!}">
+        <div class="project_img_02 left" style="background-image: url(${project1.picUrl!})">
+            <div>${project1.title!}</div>
         </div>
          </a>
     </#if>
     <#if project2??>
-        <a href="${project2.jumpUrl}">
-        <div class="project_img_03 left" style="background-image: url(${project2.picUrl})">
-            <div>${project2.title}</div>
+        <a href="${project2.jumpUrl!}">
+        <div class="project_img_03 left" style="background-image: url(${project2.picUrl!})">
+            <div>${project2.title!}</div>
          </div>
         </a>
     </#if>
     <#if project3??>
-        <a href="${project3.jumpUrl}">
-        <div class="project_img_04 left" style="background-image: url(${project3.picUrl})">
-            <div>${project3.title}</div>
+        <a href="${project3.jumpUrl!}">
+        <div class="project_img_04 left" style="background-image: url(${project3.picUrl!})">
+            <div>${project3.title!}</div>
         </div>
       </a>
     </#if>
     <#if project4??>
-        <a href="${project4.jumpUrl}">
-        <div class="project_img_05 left" style="background-image: url(${project4.picUrl})">
-            <div>${project4.title}</div>
+        <a href="${project4.jumpUrl!}">
+        <div class="project_img_05 left" style="background-image: url(${project4.picUrl!})">
+            <div>${project4.title!}</div>
         </div>
         </a>
     </#if>
@@ -75,34 +77,34 @@
 </div>
 </a>
 
-<a href="${projectBigMiddle.jumpUrl}"><div class="all_01" style="background-image:url(${projectBigMiddle.picUrl})"></div></a>
+<a href="${projectBigMiddle.jumpUrl!}"><div class="all_01" style="background-image:url(${projectBigMiddle.picUrl!})"></div></a>
 
 <div class="all_bg box">
      <#if project5??>
 	    <div class="all_bg_div left">
-	    <a href="${project5.jumpUrl}">
-	        <div class="all_02" style="background-image: url(${project5.picUrl})"></div>
-	        <div class="all_text01">${project5.title}</div>
-	        <div class="all_text02">${project5.context}</div>
+	    <a href="${project5.jumpUrl!}">
+	        <div class="all_02" style="background-image: url(${project5.picUrl!})"></div>
+	        <div class="all_text01">${project5.title!}</div>
+	        <div class="all_text02">${project5.context!}</div>
     	</a>
     	</div>
     </#if>
      <#if project6??>
 	    <div class="all_bg_div margin_12 left">
-	    <a href="${project6.jumpUrl}">
-	        <div class="all_03" style="background-image: url(${project6.picUrl})"></div>
-	        <div class="all_text01">${project6.title}</div>
-	        <div class="all_text02">${project6.context}</div>
+	    <a href="${project6.jumpUrl!}">
+	        <div class="all_03" style="background-image: url(${project6.picUrl!})"></div>
+	        <div class="all_text01">${project6.title!}</div>
+	        <div class="all_text02">${project6.context!}</div>
     	 </a>
     	</div>
 	   
     </#if>
      <#if project7??>
 	    <div class="all_bg_div right">
-	    <a href="${project7.jumpUrl}" >
-	        <div class="all_04" style="background-image: url(${project7.picUrl})"></div>
-	        <div class="all_text01">${project7.title}</div>
-	        <div class="all_text02">${project7.context}</div>
+	    <a href="${project7.jumpUrl!}" >
+	        <div class="all_04" style="background-image: url(${project7.picUrl!})"></div>
+	        <div class="all_text01">${project7.title!}</div>
+	        <div class="all_text02">${project7.context!}</div>
     	</a>
     	</div>
 	    
@@ -111,15 +113,17 @@
 <div class="swiper02">
     <div class="swiper-container banner02">
         <ul class="swiper-wrapper img-list">
+       <#if projectBottom??>
         <#list projectBottom as bottom>
 	        	
 		            <li class="swiper-slide">
-		            <a href="${bottom.jumpUrl}">
-		            	<img src="${bottom.picUrl}" alt=""/>
+		            <a href="${bottom.jumpUrl!}">
+		            	<img src="${bottom.picUrl!}" alt=""/>
 		             </a>
 		            </li>
 	           
             </#list>
+          </#if>
         </ul>
         <div class="swiper-pagination"></div>
     </div>

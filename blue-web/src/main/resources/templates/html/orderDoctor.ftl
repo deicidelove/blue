@@ -18,15 +18,15 @@
 </div>
 <div class="subs_head">
 	 <#if doctor.headUrl??>
-    <div class="head_bg left" style="background-image: url(${doctor.headUrl})"></div>
+    <div class="head_bg left" style="background-image: url(${doctor.headUrl!})"></div>
     <#else>
     <div class="head_bg left" ></div>
     </#if>
     <div class="head_name left" >
-        <div>${doctor.name}</div>
+        <div>${doctor.name!}</div>
         <div class="post">
-            <span class="left">${doctor.positionName}</span>
-            <span class="left">${doctor.deptName}</span>
+            <span class="left">${doctor.positionName!}</span>
+            <span class="left">${doctor.deptName!}</span>
         </div>
     </div>
 </div>
@@ -35,7 +35,7 @@
     <div class="right"></div>
 </div>
 <div class="abstract">
-    ${doctor.introduce}
+    ${doctor.introduce!}
 </div>
 <div class="working">
     <div class="working_schedule">医生排班表</div>

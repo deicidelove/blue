@@ -16,6 +16,7 @@
 </div>
 
 <#assign i=1>
+<#if projects??>
 <#list  projects as project>
 	<#if (i+3)%4==0>
 		<a href="/projectDetial/${project.sid}">
@@ -35,13 +36,13 @@
 		    <li class="encyclopedia_li">
 			     <a href="/projectDetial/${project.sid}">
 			         <#if project.url??>
-			   			 <img class="left artical_img" src="${project.url}" />
+			   			 <img class="left artical_img" src="${project.url!}" />
 				     <#else>
 				     	<img class="left artical_img" src="../images/notice_img02.jpg" />
 				     </#if>
 			        <div class="left encyclopedia_li_cent">
-			            <div>${project.name}</div>
-			            <div name="clearHtml">${project.context}</div>
+			            <div>${project.name!}</div>
+			            <div name="clearHtml">${project.context!}</div>
 			        </div>
 			      </a>
 		    </li>
@@ -51,7 +52,7 @@
 	</#if>
 <#assign i=i+1>
 </#list>
-
+</#if>
 </body>
 </html>
 

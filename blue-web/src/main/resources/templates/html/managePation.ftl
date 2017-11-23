@@ -14,12 +14,13 @@
     <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
 </div>
 <ul class="manage_ul">
+<#if pations??>
     <#list pations as pation>
     <li class="manage_li">
         <div class="manage_div01">
             <div class="manage_div01_top">
-                <span class="left">${pation.name}</span>
-                <span class="right">${pation.phone}</span>
+                <span class="left">${pation.name!}</span>
+                <span class="right">${pation.phone!}</span>
             </div>
         </div>
         <div class="manage_div02">
@@ -46,7 +47,7 @@
         </div>
     </li>
     </#list>
-    
+    </#if>
     
 </ul>
 <a href="/addPationPage"><div class="infor_btn">添加就诊人</div></a>

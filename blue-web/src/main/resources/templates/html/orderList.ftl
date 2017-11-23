@@ -46,18 +46,19 @@
 <div class="doctor_bg">
     <div class="doctor">
         <ul class="doctor_ul">
+        <#if doctors??>
             <#list doctors as doctor>
             <a href="/doctorDetial/${doctor.sid}/-1" >
             <li class="doctor_li">
 	             <#if doctor.headUrl??>
-			    <div class="doctor_img left" style="background-image: url(${doctor.headUrl})"></div>
+			    <div class="doctor_img left" style="background-image: url(${doctor.headUrl!})"></div>
 			    <#else>
 			    <div class="doctor_img left"></div>
 			    </#if>
                 <div class="doctor_xq left">
                     <div class="name">
-                        <span>${doctor.name}</span>
-                        <span>${doctor.positionName}</span>
+                        <span>${doctor.name!}</span>
+                        <span>${doctor.positionName!}</span>
                     </div>
                     <div class="point">${doctor.introduce}</div>
                     <div class="specialist">专家门诊</div>
@@ -66,6 +67,7 @@
             </li>
             </a>
           </#list>
+          </#if>
         </ul>
     </div>
 </div>

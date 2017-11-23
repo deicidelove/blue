@@ -16,6 +16,7 @@
 </div>
 
 <#assign i=1>
+<#if adverts??>
 <#list adverts as advert>
 	<#if (i+3)%4==0>
 		<a href="/noticeDetialPage/${advert.sid}">
@@ -35,13 +36,13 @@
 		    <li class="encyclopedia_li">
 			     <a href="/noticeDetialPage/${advert.sid}">
 			         <#if advert.url??>
-			   			 <img class="left artical_img" src="${advert.url}" />
+			   			 <img class="left artical_img" src="${advert.url!}" />
 				     <#else>
 				     	<img class="left artical_img" src="../images/notice_img02.jpg" />
 				     </#if>
 			        <div class="left encyclopedia_li_cent">
-			            <div>${advert.title}</div>
-			            <div name="clearHtml">${advert.context}</div>
+			            <div>${advert.title!}</div>
+			            <div name="clearHtml">${advert.context!}</div>
 			        </div>
 			      </a>
 		    </li>
@@ -51,6 +52,7 @@
 	</#if>
 <#assign i=i+1>
 </#list>
+</#if>
 </body>
 </html>
 

@@ -15,15 +15,15 @@
 </div>
 <div class="inform_cont">
     <div class="inform_bg01">
-        <div class="inform_head">${advert.title}</div>
+        <div class="inform_head">${advert.title!}</div>
         <div class="inform_time">2017-09-22 14:55:07</div>
         <#if advert.url??>
-        	<img src="${advert.url}" alt="" class="inform_img"/>
+        	<img src="${advert.url!}" alt="" class="inform_img"/>
         <#else>
         	<img src="../images/icon-122.png" alt="" class="inform_img"/>
         </#if>
         <p class="inform_p">
-          ${advert.context} 
+          ${advert.context!} 
         </p>
        
     <div class="inform_bg02"></div>

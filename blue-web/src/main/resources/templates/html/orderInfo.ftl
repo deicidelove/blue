@@ -19,19 +19,19 @@
 <ul class="infor_ul">
     <li class="infor_li">
         <div class="left infor_li_div">挂号科室</div>
-        <div class="left infor_li_input" name="deptName" val="${dept.name}">${dept.name}</div>
+        <div class="left infor_li_input" name="deptName" val="${dept.name!}">${dept.name!}</div>
     </li>
     <li class="infor_li">
         <div class="left infor_li_div">科室区域</div>
-        <div class="left infor_li_input" name="deptId" val="${dept.sid}">${staff.address}</div>
+        <div class="left infor_li_input" name="deptId" val="${dept.sid}">${staff.address!}</div>
     </li>
     <li class="infor_li">
         <div class="left infor_li_div">挂号医师</div>
-        <div class="left infor_li_input" name="staffName" val="${staff.name}">${staff.name}</div>
+        <div class="left infor_li_input" name="staffName" val="${staff.name!}">${staff.name!}</div>
     </li>
     <li class="infor_li">
         <div class="left infor_li_div">就诊日期</div>
-        <div class="left infor_li_input" name="orderTime" val="${orderTime} ${bds.shiftTime}">${orderTime} ${bds.shiftTime}</div>
+        <div class="left infor_li_input" name="orderTime" val="${orderTime} ${bds.shiftTime!}">${orderTime} ${bds.shiftTime!}</div>
     </li>
     <li class="infor_li">
         <div class="left infor_li_div">挂号费用</div>
@@ -41,7 +41,7 @@
     <li class="infor_li margin_top">
         <div class="left infor_li_div">就诊人</div>
         <#if pation??>
-        <div class="left infor_li_input infor_li_people" name="pationId" val="${pation.sid}">${pation.name}</div>
+        <div class="left infor_li_input infor_li_people" name="pationId" val="${pation.sid}">${pation.name!}</div>
         <#else>
         <div class="left infor_li_input infor_li_people" name="pationId" val="0">添加就诊人</div>
         </#if>
