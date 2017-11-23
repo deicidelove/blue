@@ -68,7 +68,7 @@ public class PationDao {
 				+ "VALUES (:name, :phone, :user_id, :is_default, :create_time)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("phone", pation.getPhone());
-		paramMap.put("name", pation.getName());
+		paramMap.put("name", pation.getName()==null?"":pation.getName());
 		paramMap.put("user_id", pation.getUserId());
 		paramMap.put("is_default", pation.getIsDefault());
 		paramMap.put("create_time", pation.getCreateTime());

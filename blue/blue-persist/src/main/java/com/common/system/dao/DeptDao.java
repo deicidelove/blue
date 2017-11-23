@@ -64,9 +64,9 @@ public class DeptDao {
 		String sql = "INSERT INTO `tb_blue_dept` (`name`,`context`,`create_time`,`url`) "
 				+ "VALUES(:name,:context,:create_time,:url)";
 		Map<String, Object> paramMap = Maps.newHashMap();
-		paramMap.put("name", dept.getName());
-		paramMap.put("context", dept.getContext());
-		paramMap.put("url", dept.getUrl());
+		paramMap.put("name", dept.getName()==null?"":dept.getName());
+		paramMap.put("context", dept.getContext()==null?"":dept.getContext());
+		paramMap.put("url", dept.getUrl()==null?"":dept.getUrl());
 		paramMap.put("create_time", dept.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;

@@ -111,9 +111,9 @@ public class HospitalDao {
 				+ "VALUES (:type, :url, :title, :context, :create_time)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("type", hospital.getType());
-		paramMap.put("url", hospital.getUrl());
-		paramMap.put("title", hospital.getTitle());
-		paramMap.put("context", hospital.getContext());
+		paramMap.put("url", hospital.getUrl()==null?"":hospital.getUrl());
+		paramMap.put("title", hospital.getTitle()==null?"":hospital.getTitle());
+		paramMap.put("context", hospital.getContext()==null?"":hospital.getContext());
 		paramMap.put("create_time", hospital.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;

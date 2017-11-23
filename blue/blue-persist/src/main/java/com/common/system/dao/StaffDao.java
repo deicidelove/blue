@@ -134,10 +134,10 @@ public class StaffDao {
 		paramMap.put("sex", staff.getSex());
 		paramMap.put("phone", staff.getPhone());
 		paramMap.put("positionId", staff.getPositionId());
-		paramMap.put("introduce", staff.getIntroduce());
-		paramMap.put("address", staff.getAddress());
-		paramMap.put("head_url", staff.getHeadUrl());
-		paramMap.put("position_name", staff.getPositionName());
+		paramMap.put("introduce", staff.getIntroduce()==null?"": staff.getIntroduce());
+		paramMap.put("address", staff.getAddress()==null?"":staff.getAddress());
+		paramMap.put("head_url", staff.getHeadUrl()==null?"":staff.getHeadUrl());
+		paramMap.put("position_name", staff.getPositionName()==null?"":staff.getPositionName());
 		paramMap.put("callFee", staff.getCallFee());
 		paramMap.put("createTime", staff.getCreateTime());
 		int	 count = namedParameterJdbcTemplate.update(sql, paramMap);

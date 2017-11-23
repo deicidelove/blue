@@ -68,9 +68,9 @@ public class EncyclopediasDao {
 				+ "VALUES (:type, :url, :title, :context, :create_time)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("type", encyclopedias.getType());
-		paramMap.put("url", encyclopedias.getUrl());
-		paramMap.put("title", encyclopedias.getTitle());
-		paramMap.put("context", encyclopedias.getContext());
+		paramMap.put("url", encyclopedias.getUrl()==null?"":encyclopedias.getUrl());
+		paramMap.put("title", encyclopedias.getTitle()==null?"":encyclopedias.getTitle());
+		paramMap.put("context", encyclopedias.getContext()==null?"":encyclopedias.getContext());
 		paramMap.put("create_time", encyclopedias.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;

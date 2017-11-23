@@ -85,8 +85,8 @@ public class DoctorScheduleDao {
 		paramMap.put("staff_id", blueDoctorSchedule.getStaffId());
 		paramMap.put("dept_id", blueDoctorSchedule.getDeptId());
 		paramMap.put("shift_time", blueDoctorSchedule.getShiftTime());
-		paramMap.put("dept_name", blueDoctorSchedule.getDeptName());
-		paramMap.put("staff_name", blueDoctorSchedule.getStaffName());
+		paramMap.put("dept_name", blueDoctorSchedule.getDeptName()==null?"":blueDoctorSchedule.getDeptName());
+		paramMap.put("staff_name", blueDoctorSchedule.getStaffName()==null?"":blueDoctorSchedule.getStaffName());
 		paramMap.put("count", blueDoctorSchedule.getCount());
 		paramMap.put("create_time", blueDoctorSchedule.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);

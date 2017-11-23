@@ -89,7 +89,7 @@ public class OppointmentDao {
 		paramMap.put("pation_id", blueOppointment.getPationId());
 		paramMap.put("user_id", blueOppointment.getUserId());
 		paramMap.put("pay_money", blueOppointment.getPayMoney());
-		paramMap.put("context", blueOppointment.getContext());
+		paramMap.put("context", blueOppointment.getContext()==null?"":blueOppointment.getContext());
 		paramMap.put("order_time", blueOppointment.getOrderTime());
 		paramMap.put("create_time", blueOppointment.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);

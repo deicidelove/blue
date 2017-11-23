@@ -77,9 +77,9 @@ public class AdvertDao {
 				+ "VALUES (:type, :url, :title, :context, :create_time)";
 		Map<String, Object> paramMap = Maps.newHashMap();
 		paramMap.put("type", advert.getType());
-		paramMap.put("url", advert.getUrl());
-		paramMap.put("title", advert.getTitle());
-		paramMap.put("context", advert.getContext());
+		paramMap.put("url", advert.getUrl()==null?"":advert.getUrl());
+		paramMap.put("title", advert.getTitle()==null?"":advert.getTitle());
+		paramMap.put("context", advert.getContext()==null?"":advert.getContext());
 		paramMap.put("create_time", advert.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
@@ -110,8 +110,8 @@ public class AdvertDao {
 		sql.append(" WHERE sid =:sid");
 		paramMap.put("sid", advert.getSid());
 		paramMap.put("type", advert.getType());
-		paramMap.put("title", advert.getTitle());
-		paramMap.put("context", advert.getContext());
+		paramMap.put("title", advert.getTitle()==null?"":advert.getTitle());
+		paramMap.put("context", advert.getContext()==null?"":advert.getContext());
 		int count = namedParameterJdbcTemplate.update(sql.toString(), paramMap);
 		return count;
 	}

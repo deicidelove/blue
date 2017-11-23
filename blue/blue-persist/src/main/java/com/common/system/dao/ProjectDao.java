@@ -69,9 +69,9 @@ public class ProjectDao {
 		String sql = "INSERT INTO `tb_blue_project` ( `url`, `name`, `context`, `create_time`) "
 				+ "VALUES (:url, :name, :context, :create_time)";
 		Map<String, Object> paramMap = Maps.newHashMap();
-		paramMap.put("url", project.getUrl());
-		paramMap.put("name", project.getName());
-		paramMap.put("context", project.getContext());
+		paramMap.put("url", project.getUrl()==null?"":project.getUrl());
+		paramMap.put("name", project.getName()==null?"":project.getName());
+		paramMap.put("context", project.getContext()==null?"":project.getContext());
 		paramMap.put("create_time", project.getCreateTime());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;

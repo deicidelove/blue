@@ -117,9 +117,9 @@ public class DeptDoctorPicDao {
 		String sql = "INSERT INTO `tb_blue_deptdoctor_pic` (`url`, `deptId`,`deptName`,`type`) "
 				+ "VALUES (:url, :deptId, :deptName,:type)";
 		Map<String, Object> paramMap = Maps.newHashMap();
-		paramMap.put("url", pic.getUrl());
+		paramMap.put("url", pic.getUrl()==null?"":pic.getUrl());
 		paramMap.put("deptId", pic.getDeptId());
-		paramMap.put("deptName", pic.getDeptName());
+		paramMap.put("deptName", pic.getDeptName()==null?"":pic.getDeptName());
 		paramMap.put("type", pic.getType());
 		int count = namedParameterJdbcTemplate.update(sql, paramMap);
 		return count;
