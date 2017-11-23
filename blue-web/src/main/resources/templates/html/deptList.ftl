@@ -35,7 +35,11 @@
 	<#list depts as dept>
 	    <a href="/deptDetial/${dept.sid}">
 		    <li class="office_li">
+		    <#if dept.url??>
 		        <div class="office_li_left left office_01" style="background-image: url(${dept.url})"></div>
+		     <#else>
+		    	 <div class="office_li_left left office_01" style="background-image: url()"></div>
+		     </#if>
 		        <div class="office_li_center left">
 		            <div>${dept.name}</div>
 		            <div>${dept.context}</div>

@@ -45,51 +45,52 @@
         </div>
     </li>
     <li class="tab_li displaynone">
-        <div class="century_01">
+       <#if hospitalBN1??>
+        <div class="century_01" style="background-image: url(${hospitalBN1.url})">
             <div>
-             <#if hospitalBN1??>
               ${hospitalBN1.context}
-              </#if>
             </div>
         </div>
-        <div class="century_02">
+       </#if>
+       <#if hospitalBN11??>
+        <div class="century_02" style="background-image: url(${hospitalBN11.url})">
             <div>
                 <p>  
-                <#if hospitalBN11??>
                 	${hospitalBN11.context}
-                </#if>
                 </p>
             </div>
         </div>
-        <div class="century_03">
+       </#if>
+       <#if hospitalBN12??>
+        <div class="century_03" style="background-image: url(${hospitalBN12.url})">
             <div>
                 <p>
-                <#if hospitalBN12??>
                      ${hospitalBN12.context}
-                 </#if>
                 </p>
                 
             </div>
         </div>
-        <div class="century_04">
+        </#if>
+        <#if hospitalBN13??>
+        <div class="century_04" style="background-image: url(${hospitalBN13.url})">
             <div>
-            <#if hospitalBN13??>
                ${hospitalBN13.context}
-            </#if>
             </div>
             <div>
                
             </div>
         </div>
-        <div class="century_05">
+        </#if>
+         <#if hospitalBN14??>
+        <div class="century_05" style="background-image: url(${hospitalBN14.url})">
             <div>
                 <p>
-                <#if hospitalBN14??>
                      ${hospitalBN14.context}
-                </#if>
+                
                 </p>
             </div>
         </div>
+       </#if>
     </li>
     <li class="tab_li displaynone">
         <div class="survey">

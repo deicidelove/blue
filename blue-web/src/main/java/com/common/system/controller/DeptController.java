@@ -61,7 +61,6 @@ public class DeptController {
         modelAndView.addObject("deptBg", deptBg==null?new BlueDeptDoctorPic():deptBg);
         modelAndView.setViewName("/html/deptDetial");
         return modelAndView;
-
 	}
 
 }
