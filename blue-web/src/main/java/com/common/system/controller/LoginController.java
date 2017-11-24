@@ -56,7 +56,7 @@ public class LoginController {
 		
 		// 验证码
 		String checkCode = randCheckCode();
-		MessageSendResult result = msgVerifyService.messageSend(phoneNumber, checkCode);
+		MessageSendResult result = msgVerifyService.sendVerifyMessage(phoneNumber, checkCode);
 		if ( result == null ) {
 			return JSON.toJSONString(StandardJSONResult.getFailedInstance("内部异常，请稍后再试"));
 		} else if ( result.getStatus() != null && result.getStatus().equals("error") ) {

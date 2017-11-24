@@ -20,6 +20,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -39,12 +40,19 @@ public class MsgVerifyServiceimpl implements MsgVerifyService {
 	private static final String URL="https://api.mysubmail.com/message/xsend";
 	private static final String TYPE_MD5 = "md5";
 	private static final String TYPE_SHA1 = "sha1";
-	private static final String APP_ID = "16990";
-	private static final String APP_Key = "9f0d0f0c826613eb66424b64f6bf3d89";
-	private static final String Project = "kBB9Q4";
 	
+	// 短信发送平台AppId
+	@Value("${mysubmail.message.appId}")
+	private String messageAppId;
+	// 短信发送平台AppKey
+	@Value("${mysubmail.message.appKey}")
+	private String messageAppKey;
+	// 短信发送平台项目
+	@Value("${mysubmail.message.project}")
+	private String messageProject;
 	
 	@Resource MsgVerifyDao msgVerifyDao;
+	
 	
 	@Override
 	public void insert(MsgVerify verify) {
@@ -56,18 +64,22 @@ public class MsgVerifyServiceimpl implements MsgVerifyService {
 		return msgVerifyDao.getUnderTime(phoneNumber, curTime);
 	}
 	
-	public MessageSendResult messageSend(String phoneNumber, String verifyCode) {
-		TreeMap<String, Object> requestData = new TreeMap<String, Object>();
+	public MessageSendResult sendVerifyMessage(String phoneNumber, String verifyCode) {
 		JSONObject vars = new JSONObject();
-		String signtype = "";
 		vars.put("code", verifyCode);
 		vars.put("user", phoneNumber);
-		
-		requestData.put("appid", APP_ID);
-		requestData.put("project", Project);
+		return sendMessage(phoneNumber, vars);
+	}
+	
+	
+	// 发送短信
+	public MessageSendResult sendMessage(String phoneNumber, JSONObject vars) {
+		TreeMap<String, Object> requestData = new TreeMap<String, Object>();
+		requestData.put("appid", messageAppId);
+		requestData.put("project", messageProject);
 		requestData.put("to", phoneNumber);
 		if(!vars.isEmpty()){
-			requestData.put("vars",vars.toString());
+			requestData.put("vars", vars.toString());
 		}
 		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
 		@SuppressWarnings("deprecation")
@@ -79,17 +91,21 @@ public class MsgVerifyServiceimpl implements MsgVerifyService {
 				builder.addTextBody(key, String.valueOf(value),contentType);
 			}
 		}	
+		
+		String signtype = "";
 		if(signtype.equals(TYPE_MD5) || signtype.equals(TYPE_SHA1)){
 			String timestamp = getTimestamp();
 			requestData.put("timestamp", timestamp);
 			requestData.put("sign_type", signtype);
-			String signStr = APP_ID + APP_Key + RequestEncoder.formatRequest(requestData) + APP_ID + APP_Key;
+			String signStr = messageAppId + messageAppKey 
+					+ RequestEncoder.formatRequest(requestData) 
+					+ messageAppId + messageAppKey;
 			
 			builder.addTextBody("timestamp", timestamp);
 			builder.addTextBody("sign_type", signtype);
 			builder.addTextBody("signature", RequestEncoder.encode(signtype, signStr), contentType);
 		}else{
-			builder.addTextBody("signature", APP_Key, contentType);
+			builder.addTextBody("signature", messageAppKey, contentType);
 		}
 		
 		HttpPost httpPost = new HttpPost(URL);

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -14,17 +15,26 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.beust.jcommander.internal.Maps;
 import com.common.system.entity.ActEntity;
 import com.common.system.entity.GivingEntity;
 import com.common.system.entity.GoodsConsumerRelateEntity;
 import com.common.system.entity.GoodsEntity;
+import com.common.system.entity.WxUserEntity;
 import com.common.system.service.ActService;
 import com.common.system.service.GivingService;
 import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
+import com.common.system.service.MsgVerifyService;
+import com.common.system.service.WxUserBLueService;
+import com.common.system.service.impl.WxUserBlueServiceImpl;
+import com.google.common.base.Strings;
 
 @Controller
 public class LucyNumberSelectorController {
@@ -36,10 +46,16 @@ public class LucyNumberSelectorController {
 	// 原始幸运数
 	private static final Integer InitLucyNumber = 10000001;
 	
+	// 管理员电话号码
+	@Value("${mysubmail.message.admin.phoneNumber}")
+	private String adminPhoneNumber;
+	
 	private @Resource ActService actService;
 	private @Resource GoodsService goodsService;
 	private @Resource GivingService givingService;
 	private @Resource GoodsConsumerRelateService goodsConsumerRelateService;
+	private @Resource MsgVerifyService msgVerifyService;
+	private @Resource WxUserBLueService wxUserBLueService;
 	
 	
 	@PostConstruct
@@ -82,6 +98,14 @@ public class LucyNumberSelectorController {
 							if ( lucyMan != null ) {
 								givingService.saveGiving(wrapGiving(lucyMan));
 								goodsService.updateActGoodsOver(goodsId);
+								// 发送结果短信给管理员和幸运中奖人
+								String lucyManPhoneNumber = getLucyUserPhoneNumber(lucyMan);
+								if ( !Strings.isNullOrEmpty(lucyManPhoneNumber) ) {
+									// 发送短信给幸运中奖人
+									sendMessageToLucyMan(lucyManPhoneNumber, goodsEntity);
+									// 发送通知给管理员
+									sendMessageToAdmin(lucyManPhoneNumber, actEntity);
+								}
 								logger.warn("活动{},商品{}的幸运号码号码是{},幸运者是{}", actId, goodsId, finalLucyNumber, lucyMan.getConsumerId());
 							} else {
 								logger.warn("活动{},商品{}的消费者中没有选择幸运号码号码{}的人,本次结束", actId, goodsId, finalLucyNumber);
@@ -97,7 +121,39 @@ public class LucyNumberSelectorController {
 				logger.error("在选择中奖号码时发生异常", e);
 			}
 		}
-
+		
+		// 找出幸运用户的电话号码
+		private String getLucyUserPhoneNumber(GoodsConsumerRelateEntity lucyMan) {
+			WxUserEntity userEntity = wxUserBLueService.getById(lucyMan.getOpenId());
+			if ( userEntity != null ) {
+				if ( Strings.isNullOrEmpty(userEntity.getTel()) ) {
+					logger.error("由于用户{}没有电话号码,所以无法发送短信", userEntity );
+					return null;
+				} else {
+					return userEntity.getTel();
+				}
+			} else {
+				logger.error("用户:{}通过appId无法找到该用户", lucyMan);
+			}
+			return null;
+		}
+		
+		
+		// 发送短信给中奖人
+		private void sendMessageToLucyMan(String lucyManPhoneNumber, GoodsEntity goodsEntity) {
+			JSONObject vars = new JSONObject();
+			vars.put("luckyNumber", lucyManPhoneNumber);
+			vars.put("goodName", goodsEntity.getGoodsName());
+			msgVerifyService.sendMessage(lucyManPhoneNumber, vars);
+		}
+		
+		// 发送短信给管理员
+		private void sendMessageToAdmin(String lucyManPhoneNumber, ActEntity actEntity) {
+			JSONObject vars = new JSONObject();
+			vars.put("luckyNumber", lucyManPhoneNumber);
+			vars.put("actName", actEntity.getActName());
+			msgVerifyService.sendMessage(adminPhoneNumber, vars);
+		}
 
 	}
 	

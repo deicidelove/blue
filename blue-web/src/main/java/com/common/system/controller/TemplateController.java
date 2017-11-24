@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Paths;
@@ -33,7 +32,6 @@ import com.common.system.entity.WxUserEntity;
 import com.common.system.service.WxUserBLueService;
 import com.common.system.util.PicUtil;
 import com.common.system.util.StandardJSONResult;
-import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
@@ -46,6 +44,7 @@ import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
 public class TemplateController {
 	private static final Logger logger = LoggerFactory.getLogger(TemplateController.class);
 	// 合成图片后下载到本地的位置
+	@SuppressWarnings("unused")
 	private static final String PictureRoot = "picture";
 	
 	// 微信服务
