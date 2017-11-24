@@ -1,5 +1,6 @@
 package com.common.system.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,7 +8,10 @@ import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,11 +22,13 @@ import com.common.system.dto.MessageSendResult;
 import com.common.system.entity.MsgVerify;
 import com.common.system.service.MsgVerifyService;
 import com.common.system.service.WxUserBLueService;
+import com.common.system.util.CookieUtil;
 import com.common.system.util.StandardJSONResult;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
 	
 	// 短信验证服务
@@ -71,7 +77,9 @@ public class LoginController {
 	// 用户注册
 	@ResponseBody
 	@RequestMapping("/userRegister")
-	public String userRegister(ModelAndView modelAndView, String userName, String phoneNumber, String openId, String checkCode) {
+	public String userRegister(HttpServletRequest request, ModelAndView modelAndView, String userName, String phoneNumber, String openId, String checkCode) {
+		openId = CookieUtil.getCookieValue(request, "openId");
+		openId = "orIMpwL34MilU3-Y35pQAOt6V-70";
 		MsgVerify verify = msgVerifyService.getUnderTime(phoneNumber, new Date());
 		if ( verify != null ) {
 			if ( verify.getCheckCode().equals(checkCode) ) {
@@ -113,12 +121,25 @@ public class LoginController {
 	
 	// 发送验证码
 	@RequestMapping("/registerSuccessedRedirect")
-	public ModelAndView userRegister(ModelAndView modelAndView, String phoneNumber) {
-		modelAndView.setViewName("/blueWebsite");
-		return modelAndView;
+	public void userRegister(HttpServletRequest request , HttpServletResponse response) {
+		String url = CookieUtil.getCookieValue(request, "original_url");
+		if(StringUtils.isBlank(url)){
+			url = "http://wx.njlxkq.com";
+		}
+		try {
+			response.sendRedirect(url); 
+		} catch (Exception e) {
+			System.out.println(1);
+		}
 	}
 	
 	
+	// 注册首页
+	@RequestMapping("/kf")
+	public ModelAndView kfIndex(ModelAndView modelAndView) {
+		modelAndView.setViewName("/kfindex");
+		return modelAndView;
+	}
 	
 	//*****************************************************************************************************************
 	class SendResult implements Serializable {

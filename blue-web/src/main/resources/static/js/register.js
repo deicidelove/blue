@@ -29,7 +29,7 @@
             var $phone = $('.phone').val();
             var $phone = $('.phone').val();
             if (/^1(3[0-9]|5[012356789]|8[0-9]|7[0678])\d{8}$/.test($phone)) {
-            	$.get("/msgVerify", {'phoneNumber': $phone}, function(result){
+            	$.get("/login/msgVerify", {'phoneNumber': $phone}, function(result){
             		var returned = eval('(' + result + ')');
             		if ( returned.result == 'success' ) {
             			// 保存验证码
@@ -79,13 +79,14 @@
                 return;
             }
             if( name || phone || code ) {
-                $.get("/userRegister", {'phoneNumber': $phone, 'userName': $name, 'checkCode': $code}, function(result){
+                $.get("/login/userRegister", {'phoneNumber': $phone, 'userName': $name, 'checkCode': $code}, function(result){
                     var returned = eval('(' + result + ')');
                     if ( returned.result == 'success' ) {
                         // 保存验证码
                         register._popx('注册成功',1.5);
                         // 注册成功实现跳转
-                        $.get("/registerSuccessedRedirect", {'phoneNumber': $phone}, function(result){});
+//                        $.get("/login/registerSuccessedRedirect", {'phoneNumber': $phone}, function(result){});
+                        location.href =  basePath+"/login/registerSuccessedRedirect";
                     } else {
                         // 显示错误信息
                         register._popx(result.message, 1.5);

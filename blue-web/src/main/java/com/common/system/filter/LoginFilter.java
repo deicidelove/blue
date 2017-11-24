@@ -50,18 +50,19 @@ public class LoginFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain filterChain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
-		if(req.getServletPath().indexOf(".") >0){
+		if(req.getServletPath().indexOf(".") >0 
+				|| req.getServletPath().indexOf("login") >0){
 			filterChain.doFilter(request, response);
 			return;
 		}
 	   	 try {
 			 String code = request.getParameter("code");
 			 String openId = CookieUtil.getCookieValue((HttpServletRequest)request, "openId");
-			 if(StringUtils.isEmpty(openId)
+/*			 if(StringUtils.isEmpty(openId)
 					 && StringUtils.isBlank(code)){
 				 ((HttpServletResponse) response).sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcf685d2194e26db2&redirect_uri=http%3a%2f%2fwx.njlxkq.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
 			 }
-			 
+			 */
 			 if(StringUtils.isEmpty(openId)){
 				 if(StringUtils.isNotBlank(code) ){
 					 WxMpOAuth2AccessToken token = wxService.oauth2getAccessToken(code);
@@ -72,7 +73,8 @@ public class LoginFilter implements Filter{
 			 if(StringUtils.isNotBlank(openId)){
 				 WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
 				 if(StringUtils.isBlank(wxUserEntity.getTel())){
-					 
+					 CookieUtil.setCookie((HttpServletResponse)response, "original_url", req.getRequestURL().toString());
+					 ((HttpServletResponse) response).sendRedirect("http://wx.njlxkq.com/login/register");
 				 }
 			 }
 			 
