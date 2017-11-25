@@ -20,7 +20,7 @@
     <ul class="index_ul">
         <a href="/blueWebsite"><li class="index_li">走进蓝鲟 Tward Lanxun</li></a>
         <a href="/blueWebsite"><li class="index_li">蓝鲟官网 Website</li></a>
-        <a href="/blueWebsite"><li class="index_li">在线咨询 Consulting</li></a>
+        <a href="http://w1.ttkefu.cn/k/linkurl/?t=3F5JJC0"><li class="index_li">在线咨询 Consulting</li></a>
         <a href="/workNeedPage"><li class="index_li">加入蓝鲟 Join Lanxun</li></a>
         <a href="/blueWebsite"><li class="index_li">导航前往 Traffic</li></a>
     </ul>

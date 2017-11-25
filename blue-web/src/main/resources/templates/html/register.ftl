@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../css/common.css" />
     <link rel="stylesheet" href="../css/register.css" />
 </head>
+<script type="text/javascript">
+var basePath = '${request.contextPath}';
+</script>
 <body>
 <div class="heade">
     <div class="heade_text">注册</div>
@@ -34,4 +37,4 @@
 </body>
 </html>
 <script src="../js/jquery.js"></script>
-<script src="../js/register.js"></script>
+<script src="../js/register.js?v=8"></script>

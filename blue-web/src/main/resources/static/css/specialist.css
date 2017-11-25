@@ -105,9 +105,13 @@ html,body{
     width:50%;
 }
 .name{
-    line-height: 0.9rem;
+    padding-top: 0.3rem;
+    min-height: 0.6rem;
     font-size: 0.26rem;
     color:#4d4d4d;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 .point{
     white-space:nowrap;

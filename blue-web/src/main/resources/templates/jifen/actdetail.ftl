@@ -25,7 +25,7 @@
             <ul class="swiper-wrapper img-list" id="test">
             	<#if (detailDTO.imgList)??>
 	            	<#list detailDTO.imgList as temp>
-	               		<li class="swiper-slide"><img src="${temp.goodsImgUrl!}" alt=""/></li>
+	               		<li class="swiper-slide"><img src="${(temp.goodsImgUrl)!}" alt=""/></li>
 	                </#list>
                 </#if>
             </ul>
@@ -38,20 +38,20 @@
         <div class="left">
         	进行中
         </div>
-        <h3 class="left">${detailDTO.goodsName}</h3>
+        <h3 class="left">${(detailDTO.goodsName)!}</h3>
     </div>
     <div class="box activity_ing_botm">
         <div class="flex-1">
             <span>总需人次</span>
-            <span class="color02">${detailDTO.actTotalNum}</span>
+            <span class="color02">${(detailDTO.actTotalNum)!}</span>
         </div>
         <div class="flex-1 text_alinecent">
             <span>已参与</span>
-            <span class="color02">${detailDTO.participantsNum}</span>
+            <span class="color02">${(detailDTO.participantsNum)!}</span>
         </div>
         <div class="flex-1 text_alineright">
             <span>剩余</span>
-            <span class="color01">${detailDTO.remainingNum}</span>
+            <span class="color01">${(detailDTO.remainingNum)!}</span>
         </div>
     </div>
 </div>
@@ -63,11 +63,11 @@
 	<#list detailDTO.goodsDetailWxDTOList as temp>
 	    <li class="activity_li">
 	        <div class="activity_li_div01 left">
-	        	<img src="${temp.wxDetailEntity.pic}" class="activity_li_div01 left" style="margin-top: -1px;"/>
+	        	<img src="${(temp.wxDetailEntity.pic)!}" class="activity_li_div01 left" style="margin-top: -1px;"/>
 	        </div>
 	        <div class="activity_li_div02 left">
-	            <div>${temp.wxDetailEntity.name}抢购了1人次</div>
-	            <div>${temp.createTime}</div>
+	            <div>${(temp.wxDetailEntity.name)!}抢购了1人次</div>
+	            <div>${(temp.createTime)!}</div>
 	        </div>
 	    </li>
     </#list>
@@ -78,9 +78,9 @@
     <div class="right "></div>
 </div>
 <div class="particulars">
-    <div class="particulars_img"></div>
+    <!-- <div class="particulars_img"></div> -->
     <div class="particulars_cont">
-        ${detailDTO.goodsDetail }
+        ${(detailDTO.goodsDetail)! }
     </div>
 </div>
 <div class="height20"></div>
