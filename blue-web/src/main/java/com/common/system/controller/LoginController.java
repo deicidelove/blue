@@ -79,7 +79,6 @@ public class LoginController {
 	@RequestMapping("/userRegister")
 	public String userRegister(HttpServletRequest request, ModelAndView modelAndView, String userName, String phoneNumber, String openId, String checkCode) {
 		openId = CookieUtil.getCookieValue(request, "openId");
-		openId = "orIMpwL34MilU3-Y35pQAOt6V-70";
 		MsgVerify verify = msgVerifyService.getUnderTime(phoneNumber, new Date());
 		if ( verify != null ) {
 			if ( verify.getCheckCode().equals(checkCode) ) {
