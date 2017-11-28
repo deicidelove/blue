@@ -84,9 +84,7 @@ public class LoginController {
 		if ( verify != null ) {
 			if ( verify.getCheckCode().equals(checkCode) ) {
 				// 写入到用户表中
-				String qrcodeUrl = wxUserBLueService.getUserQRCode(openId);
-				String ticket = qrcodeUrl.substring(qrcodeUrl.lastIndexOf('=')+1, qrcodeUrl.length());
-				wxUserBLueService.updateUserInfo(openId, userName, phoneNumber, ticket, qrcodeUrl);
+				wxUserBLueService.updateUserInfo(openId, userName, phoneNumber);
 				return JSON.toJSONString(StandardJSONResult.getSuccessInstance());
 			} else {
 				RegisterResult registerResult = new RegisterResult(false, "验证码错误,请重新输入!");

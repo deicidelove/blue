@@ -60,7 +60,7 @@ public interface WxUserBLueService {
 	 * @param phoneNumber
 	 * @param openId
 	 */
-	void updateUserInfo(String openId, String userName, String phoneNumber, String ticket, String qrcodeUrl);
+	void updateUserInfo(String openId, String userName, String phoneNumber);
 	
 	
 	/**

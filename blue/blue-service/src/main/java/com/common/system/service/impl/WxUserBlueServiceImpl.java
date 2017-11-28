@@ -190,8 +190,8 @@ public class WxUserBlueServiceImpl implements WxUserBLueService {
 
 
 	@Override
-	public void updateUserInfo(String openId, String userName, String phoneNumber, String ticket, String qrcodeUrl) {
-		wxuserDao.updateUserInfo(openId, phoneNumber, userName, ticket, qrcodeUrl);
+	public void updateUserInfo(String openId, String userName, String phoneNumber) {
+		wxuserDao.updateUserInfo(openId, phoneNumber, userName);
 	}
 	
 	
