@@ -71,7 +71,8 @@ public class LoginFilter implements Filter{
 			 }
 			 if(StringUtils.isNotBlank(openId)){
 				 WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
-				 if(StringUtils.isBlank(wxUserEntity.getTel())){
+				 if(StringUtils.isBlank(wxUserEntity.getTel()) 
+						 && req.getRequestURL().toString().indexOf("jifen") > 0){
 					 CookieUtil.setCookie((HttpServletResponse)response, "original_url", req.getRequestURL().toString());
 					 ((HttpServletResponse) response).sendRedirect("http://wx.njlxkq.com/login/register");
 				 }

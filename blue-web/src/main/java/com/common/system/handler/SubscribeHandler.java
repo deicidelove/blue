@@ -34,7 +34,6 @@ public class SubscribeHandler extends AbstractHandler {
 	private WxDetailService wxDetailService;
 	@Resource
 	private JifenLogService jifenLogService;
-	
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
                                     Map<String, Object> context, WxMpService weixinService,
@@ -55,7 +54,7 @@ public class SubscribeHandler extends AbstractHandler {
         			wxUserEntity.setOpenId(userWxInfo.getOpenId());
         		}
         		if(StringUtils.isNotBlank(wxMessage.getEventKey())){
-        			String superOpenId = wxMessage.getEventKey().split("_")[1];
+        			String superOpenId = wxMessage.getEventKey().replaceAll("qrscene_", "");
         			if(!StringUtils.isBlank(superOpenId)
         					&& superOpenId.length()> 5){
         				
