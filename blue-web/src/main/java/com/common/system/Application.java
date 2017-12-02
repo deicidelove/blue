@@ -56,7 +56,7 @@ public class Application {
     		WxMenuButton subButton1 = new WxMenuButton();
     		subButton1.setName("3D全景");
 //    		subButton1.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcf685d2194e26db2&redirect_uri=http%3a%2f%2fwx.njlxkq.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
-    		subButton1.setUrl("http://wx.njlxkq.com");
+    		subButton1.setUrl("https://www.720think.com/t/53c5auj5j?from=singlemessage");
     		subButton1.setType("view");
     		subButtons1.add(subButton1);
     		wxMenuButton1.setSubButtons(subButtons1);
