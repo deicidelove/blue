@@ -11,7 +11,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">通知公告</div>
-    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back" style="color: white;">返回</div></a>
 </div>
 <div class="inform_cont">
     <div class="inform_bg01">

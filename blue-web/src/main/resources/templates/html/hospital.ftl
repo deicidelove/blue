@@ -11,7 +11,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">医院概况</div>
-    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back" style="color: white;">返回</div></a>
 </div>
 <div class="general_tab box">
     <div class="flex-1 active">医院简介</div>
@@ -122,7 +122,7 @@
         </a>
     </div>
     <div class="flex-1 footer_list">
-     <a href="/blueWebsite">
+     <a href="https://www.720think.com/t/53c5auj5j?from=singlemessage">
         <div class="footer_bg02"></div>
         <div>走进蓝鲟</div>
     </a>

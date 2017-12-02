@@ -17,7 +17,7 @@
 <body>
 <div class="heade">
     <div class="heade_text">积分活动-详情</div>
-    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+    <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back" style="color: white;">返回</div></a>
 </div>
 <div class="activity_banner">
     <div class="swiper01">

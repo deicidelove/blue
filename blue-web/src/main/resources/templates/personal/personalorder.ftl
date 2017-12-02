@@ -16,7 +16,7 @@ var basePath = '${request.contextPath}';
 <body>
     <div class="heade">
         <div class="heade_text">我的订单</div>
-        <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back">返回</div></a>
+        <a href="#" onclick="javascript:history.back(-1);"><div class="heade_back" style="color: white;">返回</div></a>
     </div>
     <#if resultList??>
     	<#list resultList as orderDTO >

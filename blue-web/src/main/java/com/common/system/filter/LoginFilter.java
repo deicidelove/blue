@@ -60,7 +60,7 @@ public class LoginFilter implements Filter{
 			 String openId = CookieUtil.getCookieValue((HttpServletRequest)request, "openId");
 			 if(StringUtils.isEmpty(openId)
 					 && StringUtils.isBlank(code)){
-				 ((HttpServletResponse) response).sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcf685d2194e26db2&redirect_uri=http%3a%2f%2fwx.njlxkq.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
+//				 ((HttpServletResponse) response).sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcf685d2194e26db2&redirect_uri=http%3a%2f%2fwx.njlxkq.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
 			 }
 			 if(StringUtils.isEmpty(openId)){
 				 if(StringUtils.isNotBlank(code) ){

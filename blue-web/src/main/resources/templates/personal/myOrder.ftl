@@ -13,7 +13,7 @@
 <body>
     <div class="heade">
         <div class="heade_text">我的预约</div>
-        <a href="#" onclick="javascript:history.back(-1);location.reload()"><div class="heade_back">返回</div></a>
+        <a href="#" onclick="javascript:history.back(-1);location.reload()"><div class="heade_back" style="color: white;">返回</div></a>
     </div>
     <#list oppos as oppo>
     <div class="mgb_space">
