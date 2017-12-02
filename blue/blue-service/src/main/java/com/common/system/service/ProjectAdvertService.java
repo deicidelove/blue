@@ -16,7 +16,7 @@ import com.common.system.util.Result;
  */
 public interface ProjectAdvertService {
 	
-	public PageBean<BlueProjectAdvert> findProjectAdevertList(String date,int startPage, int limitLength);
+	public PageBean<BlueProjectAdvert> findProjectAdevertList(String date,int startPage, int limitLength,int type);
 
 	public Result<Integer> deleteProjectAdevert(int sid);
 

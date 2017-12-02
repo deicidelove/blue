@@ -6,6 +6,7 @@ package com.common.system.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,11 @@ public class ProjectAdvertController {
 			@RequestParam(value = "length", defaultValue = "10") int pageSize,
 			@RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "search", required = false) String search) {
-		return projectAdvertService.findProjectAdevertList(date,start, pageSize);
+		int type = -1;
+		if(StringUtils.isNotBlank(search)){
+			type = Integer.valueOf(search);
+		}
+		return projectAdvertService.findProjectAdevertList(date,start, pageSize,type);
 	}
 
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)

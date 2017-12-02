@@ -38,10 +38,10 @@ public class ProjectAdvertServiceImpl implements ProjectAdvertService {
 	 */
 	@Override
 	public PageBean<BlueProjectAdvert> findProjectAdevertList(String date,
-			int startPage, int limitLength) {
+			int startPage, int limitLength,int type) {
 		try {
-			int count = projectAdvertDao.findCount(date);
-			List<BlueProjectAdvert> list = projectAdvertDao.findProjectList(date,startPage, limitLength);
+			int count = projectAdvertDao.findCount(date,type);
+			List<BlueProjectAdvert> list = projectAdvertDao.findProjectList(date,startPage, limitLength,type);
 			PageBean<BlueProjectAdvert> page = new PageBean<BlueProjectAdvert>();
 			page.setiDisplayLength(limitLength);
 			page.setiDisplayStart(startPage);

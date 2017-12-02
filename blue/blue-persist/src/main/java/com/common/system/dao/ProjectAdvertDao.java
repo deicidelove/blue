@@ -29,7 +29,7 @@ public class ProjectAdvertDao {
 	@Resource
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	public int findCount(String date) {
+	public int findCount(String date,int type) {
 		
 		Map<String, Object> paramMap = Maps.newHashMap();
 		StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM tb_blue_projectAdvert WHERE 1=1 ");
@@ -37,17 +37,25 @@ public class ProjectAdvertDao {
 			sql.append(" AND DATE_FORMAT(create_time,'%Y-%m-%d') = :date");
 			paramMap.put("date", date);
 		}
+		if(type != -1){
+			sql.append(" AND type = :type");
+			paramMap.put("type", type);
+		}
 		int count = namedParameterJdbcTemplate.queryForObject(sql.toString(), paramMap,
 				Integer.class);
 		return count;
 	}
 
-	public List<BlueProjectAdvert> findProjectList(String date,int startRow, int limitLength) {
+	public List<BlueProjectAdvert> findProjectList(String date,int startRow, int limitLength,int type) {
 		Map<String, Object> paramMap = Maps.newHashMap();
 		StringBuilder sql = new StringBuilder("SELECT * FROM tb_blue_projectAdvert WHERE 1=1 ");
 		if (!StringUtils.isEmpty(date)) {
 			sql.append(" AND DATE_FORMAT(create_time,'%Y-%m-%d') = :date");
 			paramMap.put("date", date);
+		}
+		if(type != -1){
+			sql.append(" AND type = :type ");
+			paramMap.put("type", type);
 		}
 		sql.append(" LIMIT :startRow,:limit ");
 		paramMap.put("startRow", startRow);

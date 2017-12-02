@@ -20,7 +20,28 @@
 						</div>
 					</div>
 					<div class="col-md-4">
-						
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-search"></i></span>
+							<select name="search" id="projectAdvertSelect"  class="form-control select2" style="width: 100%;">
+								<option select value="-1">全部</option>
+								<option value="0">首页轮播图</option>
+		                        <option value="1">首页中间广告</option>
+		                        <option value="2">首页近期活动广告</option>
+		                        <option value="3">项目中心轮播图</option>
+		                        <option value="4">项目中心所有项目大图</option>
+		                        <option value="5">项目中心底部广告</option>
+		                        <option value="6">项目中心上半部广告</option>
+		                        <option value="7">口腔百科轮播图</option>
+		                        <option value="8">口腔百科中间广告</option>
+		                        <option value="9">科室轮播图</option>
+		                        <option value="10">蓝鲟官网-积分抽奖广告</option>
+		                        <option value="11">蓝鲟官网-近期活动广告</option>
+		                        <option value="12">福利中心-积分抽奖广告</option>
+		                        <option value="13">福利中心-近期活动广告</option>
+		                    	<option value="14">福利中心-轮询广告</option>
+		                    	<option value="15">项目中心所有项目小图</option>
+	                		</select>
+						</div>
 					</div>
 					<div class="col-md-4">
 						<button type="submit" onclick="projectAdvertReload();" class="btn btn-primary">搜索</button>
@@ -111,12 +132,12 @@ $(function() {
     } );
 	
 	$("#securitySeek").on("click",function(){
- 		reloadTable(projectAdvert_tab,"#projectAdvertTime","#projectAdvertPremise");
+ 		reloadTable(projectAdvert_tab,"#projectAdvertTime","#projectAdvertSelect");
 	});
 });
 
 function projectAdvertReload(){
-	reloadTable(projectAdvert_tab,"#projectAdvertTime","#projectAdvertPremise");
+	reloadTable(projectAdvert_tab,"#projectAdvertTime","#projectAdvertSelect");
 }
 
 function projectAdvertToListAjax(){
