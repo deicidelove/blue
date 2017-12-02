@@ -22,7 +22,7 @@
         <p class="inform_p">
            ${bean.context!}
         </p>
-   <div class="inform_bg02"></div>
 </div>
+<div class="inform_bg02"></div>
 </body>
 </html>
