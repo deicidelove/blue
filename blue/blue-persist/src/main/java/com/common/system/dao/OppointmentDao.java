@@ -111,6 +111,24 @@ public class OppointmentDao {
 		}
 	}
 	
+	public BlueOppointment find(Integer staffId,Integer pationId, String userId, String orderTime){
+		String sql ="SELECT * FROM tb_blue_oppointment WHERE staff_id =:staffId and pation_id=:pationId"
+				+ " and user_id=:userId and order_time=:orderTime ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("staffId", staffId);
+		paramMap.put("pationId", pationId);
+		paramMap.put("userId", userId);
+		paramMap.put("orderTime", orderTime);
+		List<BlueOppointment> result =  namedParameterJdbcTemplate.query(
+				sql.toString(), paramMap,
+				new BeanPropertyRowMapper<BlueOppointment>(BlueOppointment.class));
+		if(!CollectionUtils.isEmpty(result)){
+			return result.get(0);
+		}else{
+			return null;
+		}
+	}
+	
 	public int update(BlueOppointment blueOppointment){
 		String sql = "UPDATE `tb_blue_oppointment` "
 				+ "SET order_time=:order_time WHERE sid=:sid";

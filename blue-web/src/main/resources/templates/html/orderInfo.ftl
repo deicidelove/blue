@@ -54,4 +54,4 @@
 </body>
 </html>
 <script type="text/javascript" src="../../js/jquery.js"></script>
-<script src="../../js/addAppointment.js"></script>
+<script src="../../js/addAppointment.js?v=1"></script>

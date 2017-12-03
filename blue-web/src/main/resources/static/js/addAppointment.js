@@ -13,6 +13,10 @@
                var staffName = $("div[name='staffName']").attr("val");
                var pay = $("div[name='pay']").attr("val");
                var pationId = $("div[name='pationId']").attr("val");
+               if(!pationId || pationId == '0'){
+            	   alert("请选择就诊人！");
+            	   return;
+               }
                var deptName=$("div[name='deptName']").attr("val");
                var deptId = $("div[name='deptId']").attr("val");
                var orderTime = $("div[name='orderTime']").attr("val");
@@ -36,7 +40,7 @@
             		   if(data.status){
             			   alert("预约成功！");  
             		   }else{
-            			   alert("预约失败！请稍后重试！"); 
+            			   alert(data.msg); 
             		   }
 //            	       window.location.reload();  
             	    },  

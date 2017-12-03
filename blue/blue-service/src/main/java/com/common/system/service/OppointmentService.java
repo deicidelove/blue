@@ -42,5 +42,15 @@ public interface OppointmentService {
 	public Result<BlueOppointment> findOppo(int sid);
 	
 	public List<BlueOppointment> findByUserId(String userId);
+	
+	/**
+	 * 查询是否预约
+	 * @param staffId 医生
+	 * @param pationId 就诊人
+	 * @param userId 预约人
+	 * @param orderTime 预约时间
+	 * @return
+	 */
+	public Result<BlueOppointment> findOppo(Integer staffId,Integer pationId, String userId, String orderTime);
 
 }

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +65,8 @@ public class OrderController {
 	
 	@Resource
 	private ShiftDao shiftDao;
+	
+	private static final Logger LOG = LoggerFactory.getLogger(OrderController.class);
 
 	@RequestMapping("/orderPage")
 	public ModelAndView orderPage(ModelAndView modelAndView) throws ParseException {
@@ -146,11 +150,25 @@ public class OrderController {
 	public Result<Integer> orderSubmit(HttpServletResponse response,HttpServletRequest request ,Integer staffId,String staffName,String pay,String deptName,Integer pationId,Integer deptId,String orderTime,Integer scheduleId) throws ParseException {
 		String userId = CookieUtil.getCookieValue(request, "openId");
 		String oppoId = CookieUtil.getCookieValue(request, "oppoId");
-		if(!"-1".equals(oppoId) && StringUtils.isNoneBlank(oppoId)){
-			oppointmentService.deleteOppo(Integer.valueOf(oppoId));
-			CookieUtil.setCookie(response, "oppoId", null);
+		Result<Integer> result = new Result<Integer>();
+		try {
+			
+			if(!"-1".equals(oppoId) && StringUtils.isNoneBlank(oppoId)){
+				oppointmentService.deleteOppo(Integer.valueOf(oppoId));
+				CookieUtil.setCookie(response, "oppoId", null);
+			}
+			Result<BlueOppointment> oppointmentResult = oppointmentService.findOppo(staffId, pationId, userId, orderTime);
+			if(null != oppointmentResult.getData()){
+				result.setStatus(false);
+				result.setMsg("您预约过，无需重复预约！");
+				return result;
+			}
+			result = oppointmentService.addOppo(staffId, orderTime, pay,userId,pationId,scheduleId);
+		} catch (Exception e) {
+			LOG.error("预约失败！ e",e);
+			result.setStatus(false);
+			result.setMsg("预约失败了，请稍后尝试！");
 		}
-		Result<Integer> result = oppointmentService.addOppo(staffId, orderTime, pay,userId,pationId,scheduleId);
 		return result;
 	}
 

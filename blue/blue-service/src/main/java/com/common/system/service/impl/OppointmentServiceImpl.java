@@ -126,6 +126,17 @@ public class OppointmentServiceImpl implements OppointmentService {
 	}
 
 	@Override
+	public Result<BlueOppointment> findOppo(Integer staffId,Integer pationId, String userId, String orderTime) {
+		try {
+			BlueOppointment oppo = oppointmentDao.find(staffId, pationId, userId, orderTime);
+			return new Result<BlueOppointment>(true,"查询成功！",oppo);
+		} catch (Exception e) {
+			LOG.error("查询findOppo失败！msg:{}",e);
+		}
+		return new Result<BlueOppointment>(false,"查询失败！",null);
+	}
+	
+	@Override
 	public List<BlueOppointment> findByUserId(String userId) {
 		try {
 			List<BlueOppointment> list = oppointmentDao.findByUserId(userId);
