@@ -51,7 +51,9 @@ public class LoginFilter implements Filter{
 			FilterChain filterChain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		if(req.getServletPath().indexOf(".") >0 
-				|| req.getServletPath().indexOf("login") >0){
+				|| req.getServletPath().indexOf("login") >0
+				|| req.getServletPath().indexOf("blueWebsite") >0
+				|| req.getServletPath().indexOf("orderPage") >0){
 			filterChain.doFilter(request, response);
 			return;
 		}
@@ -60,6 +62,7 @@ public class LoginFilter implements Filter{
 			 String openId = CookieUtil.getCookieValue((HttpServletRequest)request, "openId");
 			 if(StringUtils.isEmpty(openId)
 					 && StringUtils.isBlank(code)){
+				 CookieUtil.setCookie((HttpServletResponse)response, "original_url", req.getRequestURL().toString());
 				 ((HttpServletResponse) response).sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcf685d2194e26db2&redirect_uri=http%3a%2f%2fwx.njlxkq.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
 			 }
 			 if(StringUtils.isEmpty(openId)){
