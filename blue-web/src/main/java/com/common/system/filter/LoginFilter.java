@@ -54,7 +54,8 @@ public class LoginFilter implements Filter{
 				|| req.getServletPath().indexOf("login") >0
 				|| req.getServletPath().indexOf("blueWebsite") >0
 				|| req.getServletPath().indexOf("orderPage") >0
-				|| req.getServletPath().indexOf(".txt") >0){
+				|| req.getServletPath().indexOf(".txt") >0
+				|| req.getServletPath().indexOf(".jks") >0){
 			filterChain.doFilter(request, response);
 			return;
 		}
