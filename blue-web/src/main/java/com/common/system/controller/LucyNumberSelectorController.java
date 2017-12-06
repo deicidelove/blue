@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -19,9 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.beust.jcommander.internal.Maps;
 import com.common.system.entity.ActEntity;
 import com.common.system.entity.GivingEntity;
 import com.common.system.entity.GoodsConsumerRelateEntity;
@@ -33,7 +30,6 @@ import com.common.system.service.GoodsConsumerRelateService;
 import com.common.system.service.GoodsService;
 import com.common.system.service.MsgVerifyService;
 import com.common.system.service.WxUserBLueService;
-import com.common.system.service.impl.WxUserBlueServiceImpl;
 import com.google.common.base.Strings;
 
 @Controller
