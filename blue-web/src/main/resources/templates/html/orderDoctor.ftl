@@ -107,7 +107,7 @@
         <tr class="table_tr03">
             <td>下午</td>
             <#list afternoon as item>
-	            <#if item.flag == 0>
+	             <#if item.flag == 0>
 		            <td>
 		                <div class="order" value="${item.scheduleId}">预约</div>
 		            </td>
@@ -116,7 +116,8 @@
 	            	<td>
 	            		<div class="full">约满</div>
 	            	</td>
-	            <#else>
+	            </#if>
+	            <#if item.flag == 2>
 	            	<td></td>
 	            </#if>
             </#list>
