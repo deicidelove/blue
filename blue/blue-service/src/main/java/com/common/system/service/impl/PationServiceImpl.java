@@ -88,6 +88,10 @@ public class PationServiceImpl implements PationService {
 			pation.setIsDefault(isDefault);
 			pation.setUserId(userId);
 			pation.setCreateTime(new Date());
+			//如果新增的为默认，其他的都更新为非默认
+			if(isDefault == 1){
+				pationDao.updateIsDefaultByUserId(userId, 0);
+			}
 			int count = pationDao.addProject(pation);
 			return new Result<Integer>(true, "保存成功！", count);
 		} catch (Exception e) {

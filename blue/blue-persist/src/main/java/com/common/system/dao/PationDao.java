@@ -63,6 +63,16 @@ public class PationDao {
 		return count;
 	}
 	
+	public Integer updateIsDefaultByUserId(String userId, Integer isDefault){
+		
+		StringBuilder sql = new StringBuilder("UPDATE `tb_blue_pation` SET is_default =:is_default WHERE user_id = :user_id");
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("user_id", userId);
+		paramMap.put("is_default", isDefault);
+		int count = namedParameterJdbcTemplate.update(sql.toString(), paramMap);
+		return count;
+	}
+	
 	public int addProject(BluePation pation) {
 		String sql = "INSERT INTO `tb_blue_pation` ( `name`, `phone`, `user_id`,`is_default`, `create_time`) "
 				+ "VALUES (:name, :phone, :user_id, :is_default, :create_time)";
