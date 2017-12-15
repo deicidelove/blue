@@ -135,7 +135,7 @@ public class LastActController {
 				actGoodsDTO.setJifen(null ==goodsEntity.getJifen()?0:goodsEntity.getJifen());
 				actGoodsDTO.setGoodsTitle(goodsEntity.getGoodsTitle());
 				//获取已参加人数
-				List<GoodsConsumerRelateEntity> goodsConsumerRelateList = goodsConsumerRelateService.list(goodsEntity.getActId(), goodsEntity.getGoodsId());
+				List<GoodsConsumerRelateEntity> goodsConsumerRelateList = goodsConsumerRelateService.listUsed(goodsEntity.getActId(), goodsEntity.getGoodsId());
 				actGoodsDTO.setParticipantsNum((goodsConsumerRelateList.size()> actEntity.getActTotalNum())?actEntity.getActTotalNum(): goodsConsumerRelateList.size() );
 				actGoodsDTO.setRemainingNum(
 						(actEntity.getActTotalNum() - goodsConsumerRelateList.size())<0?0:(actEntity.getActTotalNum() - goodsConsumerRelateList.size()));
