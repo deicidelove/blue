@@ -94,7 +94,16 @@
         <div>为你省更多时间</div>
     </div>
     </a>
-    <a href="/orderPage">
+    <a href="http://w1.ttkefu.cn/k/linkurl/?t=3F5JJC0">
+    <div class="make">
+        <div>在线咨询</div>
+        <div>
+            <span>蓝鲟为您提供最专业的口腔咨询</span>
+        </div>
+        <div>您身边的口腔专家</div>
+    </div>
+    </a>
+<!--     <a href="/orderPage">
     <div class="make">
         <div>今日预约</div>
         <div>
@@ -104,7 +113,7 @@
         </div>
         <div>尽早治疗更有益</div>
     </div>
-    </a>
+    </a> -->
 </div>
  <a href="/noticePage">
 <div class="affiche">
