@@ -55,7 +55,8 @@ public class LoginFilter implements Filter{
 				|| req.getServletPath().indexOf("blueWebsite") >0
 				|| req.getServletPath().indexOf("orderPage") >0
 				|| req.getServletPath().indexOf(".txt") >0
-				|| req.getServletPath().indexOf(".jks") >0){
+				|| req.getServletPath().indexOf(".jks") >0
+				|| req.getServletPath().indexOf("portal") >0){
 			filterChain.doFilter(request, response);
 			return;
 		}
@@ -76,7 +77,7 @@ public class LoginFilter implements Filter{
 			 }
 			 if(StringUtils.isNotBlank(openId)){
 				 WxUserEntity wxUserEntity = wxUserBLueService.getById(openId);
-				 if(StringUtils.isBlank(wxUserEntity.getTel()) 
+				 if(null != wxUserEntity && StringUtils.isBlank(wxUserEntity.getTel()) 
 						 && req.getRequestURL().toString().indexOf("jifen") > 0){
 					 CookieUtil.setCookie((HttpServletResponse)response, "original_url", req.getRequestURL().toString());
 					 ((HttpServletResponse) response).sendRedirect("http://wx.njlxkq.com/login/register");
