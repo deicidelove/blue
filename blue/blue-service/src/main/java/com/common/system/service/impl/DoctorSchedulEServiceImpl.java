@@ -107,6 +107,11 @@ public class DoctorSchedulEServiceImpl implements DoctorSchedulEService {
 			}else{
 				dto.setSid(1);
 			}
+			BlueDoctorSchedule blueDoctorSchedule = doctorScheduleDao.findByBlueDoctorSchedule(dto);
+			if(null != blueDoctorSchedule
+					&& blueDoctorSchedule.getStaffId() != null){
+				return new Result<Integer>(false, dto.getStaffName()+dto.getShiftTime()+"重复排班", sid);
+			}
 			doctorScheduleDao.save(dto);
 			this.setBlueShift(sid, count, shiftTime); 
 			return new Result<Integer>(true, "保存成功!", sid);

@@ -45,6 +45,13 @@ public interface DoctorService {
 	public Result<BlueStaff> findDoctor(int sid);
 
 	/**
+	 * 查询 
+	 * @param name
+	 * @return
+	 */
+	public Result<BlueStaff> findDoctorByName(String name);
+	
+	/**
 	 * 更新
 	 * @return
 	 */

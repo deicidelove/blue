@@ -126,6 +126,17 @@ public class DoctorServiceImpl implements DoctorService {
 		return new Result<BlueStaff>(false,"查询失败！",null);
 	}
 
+	@Override
+	public Result<BlueStaff> findDoctorByName(String name) {
+		try {
+			BlueStaff staff = staffDao.findByName(name);
+			return new Result<BlueStaff>(true,"查询成功！",staff);
+		} catch (Exception e) {
+			LOG.error("查询医生失败！msg:{};sid:{}",e,name);
+		}
+		return new Result<BlueStaff>(false,"查询失败！",null);
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.common.system.service.DoctorService#updateDoctor(int, java.lang.String, int, int, java.lang.String, int, java.lang.String, int)
 	 */

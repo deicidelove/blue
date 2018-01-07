@@ -90,6 +90,21 @@ public class StaffDao {
 		
 	}
 
+	public BlueStaff findByName(String name) {
+		Map<String, Object> paramMap = Maps.newHashMap();
+		StringBuilder sql = new StringBuilder("SELECT * FROM tb_blue_staff WHERE name = :name");
+		paramMap.put("name", name);
+		List<BlueStaff> result =  namedParameterJdbcTemplate.query(
+				sql.toString(), paramMap,
+				new BeanPropertyRowMapper<BlueStaff>(BlueStaff.class));
+		if(!CollectionUtils.isEmpty(result)){
+			return result.get(0);
+		}else{
+			return null;
+		}
+		
+	}
+	
 	public int deleteStaff(int sid) {
 		
 		String sql = "DELETE FROM  tb_blue_staff  WHERE sid = :sid ";

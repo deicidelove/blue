@@ -93,6 +93,24 @@ public class DoctorScheduleDao {
 		return count;
 	}
 	
+	public BlueDoctorSchedule findByBlueDoctorSchedule(BlueDoctorSchedule blueDoctorSchedule){
+		
+		String sql ="SELECT * FROM tb_blue_doctor_schedule WHERE staff_id =:staff_id and dept_id =:dept_id and shift_time =:shift_time and create_time =:create_time ";
+		Map<String, Object> paramMap = Maps.newHashMap();
+		paramMap.put("staff_id", blueDoctorSchedule.getStaffId());
+		paramMap.put("dept_id", blueDoctorSchedule.getDeptId());
+		paramMap.put("shift_time", blueDoctorSchedule.getShiftTime());
+		paramMap.put("create_time", blueDoctorSchedule.getCreateTime());
+		List<BlueDoctorSchedule> result =  namedParameterJdbcTemplate.query(
+				sql.toString(), paramMap,
+				new BeanPropertyRowMapper<BlueDoctorSchedule>(BlueDoctorSchedule.class));
+		if(!CollectionUtils.isEmpty(result)){
+			return result.get(0);
+		}else{
+			return null;
+		}
+	}
+	
 	public BlueDoctorSchedule findBySid(int sid){
 		String sql ="SELECT * FROM tb_blue_doctor_schedule WHERE sid =:sid";
 		Map<String, Object> paramMap = Maps.newHashMap();

@@ -3,17 +3,23 @@
  */
 package com.common.system.controller;
 
+import java.io.InputStream;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.system.entity.BlueDept;
@@ -21,6 +27,9 @@ import com.common.system.entity.BlueDoctorSchedule;
 import com.common.system.entity.BlueStaff;
 import com.common.system.service.CommonService;
 import com.common.system.service.DoctorSchedulEService;
+import com.common.system.service.DoctorService;
+import com.common.system.util.ImportExcelUtil;
+import com.common.system.util.MsgCode;
 import com.common.system.util.PageBean;
 import com.common.system.util.Result;
 
@@ -38,6 +47,18 @@ public class DoctorScheduleController {
 	@Resource
 	private CommonService commonService;
 
+	@Resource
+	private ImportExcelUtil importExcelUtil;
+	
+	@Resource
+	private DoctorService doctorService;
+	
+	@Value("${schedule.count}")
+	private String scheduleCount;
+	
+	
+	private static final Logger LOG = LoggerFactory.getLogger(DoctorScheduleController.class);
+	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView list(ModelAndView modelAndView) {
 		List<BlueDept> depts = commonService.findDept();
@@ -96,6 +117,21 @@ public class DoctorScheduleController {
 	}
 	
 	/**
+	 * 批量添加页面数据渲染
+	 * 
+	 * @param modelAndView
+	 * @return
+	 */
+	@RequestMapping(value = "batchAdd", method = RequestMethod.GET)
+	public ModelAndView batchAdd(ModelAndView modelAndView) {
+		modelAndView.setViewName("/system/admin/doctorSchedule/batchAdd");
+		List<BlueDept> depts = commonService.findDept();
+		List<BlueStaff> staffs = commonService.findStaff();
+		modelAndView.addObject("depts", depts);
+		modelAndView.addObject("staffs", staffs);
+		return modelAndView;
+	}
+	/**
 	 * 保存
 	 * @param date
 	 * @param count
@@ -108,6 +144,60 @@ public class DoctorScheduleController {
 	Result<Integer> save(String date, String count, int staffId,
 			String shiftTime) {
 		return doctorSchedulEService.save(date, count, staffId, shiftTime);
+	}
+	
+	@RequestMapping(value = "batchSave",method={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public Result<Integer> batchSave(@RequestParam("fileName") MultipartFile file) {
+		Result<Integer> result = new Result<Integer>();
+		StringBuffer sb = new StringBuffer();
+		try (InputStream inpustStr =file.getInputStream()){
+			List<List<Object>> excelList = importExcelUtil.getBankListByExcel(inpustStr);
+			if(CollectionUtils.isEmpty(excelList)){
+				result.setMsg("请确认表格是否为空表！");
+				return result;
+			}
+			//第一行日期
+			List<Object> firstList = excelList.get(0);
+			
+			for(int rows= 1; rows< excelList.size(); rows++){
+				List<Object> rowList = excelList.get(rows);
+				Result<BlueStaff> resultStaff = null;
+				for(int cels = 0; cels <rowList.size(); cels++){
+					//人名
+					if(cels == 0 ){
+						String name = String.valueOf(rowList.get(cels));
+						//查询staffId
+						resultStaff = doctorService.findDoctorByName(String.valueOf(rowList.get(cels)));
+						if(null == resultStaff.getData()){
+							sb.append(name +"不存在，请添加！|");
+							break;
+						}
+					}
+					if(cels != 0){
+						if("值班".equals(String.valueOf(rowList.get(cels)))){
+							String date = String.valueOf(firstList.get(cels));
+							Result<Integer> resultSF = doctorSchedulEService.save(date, scheduleCount, resultStaff.getData().getSid(), "上午");
+							if(!resultSF.isStatus()){
+								sb.append(resultSF.getMsg()+"|");
+							}
+							Result<Integer> resultXF = doctorSchedulEService.save(date, scheduleCount, resultStaff.getData().getSid(), "下午");
+							if(!resultXF.isStatus()){
+								sb.append(resultXF.getMsg()+"|");
+							}
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			LOG.error("import excel error !" , e );
+			result.setMsg("系统异常，请联系管理员！");
+			return result;
+		}
+		result.setCode(MsgCode.SUCCESS);
+		result.setStatus(true);
+		result.setMsg(StringUtils.isEmpty(sb.toString())?"保存成功！": sb.toString());
+		return result;
 	}
 	
 	/**

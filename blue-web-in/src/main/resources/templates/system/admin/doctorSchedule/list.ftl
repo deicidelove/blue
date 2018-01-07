@@ -7,6 +7,9 @@
 						<@shiro.hasPermission name="sche/add">
 							<a onclick="doctorSchAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/doctorSchedule/add">添加</a>
 						</@shiro.hasPermission>
+						<@shiro.hasPermission name="scheBatchAdd">
+							<a onclick="doctorSchAjax();" class="btn btn-sm btn-primary" target="modal" modal="lg" href="/doctorSchedule/batchAdd">批量添加</a>
+						</@shiro.hasPermission>
 					</div>
 				</div>
 				<div class="box-body">
